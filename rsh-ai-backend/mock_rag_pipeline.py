@@ -1,0 +1,155 @@
+"""
+Mock RAG Pipeline for testing without Pinecone connectivity
+But still using OpenAI API for generating responses
+"""
+import os
+import logging
+import random
+import openai
+from typing import List, Dict, Any
+from chatbot_settings import get_settings
+
+# Configure logging
+logger = logging.getLogger(__name__)
+
+class MockRAGPipeline:
+    """
+    A mock implementation of the RAG pipeline for testing without Pinecone connectivity.
+    This allows the API to function and return responses even when Pinecone is not available.
+    """
+    
+    def __init__(
+        self,
+        openai_api_key: str,
+        pinecone_api_key: str = None,
+        pinecone_environment: str = None,
+        index_name: str = None,
+        model_name: str = "gpt-3.5-turbo",
+        embedding_model: str = "text-embedding-ada-002",
+        temperature: float = 0.7,
+        max_tokens: int = 1000
+    ):
+        """
+        Initialize the mock RAG pipeline.
+        
+        Args:
+            openai_api_key: OpenAI API key (not used in mock)
+            pinecone_api_key: Pinecone API key (not used in mock)
+            pinecone_environment: Pinecone environment (not used in mock)
+            index_name: Name of the Pinecone index (not used in mock)
+            model_name: Name of the OpenAI model to use (not used in mock)
+            embedding_model: Name of the OpenAI embedding model (not used in mock)
+            temperature: Temperature for text generation (not used in mock)
+            max_tokens: Maximum number of tokens to generate (not used in mock)
+        """
+        self.openai_api_key = openai_api_key
+        self.model_name = model_name
+        self.temperature = temperature
+        self.max_tokens = max_tokens
+        logger.info("Mock RAG pipeline initialized successfully")
+        
+        # Sample responses for different query types
+        self.sample_responses = {
+            "program": [
+                "Program 7 Hari Menuju Sehat Raga & Jiwa adalah program intensif yang dirancang oleh RSH Satu Bumi untuk membantu Anda mencapai keseimbangan fisik dan mental dalam waktu singkat. Program ini mencakup kombinasi terapi holistik, pola makan sehat, meditasi, dan aktivitas fisik yang disesuaikan dengan kebutuhan individu.",
+                "Program Detoksifikasi RSH Satu Bumi adalah program pembersihan tubuh dari racun dan zat berbahaya yang terakumulasi dari makanan, lingkungan, dan stres. Program ini menggunakan metode alami seperti terapi jus, hidroterapi, dan pijat limfatik untuk membantu organ-organ detoksifikasi bekerja optimal."
+            ],
+            "layanan": [
+                "RSH Satu Bumi menyediakan berbagai layanan kesehatan holistik, termasuk konsultasi kesehatan, terapi nutrisi, akupunktur, pijat terapeutik, yoga, meditasi, dan program detoksifikasi. Semua layanan dirancang untuk menangani akar masalah kesehatan, bukan hanya gejalanya.",
+                "Layanan Konsultasi Kesehatan Holistik di RSH Satu Bumi dilakukan oleh praktisi berpengalaman yang akan mengevaluasi kondisi kesehatan Anda secara menyeluruh, termasuk aspek fisik, mental, dan spiritual. Konsultasi ini menjadi dasar untuk menyusun rencana perawatan yang personal."
+            ],
+            "kontak": [
+                "Anda dapat menghubungi RSH Satu Bumi melalui telepon di nomor (021) 12345678 atau melalui email di info@rshsatubumi.com. Lokasi kami berada di Jalan Kesehatan No. 123, Jakarta Selatan. Jam operasional kami adalah Senin-Sabtu, 08.00-17.00 WIB.",
+                "Untuk informasi lebih lanjut atau membuat janji, silakan hubungi tim RSH Satu Bumi di nomor (021) 12345678. Kami juga aktif di media sosial Instagram dan Facebook dengan nama @rshsatubumi."
+            ],
+            "default": [
+                "Terima kasih atas pertanyaan Anda. RSH Satu Bumi adalah pusat kesehatan holistik yang berfokus pada pendekatan menyeluruh untuk kesehatan dan kesejahteraan. Kami menggabungkan praktik medis konvensional dengan terapi komplementer untuk mencapai keseimbangan optimal tubuh, pikiran, dan jiwa.",
+                "RSH Satu Bumi berkomitmen untuk memberikan perawatan kesehatan holistik yang memperlakukan setiap individu secara unik. Pendekatan kami berfokus pada pencegahan penyakit dan optimalisasi kesehatan melalui gaya hidup sehat, nutrisi tepat, manajemen stres, dan terapi alami."
+            ]
+        }
+    
+    def set_model(self, model_name: str) -> None:
+        """
+        Set the OpenAI model to use for response generation
+        
+        Args:
+            model_name: The name of the OpenAI model to use
+        """
+        self.model_name = model_name
+        logger.info(f"Set model to {model_name}")
+    
+    def generate_response(self, query: str) -> str:
+        """
+        Generate a response using OpenAI API with context from sample responses.
+        
+        Args:
+            query: The user's query
+            
+        Returns:
+            A response generated by OpenAI or a fallback response
+        """
+        try:
+            logger.info(f"Generating response for query: {query}")
+            
+            # Determine query type based on keywords
+            query_lower = query.lower()
+            
+            if any(keyword in query_lower for keyword in ["program", "paket", "7 hari", "detoks"]):
+                response_type = "program"
+            elif any(keyword in query_lower for keyword in ["layanan", "terapi", "konsultasi", "treatment"]):
+                response_type = "layanan"
+            elif any(keyword in query_lower for keyword in ["kontak", "hubungi", "telepon", "alamat", "lokasi"]):
+                response_type = "kontak"
+            else:
+                response_type = "default"
+            
+            # Get relevant context from sample responses
+            context = "\n\n".join(self.sample_responses.get(response_type, self.sample_responses["default"]))
+            
+            # Try to get settings, but use defaults if there's an error
+            try:
+                settings = get_settings()
+                initial_prompt = settings.get('initialPrompt', 'Anda adalah asisten AI untuk RSH Satu Bumi yang membantu menjawab pertanyaan tentang program kesehatan dan detoksifikasi.')
+                model = settings.get('modelName', self.model_name)
+                temperature = settings.get('temperature', 0.7)
+                max_tokens = settings.get('maxTokens', 500)
+            except Exception as settings_error:
+                logger.warning(f"Error getting settings, using defaults: {str(settings_error)}")
+                initial_prompt = 'Anda adalah asisten AI untuk RSH Satu Bumi yang membantu menjawab pertanyaan tentang program kesehatan dan detoksifikasi.'
+                model = self.model_name
+                temperature = 0.7
+                max_tokens = 500
+            
+            # Verify OpenAI API key
+            if not self.openai_api_key or len(self.openai_api_key) < 10:
+                logger.error("Invalid OpenAI API key")
+                # Return a sample response instead
+                return random.choice(self.sample_responses.get(response_type, self.sample_responses["default"]))
+            
+            # Call OpenAI API with error handling
+            try:
+                client = openai.OpenAI(api_key=self.openai_api_key)
+                response = client.chat.completions.create(
+                    model=model,
+                    messages=[
+                        {"role": "system", "content": initial_prompt},
+                        {"role": "user", "content": f"Berikut adalah informasi tentang RSH Satu Bumi:\n{context}\n\nBerdasarkan informasi di atas, tolong jawab pertanyaan berikut dengan sopan dan informatif: {query}"}
+                    ],
+                    temperature=temperature,
+                    max_tokens=max_tokens
+                )
+                
+                # Extract the response text
+                ai_response = response.choices[0].message.content.strip()
+                
+                logger.info(f"Generated AI response for query type: {response_type}")
+                
+                return ai_response
+            except Exception as openai_error:
+                logger.error(f"Error calling OpenAI API: {str(openai_error)}")
+                # Return a sample response as fallback
+                return f"Program 7 Hari Menuju Sehat adalah program intensif yang dirancang oleh RSH Satu Bumi untuk membantu Anda mencapai keseimbangan fisik dan mental. Program ini mencakup kombinasi terapi holistik, pola makan sehat, dan aktivitas fisik yang disesuaikan dengan kebutuhan individu.\n\nPertanyaan Anda: {query}"
+        
+        except Exception as e:
+            logger.error(f"Error generating response: {str(e)}")
+            return "Maaf, terjadi kesalahan dalam memproses pertanyaan Anda. Silakan coba lagi nanti."
