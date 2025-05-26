@@ -78,6 +78,22 @@ const StatsCards = () => {
         icon={<ClockIcon className="w-8 h-8 transition-transform group-hover:scale-110 duration-300" />}
         color="bg-orange-500"
       />
+      {stats.totalMessages !== undefined && (
+        <StatCard 
+          title="Total Pesan" 
+          value={stats.totalMessages.toString()} 
+          icon={<ChatBubbleLeftRightIcon className="w-8 h-8 transition-transform group-hover:scale-110 duration-300" />}
+          color="bg-indigo-500"
+        />
+      )}
+      {stats.uniqueUsers !== undefined && (
+        <StatCard 
+          title="Total Pengguna" 
+          value={stats.uniqueUsers.toString()} 
+          icon={<UserGroupIcon className="w-8 h-8 transition-transform group-hover:scale-110 duration-300" />}
+          color="bg-pink-500"
+        />
+      )}
     </div>
   );
 };

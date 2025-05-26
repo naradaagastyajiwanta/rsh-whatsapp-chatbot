@@ -12,6 +12,8 @@ export interface Chat {
   lastMessage: string;
   lastTimestamp: string;
   messages: Message[];
+  botEnabled?: boolean;
+  unansweredCount?: number;
 }
 
 export interface ChatStats {
@@ -19,4 +21,7 @@ export interface ChatStats {
   totalChatsThisWeek: number;
   activeUsers: number;
   averageResponseTime: number;
+  totalMessages?: number;
+  totalConversations?: number;
+  uniqueUsers?: number;
 }

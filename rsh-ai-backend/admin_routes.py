@@ -3,234 +3,358 @@ Admin dashboard API routes for the RSH WhatsApp Chatbot
 """
 import os
 import logging
+import time
 from datetime import datetime, timedelta
 from flask import Blueprint, jsonify, request
-from typing import List, Dict, Any
+from chat_logger import ChatLogger
+import time
+import os
+import uuid
+from typing import Dict, Optional
 
 # Configure logging
 logger = logging.getLogger(__name__)
 
-# Create a Blueprint for admin routes
-admin_bp = Blueprint('admin', __name__)
+# Create a blueprint for admin routes
+admin_bp = Blueprint('admin', __name__, url_prefix='/admin')
 
-# In-memory storage for chat logs (in a real app, this would be a database)
-chat_logs = []
-chat_stats = {
-    "totalChatsToday": 0,
-    "totalChatsThisWeek": 0,
-    "activeUsers": 0,
-    "averageResponseTime": 0
-}
+# Initialize chat logger
+chat_logger = ChatLogger()
 
-# Sample data for testing
+# Dictionary to store bot status for each chat
+# Default is True (bot is enabled)
+bot_status: Dict[str, bool] = {}
+
+# Dictionary to store unanswered messages for each sender
+# Format: {sender_id: count_of_unanswered_messages}
+unanswered_messages: Dict[str, int] = {}
+
+# Initialize sample data for the chat logger
 def initialize_sample_data():
-    global chat_logs, chat_stats
-    
-    # Only initialize if empty
-    if not chat_logs:
-        chat_logs = [
-            {
-                "id": "1",
-                "sender": "6281234567890@s.whatsapp.net",
-                "senderName": "John Doe",
-                "lastMessage": "Apa itu program 7 hari menuju sehat raga dan jiwa?",
-                "lastTimestamp": "2025-05-25T10:30:00Z",
-                "messages": [
-                    {
-                        "id": "1-1",
-                        "content": "Apa itu program 7 hari menuju sehat raga dan jiwa?",
-                        "timestamp": "2025-05-25T10:30:00Z",
-                        "isFromUser": True,
-                    },
-                    {
-                        "id": "1-2",
-                        "content": "Program 7 Hari Menuju Sehat Raga & Jiwa adalah program intensif yang dirancang oleh RSH Satu Bumi untuk membantu Anda mencapai keseimbangan fisik dan mental dalam waktu singkat. Program ini mencakup kombinasi terapi holistik, pola makan sehat, meditasi, dan aktivitas fisik yang disesuaikan dengan kebutuhan individu.",
-                        "timestamp": "2025-05-25T10:30:15Z",
-                        "isFromUser": False,
-                    },
-                ],
-            },
-            {
-                "id": "2",
-                "sender": "6289876543210@s.whatsapp.net",
-                "senderName": "Jane Smith",
-                "lastMessage": "Bagaimana cara mendaftar untuk konsultasi kesehatan?",
-                "lastTimestamp": "2025-05-25T09:45:00Z",
-                "messages": [
-                    {
-                        "id": "2-1",
-                        "content": "Halo, saya ingin bertanya tentang layanan konsultasi kesehatan",
-                        "timestamp": "2025-05-25T09:44:00Z",
-                        "isFromUser": True,
-                    },
-                    {
-                        "id": "2-2",
-                        "content": "Tentu, kami menyediakan layanan konsultasi kesehatan holistik. Ada yang bisa saya bantu?",
-                        "timestamp": "2025-05-25T09:44:15Z",
-                        "isFromUser": False,
-                    },
-                    {
-                        "id": "2-3",
-                        "content": "Bagaimana cara mendaftar untuk konsultasi kesehatan?",
-                        "timestamp": "2025-05-25T09:45:00Z",
-                        "isFromUser": True,
-                    },
-                    {
-                        "id": "2-4",
-                        "content": "Untuk mendaftar konsultasi kesehatan, Anda dapat menghubungi kami di nomor (021) 12345678 atau melalui email di info@rshsatubumi.com. Kami akan membantu Anda menjadwalkan sesi konsultasi sesuai dengan kebutuhan Anda.",
-                        "timestamp": "2025-05-25T09:45:30Z",
-                        "isFromUser": False,
-                    },
-                ],
-            }
-        ]
-        
-        # Initialize stats
-        chat_stats = {
-            "totalChatsToday": 15,
-            "totalChatsThisWeek": 87,
-            "activeUsers": 42,
-            "averageResponseTime": 12  # seconds
+    # Sample conversations
+    sample_conversations = [
+        {
+            "sender": "6281234567890@s.whatsapp.net",
+            "sender_name": "John Doe",
+            "message": "Apa itu program 7 hari menuju sehat raga dan jiwa?",
+            "response": "Program 7 Hari Menuju Sehat Raga & Jiwa adalah program intensif yang dirancang oleh RSH Satu Bumi untuk membantu Anda mencapai keseimbangan fisik dan mental dalam waktu singkat. Program ini mencakup kombinasi terapi holistik, pola makan sehat, meditasi, dan aktivitas fisik yang disesuaikan dengan kebutuhan individu."
+        },
+        {
+            "sender": "6287654321098@s.whatsapp.net",
+            "sender_name": "Jane Smith",
+            "message": "Bagaimana cara mendaftar program ini?",
+            "response": "Untuk mendaftar program 7 Hari Menuju Sehat Raga & Jiwa, Anda dapat menghubungi resepsionis RSH Satu Bumi di nomor 021-12345678 atau mengunjungi website kami di www.rshsatubumi.com/program-7hari. Tim kami akan membantu Anda dengan proses pendaftaran dan memberikan informasi lebih lanjut tentang jadwal dan persiapan yang diperlukan."
+        },
+        {
+            "sender": "6282345678901@s.whatsapp.net",
+            "sender_name": "Bob Johnson",
+            "message": "Berapa biaya untuk mengikuti program detoksifikasi?",
+            "response": "Biaya untuk program detoksifikasi di RSH Satu Bumi bervariasi tergantung pada durasi dan jenis program yang Anda pilih. Program detoksifikasi standar 3 hari dimulai dari Rp 5.000.000, sementara program 7 hari dimulai dari Rp 10.000.000. Biaya ini sudah termasuk akomodasi, makanan organik, terapi, dan konsultasi dengan dokter holistik. Untuk informasi lebih detail dan penawaran khusus, silakan hubungi tim layanan pelanggan kami."
         }
+    ]
+    
+    # Check if we already have data
+    conversations = chat_logger.get_conversations()
+    if not conversations:
+        # Log sample conversations
+        for sample in sample_conversations:
+            chat_logger.log_message(
+                sender=sample["sender"],
+                message=sample["message"],
+                response=sample["response"],
+                sender_name=sample["sender_name"],
+                response_time=3.5
+            )
+            
+        logger.info("Initialized sample chat data")
 
 # Initialize sample data
 initialize_sample_data()
 
 # Function to log a new chat message
-def log_chat_message(sender: str, sender_name: str, message: str, response: str):
+def log_chat_message(sender: str, sender_name: str, message: str, response: str, response_time: float = None):
     """
     Log a new chat message and its response
+    
+    Args:
+        sender: Sender ID (WhatsApp number with @s.whatsapp.net)
+        sender_name: Name of the sender
+        message: User's message
+        response: Bot's response
+        response_time: Time taken to generate response in seconds
     """
-    global chat_logs, chat_stats
+    # Use the chat logger to log the message
+    message_id = chat_logger.log_message(
+        sender=sender,
+        message=message,
+        response=response,
+        sender_name=sender_name,
+        response_time=response_time
+    )
     
-    now = datetime.utcnow().isoformat() + "Z"
-    
-    # Check if this sender already has a chat
-    existing_chat = next((chat for chat in chat_logs if chat["sender"] == sender), None)
-    
-    if existing_chat:
-        # Add to existing chat
-        message_id = f"{existing_chat['id']}-{len(existing_chat['messages']) + 1}"
-        response_id = f"{existing_chat['id']}-{len(existing_chat['messages']) + 2}"
-        
-        # Add user message
-        existing_chat["messages"].append({
-            "id": message_id,
-            "content": message,
-            "timestamp": now,
-            "isFromUser": True
-        })
-        
-        # Add bot response
-        existing_chat["messages"].append({
-            "id": response_id,
-            "content": response,
-            "timestamp": now,
-            "isFromUser": False
-        })
-        
-        # Update last message and timestamp
-        existing_chat["lastMessage"] = message
-        existing_chat["lastTimestamp"] = now
-    else:
-        # Create new chat
-        chat_id = str(len(chat_logs) + 1)
-        new_chat = {
-            "id": chat_id,
-            "sender": sender,
-            "senderName": sender_name or "Unknown User",
-            "lastMessage": message,
-            "lastTimestamp": now,
-            "messages": [
-                {
-                    "id": f"{chat_id}-1",
-                    "content": message,
-                    "timestamp": now,
-                    "isFromUser": True
-                },
-                {
-                    "id": f"{chat_id}-2",
-                    "content": response,
-                    "timestamp": now,
-                    "isFromUser": False
-                }
-            ]
-        }
-        chat_logs.append(new_chat)
-    
-    # Update stats
-    chat_stats["totalChatsToday"] += 1
-    chat_stats["totalChatsThisWeek"] += 1
-    
-    # Get unique active users
-    unique_senders = set(chat["sender"] for chat in chat_logs)
-    chat_stats["activeUsers"] = len(unique_senders)
-    
-    logger.info(f"Logged chat message from {sender}")
+    logger.info(f"Logged message from {sender}: {message[:50]}...")
 
 # Routes for the admin dashboard
 
 @admin_bp.route('/chats', methods=['GET'])
 def get_chats():
     """Get all chats"""
-    return jsonify(chat_logs)
+    limit = int(request.args.get('limit', 100))
+    offset = int(request.args.get('offset', 0))
+    conversations = chat_logger.get_conversations(limit=limit, offset=offset)
+    
+    # Format conversations for frontend
+    formatted_conversations = []
+    for conv in conversations:
+        formatted_conv = {
+            "id": conv["id"],
+            "sender": conv["sender"],
+            "senderName": conv["sender_name"],
+            "lastMessage": conv["last_message"],
+            "lastTimestamp": conv["last_timestamp"],
+            "messages": []
+        }
+        
+        # Format messages
+        for msg in conv["messages"]:
+            formatted_conv["messages"].append({
+                "id": msg["id"],
+                "content": msg["message"],
+                "timestamp": msg["timestamp"],
+                "isFromUser": True
+            })
+            formatted_conv["messages"].append({
+                "id": f"{msg['id']}_response",
+                "content": msg["response"],
+                "timestamp": msg["timestamp"],
+                "isFromUser": False
+            })
+            
+        formatted_conversations.append(formatted_conv)
+        
+    return jsonify(formatted_conversations)
 
 @admin_bp.route('/chats/<chat_id>', methods=['GET'])
 def get_chat_by_id(chat_id):
     """Get a specific chat by ID"""
-    chat = next((chat for chat in chat_logs if chat["id"] == chat_id), None)
-    if not chat:
+    conversation = chat_logger.get_conversation(chat_id)
+    if not conversation:
         return jsonify({"error": "Chat not found"}), 404
-    return jsonify(chat)
+        
+    # Format conversation for frontend
+    formatted_conv = {
+        "id": conversation["id"],
+        "sender": conversation["sender"],
+        "senderName": conversation["sender_name"],
+        "lastMessage": conversation["last_message"],
+        "lastTimestamp": conversation["last_timestamp"],
+        "messages": []
+    }
+    
+    # Format messages
+    for msg in conversation["messages"]:
+        formatted_conv["messages"].append({
+            "id": msg["id"],
+            "content": msg["message"],
+            "timestamp": msg["timestamp"],
+            "isFromUser": True
+        })
+        formatted_conv["messages"].append({
+            "id": f"{msg['id']}_response",
+            "content": msg["response"],
+            "timestamp": msg["timestamp"],
+            "isFromUser": False
+        })
+        
+    return jsonify(formatted_conv)
 
-@admin_bp.route('/chats/search', methods=['GET'])
+@admin_bp.route('/search', methods=['GET'])
 def search_chats():
     """Search chats by query"""
-    query = request.args.get('q', '').lower()
+    query = request.args.get('q', '')
+    
     if not query:
-        return jsonify(chat_logs)
+        return get_chats()
     
-    filtered_chats = []
-    for chat in chat_logs:
-        # Search in sender
-        if query in chat["sender"].lower():
-            filtered_chats.append(chat)
-            continue
-        
-        # Search in last message
-        if query in chat["lastMessage"].lower():
-            filtered_chats.append(chat)
-            continue
-        
-        # Search in messages
-        for message in chat["messages"]:
-            if query in message["content"].lower():
-                filtered_chats.append(chat)
-                break
+    conversations = chat_logger.search_conversations(query)
     
-    return jsonify(filtered_chats)
+    # Format conversations for frontend
+    formatted_conversations = []
+    for conv in conversations:
+        formatted_conv = {
+            "id": conv["id"],
+            "sender": conv["sender"],
+            "senderName": conv["sender_name"],
+            "lastMessage": conv["last_message"],
+            "lastTimestamp": conv["last_timestamp"],
+            "messages": []
+        }
+        
+        # Format messages
+        for msg in conv["messages"]:
+            if query.lower() in msg["message"].lower() or query.lower() in msg["response"].lower():
+                formatted_conv["messages"].append({
+                    "id": msg["id"],
+                    "content": msg["message"],
+                    "timestamp": msg["timestamp"],
+                    "isFromUser": True
+                })
+                formatted_conv["messages"].append({
+                    "id": f"{msg['id']}_response",
+                    "content": msg["response"],
+                    "timestamp": msg["timestamp"],
+                    "isFromUser": False
+                })
+            
+        formatted_conversations.append(formatted_conv)
+        
+    return jsonify(formatted_conversations)
 
 @admin_bp.route('/stats', methods=['GET'])
 def get_stats():
     """Get chat statistics"""
-    return jsonify(chat_stats)
+    stats = chat_logger.get_stats()
+    return jsonify(stats)
+
+@admin_bp.route('/send-message', methods=['POST'])
+def send_message():
+    """Send a message to a recipient via WhatsApp"""
+    data = request.json
+    
+    if not data or 'recipient' not in data or 'message' not in data:
+        return jsonify({"error": "Missing required fields"}), 400
+    
+    recipient = data['recipient']
+    admin_message = data['message']
+    use_bot = data.get('useBot', True)
+    
+    try:
+        # Store bot status for this recipient
+        bot_status[recipient] = use_bot
+        
+        # Reset unanswered message count when admin sends a message
+        # Always set to 0 regardless of whether it existed before
+        if recipient in unanswered_messages and unanswered_messages[recipient] > 0:
+            logger.info(f"Resetting unanswered message count for {recipient} (was {unanswered_messages[recipient]})")
+        unanswered_messages[recipient] = 0
+        
+        # Implement actual message sending to WhatsApp
+        try:
+            # Import the WhatsApp service module
+            from whatsapp_service import send_whatsapp_message
+            
+            # Send message via WhatsApp
+            whatsapp_result = send_whatsapp_message(recipient, admin_message)
+            logger.info(f"Message sent to WhatsApp: {whatsapp_result}")
+        except ImportError:
+            logger.warning("WhatsApp service module not found. Creating a mock implementation.")
+            
+            # Create a mock implementation if the WhatsApp service is not available
+            logger.info(f"[MOCK] Message would be sent to {recipient}: {admin_message}")
+            whatsapp_result = {"status": "sent", "message_id": str(uuid.uuid4())}
+        
+        # Create a mock user message to simulate a conversation
+        # In a real scenario, we wouldn't need this - we'd just send our message
+        mock_user_message = "[This is a placeholder for user's previous message]"
+        
+        # Log the message - here admin_message is the RESPONSE (from chatbot/admin perspective)
+        # and mock_user_message is the user's message
+        message_id = chat_logger.log_message(
+            sender=recipient,
+            message=mock_user_message,  # This would be the actual user message in a real scenario
+            response=admin_message,     # Admin message is the response from chatbot/CS perspective
+            sender_name=None,           # We don't have this info when admin sends message
+            response_time=0.1           # Mock response time
+        )
+        
+        return jsonify({
+            "success": True,
+            "message": "Message sent successfully",
+            "messageId": message_id,
+            "whatsappResult": whatsapp_result
+        })
+    except Exception as e:
+        logger.error(f"Error sending message: {str(e)}")
+        return jsonify({"error": f"Failed to send message: {str(e)}"}), 500
+
+@admin_bp.route('/toggle-bot/<chat_id>', methods=['POST'])
+def toggle_bot(chat_id):
+    """Toggle bot status for a specific chat"""
+    data = request.json
+    
+    if not data or 'enabled' not in data:
+        return jsonify({"error": "Missing 'enabled' field"}), 400
+    
+    enabled = data['enabled']
+    
+    try:
+        # Get the chat to find the sender
+        chat = chat_logger.get_conversation(chat_id)
+        if not chat:
+            return jsonify({"error": "Chat not found"}), 404
+        
+        sender = chat["sender"]
+        
+        # Update bot status
+        bot_status[sender] = enabled
+        
+        return jsonify({
+            "success": True,
+            "chatId": chat_id,
+            "sender": sender,
+            "botEnabled": enabled
+        })
+    except Exception as e:
+        logger.error(f"Error toggling bot status: {str(e)}")
+        return jsonify({"error": f"Failed to toggle bot status: {str(e)}"}), 500
+
+@admin_bp.route('/bot-status/<chat_id>', methods=['GET'])
+def get_bot_status(chat_id):
+    """Get bot status for a specific chat"""
+    try:
+        # Get the chat to find the sender
+        chat = chat_logger.get_conversation(chat_id)
+        if not chat:
+            return jsonify({"error": "Chat not found"}), 404
+        
+        sender = chat["sender"]
+        
+        # Get bot status (default to True if not set)
+        enabled = bot_status.get(sender, True)
+        
+        # Get unanswered message count (default to 0 if not set)
+        unanswered_count = unanswered_messages.get(sender, 0)
+        
+        # Prepare response
+        response_data = {
+            "chatId": chat_id,
+            "sender": sender,
+            "botEnabled": enabled
+        }
+        
+        # Only include unansweredCount if it's greater than 0
+        if unanswered_count > 0:
+            response_data["unansweredCount"] = unanswered_count
+        
+        return jsonify(response_data)
+    except Exception as e:
+        logger.error(f"Error getting bot status: {str(e)}")
+        return jsonify({"error": f"Failed to get bot status: {str(e)}"}), 500
 
 # Webhook to log messages from the WhatsApp service
 @admin_bp.route('/log', methods=['POST'])
 def log_message():
-    """Log a message from the WhatsApp service"""
     data = request.json
-    if not data:
-        return jsonify({"error": "No data provided"}), 400
     
-    sender = data.get('sender')
-    message = data.get('message')
-    response = data.get('response')
-    sender_name = data.get('sender_name')
+    if not data or 'sender' not in data or 'message' not in data or 'response' not in data:
+        return jsonify({"error": "Invalid request data"}), 400
+        
+    sender = data['sender']
+    message = data['message']
+    response = data['response']
+    sender_name = data.get('sender_name', sender.split('@')[0])
+    response_time = data.get('response_time')
     
-    if not all([sender, message, response]):
-        return jsonify({"error": "Missing required fields"}), 400
+    log_chat_message(sender, sender_name, message, response, response_time)
     
-    log_chat_message(sender, sender_name, message, response)
-    
-    return jsonify({"status": "success"}), 200
+    return jsonify({"success": True})

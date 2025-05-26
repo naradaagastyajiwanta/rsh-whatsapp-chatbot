@@ -1,0 +1,385 @@
+[
+  {
+    "id": "conv_6281234567890",
+    "sender": "6281234567890@s.whatsapp.net",
+    "sender_name": "John Doe",
+    "messages": [
+      {
+        "id": "6281234567890_1748223354",
+        "sender": "6281234567890@s.whatsapp.net",
+        "sender_name": "John Doe",
+        "message": "Apa itu program 7 hari menuju sehat raga dan jiwa?",
+        "response": "Program 7 Hari Menuju Sehat Raga & Jiwa adalah program intensif yang dirancang oleh RSH Satu Bumi untuk membantu Anda mencapai keseimbangan fisik dan mental dalam waktu singkat. Program ini mencakup kombinasi terapi holistik, pola makan sehat, meditasi, dan aktivitas fisik yang disesuaikan dengan kebutuhan individu.",
+        "timestamp": "2025-05-26T08:35:54.287106",
+        "response_time": 3.5
+      }
+    ],
+    "first_timestamp": "2025-05-26T08:35:54.287106",
+    "last_timestamp": "2025-05-26T08:35:54.287106",
+    "last_message": "Apa itu program 7 hari menuju sehat raga dan jiwa?"
+  },
+  {
+    "id": "conv_6287654321098",
+    "sender": "6287654321098@s.whatsapp.net",
+    "sender_name": "Jane Smith",
+    "messages": [
+      {
+        "id": "6287654321098_1748223354",
+        "sender": "6287654321098@s.whatsapp.net",
+        "sender_name": "Jane Smith",
+        "message": "Bagaimana cara mendaftar program ini?",
+        "response": "Untuk mendaftar program 7 Hari Menuju Sehat Raga & Jiwa, Anda dapat menghubungi resepsionis RSH Satu Bumi di nomor 021-12345678 atau mengunjungi website kami di www.rshsatubumi.com/program-7hari. Tim kami akan membantu Anda dengan proses pendaftaran dan memberikan informasi lebih lanjut tentang jadwal dan persiapan yang diperlukan.",
+        "timestamp": "2025-05-26T08:35:54.312874",
+        "response_time": 3.5
+      },
+      {
+        "id": "6287654321098_1748223354",
+        "sender": "6287654321098@s.whatsapp.net",
+        "sender_name": "Jane Smith",
+        "message": "Bagaimana cara mendaftar program ini?",
+        "response": "Untuk mendaftar program 7 Hari Menuju Sehat Raga & Jiwa, Anda dapat menghubungi resepsionis RSH Satu Bumi di nomor 021-12345678 atau mengunjungi website kami di www.rshsatubumi.com/program-7hari. Tim kami akan membantu Anda dengan proses pendaftaran dan memberikan informasi lebih lanjut tentang jadwal dan persiapan yang diperlukan.",
+        "timestamp": "2025-05-26T08:35:54.317049",
+        "response_time": 3.5
+      }
+    ],
+    "first_timestamp": "2025-05-26T08:35:54.312874",
+    "last_timestamp": "2025-05-26T08:35:54.317049",
+    "last_message": "Bagaimana cara mendaftar program ini?"
+  },
+  {
+    "id": "conv_6282345678901",
+    "sender": "6282345678901@s.whatsapp.net",
+    "sender_name": "Bob Johnson",
+    "messages": [
+      {
+        "id": "6282345678901_1748223354",
+        "sender": "6282345678901@s.whatsapp.net",
+        "sender_name": "Bob Johnson",
+        "message": "Berapa biaya untuk mengikuti program detoksifikasi?",
+        "response": "Biaya untuk program detoksifikasi di RSH Satu Bumi bervariasi tergantung pada durasi dan jenis program yang Anda pilih. Program detoksifikasi standar 3 hari dimulai dari Rp 5.000.000, sementara program 7 hari dimulai dari Rp 10.000.000. Biaya ini sudah termasuk akomodasi, makanan organik, terapi, dan konsultasi dengan dokter holistik. Untuk informasi lebih detail dan penawaran khusus, silakan hubungi tim layanan pelanggan kami.",
+        "timestamp": "2025-05-26T08:35:54.336077",
+        "response_time": 3.5
+      },
+      {
+        "id": "6282345678901_1748223354",
+        "sender": "6282345678901@s.whatsapp.net",
+        "sender_name": "Bob Johnson",
+        "message": "Berapa biaya untuk mengikuti program detoksifikasi?",
+        "response": "Biaya untuk program detoksifikasi di RSH Satu Bumi bervariasi tergantung pada durasi dan jenis program yang Anda pilih. Program detoksifikasi standar 3 hari dimulai dari Rp 5.000.000, sementara program 7 hari dimulai dari Rp 10.000.000. Biaya ini sudah termasuk akomodasi, makanan organik, terapi, dan konsultasi dengan dokter holistik. Untuk informasi lebih detail dan penawaran khusus, silakan hubungi tim layanan pelanggan kami.",
+        "timestamp": "2025-05-26T08:35:54.352491",
+        "response_time": 3.5
+      }
+    ],
+    "first_timestamp": "2025-05-26T08:35:54.336077",
+    "last_timestamp": "2025-05-26T08:35:54.352491",
+    "last_message": "Berapa biaya untuk mengikuti program detoksifikasi?"
+  },
+  {
+    "id": "conv_6287811152506",
+    "sender": "6287811152506@s.whatsapp.net",
+    "sender_name": "Jiwan",
+    "messages": [
+      {
+        "id": "6287811152506_1748223802",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "hi",
+        "response": "Halo! Terima kasih telah berbagi informasi tentang RSH Satu Bumi. Kami siap membantu Anda menemukan solusi kesehatan holistik untuk tubuh, pikiran, dan jiwa Anda. Apakah ada yang bisa kami bantu atau jelaskan lebih lanjut? Semangat untuk memulai perjalanan kesehatan bersama kami! \ud83c\udf3f\u2728",
+        "timestamp": "2025-05-26T08:43:22.514563",
+        "response_time": 2.1058506965637207
+      },
+      {
+        "id": "6287811152506_1748224068",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "saya ingin daftar program 7 hari menuju sehat raga dan jiwa",
+        "response": "Tentu, program 7 Hari Menuju Sehat Raga & Jiwa adalah pilihan yang bagus untuk mencapai keseimbangan fisik dan mental. Untuk mendaftar, Anda dapat menghubungi tim kami melalui nomor telepon atau email yang tercantum di situs web kami. Mereka akan membantu Anda dengan proses pendaftaran dan memberikan informasi lebih lanjut mengenai program tersebut. Jangan ragu untuk mengajukan pertanyaan lebih lanjut jika Anda membutuhkan klarifikasi atau bantuan tambahan.",
+        "timestamp": "2025-05-26T08:47:48.341551",
+        "response_time": 2.736729860305786
+      },
+      {
+        "id": "6287811152506_1748224199",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "hi",
+        "response": "Halo! Selamat datang di Rumah Sehat Holistik Satu Bumi. Bagaimana saya bisa membantu Anda hari ini? Jangan ragu untuk bertanya mengenai program-program kesehatan holistik yang kami tawarkan di sini. Saya siap membantu perjalanan kesehatan dan kesejahteraan Anda. \ud83d\ude0a",
+        "timestamp": "2025-05-26T08:49:59.962353",
+        "response_time": 1.5260701179504395
+      },
+      {
+        "id": "6287811152506_1748225196",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "6287811152506",
+        "message": "hi",
+        "response": "[Bot Response] Terima kasih atas pesan Anda: hi",
+        "timestamp": "2025-05-26T09:06:36.478919",
+        "response_time": 0.1
+      },
+      {
+        "id": "6287811152506_1748225220",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "hi",
+        "response": "Halo! Selamat datang di Rumah Sehat Holistik Satu Bumi. Bagaimana saya bisa membantu Anda hari ini? Jangan ragu untuk bertanya seputar program-program kesehatan holistik yang kami tawarkan di sini. Saya siap membantu Anda menuju kesehatan dan kesejahteraan yang optimal. \ud83d\ude0a",
+        "timestamp": "2025-05-26T09:07:00.025646",
+        "response_time": 1.8207855224609375
+      },
+      {
+        "id": "6287811152506_1748225367",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "6287811152506",
+        "message": "[This is a placeholder for user's previous message]",
+        "response": "hi saya dengan jiwan",
+        "timestamp": "2025-05-26T09:09:27.884956",
+        "response_time": 0.1
+      },
+      {
+        "id": "6287811152506_1748225427",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "hi",
+        "response": "Halo! Terima kasih telah berbagi informasi tentang RSH Satu Bumi. Ada yang bisa saya bantu terkait program-program kesehatan holistik kami? Saya siap membantu perjalanan kesehatan dan kesejahteraan Anda. \ud83d\ude0a",
+        "timestamp": "2025-05-26T09:10:27.805408",
+        "response_time": 1.7797350883483887
+      },
+      {
+        "id": "6287811152506_1748225639",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "hi",
+        "response": "Halo! Terima kasih telah membagikan informasi tentang RSH Satu Bumi. Apakah ada yang bisa saya bantu terkait program-program kesehatan holistik yang kami tawarkan? Saya di sini untuk membantu perjalanan kesehatan dan kesejahteraan Anda. \ud83d\ude0a",
+        "timestamp": "2025-05-26T09:13:59.785997",
+        "response_time": 1.5767848491668701
+      },
+      {
+        "id": "6287811152506_1748225787",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "6287811152506",
+        "message": "[This is a placeholder for user's previous message]",
+        "response": "hi",
+        "timestamp": "2025-05-26T09:16:27.736452",
+        "response_time": 0.1
+      },
+      {
+        "id": "6287811152506_1748225819",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "6287811152506",
+        "message": "[This is a placeholder for user's previous message]",
+        "response": "keren banget bang",
+        "timestamp": "2025-05-26T09:16:59.930402",
+        "response_time": 0.1
+      },
+      {
+        "id": "6287811152506_1748225834",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "hi",
+        "response": "Halo! Selamat datang di Rumah Sehat Holistik Satu Bumi. Bagaimana saya bisa membantu Anda hari ini? \ud83c\udf3f",
+        "timestamp": "2025-05-26T09:17:14.669120",
+        "response_time": 1.55069899559021
+      },
+      {
+        "id": "6287811152506_1748225882",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "6287811152506",
+        "message": "[This is a placeholder for user's previous message]",
+        "response": "hi",
+        "timestamp": "2025-05-26T09:18:02.775137",
+        "response_time": 0.1
+      },
+      {
+        "id": "6287811152506_1748225901",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "saya jiwan",
+        "response": "Halo! Terima kasih telah berbagi informasi tentang RSH Satu Bumi. Bagaimana saya dapat membantu Anda dalam perjalanan kesehatan holistik Anda? Jika ada yang ingin ditanyakan atau dibahas lebih lanjut, jangan ragu untuk sharing di sini. Saya siap membantu \ud83d\ude0a",
+        "timestamp": "2025-05-26T09:18:21.193562",
+        "response_time": 2.021101713180542
+      },
+      {
+        "id": "6287811152506_1748226156",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "hi",
+        "response": "[Bot is disabled. This message is awaiting manual response from CS.]",
+        "timestamp": "2025-05-26T09:22:36.800352",
+        "response_time": null
+      },
+      {
+        "id": "6287811152506_1748226177",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "6287811152506",
+        "message": "[This is a placeholder for user's previous message]",
+        "response": "hi apa yang bisa dibantu mas?",
+        "timestamp": "2025-05-26T09:22:57.345527",
+        "response_time": 0.1
+      },
+      {
+        "id": "6287811152506_1748226752",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "mantap",
+        "response": "[Bot is disabled. This message is awaiting manual response from CS.]",
+        "timestamp": "2025-05-26T09:32:32.292739",
+        "response_time": null
+      },
+      {
+        "id": "6287811152506_1748226929",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "hi",
+        "response": "[Bot is disabled. This message is awaiting manual response from CS. (1 unanswered)]",
+        "timestamp": "2025-05-26T09:35:29.872328",
+        "response_time": null
+      },
+      {
+        "id": "6287811152506_1748227020",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "hi",
+        "response": "[Bot is disabled. This message is awaiting manual response from CS. (2 unanswered)]",
+        "timestamp": "2025-05-26T09:37:00.994526",
+        "response_time": null
+      },
+      {
+        "id": "6287811152506_1748227063",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "hi",
+        "response": "[Bot is disabled. This message is awaiting manual response from CS. (3 unanswered)]",
+        "timestamp": "2025-05-26T09:37:43.536518",
+        "response_time": null
+      },
+      {
+        "id": "6287811152506_1748227693",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "6287811152506",
+        "message": "[This is a placeholder for user's previous message]",
+        "response": "halo ada yang bisa dibantu",
+        "timestamp": "2025-05-26T09:48:13.664561",
+        "response_time": 0.1
+      },
+      {
+        "id": "6287811152506_1748227884",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "hi",
+        "response": "[Bot is disabled. This message is awaiting manual response from CS. (1 unanswered)]",
+        "timestamp": "2025-05-26T09:51:24.446958",
+        "response_time": null
+      },
+      {
+        "id": "6287811152506_1748227894",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "6287811152506",
+        "message": "[This is a placeholder for user's previous message]",
+        "response": "hi",
+        "timestamp": "2025-05-26T09:51:34.451164",
+        "response_time": 0.1
+      },
+      {
+        "id": "6287811152506_1748228032",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "hi",
+        "response": "Halo! Selamat datang di Rumah Sehat Holistik Satu Bumi. Bagaimana saya bisa membantu Anda hari ini? \ud83d\ude0a",
+        "timestamp": "2025-05-26T09:53:52.700317",
+        "response_time": 1.5490684509277344
+      },
+      {
+        "id": "6287811152506_1748228062",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "hi",
+        "response": "[Bot is disabled. This message is awaiting manual response from CS. (1 unanswered)]",
+        "timestamp": "2025-05-26T09:54:22.767141",
+        "response_time": null
+      },
+      {
+        "id": "6287811152506_1748228094",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "6287811152506",
+        "message": "[This is a placeholder for user's previous message]",
+        "response": "hi",
+        "timestamp": "2025-05-26T09:54:54.885227",
+        "response_time": 0.1
+      },
+      {
+        "id": "6287811152506_1748228222",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "hi",
+        "response": "[Bot is disabled. This message is awaiting manual response from CS. (1 unanswered)]",
+        "timestamp": "2025-05-26T09:57:02.893116",
+        "response_time": null
+      },
+      {
+        "id": "6287811152506_1748228233",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "6287811152506",
+        "message": "[This is a placeholder for user's previous message]",
+        "response": "ok",
+        "timestamp": "2025-05-26T09:57:13.682144",
+        "response_time": 0.1
+      }
+    ],
+    "first_timestamp": "2025-05-26T08:43:22.514563",
+    "last_timestamp": "2025-05-26T09:57:13.682144",
+    "last_message": "[This is a placeholder for user's previous message]"
+  },
+  {
+    "id": "conv_6283145916630",
+    "sender": "6283145916630@s.whatsapp.net",
+    "sender_name": "Jordan Shankara",
+    "messages": [
+      {
+        "id": "6283145916630_1748226257",
+        "sender": "6283145916630@s.whatsapp.net",
+        "sender_name": "Jordan Shankara",
+        "message": "Halo",
+        "response": "Halo! Selamat datang di Rumah Sehat Holistik Satu Bumi. Bagaimana saya bisa membantu Anda hari ini? Jangan ragu untuk bertanya tentang program-program kesehatan holistik yang kami tawarkan. Saya di sini untuk mendukung perjalanan kesehatan dan kesejahteraan Anda. \ud83d\ude0a",
+        "timestamp": "2025-05-26T09:24:17.458655",
+        "response_time": 2.221306324005127
+      },
+      {
+        "id": "6283145916630_1748226277",
+        "sender": "6283145916630@s.whatsapp.net",
+        "sender_name": "Jordan Shankara",
+        "message": "punya program apa?",
+        "response": "Selamat datang di RSH Satu Bumi! Kami memiliki Program 7 Hari Menuju Sehat Raga & Jiwa, serta Program Detoksifikasi. Program 7 Hari fokus pada keseimbangan fisik dan mental melalui terapi holistik, makan sehat, meditasi, dan aktivitas fisik. Sedangkan Program Detoksifikasi membantu membersihkan tubuh dari racun dengan terapi jus, hidroterapi, dan pijat limfatik. Mana yang ingin Anda ketahui lebih lanjut? \ud83c\udf3f\u2728",
+        "timestamp": "2025-05-26T09:24:37.513030",
+        "response_time": 2.0483875274658203
+      },
+      {
+        "id": "6283145916630_1748226307",
+        "sender": "6283145916630@s.whatsapp.net",
+        "sender_name": "6283145916630",
+        "message": "[This is a placeholder for user's previous message]",
+        "response": "anjai keren",
+        "timestamp": "2025-05-26T09:25:07.108331",
+        "response_time": 0.1
+      },
+      {
+        "id": "6283145916630_1748226333",
+        "sender": "6283145916630@s.whatsapp.net",
+        "sender_name": "6283145916630",
+        "message": "[This is a placeholder for user's previous message]",
+        "response": "masih ngebug knowledgenya ",
+        "timestamp": "2025-05-26T09:25:33.269663",
+        "response_time": 0.1
+      },
+      {
+        "id": "6283145916630_1748226349",
+        "sender": "6283145916630@s.whatsapp.net",
+        "sender_name": "Jordan Shankara",
+        "message": "cobain aja trs",
+        "response": "Tentu, terima kasih atas minat Anda! Program 7 Hari Menuju Sehat Raga & Jiwa kami dapat membantu Anda meraih keseimbangan tubuh, pikiran, dan jiwa melalui pendekatan holistik. Program SDS - 1 Hari adalah pilihan singkat untuk penyembuhan instan. Jika tertarik, kami juga menawarkan Pemeriksaan Kesehatan Holistik (Quantum Scan) untuk pemahaman mendalam tentang kondisi kesehatan Anda. Jangan ragu untuk bertanya lebih lanjut atau mendaftar program yang sesuai! \ud83c\udf3f\u2728",
+        "timestamp": "2025-05-26T09:25:49.312150",
+        "response_time": 1.951307773590088
+      }
+    ],
+    "first_timestamp": "2025-05-26T09:24:17.458655",
+    "last_timestamp": "2025-05-26T09:25:49.312150",
+    "last_message": "cobain aja trs"
+  }
+]

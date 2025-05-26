@@ -1,6 +1,13 @@
 import axios from 'axios';
 import { Chat, ChatStats } from '@/types/chat';
 
+// Interface for sending messages
+interface SendMessageRequest {
+  recipient: string;
+  message: string;
+  useBot: boolean;
+}
+
 // Create an axios instance with base URL
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000',
@@ -12,9 +19,42 @@ const api = axios.create({
 // Function to fetch all chats
 export const fetchChats = async (): Promise<Chat[]> => {
   try {
-    // Call the Flask backend API
-    const response = await api.get('/admin/chats');
-    return response.data;
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/admin/chats`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch chats');
+    }
+    let chats = await response.json();
+    
+    // Handle different response formats
+    // If response is an array, use it directly
+    // If response has a 'chats' property, use that
+    if (!Array.isArray(chats) && chats.chats) {
+      chats = chats.chats;
+    } else if (!Array.isArray(chats)) {
+      console.error('Unexpected response format:', chats);
+      throw new Error('Unexpected response format');
+    }
+    
+    // Fetch bot status and unanswered count for each chat
+    const chatsWithStatus = await Promise.all(chats.map(async (chat: Chat) => {
+      try {
+        const statusResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/admin/bot-status/${chat.id}`);
+        if (statusResponse.ok) {
+          const statusData = await statusResponse.json();
+          return {
+            ...chat,
+            botEnabled: statusData.botEnabled,
+            unansweredCount: statusData.unansweredCount || 0
+          };
+        }
+        return chat;
+      } catch (err) {
+        console.error(`Error fetching status for chat ${chat.id}:`, err);
+        return chat;
+      }
+    }));
+    
+    return chatsWithStatus;
   } catch (error) {
     console.error('Error fetching chats:', error);
     // Fall back to mock data if the API fails
@@ -28,7 +68,24 @@ export const fetchChatById = async (id: string): Promise<Chat> => {
   try {
     // Call the Flask backend API
     const response = await api.get(`/admin/chats/${id}`);
-    return response.data;
+    const chat = response.data;
+    
+    // Also fetch bot status and unanswered count
+    try {
+      const statusResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/admin/bot-status/${id}`);
+      if (statusResponse.ok) {
+        const statusData = await statusResponse.json();
+        return {
+          ...chat,
+          botEnabled: statusData.botEnabled,
+          unansweredCount: statusData.unansweredCount || 0
+        };
+      }
+      return chat;
+    } catch (err) {
+      console.error(`Error fetching status for chat ${id}:`, err);
+      return chat;
+    }
   } catch (error) {
     console.error(`Error fetching chat ${id}:`, error);
     
@@ -59,21 +116,73 @@ export const fetchChatStats = async (): Promise<ChatStats> => {
 // Function to search chats
 export const searchChats = async (query: string): Promise<Chat[]> => {
   try {
-    // Call the Flask backend API
-    const response = await api.get(`/admin/chats/search?q=${encodeURIComponent(query)}`);
-    return response.data;
+    const response = await api.get(`/admin/search-chats?query=${encodeURIComponent(query)}`);
+    let chats = response.data;
+    
+    // Handle different response formats
+    // If response is an array, use it directly
+    // If response has a 'chats' property, use that
+    if (!Array.isArray(chats) && chats.chats) {
+      chats = chats.chats;
+    }
+    
+    // Fetch bot status and unanswered count for each chat
+    const chatsWithStatus = await Promise.all(chats.map(async (chat: Chat) => {
+      try {
+        const statusResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/admin/bot-status/${chat.id}`);
+        if (statusResponse.ok) {
+          const statusData = await statusResponse.json();
+          return {
+            ...chat,
+            botEnabled: statusData.botEnabled,
+            unansweredCount: statusData.unansweredCount || 0
+          };
+        }
+        return chat;
+      } catch (err) {
+        console.error(`Error fetching status for chat ${chat.id}:`, err);
+        return chat;
+      }
+    }));
+    
+    return chatsWithStatus;
   } catch (error) {
     console.error('Error searching chats:', error);
-    
     // Fall back to mock data if the API fails
-    console.log('Falling back to mock data');
-    if (!query) return mockChats;
+    console.log('Falling back to mock search');
+    // Simple client-side search implementation as fallback
+    if (!query.trim()) return mockChats;
     
+    const normalizedQuery = query.toLowerCase();
     return mockChats.filter(chat => 
-      chat.sender.includes(query) || 
-      chat.lastMessage.toLowerCase().includes(query.toLowerCase()) ||
-      chat.messages.some(msg => msg.content.toLowerCase().includes(query.toLowerCase()))
+      chat.sender.toLowerCase().includes(normalizedQuery) ||
+      (chat.senderName?.toLowerCase() || '').includes(normalizedQuery) ||
+      chat.lastMessage.toLowerCase().includes(normalizedQuery)
     );
+  }
+};
+
+// Function to send a message to a recipient
+export const sendMessage = async (data: SendMessageRequest): Promise<any> => {
+  try {
+    // Call the Flask backend API
+    const response = await api.post('/admin/send-message', data);
+    return response.data;
+  } catch (error) {
+    console.error('Error sending message:', error);
+    throw error;
+  }
+};
+
+// Function to toggle bot status for a specific chat
+export const toggleBotStatus = async (chatId: string, enabled: boolean): Promise<any> => {
+  try {
+    // Call the Flask backend API
+    const response = await api.post(`/admin/toggle-bot/${chatId}`, { enabled });
+    return response.data;
+  } catch (error) {
+    console.error('Error toggling bot status:', error);
+    throw error;
   }
 };
 

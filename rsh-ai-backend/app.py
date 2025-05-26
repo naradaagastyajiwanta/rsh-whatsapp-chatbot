@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
+import time
 from dotenv import load_dotenv
 from rag_pipeline import RAGPipeline
 from mock_rag_pipeline import MockRAGPipeline
@@ -104,41 +105,72 @@ def ask():
         "sender_name": "User Name" (optional)
     }
     """
-    global rag_pipeline
-    
+    if not rag_pipeline:
+        return jsonify({"error": "RAG pipeline not initialized"}), 500
+
     try:
         data = request.json
-        
         if not data:
             return jsonify({"error": "No data provided"}), 400
-        
-        # Extract message and sender information
-        message = data.get('message')
+
         sender = data.get('sender')
-        sender_name = data.get('sender_name', 'User')
+        message = data.get('message')
+        sender_name = data.get('sender_name', sender.split('@')[0] if sender else "Unknown")
+
+        if not sender or not message:
+            return jsonify({"error": "Missing required fields"}), 400
+
+        # Import bot_status and unanswered_messages from admin_routes
+        from admin_routes import bot_status, unanswered_messages
         
-        if not message:
-            return jsonify({"error": "No message provided"}), 400
+        # Check if bot is disabled for this sender
+        if sender in bot_status and bot_status[sender] is False:
+            # Bot is disabled, log the message but don't generate a response
+            logger.info(f"Bot is disabled for {sender}. Message received but no response generated.")
+            
+            # Increment unanswered message count for this sender
+            if sender in unanswered_messages:
+                unanswered_messages[sender] += 1
+            else:
+                unanswered_messages[sender] = 1
+            
+            logger.info(f"Unanswered messages for {sender}: {unanswered_messages[sender]}")
+            
+            # Log the message with a manual response placeholder
+            try:
+                log_chat_message(
+                    sender, 
+                    sender_name, 
+                    message, 
+                    f"[Bot is disabled. This message is awaiting manual response from CS. ({unanswered_messages[sender]} unanswered)]" 
+                )
+                logger.info(f"Chat message logged for admin dashboard (bot disabled)")
+            except Exception as log_error:
+                logger.error(f"Error logging chat message: {str(log_error)}")
+            
+            # Return a special response indicating bot is disabled
+            return jsonify({
+                "response": None,
+                "sender": sender,
+                "bot_disabled": True,
+                "unanswered_count": unanswered_messages[sender],
+                "message": "Bot is disabled for this sender. Message logged for manual response."
+            }), 200
         
-        logger.info(f"Received message from {sender_name} ({sender}): {message}")
+        # Bot is enabled, proceed with normal flow
+        # Measure response time
+        start_time = time.time()
         
-        # Check if RAG pipeline is initialized, if not try to initialize it
-        if rag_pipeline is None:
-            logger.info("RAG pipeline not initialized, attempting to initialize now")
-            if not initialize_rag_pipeline():
-                return jsonify({
-                    "response": "Maaf, layanan sedang mengalami gangguan teknis. Silakan coba lagi nanti.",
-                    "sender": sender
-                }), 503
-        
-        # Process message through RAG pipeline
+        # Generate response
         response = rag_pipeline.generate_response(message)
         
-        logger.info(f"Generated response for {sender_name}: {response[:100]}...")
+        # Calculate response time
+        response_time = time.time() - start_time
+        logger.info(f"Generated response for {sender_name} in {response_time:.2f} seconds: {response[:100]}...")
         
         # Log the chat message for the admin dashboard
         try:
-            log_chat_message(sender, sender_name, message, response)
+            log_chat_message(sender, sender_name, message, response, response_time)
             logger.info(f"Chat message logged for admin dashboard")
         except Exception as log_error:
             logger.error(f"Error logging chat message: {str(log_error)}")
@@ -146,7 +178,8 @@ def ask():
         # Return response
         return jsonify({
             "response": response,
-            "sender": sender
+            "sender": sender,
+            "response_time": round(response_time, 2)
         }), 200
         
     except Exception as e:

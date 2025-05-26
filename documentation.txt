@@ -1,0 +1,293 @@
+# DOKUMENTASI WHATSAPP CHATBOT RSH SATU BUMI
+
+## RINGKASAN SISTEM
+
+Sistem WhatsApp Chatbot RSH Satu Bumi adalah solusi terintegrasi yang memungkinkan Rumah Sakit Holistik Satu Bumi untuk berinteraksi dengan pasien dan calon pasien melalui platform WhatsApp. Sistem ini terdiri dari tiga komponen utama:
+
+1. **WhatsApp Service** - Layanan yang menangani koneksi dengan WhatsApp API
+2. **AI Backend** - Server yang menangani pemrosesan pesan dan menghasilkan respons menggunakan AI
+3. **Admin Dashboard** - Antarmuka web untuk administrator untuk memantau dan mengelola percakapan
+
+## TEKNOLOGI YANG DIGUNAKAN
+
+### Backend (AI dan Layanan WhatsApp)
+- **Bahasa Pemrograman**: Python 3.9+
+- **Framework Web**: Flask
+- **AI/NLP**: OpenAI API (GPT model)
+- **Vector Database**: Pinecone (untuk RAG - Retrieval Augmented Generation)
+- **WhatsApp API Client**: Baileys (library Node.js untuk WhatsApp Web API)
+- **Database**: SQLite (untuk penyimpanan log chat)
+- **Manajemen Lingkungan**: dotenv
+
+### Frontend (Admin Dashboard)
+- **Framework**: Next.js (React)
+- **Styling**: Tailwind CSS
+- **State Management**: React Hooks
+- **HTTP Client**: Axios
+- **UI Components**: Headless UI
+- **Icons**: Heroicons
+
+### Infrastruktur
+- **Deployment**: Docker (opsional)
+- **Versioning**: Git
+- **Environment Variables**: .env files
+
+## ARSITEKTUR SISTEM
+
+```
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│                 │     │                 │     │                 │
+│  WhatsApp User  │◄───►│  WhatsApp API   │◄───►│  WhatsApp       │
+│                 │     │  (Baileys)      │     │  Service        │
+│                 │     │                 │     │                 │
+└─────────────────┘     └─────────────────┘     └────────┬────────┘
+                                                         │
+                                                         │
+                                                         ▼
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│                 │     │                 │     │                 │
+│  Admin User     │◄───►│  Admin          │◄───►│  AI Backend     │
+│                 │     │  Dashboard      │     │  (Flask)        │
+│                 │     │  (Next.js)      │     │                 │
+└─────────────────┘     └─────────────────┘     └────────┬────────┘
+                                                         │
+                                                         │
+                                                         ▼
+                                               ┌─────────────────┐
+                                               │                 │
+                                               │  OpenAI API     │
+                                               │  Pinecone DB    │
+                                               │                 │
+                                               └─────────────────┘
+```
+
+## ALUR KERJA (WORKFLOW)
+
+### 1. Penerimaan Pesan dari Pengguna WhatsApp
+
+1. **Pengguna mengirim pesan melalui WhatsApp** ke nomor yang terhubung dengan sistem.
+2. **WhatsApp Service** menerima pesan melalui Baileys API.
+3. **WhatsApp Service** meneruskan pesan ke AI Backend melalui endpoint `/ask`.
+
+### 2. Pemrosesan Pesan oleh AI Backend
+
+1. **AI Backend** menerima pesan dari WhatsApp Service.
+2. **AI Backend** memeriksa status bot untuk pengirim tersebut:
+   - Jika bot dinonaktifkan untuk pengirim ini, pesan hanya dicatat tanpa respons.
+   - Jika bot diaktifkan, pesan diproses untuk menghasilkan respons.
+3. **AI Backend** menggunakan RAG Pipeline:
+   - Mengubah pesan menjadi vektor menggunakan OpenAI Embeddings.
+   - Mencari dokumen yang relevan di Pinecone Vector Database.
+   - Menggabungkan dokumen yang relevan dengan prompt untuk OpenAI.
+4. **AI Backend** mengirim prompt ke OpenAI API untuk menghasilkan respons.
+5. **AI Backend** mencatat percakapan di database lokal.
+6. **AI Backend** mengirim respons kembali ke WhatsApp Service.
+
+### 3. Pengiriman Respons ke Pengguna WhatsApp
+
+1. **WhatsApp Service** menerima respons dari AI Backend.
+2. **WhatsApp Service** mengirim respons ke pengguna melalui WhatsApp API.
+
+### 4. Pemantauan dan Pengelolaan oleh Admin
+
+1. **Admin** mengakses Admin Dashboard melalui browser web.
+2. **Admin Dashboard** menampilkan daftar percakapan dari AI Backend.
+3. **Admin** dapat melihat detail percakapan tertentu.
+4. **Admin** dapat mengaktifkan/menonaktifkan bot untuk percakapan tertentu.
+5. **Admin** dapat mengirim pesan langsung ke pengguna:
+   - Jika bot diaktifkan, pesan dikirim sebagai respons bot.
+   - Jika bot dinonaktifkan, pesan dikirim sebagai respons manual.
+6. **Admin Dashboard** menampilkan notifikasi untuk pesan yang belum terjawab ketika bot dinonaktifkan.
+
+## DETAIL KOMPONEN
+
+### WhatsApp Service (Node.js)
+
+WhatsApp Service adalah jembatan antara WhatsApp API dan AI Backend. Komponen ini:
+
+1. **Mengelola koneksi WhatsApp**:
+   - Menangani autentikasi melalui QR code scanning.
+   - Mempertahankan sesi WhatsApp.
+   - Menyediakan endpoint untuk logout dari WhatsApp.
+   - Menyediakan endpoint untuk refresh QR code.
+
+2. **Menangani pesan masuk dan keluar**:
+   - Menerima pesan dari pengguna WhatsApp.
+   - Meneruskan pesan ke AI Backend.
+   - Mengirim respons dari AI Backend ke pengguna WhatsApp.
+
+3. **Menyediakan API untuk Admin Dashboard**:
+   - Endpoint untuk mengirim pesan.
+   - Endpoint untuk mendapatkan status koneksi WhatsApp.
+
+### AI Backend (Python/Flask)
+
+AI Backend adalah otak dari sistem, yang menangani pemrosesan pesan dan menghasilkan respons. Komponen ini:
+
+1. **API Endpoints**:
+   - `/ask` - Menerima pesan dari WhatsApp Service dan mengembalikan respons.
+   - `/admin/chats` - Mengembalikan daftar percakapan untuk Admin Dashboard.
+   - `/admin/chats/<chat_id>` - Mengembalikan detail percakapan tertentu.
+   - `/admin/send-message` - Menerima pesan dari Admin Dashboard dan mengirimkannya ke pengguna.
+   - `/admin/bot-status/<chat_id>` - Mengembalikan status bot untuk percakapan tertentu.
+   - `/admin/toggle-bot-status` - Mengaktifkan/menonaktifkan bot untuk percakapan tertentu.
+
+2. **RAG Pipeline**:
+   - Menggunakan OpenAI Embeddings untuk mengubah pesan menjadi vektor.
+   - Menggunakan Pinecone untuk menyimpan dan mencari dokumen yang relevan.
+   - Menggabungkan dokumen yang relevan dengan prompt untuk OpenAI.
+
+3. **Chat Logger**:
+   - Mencatat semua percakapan di database lokal.
+   - Menyediakan fungsi untuk mengambil riwayat percakapan.
+
+4. **Bot Status Manager**:
+   - Menyimpan status bot (aktif/nonaktif) untuk setiap pengirim.
+   - Menyediakan fungsi untuk mengaktifkan/menonaktifkan bot.
+
+5. **Unanswered Messages Tracker**:
+   - Melacak jumlah pesan yang belum terjawab ketika bot dinonaktifkan.
+   - Mengatur ulang penghitung saat admin mengirim pesan.
+
+### Admin Dashboard (Next.js)
+
+Admin Dashboard adalah antarmuka web untuk administrator untuk memantau dan mengelola percakapan. Komponen ini:
+
+1. **Halaman Utama**:
+   - Menampilkan statistik percakapan.
+   - Menampilkan status koneksi WhatsApp.
+
+2. **Halaman Percakapan**:
+   - Menampilkan daftar percakapan.
+   - Memungkinkan pencarian percakapan.
+   - Menampilkan detail percakapan yang dipilih.
+   - Menampilkan notifikasi untuk pesan yang belum terjawab.
+
+3. **Fitur Pengelolaan Bot**:
+   - Toggle untuk mengaktifkan/menonaktifkan bot untuk percakapan tertentu.
+   - Indikator status bot untuk setiap percakapan.
+
+4. **Fitur Pengiriman Pesan**:
+   - Form untuk mengirim pesan ke pengguna.
+   - Opsi untuk mengirim sebagai bot atau sebagai admin.
+
+5. **Fitur WhatsApp Connection**:
+   - Menampilkan QR code untuk koneksi WhatsApp.
+   - Tombol untuk refresh QR code.
+   - Tombol untuk logout dari WhatsApp.
+
+## ALUR DATA
+
+### Alur Data Pesan Masuk
+
+1. Pengguna mengirim pesan melalui WhatsApp.
+2. WhatsApp API menerima pesan dan meneruskannya ke WhatsApp Service.
+3. WhatsApp Service meneruskan pesan ke AI Backend melalui endpoint `/ask`.
+4. AI Backend memeriksa status bot untuk pengirim:
+   - Jika bot dinonaktifkan, pesan dicatat dan penghitung pesan yang belum terjawab ditingkatkan.
+   - Jika bot diaktifkan, pesan diproses oleh RAG Pipeline.
+5. RAG Pipeline menghasilkan respons menggunakan OpenAI API.
+6. AI Backend mencatat pesan dan respons di database.
+7. AI Backend mengirim respons kembali ke WhatsApp Service.
+8. WhatsApp Service mengirim respons ke pengguna melalui WhatsApp API.
+
+### Alur Data Admin Dashboard
+
+1. Admin mengakses Admin Dashboard melalui browser web.
+2. Admin Dashboard memuat daftar percakapan dari AI Backend.
+3. Admin memilih percakapan untuk melihat detailnya.
+4. Admin Dashboard memuat detail percakapan dari AI Backend.
+5. Admin dapat mengaktifkan/menonaktifkan bot untuk percakapan tersebut:
+   - Admin Dashboard mengirim permintaan ke AI Backend untuk mengubah status bot.
+   - AI Backend memperbarui status bot dan mengembalikan status baru.
+   - Admin Dashboard memperbarui UI untuk mencerminkan status baru.
+6. Admin dapat mengirim pesan ke pengguna:
+   - Admin Dashboard mengirim pesan ke AI Backend.
+   - AI Backend meneruskan pesan ke WhatsApp Service.
+   - WhatsApp Service mengirim pesan ke pengguna melalui WhatsApp API.
+   - AI Backend mencatat pesan di database.
+   - AI Backend mengatur ulang penghitung pesan yang belum terjawab.
+
+## FITUR KEAMANAN
+
+1. **Autentikasi WhatsApp**:
+   - Menggunakan QR code scanning untuk autentikasi.
+   - Menyimpan sesi untuk menghindari autentikasi berulang.
+
+2. **Manajemen API Key**:
+   - Menyimpan API key di file .env yang tidak di-commit ke repositori.
+   - Menggunakan variabel lingkungan untuk mengakses API key.
+
+3. **Validasi Input**:
+   - Memvalidasi semua input dari pengguna dan admin.
+   - Menangani error dengan graceful untuk mencegah crash.
+
+4. **Error Handling**:
+   - Menangkap dan mencatat semua error.
+   - Memberikan pesan error yang informatif kepada admin.
+   - Fallback ke respons default jika terjadi error.
+
+## PENGEMBANGAN DAN DEPLOYMENT
+
+### Pengembangan Lokal
+
+1. **Setup Backend**:
+   ```bash
+   cd rsh-ai-backend
+   pip install -r requirements.txt
+   cp .env.example .env  # Edit .env with your API keys
+   python app.py
+   ```
+
+2. **Setup WhatsApp Service**:
+   ```bash
+   cd rsh-chatbot
+   npm install
+   cp .env.example .env  # Edit .env with your settings
+   npm start
+   ```
+
+3. **Setup Admin Dashboard**:
+   ```bash
+   cd chatbot-admin-dashboard
+   npm install
+   cp .env.example .env  # Edit .env with your API URLs
+   npm run dev
+   ```
+
+### Deployment
+
+1. **Backend Deployment**:
+   - Deploy ke server dengan Python dan Flask.
+   - Gunakan Gunicorn sebagai WSGI server.
+   - Gunakan Nginx sebagai reverse proxy.
+
+2. **WhatsApp Service Deployment**:
+   - Deploy ke server dengan Node.js.
+   - Gunakan PM2 untuk process management.
+
+3. **Admin Dashboard Deployment**:
+   - Build dengan `npm run build`.
+   - Deploy static files ke server web.
+   - Atau deploy ke platform seperti Vercel atau Netlify.
+
+## PEMELIHARAAN DAN PEMANTAUAN
+
+1. **Logging**:
+   - Semua komponen mencatat aktivitas dan error.
+   - Log dapat digunakan untuk debugging dan analisis.
+
+2. **Backup**:
+   - Database percakapan harus di-backup secara berkala.
+   - Sesi WhatsApp harus di-backup untuk menghindari autentikasi ulang.
+
+3. **Pemantauan**:
+   - Pantau status koneksi WhatsApp.
+   - Pantau penggunaan API OpenAI dan Pinecone.
+   - Pantau jumlah percakapan dan respons.
+
+## KESIMPULAN
+
+Sistem WhatsApp Chatbot RSH Satu Bumi adalah solusi terintegrasi yang memungkinkan rumah sakit untuk berinteraksi dengan pasien dan calon pasien melalui WhatsApp. Sistem ini menggunakan teknologi AI terbaru untuk memberikan respons yang akurat dan relevan, sambil memberikan fleksibilitas bagi admin untuk mengambil alih percakapan jika diperlukan.
+
+Dengan kombinasi WhatsApp Service, AI Backend, dan Admin Dashboard, sistem ini menyediakan pengalaman pengguna yang mulus dan efisien, baik untuk pengguna WhatsApp maupun untuk admin rumah sakit.
