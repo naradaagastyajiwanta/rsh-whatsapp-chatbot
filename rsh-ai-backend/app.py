@@ -1,3 +1,4 @@
+import logging
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
@@ -5,21 +6,34 @@ import time
 from dotenv import load_dotenv
 from rag_pipeline import RAGPipeline
 from mock_rag_pipeline import MockRAGPipeline
+from openai_assistant_pipeline import send_message_and_get_response
 from admin_routes import admin_bp, log_chat_message
 from document_routes import document_bp
-import logging
 from chatbot_settings import get_settings, update_settings
 from websocket_handler import init_websocket
 
-# Load environment variables
-load_dotenv()
-
-# Configure logging
+# Set up logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
+
+# Load environment variables
+load_dotenv()
+
+# Log environment variables for debugging
+api_key = os.getenv('OPENAI_API_KEY')
+assistant_id = os.getenv('OPENAI_ASSISTANT_ID')
+
+logger.info(f"[ENV] OPENAI_API_KEY exists: {bool(api_key)}")
+logger.info(f"[ENV] OPENAI_API_KEY length: {len(api_key) if api_key else 0}")
+logger.info(f"[ENV] OPENAI_ASSISTANT_ID: {assistant_id}")
+
+if not api_key:
+    logger.error("[ENV] OPENAI_API_KEY tidak ditemukan di environment variables!")
+if not assistant_id:
+    logger.error("[ENV] OPENAI_ASSISTANT_ID tidak ditemukan di environment variables!")
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -112,9 +126,7 @@ def ask():
         "sender_name": "User Name" (optional)
     }
     """
-    if not rag_pipeline:
-        return jsonify({"error": "RAG pipeline not initialized"}), 500
-
+    logger.info("[ASK] Endpoint /ask dipanggil. Menggunakan OpenAI Assistant API pipeline.")
     try:
         data = request.json
         if not data:
@@ -164,16 +176,42 @@ def ask():
                 "message": "Bot is disabled for this sender. Message logged for manual response."
             }), 200
         
-        # Bot is enabled, proceed with normal flow
-        # Measure response time
+        # Bot is enabled, proceed with OpenAI Assistant flow
+        logger.info(f"[ASK] Mengirim ke Assistant API untuk nomor: {sender}, pesan: {message}")
+        
+        # Verify API credentials before sending
+        if not os.getenv('OPENAI_API_KEY'):
+            logger.error("[ASK] OPENAI_API_KEY tidak ditemukan sebelum mengirim request")
+            return jsonify({
+                "error": "OpenAI API key tidak dikonfigurasi",
+                "sender": sender
+            }), 500
+            
+        if not os.getenv('OPENAI_ASSISTANT_ID'):
+            logger.error("[ASK] OPENAI_ASSISTANT_ID tidak ditemukan sebelum mengirim request")
+            return jsonify({
+                "error": "OpenAI Assistant ID tidak dikonfigurasi",
+                "sender": sender
+            }), 500
+            
         start_time = time.time()
-        
-        # Generate response
-        response = rag_pipeline.generate_response(message)
-        
-        # Calculate response time
+        try:
+            response = send_message_and_get_response(sender, message)
+            if not response:
+                logger.error("[ASK] Tidak ada respons dari OpenAI Assistant")
+                return jsonify({
+                    "error": "Tidak ada respons dari Assistant",
+                    "sender": sender
+                }), 500
+        except Exception as e:
+            logger.error(f"[ASK] Error saat memanggil OpenAI Assistant: {str(e)}")
+            return jsonify({
+                "error": f"Error saat memanggil Assistant: {str(e)}",
+                "sender": sender
+            }), 500
+            
         response_time = time.time() - start_time
-        logger.info(f"Generated response for {sender_name} in {response_time:.2f} seconds: {response[:100]}...")
+        logger.info(f"[ASK] Generated response for {sender_name} in {response_time:.2f} seconds: {response[:100]}...")
         
         # Log the chat message for the admin dashboard
         try:
@@ -182,7 +220,6 @@ def ask():
         except Exception as log_error:
             logger.error(f"Error logging chat message: {str(log_error)}")
         
-        # Return response
         return jsonify({
             "response": response,
             "sender": sender,

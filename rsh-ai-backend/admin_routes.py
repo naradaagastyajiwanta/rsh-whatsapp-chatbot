@@ -397,6 +397,24 @@ def get_bot_status(chat_id):
         logger.error(f"Error getting bot status: {str(e)}")
         return jsonify({"error": f"Failed to get bot status: {str(e)}"}), 500
 
+# Clear all assistant threads
+@admin_bp.route('/clear-threads', methods=['POST'])
+def clear_threads():
+    try:
+        from assistant_thread_manager import clear_all_threads
+        clear_all_threads()
+        logger.info("[ADMIN] Berhasil membersihkan semua thread assistant")
+        return jsonify({
+            "status": "success",
+            "message": "Semua thread assistant berhasil dibersihkan"
+        }), 200
+    except Exception as e:
+        logger.error(f"[ADMIN] Error saat membersihkan thread: {str(e)}")
+        return jsonify({
+            "status": "error",
+            "message": f"Error saat membersihkan thread: {str(e)}"
+        }), 500
+
 # Webhook to log messages from the WhatsApp service
 @admin_bp.route('/log', methods=['POST'])
 def log_message():
