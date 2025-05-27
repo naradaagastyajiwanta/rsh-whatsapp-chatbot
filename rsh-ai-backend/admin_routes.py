@@ -12,11 +12,21 @@ import os
 import uuid
 from typing import Dict, Optional
 
+# Import WebSocket handler (will be imported when the blueprint is registered)
+websocket_handler = None
+
 # Configure logging
 logger = logging.getLogger(__name__)
 
 # Create a blueprint for admin routes
 admin_bp = Blueprint('admin', __name__, url_prefix='/admin')
+
+# WebSocket handler
+websocket_handler = None
+
+def set_websocket_handler(handler):
+    global websocket_handler
+    websocket_handler = handler
 
 # Initialize chat logger
 chat_logger = ChatLogger()
@@ -93,6 +103,29 @@ def log_chat_message(sender: str, sender_name: str, message: str, response: str,
     )
     
     logger.info(f"Logged message from {sender}: {message[:50]}...")
+    
+    # Increment unanswered count if this is a user message without a response
+    chat_id = chat_logger.get_chat_id_by_sender(sender)
+    if message and not response and chat_id:
+        if chat_id not in unanswered_messages:
+            unanswered_messages[chat_id] = 0
+        unanswered_messages[chat_id] += 1
+    
+    # Broadcast updates via WebSocket if available
+    if websocket_handler and chat_id:
+        try:
+            logger.info(f"Broadcasting new message via WebSocket for chat {chat_id}")
+            # Broadcast new message
+            websocket_handler.broadcast_new_message(chat_id, message)
+            # Broadcast updated chat list
+            websocket_handler.broadcast_chats_update()
+            logger.info("WebSocket broadcast completed successfully")
+        except Exception as e:
+            logger.error(f"Error broadcasting via WebSocket: {str(e)}")
+            import traceback
+            logger.error(traceback.format_exc())
+    
+    # No SSE broadcast needed, using WebSocket only
 
 # Routes for the admin dashboard
 
@@ -267,6 +300,16 @@ def send_message():
             response_time=0.1           # Mock response time
         )
         
+        # Get chat ID for WebSocket broadcast
+        chat_id = chat_logger.get_chat_id_by_sender(recipient)
+        
+        # Broadcast updates via WebSocket if available
+        if websocket_handler and chat_id:
+            # Broadcast new message
+            websocket_handler.broadcast_new_message(chat_id, admin_message)
+            # Broadcast updated chat list
+            websocket_handler.broadcast_chats_update()
+        
         return jsonify({
             "success": True,
             "message": "Message sent successfully",
@@ -297,6 +340,19 @@ def toggle_bot(chat_id):
         
         # Update bot status
         bot_status[sender] = enabled
+        
+        # Broadcast bot status change via WebSocket if available
+        if websocket_handler:
+            try:
+                websocket_handler.broadcast_bot_status_change(chat_id, enabled)
+            except Exception as e:
+                logger.error(f"Error broadcasting bot status change via WebSocket: {str(e)}")
+        
+        # No SSE broadcast needed, using WebSocket only
+        
+        # Broadcast chats update via WebSocket if available
+        if websocket_handler:
+            websocket_handler.broadcast_chats_update()
         
         return jsonify({
             "success": True,

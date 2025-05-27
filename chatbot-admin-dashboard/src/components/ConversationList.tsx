@@ -1,11 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { fetchChats, searchChats } from '@/services/api';
+import { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/router';
 import { Chat } from '@/types/chat';
-import { format } from 'date-fns';
+import { formatDistanceToNow, format } from 'date-fns';
 import { id } from 'date-fns/locale';
+import { fetchChats } from '@/services/api';
 import { ExclamationCircleIcon } from '@heroicons/react/24/solid';
+import websocketService from '@/services/websocket';
 
 interface ConversationListProps {
   searchQuery: string;
@@ -26,10 +28,23 @@ const ConversationList = ({ searchQuery, onChatSelect, selectedChatId }: Convers
         setLoading(true);
       }
       
-      const data = await (searchQuery ? searchChats(searchQuery) : fetchChats());
+      console.log('Fetching chats...');
+      // If search query is provided, filter chats client-side
+      const data = await fetchChats();
+      console.log('Received chat data:', data);
+      
+      const filteredData = searchQuery 
+        ? data.filter(chat => 
+            chat.senderName?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            chat.sender?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            chat.lastMessage?.toLowerCase().includes(searchQuery.toLowerCase())
+          )
+        : data;
+      
+      console.log('Filtered data:', filteredData);
       
       // Process data to ensure unansweredCount is handled correctly
-      const processedData = data.map(chat => {
+      const processedData = filteredData.map((chat: Chat) => {
         // Create a new chat object without the unansweredCount property
         const { unansweredCount, ...chatWithoutCount } = chat;
         
@@ -41,6 +56,7 @@ const ConversationList = ({ searchQuery, onChatSelect, selectedChatId }: Convers
         return chatWithoutCount;
       });
       
+      console.log('Processed data:', processedData);
       setChats(processedData);
       setError(null);
     } catch (err) {
@@ -56,18 +72,85 @@ const ConversationList = ({ searchQuery, onChatSelect, selectedChatId }: Convers
     loadChats();
   }, [searchQuery]);
   
-  // Set up periodic refresh for chat list
+  // Set up WebSocket connection and listeners
   useEffect(() => {
-    // Initial load
+    // Initial load from REST API
     loadChats();
     
-    // Set up interval for periodic refresh (every 5 seconds)
-    const intervalId = setInterval(() => {
-      loadChats();
-    }, 5000);
+    // Connect to WebSocket
+    websocketService.connect();
     
-    // Clean up interval on component unmount
-    return () => clearInterval(intervalId);
+    // Connection status indicator
+    const connectionStatusUnsubscribe = websocketService.onConnectionStatusChange((isConnected) => {
+      console.log(`WebSocket connection status: ${isConnected ? 'connected' : 'disconnected'}`);
+      
+      if (!isConnected) {
+        setError('WebSocket disconnected. Reconnecting...');
+      } else {
+        setError(null);
+        // Reload chats when reconnected
+        loadChats();
+      }
+    });
+    
+    // Subscribe to new messages to update preview text
+    const newMessageUnsubscribe = websocketService.subscribeToNewMessages((updatedChat) => {
+      console.log('🔴 Received new message via WebSocket:', updatedChat);
+      console.log('Chat ID:', updatedChat.id, 'Last Message:', updatedChat.lastMessage);
+      
+      // Update the specific chat in the list
+      setChats(prevChats => {
+        // Check if the chat already exists in the list
+        const existingChatIndex = prevChats.findIndex(chat => chat.id === updatedChat.id);
+        
+        if (existingChatIndex !== -1) {
+          // Update existing chat
+          console.log('Updating existing chat in the list');
+          const updatedChats = [...prevChats];
+          updatedChats[existingChatIndex] = {
+            ...updatedChats[existingChatIndex],
+            lastMessage: updatedChat.lastMessage,
+            lastTimestamp: updatedChat.lastTimestamp,
+            unansweredCount: updatedChat.unansweredCount
+          };
+          return updatedChats;
+        } else {
+          // Add new chat to the list
+          console.log('Adding new chat to the list');
+          return [updatedChat, ...prevChats];
+        }
+      });
+    });
+    
+    // Subscribe to chat list updates
+    const chatsUpdateUnsubscribe = websocketService.subscribeToChatsUpdate((chats) => {
+      console.log('🔴 Received chats update via WebSocket:', chats);
+      setChats(chats);
+    });
+    
+    // Subscribe to bot status changes
+    const botStatusUnsubscribe = websocketService.subscribeToBotStatusChange(({ chatId, enabled }) => {
+      console.log(`Bot status changed for chat ${chatId}: ${enabled ? 'enabled' : 'disabled'}`);
+      
+      // Update the specific chat's bot status
+      setChats(prevChats => 
+        prevChats.map(chat => 
+          chat.id === chatId ? { ...chat, botEnabled: enabled } : chat
+        )
+      );
+    });
+    
+    // Log WebSocket connection status
+    console.log('WebSocket setup complete, waiting for real-time updates...');
+    
+    // Clean up subscriptions when component unmounts
+    return () => {
+      console.log('Cleaning up WebSocket subscriptions');
+      connectionStatusUnsubscribe();
+      newMessageUnsubscribe();
+      chatsUpdateUnsubscribe();
+      botStatusUnsubscribe();
+    };
   }, []);
 
   if (loading) {

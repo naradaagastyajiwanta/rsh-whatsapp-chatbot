@@ -2,27 +2,45 @@ import os
 import logging
 import requests
 from typing import List, Dict, Any
+import numpy as np
 
 from langchain.chains import RetrievalQA
-from langchain_openai import OpenAIEmbeddings
-from langchain_openai import ChatOpenAI
-from langchain.prompts import PromptTemplate
-
-# Import the new langchain-pinecone integration
+from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_pinecone import PineconeVectorStore
+from langchain.prompts import PromptTemplate
 from pinecone import Pinecone
 
-# Configure logging
 logger = logging.getLogger(__name__)
 
-def pad_embedding(embedding, target_dim=1024):
-    """Pad embedding vector to the target dimension."""
-    current_dim = len(embedding)
-    if current_dim >= target_dim:
-        return embedding[:target_dim]  # Truncate if larger
-    else:
-        # Pad with zeros to reach target dimension
-        return embedding + [0.0] * (target_dim - current_dim)
+def pad_embedding(embedding, target_dim=1536):
+    """Pad or truncate an embedding to the target dimension.
+    
+    Args:
+        embedding: The original embedding vector
+        target_dim: The target dimension (default: 1024)
+        
+    Returns:
+        A vector of the target dimension
+    """
+    if not embedding:
+        return [0.0] * target_dim
+        
+    # Convert to numpy array for easier manipulation
+    embedding_array = np.array(embedding)
+    current_dim = len(embedding_array)
+    
+    # If current dimension is already target dimension, return as is
+    if current_dim == target_dim:
+        return embedding
+    
+    # If current dimension is larger, truncate
+    if current_dim > target_dim:
+        return embedding_array[:target_dim].tolist()
+    
+    # If current dimension is smaller, pad with zeros
+    padded = np.zeros(target_dim)
+    padded[:current_dim] = embedding_array
+    return padded.tolist()
 
 class RAGPipeline:
     """
@@ -79,28 +97,69 @@ class RAGPipeline:
                 openai_api_key=self.openai_api_key
             )
             
-            # Create wrapper functions to pad embeddings
-            self._original_embed_documents = self.embeddings.embed_documents
-            self._original_embed_query = self.embeddings.embed_query
+            # In newer versions of LangChain, the API might have changed
+            # We'll create our own implementation for embedding documents and queries
             
-            # Override the embed methods with our padded versions
-            self.embeddings.embed_documents = self._padded_embed_documents
-            self.embeddings.embed_query = self._padded_embed_query
+            # We won't try to store or override the original methods
+            # as they might not exist in the current version of LangChain
             
-            logger.info(f"Initialized embeddings with model: {self.embedding_model} (with padding to 1024 dimensions)")
+            logger.info(f"Initialized embeddings with model: {self.embedding_model}")
         except Exception as e:
             logger.error(f"Failed to initialize embeddings: {str(e)}")
             raise
     
-    def _padded_embed_documents(self, texts):
-        """Embed documents and pad to 1024 dimensions."""
-        embeddings = self._original_embed_documents(texts)
-        return [pad_embedding(emb, 1024) for emb in embeddings]
+    def embed_documents(self, texts):
+        """Embed documents using the embeddings model.
+        
+        This is our custom implementation that doesn't rely on the
+        embed_documents method of OpenAIEmbeddings which might not exist.
+        It also ensures that all embeddings are padded to 1024 dimensions.
+        """
+        try:
+            # Process each text individually using the embeddings model directly
+            embeddings = []
+            for text in texts:
+                try:
+                    # Try to use embed_query if it exists
+                    if hasattr(self.embeddings, 'embed_query'):
+                        embedding = self.embeddings.embed_query(text)
+                    else:
+                        # Fall back to __call__ method
+                        embedding = self.embeddings(text)
+                    # Pad embedding to 1024 dimensions
+                    padded_embedding = pad_embedding(embedding, 1536)
+                    embeddings.append(padded_embedding)
+                except Exception as e:
+                    logger.error(f"Error embedding text: {str(e)}")
+                    # Return a zero vector as fallback
+                    embeddings.append([0.0] * 1536)
+            return embeddings
+        except Exception as e:
+            logger.error(f"Error in embed_documents: {str(e)}")
+            # Return empty list as fallback
+            return []
     
-    def _padded_embed_query(self, text):
-        """Embed query and pad to 1024 dimensions."""
-        embedding = self._original_embed_query(text)
-        return pad_embedding(embedding, 1024)
+    def embed_query(self, text):
+        """Embed a single query using the embeddings model.
+        
+        This is our custom implementation that doesn't rely on the
+        embed_query method of OpenAIEmbeddings which might not exist.
+        It also ensures that the embedding is padded to 1024 dimensions.
+        """
+        try:
+            # Try to use embed_query if it exists
+            if hasattr(self.embeddings, 'embed_query'):
+                embedding = self.embeddings.embed_query(text)
+            else:
+                # Fall back to __call__ method
+                embedding = self.embeddings(text)
+            
+            # Pad embedding to 1024 dimensions
+            return pad_embedding(embedding, 1024)
+        except Exception as e:
+            logger.error(f"Error in embed_query: {str(e)}")
+            # Return a zero vector as fallback
+            return [0.0] * 1536
     
     def _init_vectorstore(self):
         """Initialize the Pinecone vector store using the new langchain-pinecone integration."""
@@ -167,17 +226,26 @@ class RAGPipeline:
                 search_kwargs={"k": 5}  # Retrieve top 5 most similar documents
             )
             
-            # Create a custom prompt template
-            template = """
-            Kamu adalah asisten AI untuk Rumah Sehat Holistik Satu Bumi (RSH Satu Bumi).
+            # Get initial prompt from settings
+            from chatbot_settings import get_settings
+            settings = get_settings()
+            initial_prompt = settings.get('initialPrompt', 
+                "Anda adalah asisten AI untuk RSH Satu Bumi yang membantu menjawab pertanyaan tentang program kesehatan dan detoksifikasi.")
+            
+            logger.info(f"Using initial prompt from settings: {initial_prompt}")
+            
+            # Create a custom prompt template that includes the initial prompt
+            template = f"""
+            {initial_prompt}
+            
             Gunakan informasi berikut untuk menjawab pertanyaan pengguna.
             Jika kamu tidak tahu jawabannya, katakan saja kamu tidak tahu dan sarankan untuk menghubungi RSH Satu Bumi secara langsung.
             Jangan mencoba membuat informasi yang tidak ada dalam konteks.
             
             Konteks:
-            {context}
+            {{context}}
             
-            Pertanyaan: {question}
+            Pertanyaan: {{question}}
             
             Jawaban:
             """

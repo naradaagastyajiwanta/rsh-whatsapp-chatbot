@@ -147,6 +147,64 @@ class ChatLogger:
                 
         return None
     
+    def get_all_chats(self) -> List[Dict]:
+        """
+        Get all chats/conversations without pagination.
+        
+        Returns:
+            List of all chat objects with their messages
+        """
+        conversations = self._load_conversations()
+        
+        # Sort by last_timestamp (newest first)
+        conversations.sort(key=lambda x: x.get("last_timestamp", ""), reverse=True)
+        
+        return conversations
+        
+    def get_chat(self, chat_id: str) -> Optional[Dict]:
+        """
+        Get a specific chat by ID.
+        
+        Args:
+            chat_id: ID of the chat
+            
+        Returns:
+            Chat object or None if not found
+        """
+        conversations = self._load_conversations()
+        
+        for conversation in conversations:
+            if conversation["id"] == chat_id:
+                return conversation
+                
+        return None
+        
+    def get_unanswered_count(self, chat_id: str) -> int:
+        """
+        Get the count of unanswered messages in a chat.
+        
+        Args:
+            chat_id: ID of the chat
+            
+        Returns:
+            Count of unanswered messages
+        """
+        try:
+            chat = self.get_chat(chat_id)
+            if not chat:
+                return 0
+                
+            # Count messages from user that don't have a response
+            unanswered_count = 0
+            for message in chat.get("messages", []):
+                if message.get("is_from_user", True) and not message.get("response"):
+                    unanswered_count += 1
+                    
+            return unanswered_count
+        except Exception as e:
+            logger.error(f"Error getting unanswered count: {str(e)}")
+            return 0
+    
     def get_stats(self) -> Dict:
         """
         Get chat statistics.
@@ -267,6 +325,59 @@ class ChatLogger:
                 
         except Exception as e:
             logger.error(f"Error updating stats: {str(e)}")
+
+    def get_unanswered_count(self, chat_id: str) -> int:
+        """
+        Get the number of unanswered messages for a specific chat
+        
+        Args:
+            chat_id: ID of the chat
+            
+        Returns:
+            Number of unanswered messages
+        """
+        try:
+            # Read all conversations
+            conversations = self._read_conversations()
+            
+            # Find the conversation by ID
+            for conversation in conversations:
+                if conversation.get('id') == chat_id:
+                    # Count messages without responses
+                    unanswered_count = 0
+                    for message in conversation.get('messages', []):
+                        if message.get('is_from_user', True) and not message.get('response'):
+                            unanswered_count += 1
+                    return unanswered_count
+            
+            return 0
+        except Exception as e:
+            logger.error(f"Error getting unanswered count: {str(e)}")
+            return 0
+    
+    def get_chat_id_by_sender(self, sender: str) -> Optional[str]:
+        """
+        Get chat ID by sender
+        
+        Args:
+            sender: Sender ID (WhatsApp number with @s.whatsapp.net)
+            
+        Returns:
+            Chat ID if found, None otherwise
+        """
+        try:
+            # Read all conversations
+            conversations = self._read_conversations()
+            
+            # Find the conversation by sender
+            for conversation in conversations:
+                if conversation.get('sender') == sender:
+                    return conversation.get('id')
+            
+            return None
+        except Exception as e:
+            logger.error(f"Error getting chat ID by sender: {str(e)}")
+            return None
 
 # Create a singleton instance
 chat_logger = ChatLogger()

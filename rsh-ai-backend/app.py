@@ -6,8 +6,10 @@ from dotenv import load_dotenv
 from rag_pipeline import RAGPipeline
 from mock_rag_pipeline import MockRAGPipeline
 from admin_routes import admin_bp, log_chat_message
+from document_routes import document_bp
 import logging
 from chatbot_settings import get_settings, update_settings
+from websocket_handler import init_websocket
 
 # Load environment variables
 load_dotenv()
@@ -23,8 +25,9 @@ logger = logging.getLogger(__name__)
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
-# Register admin blueprint
+# Register blueprints
 app.register_blueprint(admin_bp, url_prefix='/admin')
+app.register_blueprint(document_bp, url_prefix='/document')
 
 # Initialize RAG pipeline
 rag_pipeline = None
@@ -66,6 +69,10 @@ try:
 except Exception as e:
     logger.error(f"Initial RAG pipeline initialization failed: {str(e)}")
     logger.info("Server will start anyway, and RAG pipeline initialization will be retried on requests")
+
+# Routes for the main app
+
+# Routes for the main app
 
 @app.route('/health', methods=['GET'])
 def health_check():
@@ -268,9 +275,37 @@ def update_chatbot_settings():
         logger.error(f"Error updating settings: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
+# Initialize WebSocket with CORS support
+socketio = init_websocket(app)
+
+# Import and set websocket handler in admin_routes
+from admin_routes import set_websocket_handler
+import websocket_handler
+set_websocket_handler(websocket_handler)
+
+# Register WebSocket event handlers
+websocket_handler.register_handlers()
+
 if __name__ == '__main__':
-    port = int(os.getenv("PORT", 5000))
-    debug = os.getenv("FLASK_ENV", "production") == "development"
+    port = int(os.environ.get('PORT', 5001))
+    debug = os.environ.get('FLASK_ENV', 'production') == 'development'
     
-    logger.info(f"Starting RSH AI Backend on port {port}")
-    app.run(host='0.0.0.0', port=port, debug=debug)
+    logger.info(f"Starting RSH AI Backend on port {port} with WebSocket support")
+    print(f"WebSocket URL: http://localhost:{port}")
+    
+    try:
+        # Use socketio.run for WebSocket support
+        logger.info("Using Socket.IO server")
+        socketio.run(app, host='0.0.0.0', port=port, debug=debug, allow_unsafe_werkzeug=True)
+    except Exception as e:
+        logger.error(f"Error starting server with socketio.run: {str(e)}")
+        import traceback
+        logger.error(traceback.format_exc())
+        
+        # Try alternative method if the first one fails
+        try:
+            logger.info("Falling back to Flask's built-in server")
+            app.run(host='0.0.0.0', port=port, debug=debug)
+        except Exception as e:
+            logger.error(f"Error starting server with app.run: {str(e)}")
+            logger.error(traceback.format_exc())

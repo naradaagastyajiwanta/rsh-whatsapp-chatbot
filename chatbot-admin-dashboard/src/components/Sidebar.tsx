@@ -2,17 +2,20 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { 
   HomeIcon, 
   ChatBubbleLeftRightIcon, 
   ChartBarIcon, 
   UserGroupIcon, 
   Cog6ToothIcon,
-  PhoneIcon
+  PhoneIcon,
+  DocumentTextIcon
 } from '@heroicons/react/24/outline';
 
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const pathname = usePathname();
 
   return (
     <div 
@@ -52,37 +55,49 @@ const Sidebar = () => {
             text="Dashboard" 
             href="/" 
             collapsed={collapsed} 
-            active={true}
+            active={pathname === '/'}
           />
           <SidebarItem 
             icon={<ChatBubbleLeftRightIcon className="w-6 h-6" />} 
             text="Conversations" 
             href="/conversations" 
             collapsed={collapsed} 
+            active={pathname === '/conversations' || pathname.startsWith('/conversations/')}
           />
           <SidebarItem 
             icon={<PhoneIcon className="w-6 h-6" />} 
             text="WhatsApp" 
             href="/whatsapp" 
             collapsed={collapsed} 
+            active={pathname === '/whatsapp' || pathname.startsWith('/whatsapp/')}
           />
           <SidebarItem 
             icon={<UserGroupIcon className="w-6 h-6" />} 
             text="Users" 
             href="/users" 
             collapsed={collapsed} 
+            active={pathname === '/users' || pathname.startsWith('/users/')}
           />
           <SidebarItem 
             icon={<ChartBarIcon className="w-6 h-6" />} 
             text="Analytics" 
             href="/analytics" 
             collapsed={collapsed} 
+            active={pathname === '/analytics' || pathname.startsWith('/analytics/')}
+          />
+          <SidebarItem 
+            icon={<DocumentTextIcon className="w-6 h-6" />} 
+            text="Documents" 
+            href="/documents" 
+            collapsed={collapsed} 
+            active={pathname === '/documents' || pathname.startsWith('/documents/')}
           />
           <SidebarItem 
             icon={<Cog6ToothIcon className="w-6 h-6" />} 
             text="Settings" 
             href="/settings" 
             collapsed={collapsed} 
+            active={pathname === '/settings' || pathname.startsWith('/settings/')}
           />
         </ul>
       </nav>

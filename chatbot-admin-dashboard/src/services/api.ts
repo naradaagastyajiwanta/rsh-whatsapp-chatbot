@@ -19,42 +19,71 @@ const api = axios.create({
 // Function to fetch all chats
 export const fetchChats = async (): Promise<Chat[]> => {
   try {
+    console.log('Fetching chats from API...');
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/admin/chats`);
+    
     if (!response.ok) {
-      throw new Error('Failed to fetch chats');
+      console.warn(`API returned status ${response.status}: ${response.statusText}`);
+      throw new Error(`Failed to fetch chats: ${response.status} ${response.statusText}`);
     }
+    
     let chats = await response.json();
+    console.log('Raw API response:', chats);
     
     // Handle different response formats
     // If response is an array, use it directly
     // If response has a 'chats' property, use that
     if (!Array.isArray(chats) && chats.chats) {
+      console.log('Response has chats property, using that');
       chats = chats.chats;
     } else if (!Array.isArray(chats)) {
       console.error('Unexpected response format:', chats);
       throw new Error('Unexpected response format');
     }
     
-    // Fetch bot status and unanswered count for each chat
-    const chatsWithStatus = await Promise.all(chats.map(async (chat: Chat) => {
-      try {
-        const statusResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/admin/bot-status/${chat.id}`);
-        if (statusResponse.ok) {
-          const statusData = await statusResponse.json();
-          return {
-            ...chat,
-            botEnabled: statusData.botEnabled,
-            unansweredCount: statusData.unansweredCount || 0
-          };
-        }
-        return chat;
-      } catch (err) {
-        console.error(`Error fetching status for chat ${chat.id}:`, err);
-        return chat;
-      }
-    }));
+    // Ensure each chat has the required properties
+    const validatedChats = chats.map((chat: any) => {
+      // Ensure required properties exist
+      return {
+        id: chat.id || `temp-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
+        sender: chat.sender || 'unknown',
+        senderName: chat.senderName || chat.sender_name || 'Unknown User',
+        lastMessage: chat.lastMessage || chat.last_message || 'No messages',
+        lastTimestamp: chat.lastTimestamp || chat.last_timestamp || new Date().toISOString(),
+        messages: Array.isArray(chat.messages) ? chat.messages : [],
+        botEnabled: typeof chat.botEnabled === 'boolean' ? chat.botEnabled : true,
+        unansweredCount: typeof chat.unansweredCount === 'number' ? chat.unansweredCount : 0
+      };
+    });
     
-    return chatsWithStatus;
+    console.log('Validated chats:', validatedChats);
+    
+    // Fetch bot status and unanswered count for each chat
+    try {
+      const chatsWithStatus = await Promise.all(validatedChats.map(async (chat: Chat) => {
+        try {
+          const statusResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/admin/bot-status/${chat.id}`);
+          if (statusResponse.ok) {
+            const statusData = await statusResponse.json();
+            return {
+              ...chat,
+              botEnabled: statusData.botEnabled,
+              unansweredCount: statusData.unansweredCount || 0
+            };
+          }
+          return chat;
+        } catch (err) {
+          console.error(`Error fetching status for chat ${chat.id}:`, err);
+          return chat;
+        }
+      }));
+      
+      console.log('Chats with status:', chatsWithStatus);
+      return chatsWithStatus;
+    } catch (statusError) {
+      console.error('Error fetching bot status:', statusError);
+      return validatedChats;
+    }
   } catch (error) {
     console.error('Error fetching chats:', error);
     // Fall back to mock data if the API fails
