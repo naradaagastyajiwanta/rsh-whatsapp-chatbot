@@ -10,12 +10,15 @@ import {
   UserGroupIcon, 
   Cog6ToothIcon,
   PhoneIcon,
-  DocumentTextIcon
+  DocumentTextIcon,
+  LanguageIcon
 } from '@heroicons/react/24/outline';
+import { useLanguage } from '../context/LanguageContext';
 
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
   const pathname = usePathname();
+  const { language, changeLanguage, t } = useLanguage();
 
   return (
     <div 
@@ -52,53 +55,97 @@ const Sidebar = () => {
         <ul>
           <SidebarItem 
             icon={<HomeIcon className="w-6 h-6" />} 
-            text="Dashboard" 
+            text={t('sidebar.dashboard')} 
             href="/" 
             collapsed={collapsed} 
             active={pathname === '/'}
           />
           <SidebarItem 
             icon={<ChatBubbleLeftRightIcon className="w-6 h-6" />} 
-            text="Conversations" 
+            text={t('sidebar.conversations')} 
             href="/conversations" 
             collapsed={collapsed} 
             active={pathname === '/conversations' || pathname.startsWith('/conversations/')}
           />
           <SidebarItem 
             icon={<PhoneIcon className="w-6 h-6" />} 
-            text="WhatsApp" 
+            text={t('sidebar.whatsapp')} 
             href="/whatsapp" 
             collapsed={collapsed} 
             active={pathname === '/whatsapp' || pathname.startsWith('/whatsapp/')}
           />
           <SidebarItem 
             icon={<UserGroupIcon className="w-6 h-6" />} 
-            text="Users" 
+            text={t('sidebar.users')} 
             href="/users" 
             collapsed={collapsed} 
             active={pathname === '/users' || pathname.startsWith('/users/')}
           />
           <SidebarItem 
             icon={<ChartBarIcon className="w-6 h-6" />} 
-            text="Analytics" 
+            text={t('sidebar.analytics')} 
             href="/analytics" 
             collapsed={collapsed} 
             active={pathname === '/analytics' || pathname.startsWith('/analytics/')}
           />
           <SidebarItem 
             icon={<DocumentTextIcon className="w-6 h-6" />} 
-            text="Documents" 
+            text={t('sidebar.documents')} 
             href="/documents" 
             collapsed={collapsed} 
             active={pathname === '/documents' || pathname.startsWith('/documents/')}
           />
           <SidebarItem 
             icon={<Cog6ToothIcon className="w-6 h-6" />} 
-            text="Settings" 
+            text={t('sidebar.settings')} 
             href="/settings" 
             collapsed={collapsed} 
             active={pathname === '/settings' || pathname.startsWith('/settings/')}
           />
+          
+          {/* Tombol pengalih bahasa */}
+          <li className="mt-8">
+            <div className={`flex items-center px-4 py-3 rounded-lg cursor-pointer transition-all duration-200 hover:bg-blue-700 ${collapsed ? 'justify-center' : ''}`}>
+              <LanguageIcon className="w-6 h-6 text-blue-200" />
+              {!collapsed && (
+                <div className="ml-3 flex flex-col">
+                  <span className="text-sm font-medium text-white">{t('common.language')}</span>
+                  <div className="flex space-x-2 mt-1">
+                    <button 
+                      onClick={() => changeLanguage('id')} 
+                      className={`text-xs px-2 py-1 rounded ${language === 'id' ? 'bg-blue-500 text-white' : 'bg-blue-800 text-blue-300'}`}
+                    >
+                      ID
+                    </button>
+                    <button 
+                      onClick={() => changeLanguage('en')} 
+                      className={`text-xs px-2 py-1 rounded ${language === 'en' ? 'bg-blue-500 text-white' : 'bg-blue-800 text-blue-300'}`}
+                    >
+                      EN
+                    </button>
+                  </div>
+                </div>
+              )}
+              {collapsed && (
+                <div className="absolute left-16 bg-blue-800 text-white p-2 rounded shadow-lg z-10 hidden group-hover:block">
+                  <div className="flex flex-col space-y-2">
+                    <button 
+                      onClick={() => changeLanguage('id')} 
+                      className={`text-xs px-2 py-1 rounded ${language === 'id' ? 'bg-blue-500 text-white' : 'bg-blue-700 text-blue-300'}`}
+                    >
+                      ID
+                    </button>
+                    <button 
+                      onClick={() => changeLanguage('en')} 
+                      className={`text-xs px-2 py-1 rounded ${language === 'en' ? 'bg-blue-500 text-white' : 'bg-blue-700 text-blue-300'}`}
+                    >
+                      EN
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </li>
         </ul>
       </nav>
 
@@ -109,8 +156,8 @@ const Sidebar = () => {
           </div>
           {!collapsed && (
             <div className="transition-all duration-300">
-              <div className="text-sm font-medium">Admin User</div>
-              <div className="text-xs text-blue-300">admin@rshsatubumi.com</div>
+              <div className="text-sm font-medium">{t('sidebar.adminUser')}</div>
+              <div className="text-xs text-blue-300">{t('common.adminEmail')}</div>
             </div>
           )}
         </div>

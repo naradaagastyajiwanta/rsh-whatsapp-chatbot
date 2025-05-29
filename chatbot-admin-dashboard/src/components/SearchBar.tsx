@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
@@ -9,6 +10,7 @@ interface SearchBarProps {
 
 const SearchBar = ({ onSearch }: SearchBarProps) => {
   const [query, setQuery] = useState('');
+  const { t } = useLanguage();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,7 +32,7 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
           <input
             type="search"
             className="input pl-10 pr-10 focus:ring-blue-500 focus:border-blue-500 shadow-sm hover:shadow transition-all duration-200"
-            placeholder="Cari berdasarkan nomor WhatsApp atau isi pesan..."
+            placeholder={t('common.searchPlaceholder')}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
@@ -50,7 +52,7 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
             className="btn btn-primary text-sm px-4 py-2 flex items-center"
           >
             <MagnifyingGlassIcon className="w-4 h-4 mr-2" />
-            Cari
+            {t('common.search')}
           </button>
           <button
             type="button"
@@ -60,7 +62,7 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
             </svg>
-            Reset
+            {t('common.reset')}
           </button>
           <div className="hidden sm:block flex-grow"></div>
           <div className="w-full sm:w-auto mt-2 sm:mt-0 flex flex-wrap sm:flex-nowrap gap-2">
@@ -71,11 +73,11 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
                 </svg>
               </div>
               <select className="input text-sm py-2 pl-10 pr-8 appearance-none bg-white" defaultValue="">
-                <option value="">Filter Tanggal</option>
-                <option value="today">Hari Ini</option>
-                <option value="yesterday">Kemarin</option>
-                <option value="week">Minggu Ini</option>
-                <option value="month">Bulan Ini</option>
+                <option value="">{t('common.dateFilter')}</option>
+                <option value="today">{t('common.today')}</option>
+                <option value="yesterday">{t('common.yesterday')}</option>
+                <option value="week">{t('common.thisWeek')}</option>
+                <option value="month">{t('common.thisMonth')}</option>
               </select>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -90,9 +92,9 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
                 </svg>
               </div>
               <select className="input text-sm py-2 pl-10 pr-8 appearance-none bg-white" defaultValue="">
-                <option value="">Urutkan</option>
-                <option value="newest">Terbaru</option>
-                <option value="oldest">Terlama</option>
+                <option value="">{t('common.sort')}</option>
+                <option value="newest">{t('common.newest')}</option>
+                <option value="oldest">{t('common.oldest')}</option>
               </select>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">

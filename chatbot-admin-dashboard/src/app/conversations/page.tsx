@@ -5,8 +5,10 @@ import Sidebar from '@/components/Sidebar';
 import ConversationList from '@/components/ConversationList';
 import ConversationDetail from '@/components/ConversationDetail';
 import { Chat } from '@/types/chat';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function ConversationsPage() {
+  const { t } = useLanguage();
   const [selectedChat, setSelectedChat] = useState<Chat | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -32,11 +34,11 @@ export default function ConversationsPage() {
         {/* Left panel - Conversation List */}
         <div className="w-1/3 border-r border-gray-200 bg-white overflow-y-auto">
           <div className="p-4">
-            <h1 className="text-2xl font-bold mb-4">Percakapan</h1>
+            <h1 className="text-2xl font-bold mb-4">{t('conversations.title')}</h1>
             <div className="mb-4">
               <input
                 type="text"
-                placeholder="Cari percakapan..."
+                placeholder={t('conversations.searchPlaceholder')}
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 value={searchQuery}
                 onChange={(e) => handleSearch(e.target.value)}

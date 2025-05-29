@@ -9,10 +9,12 @@ import {
   ClockIcon,
   CalendarIcon
 } from '@heroicons/react/24/outline';
+import { useLanguage } from '@/context/LanguageContext';
 
 const StatsCards = () => {
   const [stats, setStats] = useState<ChatStats | null>(null);
   const [loading, setLoading] = useState(true);
+  const { t, language } = useLanguage();
 
   useEffect(() => {
     const loadStats = async () => {
@@ -55,32 +57,32 @@ const StatsCards = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
       <StatCard 
-        title="Pertanyaan Hari Ini" 
+        title={t('dashboard.questionsToday')} 
         value={stats.totalChatsToday.toString()} 
         icon={<ChatBubbleLeftRightIcon className="w-8 h-8 transition-transform group-hover:scale-110 duration-300" />}
         color="bg-blue-500"
       />
       <StatCard 
-        title="Pertanyaan Minggu Ini" 
+        title={t('dashboard.questionsThisWeek')} 
         value={stats.totalChatsThisWeek.toString()} 
         icon={<CalendarIcon className="w-8 h-8 transition-transform group-hover:scale-110 duration-300" />}
         color="bg-green-500"
       />
       <StatCard 
-        title="Pengguna Aktif" 
+        title={t('dashboard.activeUsers')} 
         value={stats.activeUsers.toString()} 
         icon={<UserGroupIcon className="w-8 h-8 transition-transform group-hover:scale-110 duration-300" />}
         color="bg-purple-500"
       />
       <StatCard 
-        title="Waktu Respons Rata-rata" 
-        value={`${stats.averageResponseTime} detik`} 
+        title={t('dashboard.averageResponseTime')} 
+        value={`${stats.averageResponseTime} ${language === 'en' ? 'seconds' : 'detik'}`} 
         icon={<ClockIcon className="w-8 h-8 transition-transform group-hover:scale-110 duration-300" />}
         color="bg-orange-500"
       />
       {stats.totalMessages !== undefined && (
         <StatCard 
-          title="Total Pesan" 
+          title={t('dashboard.totalMessages')} 
           value={stats.totalMessages.toString()} 
           icon={<ChatBubbleLeftRightIcon className="w-8 h-8 transition-transform group-hover:scale-110 duration-300" />}
           color="bg-indigo-500"
@@ -88,7 +90,7 @@ const StatsCards = () => {
       )}
       {stats.uniqueUsers !== undefined && (
         <StatCard 
-          title="Total Pengguna" 
+          title={t('dashboard.totalUsers')} 
           value={stats.uniqueUsers.toString()} 
           icon={<UserGroupIcon className="w-8 h-8 transition-transform group-hover:scale-110 duration-300" />}
           color="bg-pink-500"

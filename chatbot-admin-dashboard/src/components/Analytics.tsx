@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
+import { id as idLocale, enUS } from 'date-fns/locale';
 import {
   LineChart,
   Line,
@@ -21,6 +22,7 @@ import { PerformanceMetrics, UserAnalytics, UserInsight, UserData } from '../typ
 import websocketService from '../services/websocket';
 import { fetchAnalyticsPerformance, fetchAnalyticsUsers, checkBackendStatus } from '../services/analyticsService';
 import Sidebar from './Sidebar';
+import { useLanguage } from '../context/LanguageContext';
 
 // Colors for charts
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#82ca9d', '#ffc658', '#8dd1e1'];
@@ -56,6 +58,7 @@ const Analytics = (): JSX.Element => {
   const [userAnalytics, setUserAnalytics] = useState<UserAnalytics>({} as UserAnalytics);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { t, language } = useLanguage();
 
   // Function to fetch initial data
   const fetchInitialData = async () => {
@@ -68,7 +71,7 @@ const Analytics = (): JSX.Element => {
       const backendStatus = await checkBackendStatus();
       
       if (!backendStatus.isRunning) {
-        setError('Backend server is not running. Please start the server and try again.');
+        setError(t('analytics.backendNotRunning'));
         console.error('Backend server is not running:', backendStatus.error);
         setIsLoading(false);
         return;
@@ -427,29 +430,29 @@ const Analytics = (): JSX.Element => {
       <div className="space-y-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div className="p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
-            <div className="text-gray-600 text-sm mb-2">Total API Calls</div>
+            <div className="text-gray-600 text-sm mb-2">{t('analytics.totalApiCalls')}</div>
             <div className="text-2xl font-semibold">{performanceMetrics.api_calls || 0}</div>
           </div>
           <div className="p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
-            <div className="text-gray-600 text-sm mb-2">Success Rate</div>
+            <div className="text-gray-600 text-sm mb-2">{t('analytics.successRate')}</div>
             <div className="text-2xl font-semibold">
               {((performanceMetrics.success_rate || 0) * 100).toFixed(1)}%
             </div>
           </div>
           <div className="p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
-            <div className="text-gray-600 text-sm mb-2">Avg Response Time</div>
+            <div className="text-gray-600 text-sm mb-2">{t('analytics.avgResponseTime')}</div>
             <div className="text-2xl font-semibold">
-              {(performanceMetrics.average_response_time || 0).toFixed(2)}s
+              {(performanceMetrics.average_response_time || 0).toFixed(2)}{language === 'en' ? 's' : ' detik'}
             </div>
           </div>
           <div className="p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
-            <div className="text-gray-600 text-sm mb-2">Error Count</div>
+            <div className="text-gray-600 text-sm mb-2">{t('analytics.errorCount')}</div>
             <div className="text-2xl font-semibold">{performanceMetrics.error_count || 0}</div>
           </div>
         </div>
 
         <div className="bg-white rounded-lg shadow p-4">
-          <h3 className="text-lg font-semibold mb-4">Daily Performance</h3>
+          <h3 className="text-lg font-semibold mb-4">{t('analytics.dailyPerformance')}</h3>
           <div className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={dailyData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
@@ -458,9 +461,9 @@ const Analytics = (): JSX.Element => {
                 <YAxis yAxisId="left" />
                 <YAxis yAxisId="right" orientation="right" />
                 <ChartTooltip />
-                <Line yAxisId="left" type="monotone" dataKey="calls" name="API Calls" stroke="#0088FE" />
-                <Line yAxisId="left" type="monotone" dataKey="errors" name="Errors" stroke="#FF8042" />
-                <Line yAxisId="right" type="monotone" dataKey="avgTime" name="Avg Time (s)" stroke="#00C49F" />
+                <Line yAxisId="left" type="monotone" dataKey="calls" name={t('analytics.apiCalls')} stroke="#0088FE" />
+                <Line yAxisId="left" type="monotone" dataKey="errors" name={t('analytics.errors')} stroke="#FF8042" />
+                <Line yAxisId="right" type="monotone" dataKey="avgTime" name={language === 'en' ? 'Avg Time (s)' : 'Waktu Rata-rata (detik)'} stroke="#00C49F" />
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -474,7 +477,7 @@ const Analytics = (): JSX.Element => {
     if (!userAnalytics?.users || Object.keys(userAnalytics.users).length === 0) {
       return (
         <div className="flex items-center justify-center h-64">
-          <div className="text-gray-500">Belum ada data pengguna</div>
+          <div className="text-gray-500">{t('analytics.noUserData')}</div>
         </div>
       );
     }
@@ -486,15 +489,15 @@ const Analytics = (): JSX.Element => {
       <div className="mt-6 overflow-x-auto">
         <div className="mb-4 grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-white rounded-lg shadow p-4">
-            <div className="text-gray-600 text-sm mb-2">Total Users</div>
+            <div className="text-gray-600 text-sm mb-2">{t('analytics.totalUsers')}</div>
             <div className="text-2xl font-semibold">{userAnalytics.total_users || 0}</div>
           </div>
           <div className="bg-white rounded-lg shadow p-4">
-            <div className="text-gray-600 text-sm mb-2">Active Users (7d)</div>
+            <div className="text-gray-600 text-sm mb-2">{t('analytics.activeUsers')}</div>
             <div className="text-2xl font-semibold">{userAnalytics.active_users || 0}</div>
           </div>
           <div className="bg-white rounded-lg shadow p-4">
-            <div className="text-gray-600 text-sm mb-2">New Users (7d)</div>
+            <div className="text-gray-600 text-sm mb-2">{t('analytics.newUsers')}</div>
             <div className="text-2xl font-semibold">{userAnalytics.new_users || 0}</div>
           </div>
         </div>
@@ -502,14 +505,14 @@ const Analytics = (): JSX.Element => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nomor WhatsApp</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Usia</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Domisili</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Gender</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Keluhan</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hambatan</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Interaksi Terakhir</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t('analytics.whatsappNumber')}</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t('analytics.name')}</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t('analytics.age')}</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t('analytics.location')}</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t('analytics.gender')}</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t('analytics.complaints')}</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t('analytics.barriers')}</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t('analytics.lastInteraction')}</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
@@ -634,7 +637,7 @@ const Analytics = (): JSX.Element => {
                         ))}
                       </div>
                     ) : (
-                      <span className="text-gray-500 italic">Tidak ada keluhan</span>
+                      <span className="text-gray-500 italic">{t('analytics.noComplaints')}</span>
                     )}
                   </td>
                   <td className="px-6 py-4 text-sm text-gray-900">
@@ -648,7 +651,7 @@ const Analytics = (): JSX.Element => {
                         ))}
                       </div>
                     ) : (
-                      <span className="text-gray-500 italic">Tidak ada hambatan</span>
+                      <span className="text-gray-500 italic">{t('analytics.noBarriers')}</span>
                     )}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
@@ -668,7 +671,7 @@ const Analytics = (): JSX.Element => {
     
     if (!userAnalytics || !userAnalytics.users) {
       console.warn('No user analytics data available for rendering');
-      return <div className="p-4">Loading user analytics...</div>;
+      return <div className="p-4">{t('analytics.loadingUserAnalytics')}</div>;
     }
     
     // Log user data for debugging
@@ -815,27 +818,27 @@ const Analytics = (): JSX.Element => {
     }
 
     const healthIssueData: ChartData[] = Array.from(healthIssueMap).map(([name, value]) => ({ name, value }));
-    // Transform data for charts with proper Indonesian labels
+    // Transform data for charts with proper labels based on language
     const emotionData: ChartData[] = Array.from(emotionMap).map(([name, value]) => ({ 
-      name: name === 'positive' ? 'Positif' :
-            name === 'negative' ? 'Negatif' :
-            name === 'neutral' ? 'Netral' :
-            name === 'unknown' ? 'Tidak Diketahui' : name,
+      name: name === 'positive' ? (language === 'en' ? 'Positive' : 'Positif') :
+            name === 'negative' ? (language === 'en' ? 'Negative' : 'Negatif') :
+            name === 'neutral' ? (language === 'en' ? 'Neutral' : 'Netral') :
+            name === 'unknown' ? (language === 'en' ? 'Unknown' : 'Tidak Diketahui') : name,
       value 
     }));
     
     const urgencyData: ChartData[] = Array.from(urgencyMap).map(([name, value]) => ({ 
-      name: name === 'high' ? 'Tinggi' :
-            name === 'medium' ? 'Sedang' :
-            name === 'low' ? 'Rendah' :
-            name === 'unknown' ? 'Tidak Diketahui' : name,
+      name: name === 'high' ? (language === 'en' ? 'High' : 'Tinggi') :
+            name === 'medium' ? (language === 'en' ? 'Medium' : 'Sedang') :
+            name === 'low' ? (language === 'en' ? 'Low' : 'Rendah') :
+            name === 'unknown' ? (language === 'en' ? 'Unknown' : 'Tidak Diketahui') : name,
       value 
     }));
     
     const genderData: ChartData[] = Array.from(genderMap).map(([name, value]) => ({
-      name: name === 'male' ? 'Laki-laki' :
-            name === 'female' ? 'Perempuan' :
-            name === 'unknown' ? 'Tidak Diketahui' : name,
+      name: name === 'male' ? (language === 'en' ? 'Male' : 'Laki-laki') :
+            name === 'female' ? (language === 'en' ? 'Female' : 'Perempuan') :
+            name === 'unknown' ? (language === 'en' ? 'Unknown' : 'Tidak Diketahui') : name,
       value
     }));
 
@@ -903,14 +906,14 @@ const Analytics = (): JSX.Element => {
 
         {/* Pie Charts - First Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-          {renderPieChart(genderData, 'Distribusi Gender')}
-          {renderPieChart(urgencyData, 'Distribusi Tingkat Urgensi')}
+          {renderPieChart(genderData, t('analytics.genderDistribution'))}
+          {renderPieChart(urgencyData, t('analytics.urgencyDistribution'))}
         </div>
         
         {/* Pie Charts - Second Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {renderPieChart(healthIssueData, 'Distribusi Keluhan')}
-          {renderPieChart(emotionData, 'Distribusi Emosi')}
+          {renderPieChart(healthIssueData, t('analytics.complaintsDistribution'))}
+          {renderPieChart(emotionData, t('analytics.emotionDistribution'))}
         </div>
       </div>
     );
@@ -927,7 +930,7 @@ const Analytics = (): JSX.Element => {
           {error}
         </div>
         <p className="text-gray-600 mb-4 text-center">
-          Unable to connect to the analytics server. Please make sure the backend server is running and try again.
+          {t('analytics.unableToConnect')}
         </p>
         <button 
           onClick={() => fetchInitialData()} 
@@ -940,10 +943,10 @@ const Analytics = (): JSX.Element => {
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
               </svg>
-              Retrying...
+              {t('analytics.retrying')}
             </>
           ) : (
-            'Retry Connection'
+            t('analytics.retryConnection')
           )}
         </button>
       </div>
@@ -954,57 +957,57 @@ const Analytics = (): JSX.Element => {
     <div className="flex h-screen bg-gray-100">
       <Sidebar />
       
-      <div className="flex-1 overflow-auto">
-        <div className="container mx-auto px-4 py-8">
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-            <div className="p-6 space-y-6">
-              <div className="flex justify-between items-center mb-6">
-                <h1 className="text-2xl font-bold text-gray-800">Analytics Dashboard</h1>
-                <button 
-                  onClick={() => fetchInitialData()} 
-                  className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors flex items-center"
-                  disabled={isLoading}
-                >
-                  {isLoading ? (
-                    <>
-                      <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                      </svg>
-                      Refreshing...
-                    </>
-                  ) : (
-                    'Refresh Data'
-                  )}
-                </button>
-              </div>
-
-              <div className="flex justify-center">
-                <Tabs value={tabValue} onChange={handleTabChange}>
-                  <Tab label="Performance Metrics" />
-                  <Tab label="User Analytics" />
-                </Tabs>
-              </div>
-
-              {isLoading ? (
-                <div className="flex items-center justify-center h-64">
-                  <CircularProgress />
-                </div>
-              ) : error ? (
-                renderError()
-              ) : (
-                <div>
-                  {tabValue === 0 ? renderPerformanceMetrics() : (
-                    <div>
-                      {renderUserAnalytics()}
-                      {renderUserTable()}
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          </div>
+      <div className="flex-1 overflow-auto p-6">
+        <div className="mb-6">
+          <h1 className="text-2xl font-semibold mb-2">{t('analytics.title')}</h1>
+          <p className="text-gray-600">
+            {language === 'en' ? 'Monitor and analyze your WhatsApp chatbot performance' : 'Pantau dan analisis kinerja chatbot WhatsApp Anda'}
+          </p>
         </div>
+
+        <div className="flex justify-between items-center mb-6">
+          <button 
+            onClick={() => fetchInitialData()} 
+            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors flex items-center"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <>
+                <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                {t('analytics.refreshing')}
+              </>
+            ) : (
+              t('analytics.refreshData')
+            )}
+          </button>
+        </div>
+
+        <div className="flex justify-center mb-6">
+          <Tabs value={tabValue} onChange={handleTabChange}>
+            <Tab label={t('analytics.performanceMetrics')} />
+            <Tab label={t('analytics.userAnalytics')} />
+          </Tabs>
+        </div>
+
+        {isLoading ? (
+          <div className="flex items-center justify-center h-64">
+            <CircularProgress />
+          </div>
+        ) : error ? (
+          renderError()
+        ) : (
+          <div>
+            {tabValue === 0 ? renderPerformanceMetrics() : (
+              <div>
+                {renderUserAnalytics()}
+                {renderUserTable()}
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

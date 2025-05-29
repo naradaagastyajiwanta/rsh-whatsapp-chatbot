@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import { fetchChats, searchChats } from '@/services/api';
 import { Chat } from '@/types/chat';
 import { format } from 'date-fns';
-import { id } from 'date-fns/locale';
+import { id as idLocale, enUS } from 'date-fns/locale';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface ChatTableProps {
   searchQuery: string;
@@ -15,6 +16,7 @@ const ChatTable = ({ searchQuery, onChatSelect }: ChatTableProps) => {
   const [chats, setChats] = useState<Chat[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { t, language } = useLanguage();
 
   useEffect(() => {
     const loadChats = async () => {
@@ -24,7 +26,7 @@ const ChatTable = ({ searchQuery, onChatSelect }: ChatTableProps) => {
         setChats(data);
         setError(null);
       } catch (err) {
-        setError('Failed to load chat data. Please try again later.');
+        setError(t('common.failedToLoadData'));
         console.error('Error loading chats:', err);
       } finally {
         setLoading(false);
@@ -62,7 +64,7 @@ const ChatTable = ({ searchQuery, onChatSelect }: ChatTableProps) => {
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          <h3 className="text-lg font-medium text-red-800">Error Loading Data</h3>
+          <h3 className="text-lg font-medium text-red-800">{t('common.errorLoadingData')}</h3>
         </div>
         <div className="text-red-600 mb-4 bg-red-100 p-3 rounded-md border border-red-200">{error}</div>
         <button 
@@ -72,7 +74,7 @@ const ChatTable = ({ searchQuery, onChatSelect }: ChatTableProps) => {
           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
           </svg>
-          Retry
+          {t('common.retry')}
         </button>
       </div>
     );
@@ -87,14 +89,14 @@ const ChatTable = ({ searchQuery, onChatSelect }: ChatTableProps) => {
           </svg>
           <h3 className="text-lg font-medium text-gray-700 mb-2">
             {searchQuery 
-              ? `Tidak ada percakapan yang cocok dengan "${searchQuery}"`
-              : 'Belum ada data percakapan tersedia'
+              ? t('conversations.noMatchingConversations').replace('{query}', searchQuery)
+              : t('conversations.noConversationsAvailable')
             }
           </h3>
           <p className="text-gray-500">
             {searchQuery 
-              ? 'Coba gunakan kata kunci pencarian yang berbeda'
-              : 'Percakapan baru akan muncul di sini saat pengguna mulai berinteraksi dengan chatbot'
+              ? t('conversations.tryDifferentKeywords')
+              : t('conversations.newConversationsWillAppear')
             }
           </p>
         </div>
@@ -107,10 +109,10 @@ const ChatTable = ({ searchQuery, onChatSelect }: ChatTableProps) => {
       <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
         <thead className="bg-gray-50">
           <tr>
-            <th scope="col" className="px-6 py-4 font-medium text-gray-900">Pengirim</th>
-            <th scope="col" className="px-6 py-4 font-medium text-gray-900">Pesan Terakhir</th>
-            <th scope="col" className="px-6 py-4 font-medium text-gray-900">Waktu</th>
-            <th scope="col" className="px-6 py-4 font-medium text-gray-900">Aksi</th>
+            <th scope="col" className="px-6 py-4 font-medium text-gray-900">{t('conversations.sender')}</th>
+            <th scope="col" className="px-6 py-4 font-medium text-gray-900">{t('conversations.lastMessage')}</th>
+            <th scope="col" className="px-6 py-4 font-medium text-gray-900">{t('conversations.time')}</th>
+            <th scope="col" className="px-6 py-4 font-medium text-gray-900">{t('common.actions')}</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-100 border-t border-gray-100">
@@ -128,7 +130,7 @@ const ChatTable = ({ searchQuery, onChatSelect }: ChatTableProps) => {
                     </span>
                   </div>
                   <div>
-                    <div className="font-medium text-gray-700">{chat.senderName || 'Unknown'}</div>
+                    <div className="font-medium text-gray-700">{chat.senderName || t('common.unknown')}</div>
                     <div className="text-xs text-gray-400">{formatPhoneNumber(chat.sender)}</div>
                   </div>
                 </div>
@@ -147,7 +149,7 @@ const ChatTable = ({ searchQuery, onChatSelect }: ChatTableProps) => {
                     onChatSelect(chat);
                   }}
                 >
-                  Lihat Detail
+                  {t('common.view')}
                 </button>
               </td>
             </tr>
@@ -155,7 +157,10 @@ const ChatTable = ({ searchQuery, onChatSelect }: ChatTableProps) => {
         </tbody>
       </table>
       <div className="px-6 py-4 text-center text-xs text-gray-500">
-        Menampilkan {chats.length} percakapan
+        {language === 'en' 
+          ? `Showing ${chats.length} conversations` 
+          : `Menampilkan ${chats.length} percakapan`
+        }
       </div>
     </div>
   );
@@ -180,24 +185,27 @@ const formatTimestamp = (timestamp: string): string => {
   try {
     const date = new Date(timestamp);
     const now = new Date();
-    const yesterday = new Date(now);
-    yesterday.setDate(yesterday.getDate() - 1);
+    const diffInDays = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24));
+    const { language, t } = useLanguage();
+    const dateLocale = language === 'en' ? enUS : idLocale;
     
-    // If it's today, show time only
-    if (date.toDateString() === now.toDateString()) {
-      return format(date, "'Hari ini,' HH:mm", { locale: id });
+    if (diffInDays === 0) {
+      // Today - show time only
+      return format(date, "HH:mm");
+    } else if (diffInDays === 1) {
+      // Yesterday
+      return (language === 'en' ? 'Yesterday ' : 'Kemarin ') + format(date, "HH:mm");
+    } else if (diffInDays < 7) {
+      // Within a week - show day name
+      return format(date, "EEEE", { locale: dateLocale });
+    } else {
+      // More than a week ago - show full date
+      return format(date, "d MMM yyyy", { locale: dateLocale });
     }
-    
-    // If it's yesterday, show "Yesterday" and time
-    if (date.toDateString() === yesterday.toDateString()) {
-      return format(date, "'Kemarin,' HH:mm", { locale: id });
-    }
-    
-    // Otherwise, show full date and time
-    return format(date, "d MMMM yyyy, HH:mm", { locale: id });
   } catch (error) {
     console.error('Error formatting timestamp:', error);
-    return timestamp;
+    const { t } = useLanguage();
+    return timestamp || t('common.invalidDate');
   }
 };
 
