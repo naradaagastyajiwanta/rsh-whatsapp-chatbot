@@ -3,7 +3,16 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
 import time
+import requests
 from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Verify OpenAI API key is loaded
+api_key = os.getenv('OPENAI_API_KEY')
+if not api_key:
+    raise ValueError('OPENAI_API_KEY not found in environment variables')
 from rag_pipeline import RAGPipeline
 from mock_rag_pipeline import MockRAGPipeline
 from openai_assistant_pipeline import send_message_and_get_response
@@ -11,6 +20,7 @@ from admin_routes import admin_bp, log_chat_message
 from document_routes import document_bp
 from chatbot_settings import get_settings, update_settings
 from websocket_handler import init_websocket
+from analytics_pipeline import analytics
 
 # Set up logging
 logging.basicConfig(
@@ -37,11 +47,36 @@ if not assistant_id:
 
 # Initialize Flask app
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+
+# Configure CORS to allow requests from the frontend
+allowed_origins = [
+    'http://localhost:3000',  # Next.js development server
+    'http://127.0.0.1:3000',
+    'http://localhost:8080',  # Alternative port
+    'http://127.0.0.1:8080'
+]
+
+# Enable CORS with specific configuration
+CORS(app, resources={r"/*": {"origins": allowed_origins, "supports_credentials": True}})
 
 # Register blueprints
 app.register_blueprint(admin_bp, url_prefix='/admin')
-app.register_blueprint(document_bp, url_prefix='/document')
+app.register_blueprint(document_bp, url_prefix='/documents')
+
+# Add a route to handle CORS preflight requests
+@app.route('/health', methods=['GET', 'OPTIONS'])
+def health():
+    """Health check endpoint to verify server is running"""
+    if request.method == 'OPTIONS':
+        # Handle CORS preflight request
+        response = jsonify({'status': 'ok'})
+        return response
+    
+    return jsonify({
+        'status': 'ok',
+        'version': '1.0.0',
+        'server_time': time.time()
+    })
 
 # Initialize RAG pipeline
 rag_pipeline = None
@@ -179,6 +214,28 @@ def ask():
         # Bot is enabled, proceed with OpenAI Assistant flow
         logger.info(f"[ASK] Mengirim ke Assistant API untuk nomor: {sender}, pesan: {message}")
         
+        # Analyze message for insights
+        try:
+            analysis = analytics.analyze_chat_message(sender, message)
+            logger.info(f"[ANALYTICS] Message analysis for {sender}: {analysis}")
+            
+            # Broadcast analytics update via WebSocket
+            try:
+                from websocket_handler import broadcast_analytics_update, broadcast_user_analytics_update
+                
+                # Broadcast user-specific analytics update
+                broadcast_user_analytics_update(sender)
+                
+                # Broadcast overall analytics update
+                user_insights = analytics.get_user_insights()
+                broadcast_analytics_update('users', user_insights)
+                
+                logger.info(f"[WEBSOCKET] Broadcasted analytics update for {sender}")
+            except Exception as ws_error:
+                logger.error(f"[WEBSOCKET] Error broadcasting analytics update: {str(ws_error)}")
+        except Exception as analysis_error:
+            logger.error(f"[ANALYTICS] Error analyzing message: {str(analysis_error)}")
+        
         # Verify API credentials before sending
         if not os.getenv('OPENAI_API_KEY'):
             logger.error("[ASK] OPENAI_API_KEY tidak ditemukan sebelum mengirim request")
@@ -213,6 +270,12 @@ def ask():
         response_time = time.time() - start_time
         logger.info(f"[ASK] Generated response for {sender_name} in {response_time:.2f} seconds: {response[:100]}...")
         
+        # Log API performance
+        analytics.log_api_performance(
+            success=True,
+            response_time=response_time
+        )
+        
         # Log the chat message for the admin dashboard
         try:
             log_chat_message(sender, sender_name, message, response, response_time)
@@ -228,6 +291,14 @@ def ask():
         
     except Exception as e:
         logger.error(f"Error processing request: {str(e)}")
+        
+        # Log API error
+        analytics.log_api_performance(
+            success=False,
+            response_time=time.time() - start_time,
+            error_message=str(e)
+        )
+        
         return jsonify({
             "response": "Maaf, terjadi kesalahan dalam memproses pertanyaan Anda. Silakan coba lagi nanti.",
             "sender": sender,
@@ -307,15 +378,199 @@ def update_chatbot_settings():
             return jsonify({"message": "Settings updated successfully"}), 200
         else:
             return jsonify({"error": "Failed to update settings"}), 500
-    
     except Exception as e:
         logger.error(f"Error updating settings: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
+# WhatsApp status endpoint
+@app.route('/whatsapp/status', methods=['GET'])
+def get_whatsapp_status_endpoint():
+    """Get WhatsApp service status"""
+    try:
+        status = get_whatsapp_status()
+        return jsonify(status), 200
+    except Exception as e:
+        logger.error(f"Error getting WhatsApp status: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+
+# Function to get WhatsApp service status
+def get_whatsapp_status():
+    """Get WhatsApp service status from the WhatsApp service"""
+    try:
+        # Get WhatsApp status from the WhatsApp service
+        response = requests.get('http://localhost:3200/health', timeout=5)
+        if response.status_code == 200:
+            status_data = response.json()
+            return status_data
+        else:
+            return {
+                "status": "error",
+                "message": f"WhatsApp service returned status code {response.status_code}",
+                "error": True
+            }
+    except requests.exceptions.RequestException as e:
+        logger.error(f"Error connecting to WhatsApp service: {str(e)}")
+        return {
+            "status": "error",
+            "message": "Could not connect to WhatsApp service",
+            "error": True
+        }
+
+# Endpoint to update WhatsApp status via WebSocket
+@app.route('/whatsapp/status/update', methods=['POST'])
+def update_whatsapp_status():
+    """Update WhatsApp status and broadcast via WebSocket"""
+    try:
+        data = request.json
+        if not data:
+            return jsonify({"error": "No data provided"}), 400
+            
+        # Broadcast the status update via WebSocket
+        broadcast_whatsapp_status_update(data)
+        
+        return jsonify({"success": True, "message": "Status broadcasted successfully"}), 200
+    except Exception as e:
+        logger.error(f"Error updating WhatsApp status: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+
+# Analytics endpoints
+@app.route('/admin/analytics/users', methods=['GET', 'OPTIONS'])
+def get_user_analytics():
+    # Handle CORS preflight request
+    if request.method == 'OPTIONS':
+        response = jsonify({'status': 'ok'})
+        return response
+        
+    try:
+        insights = analytics.get_user_insights()
+        logger.info(f'Raw user insights data: {insights}')
+        
+        if not insights or not isinstance(insights, dict):
+            logger.error('Invalid insights data structure')
+            return jsonify({
+                'total_users': 0,
+                'active_users': 0,
+                'new_users': 0,
+                'users': {}
+            })
+        
+        # Log successful response
+        logger.info('Successfully retrieved user analytics data')
+        return jsonify(insights)
+    except Exception as e:
+        logger.error(f'Error getting user analytics: {str(e)}')
+        return jsonify({
+            'total_users': 0,
+            'active_users': 0,
+            'new_users': 0,
+            'users': {}
+        }), 500
+
+@app.route('/admin/analytics/performance', methods=['GET', 'OPTIONS'])
+def get_performance_analytics():
+    # Handle CORS preflight request
+    if request.method == 'OPTIONS':
+        response = jsonify({'status': 'ok'})
+        return response
+        
+    try:
+        days = request.args.get('days', default=7, type=int)
+        metrics = analytics.get_performance_metrics(days)
+        logger.info(f'Performance metrics for last {days} days: {metrics}')
+        return jsonify(metrics)
+    except Exception as e:
+        logger.error(f'Error getting performance metrics: {str(e)}')
+        return jsonify({
+            'api_calls': 0,
+            'total_response_time': 0,
+            'average_response_time': 0,
+            'success_rate': 0,
+            'error_count': 0,
+            'daily_metrics': {}
+        }), 500
+
+# Performance analytics endpoint is already defined above
+
+# Thread messages endpoint
+@app.route('/admin/threads/<sender>/messages', methods=['GET', 'OPTIONS'])
+def get_thread_messages(sender):
+    # Handle CORS preflight request
+    if request.method == 'OPTIONS':
+        response = jsonify({'status': 'ok'})
+        return response
+        
+    try:
+        # Import here to avoid circular imports
+        import requests
+        from assistant_thread_manager import get_thread_id_for_nomor
+        from openai_assistant_pipeline import get_headers, OPENAI_API_URL
+        
+        # Get thread ID for the sender
+        thread_id = get_thread_id_for_nomor(sender)
+        if not thread_id:
+            logger.warning(f'Thread ID not found for sender: {sender}')
+            
+            # Check if this is a regular sender and we need to try with analytics_ prefix
+            if not sender.startswith('analytics_'):
+                logger.info(f'Checking for analytics thread for sender: {sender}')
+                analytics_sender = f'analytics_{sender}'
+                analytics_thread_id = get_thread_id_for_nomor(analytics_sender)
+                
+                if analytics_thread_id:
+                    logger.info(f'Found analytics thread ID for {analytics_sender}: {analytics_thread_id}')
+                    thread_id = analytics_thread_id
+                    sender = analytics_sender
+            
+            # If still no thread ID, return 404
+            if not thread_id:
+                return jsonify({
+                    'error': 'Thread not found',
+                    'messages': []
+                }), 404
+        
+        # Get messages from OpenAI API
+        headers = get_headers()
+        logger.info(f'Fetching messages for thread {thread_id} (sender: {sender})')
+        response = requests.get(
+            f"{OPENAI_API_URL}/threads/{thread_id}/messages",
+            headers=headers
+        )
+        
+        if response.status_code != 200:
+            logger.error(f'Error getting thread messages: {response.text}')
+            return jsonify({
+                'error': f'Failed to retrieve messages: {response.status_code}',
+                'messages': []
+            }), 500
+        
+        messages_data = response.json()
+        message_count = len(messages_data.get("data", []))
+        logger.info(f'Retrieved {message_count} messages for thread {thread_id} (sender: {sender})')
+        
+        # Return the messages
+        return jsonify({
+            'thread_id': thread_id,
+            'messages': messages_data.get('data', [])
+        })
+    except Exception as e:
+        logger.error(f'Error retrieving thread messages: {str(e)}')
+        return jsonify({
+            'error': str(e),
+            'messages': []
+        }), 500
+
 # Initialize WebSocket with CORS support
 socketio = init_websocket(app)
 
-# Import and set websocket handler in admin_routes
+# Import WebSocket handler functions
+from websocket_handler import broadcast_whatsapp_status_update
+
+# Import and set websocket handler in admin_routes and analytics
+from admin_routes import set_websocket_handler
+set_websocket_handler(socketio)
+
+# Set WebSocket handler for analytics
+analytics.websocket_handler = socketio
 from admin_routes import set_websocket_handler
 import websocket_handler
 set_websocket_handler(websocket_handler)
@@ -324,25 +579,62 @@ set_websocket_handler(websocket_handler)
 websocket_handler.register_handlers()
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5001))
-    debug = os.environ.get('FLASK_ENV', 'production') == 'development'
+    # Configure logging
+    logging.basicConfig(
+        level=logging.DEBUG,
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    )
+    logger.setLevel(logging.DEBUG)
+    
+    # Configure CORS
+    allowed_origins = ["http://localhost:3000", "http://localhost:3001", "http://127.0.0.1:3000", "http://127.0.0.1:3001"]
+    logger.info(f"Allowing origins: {allowed_origins}")
+    
+    CORS(app, resources={
+        r"/*": {
+            "origins": allowed_origins,
+            "methods": ["GET", "POST", "OPTIONS"],
+            "allow_headers": ["Content-Type", "Authorization"],
+            "supports_credentials": True,
+            "expose_headers": ["Content-Type", "Authorization"]
+        }
+    })
+    
+    # Add CORS headers to all responses
+    @app.after_request
+    def after_request(response):
+        origin = request.headers.get('Origin')
+        if origin in allowed_origins:
+            response.headers.add('Access-Control-Allow-Origin', origin)
+            response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+            response.headers.add('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS')
+            response.headers.add('Access-Control-Allow-Credentials', 'true')
+        else:
+            # For development, allow all origins if not in the allowed list
+            response.headers.add('Access-Control-Allow-Origin', '*')
+            response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+            response.headers.add('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS')
+        
+        # Log the request and response for debugging
+        logger.debug(f"Request: {request.method} {request.path} - Origin: {origin}")
+        logger.debug(f"Response headers: {dict(response.headers)}")
+        
+        return response
+    
+    port = 5000
+    debug = True
     
     logger.info(f"Starting RSH AI Backend on port {port} with WebSocket support")
     print(f"WebSocket URL: http://localhost:{port}")
-    
+
     try:
-        # Use socketio.run for WebSocket support
-        logger.info("Using Socket.IO server")
+        # Initialize Socket.IO first
+        socketio = init_websocket(app)
+
+        # Then run the server
+        logger.info(f"Starting server on port {port}")
         socketio.run(app, host='0.0.0.0', port=port, debug=debug, allow_unsafe_werkzeug=True)
     except Exception as e:
-        logger.error(f"Error starting server with socketio.run: {str(e)}")
-        import traceback
+        logger.error(f"Error starting server: {str(e)}")
         logger.error(traceback.format_exc())
-        
-        # Try alternative method if the first one fails
-        try:
-            logger.info("Falling back to Flask's built-in server")
-            app.run(host='0.0.0.0', port=port, debug=debug)
-        except Exception as e:
-            logger.error(f"Error starting server with app.run: {str(e)}")
-            logger.error(traceback.format_exc())
+        raise

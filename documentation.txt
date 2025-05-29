@@ -13,19 +13,23 @@ Sistem WhatsApp Chatbot RSH Satu Bumi adalah solusi terintegrasi yang memungkink
 ### Backend (AI dan Layanan WhatsApp)
 - **Bahasa Pemrograman**: Python 3.9+
 - **Framework Web**: Flask
+- **WebSocket**: Flask-SocketIO (untuk pembaruan real-time)
 - **AI/NLP**: OpenAI API (GPT model)
 - **Vector Database**: Pinecone (untuk RAG - Retrieval Augmented Generation)
 - **WhatsApp API Client**: Baileys (library Node.js untuk WhatsApp Web API)
 - **Database**: SQLite (untuk penyimpanan log chat)
 - **Manajemen Lingkungan**: dotenv
+- **Analytics**: OpenAI API untuk analisis pesan
 
 ### Frontend (Admin Dashboard)
 - **Framework**: Next.js (React)
 - **Styling**: Tailwind CSS
 - **State Management**: React Hooks
 - **HTTP Client**: Axios
+- **WebSocket Client**: Socket.IO-client (untuk pembaruan real-time)
 - **UI Components**: Headless UI
 - **Icons**: Heroicons
+- **Charts**: React Charts (untuk visualisasi data analytics)
 
 ### Infrastruktur
 - **Deployment**: Docker (opsional)
@@ -47,18 +51,21 @@ Sistem WhatsApp Chatbot RSH Satu Bumi adalah solusi terintegrasi yang memungkink
 ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
 │                 │     │                 │     │                 │
 │  Admin User     │◄───►│  Admin          │◄───►│  AI Backend     │
-│                 │     │  Dashboard      │     │  (Flask)        │
-│                 │     │  (Next.js)      │     │                 │
-└─────────────────┘     └─────────────────┘     └────────┬────────┘
-                                                         │
-                                                         │
-                                                         ▼
-                                               ┌─────────────────┐
-                                               │                 │
-                                               │  OpenAI API     │
-                                               │  Pinecone DB    │
-                                               │                 │
-                                               └─────────────────┘
+│                 │     │  Dashboard      │◄─┐  │  (Flask)        │
+│                 │     │  (Next.js)      │  │  │                 │
+└─────────────────┘     └─────────────────┘  │  └────────┬────────┘
+                                             │           │
+                                             │           │
+                                             │           ▼
+                                             │  ┌─────────────────┐
+                                             │  │                 │
+                                             │  │  OpenAI API     │
+                                             │  │  Pinecone DB    │
+                                             │  │                 │
+                                             │  └─────────────────┘
+                                             │
+                                             │  WebSocket Connection
+                                             └──(Real-time Updates)
 ```
 
 ## ALUR KERJA (WORKFLOW)
@@ -91,13 +98,14 @@ Sistem WhatsApp Chatbot RSH Satu Bumi adalah solusi terintegrasi yang memungkink
 ### 4. Pemantauan dan Pengelolaan oleh Admin
 
 1. **Admin** mengakses Admin Dashboard melalui browser web.
-2. **Admin Dashboard** menampilkan daftar percakapan dari AI Backend.
-3. **Admin** dapat melihat detail percakapan tertentu.
-4. **Admin** dapat mengaktifkan/menonaktifkan bot untuk percakapan tertentu.
+2. **Admin Dashboard** menampilkan daftar percakapan dari AI Backend melalui WebSocket untuk pembaruan real-time.
+3. **Admin** dapat melihat detail percakapan tertentu dengan pembaruan instan saat ada pesan baru.
+4. **Admin** dapat mengaktifkan/menonaktifkan bot untuk percakapan tertentu dengan efek langsung.
 5. **Admin** dapat mengirim pesan langsung ke pengguna:
    - Jika bot diaktifkan, pesan dikirim sebagai respons bot.
    - Jika bot dinonaktifkan, pesan dikirim sebagai respons manual.
-6. **Admin Dashboard** menampilkan notifikasi untuk pesan yang belum terjawab ketika bot dinonaktifkan.
+6. **Admin Dashboard** menampilkan notifikasi real-time untuk pesan yang belum terjawab ketika bot dinonaktifkan.
+7. **Admin** dapat melihat analitik pengguna dan performa sistem yang diperbarui secara real-time.
 
 ## DETAIL KOMPONEN
 
@@ -132,49 +140,71 @@ AI Backend adalah otak dari sistem, yang menangani pemrosesan pesan dan menghasi
    - `/admin/bot-status/<chat_id>` - Mengembalikan status bot untuk percakapan tertentu.
    - `/admin/toggle-bot-status` - Mengaktifkan/menonaktifkan bot untuk percakapan tertentu.
 
-2. **RAG Pipeline**:
+2. **WebSocket Handler**:
+   - Menggunakan Flask-SocketIO untuk komunikasi real-time dengan Admin Dashboard.
+   - Mengirim pembaruan langsung saat ada pesan baru, perubahan status bot, atau data analitik baru.
+   - Mendukung berbagai jenis event: new_message, chats_update, bot_status_change, analytics_update, whatsapp_status.
+
+3. **RAG Pipeline**:
    - Menggunakan OpenAI Embeddings untuk mengubah pesan menjadi vektor.
    - Menggunakan Pinecone untuk menyimpan dan mencari dokumen yang relevan.
    - Menggabungkan dokumen yang relevan dengan prompt untuk OpenAI.
 
-3. **Chat Logger**:
+4. **Chat Logger**:
    - Mencatat semua percakapan di database lokal.
    - Menyediakan fungsi untuk mengambil riwayat percakapan.
+   - Memicu event WebSocket saat ada pembaruan percakapan.
 
-4. **Bot Status Manager**:
+5. **Bot Status Manager**:
    - Menyimpan status bot (aktif/nonaktif) untuk setiap pengirim.
    - Menyediakan fungsi untuk mengaktifkan/menonaktifkan bot.
+   - Memicu event WebSocket saat status bot berubah.
 
-5. **Unanswered Messages Tracker**:
+6. **Unanswered Messages Tracker**:
    - Melacak jumlah pesan yang belum terjawab ketika bot dinonaktifkan.
    - Mengatur ulang penghitung saat admin mengirim pesan.
+   - Memicu notifikasi real-time melalui WebSocket.
+
+7. **Analytics Pipeline**:
+   - Menganalisis pesan pengguna menggunakan OpenAI API.
+   - Melacak metrik performa seperti waktu respons, tingkat keberhasilan, dan jumlah panggilan API.
+   - Menyediakan insights tentang pengguna seperti keluhan kesehatan, tingkat urgensi, dan hambatan konversi.
+   - Mengirim pembaruan analitik real-time melalui WebSocket.
 
 ### Admin Dashboard (Next.js)
 
 Admin Dashboard adalah antarmuka web untuk administrator untuk memantau dan mengelola percakapan. Komponen ini:
 
 1. **Halaman Utama**:
-   - Menampilkan statistik percakapan.
-   - Menampilkan status koneksi WhatsApp.
+   - Menampilkan statistik percakapan dengan pembaruan real-time.
+   - Menampilkan status koneksi WhatsApp dengan pembaruan instan.
+   - Menampilkan grafik analitik yang diperbarui secara real-time.
 
 2. **Halaman Percakapan**:
-   - Menampilkan daftar percakapan.
+   - Menampilkan daftar percakapan dengan pembaruan real-time melalui WebSocket.
    - Memungkinkan pencarian percakapan.
-   - Menampilkan detail percakapan yang dipilih.
-   - Menampilkan notifikasi untuk pesan yang belum terjawab.
+   - Menampilkan detail percakapan yang dipilih dengan pembaruan instan saat ada pesan baru.
+   - Menampilkan notifikasi real-time untuk pesan yang belum terjawab.
 
 3. **Fitur Pengelolaan Bot**:
-   - Toggle untuk mengaktifkan/menonaktifkan bot untuk percakapan tertentu.
-   - Indikator status bot untuk setiap percakapan.
+   - Toggle untuk mengaktifkan/menonaktifkan bot untuk percakapan tertentu dengan efek langsung.
+   - Indikator status bot untuk setiap percakapan yang diperbarui secara real-time.
 
 4. **Fitur Pengiriman Pesan**:
    - Form untuk mengirim pesan ke pengguna.
    - Opsi untuk mengirim sebagai bot atau sebagai admin.
+   - Tampilan pesan terkirim secara instan tanpa perlu refresh halaman.
 
 5. **Fitur WhatsApp Connection**:
    - Menampilkan QR code untuk koneksi WhatsApp.
    - Tombol untuk refresh QR code.
    - Tombol untuk logout dari WhatsApp.
+   - Status koneksi yang diperbarui secara real-time.
+
+6. **Halaman Analitik**:
+   - Visualisasi data pengguna seperti demografi, keluhan kesehatan, dan tingkat urgensi.
+   - Grafik performa sistem seperti waktu respons rata-rata dan tingkat keberhasilan.
+   - Pembaruan data secara real-time melalui WebSocket tanpa perlu refresh halaman.
 
 ## ALUR DATA
 
@@ -194,18 +224,32 @@ Admin Dashboard adalah antarmuka web untuk administrator untuk memantau dan meng
 ### Alur Data Admin Dashboard
 
 1. Admin mengakses Admin Dashboard melalui browser web.
-2. Admin Dashboard memuat daftar percakapan dari AI Backend.
-3. Admin memilih percakapan untuk melihat detailnya.
-4. Admin Dashboard memuat detail percakapan dari AI Backend.
-5. Admin dapat mengaktifkan/menonaktifkan bot untuk percakapan tersebut:
+2. Admin Dashboard memuat daftar percakapan dari AI Backend dan membuat koneksi WebSocket.
+3. Admin Dashboard berlangganan ke berbagai event WebSocket:
+   - `chats_update` - untuk pembaruan daftar percakapan
+   - `new_message` - untuk pesan baru dalam percakapan
+   - `bot_status_change` - untuk perubahan status bot
+   - `analytics_update` - untuk pembaruan data analitik
+   - `whatsapp_status` - untuk pembaruan status koneksi WhatsApp
+4. Admin memilih percakapan untuk melihat detailnya.
+5. Admin Dashboard memuat detail percakapan dari AI Backend.
+6. Admin dapat mengaktifkan/menonaktifkan bot untuk percakapan tersebut:
    - Admin Dashboard mengirim permintaan ke AI Backend untuk mengubah status bot.
+   - AI Backend memicu event WebSocket `bot_status_change` yang diterima oleh Admin Dashboard.
+   - UI diperbarui secara instan tanpa perlu refresh halaman.
    - AI Backend memperbarui status bot dan mengembalikan status baru.
    - Admin Dashboard memperbarui UI untuk mencerminkan status baru.
-6. Admin dapat mengirim pesan ke pengguna:
+7. Admin dapat mengirim pesan ke pengguna:
    - Admin Dashboard mengirim pesan ke AI Backend.
    - AI Backend meneruskan pesan ke WhatsApp Service.
    - WhatsApp Service mengirim pesan ke pengguna melalui WhatsApp API.
    - AI Backend mencatat pesan di database.
+   - AI Backend memicu event WebSocket `new_message` yang diterima oleh Admin Dashboard.
+   - UI diperbarui secara instan untuk menampilkan pesan terkirim tanpa perlu refresh halaman.
+8. Saat ada pesan baru atau perubahan data:
+   - AI Backend memicu event WebSocket yang sesuai.
+   - Admin Dashboard menerima event dan memperbarui UI secara real-time.
+   - Admin melihat pembaruan tanpa perlu me-refresh halaman.
    - AI Backend mengatur ulang penghitung pesan yang belum terjawab.
 
 ## FITUR KEAMANAN

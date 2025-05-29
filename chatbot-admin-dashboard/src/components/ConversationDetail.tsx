@@ -77,8 +77,8 @@ const ConversationDetail = ({ chat: initialChat }: ConversationDetailProps) => {
     // Ensure WebSocket connection is established
     websocketService.connect();
     
-    // Subscribe to new messages for this specific chat
-    const newMessageUnsubscribe = websocketService.subscribeToNewMessages((updatedChat: Chat) => {
+    // Define message handler function
+    const handleNewMessage = (updatedChat: Chat) => {
       // Only update if this is the chat we're currently viewing
       if (updatedChat.id === chat.id) {
         console.log('🔴 Received new message via WebSocket for chat:', chat.id);
@@ -112,20 +112,26 @@ const ConversationDetail = ({ chat: initialChat }: ConversationDetailProps) => {
           messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
         }, 100);
       }
-    });
+    };
     
-    // Subscribe to bot status changes
-    const botStatusUnsubscribe = websocketService.subscribeToBotStatusChange(({ chatId, enabled }: { chatId: string, enabled: boolean }) => {
+    // Define bot status handler function
+    const handleBotStatusChange = ({ chatId, enabled }: { chatId: string, enabled: boolean }) => {
       if (chatId === chat.id) {
         console.log('🔴 Received bot status change via WebSocket:', enabled);
         setBotEnabled(enabled);
       }
-    });
+    };
+    
+    // Subscribe to new messages for this specific chat
+    websocketService.subscribeToNewMessages(handleNewMessage);
+    
+    // Subscribe to bot status changes
+    websocketService.subscribeToBotStatusChange(handleBotStatusChange);
     
     // Clean up subscriptions when component unmounts or chat changes
     return () => {
-      newMessageUnsubscribe();
-      botStatusUnsubscribe();
+      websocketService.unsubscribeFromNewMessages(handleNewMessage);
+      websocketService.unsubscribeFromBotStatusChange(handleBotStatusChange);
     };
   }, [chat.id]);
 
@@ -212,7 +218,7 @@ const ConversationDetail = ({ chat: initialChat }: ConversationDetailProps) => {
         <div className="flex items-center">
           <div className="h-12 w-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 text-white flex items-center justify-center mr-3 shadow-md">
             <span className="font-bold text-lg">
-              {chat.senderName?.charAt(0) || chat.sender.charAt(0)}
+              {(chat.senderName || chat.sender || '?').charAt(0)}
             </span>
           </div>
           <div>
@@ -376,26 +382,35 @@ const ConversationDetail = ({ chat: initialChat }: ConversationDetailProps) => {
 };
 
 // Helper function to format phone numbers from WhatsApp format
-function formatPhoneNumber(phoneNumber: string): string {
-  // Remove the "@s.whatsapp.net" suffix if present
-  let formattedNumber = phoneNumber.replace('@s.whatsapp.net', '');
+const formatPhoneNumber = (phoneNumber: string | undefined): string => {
+  if (!phoneNumber) return 'Unknown';
   
-  // Format the number with spaces for readability
-  if (formattedNumber.startsWith('62')) {
-    // Indonesian number: 628123456789 -> +62 812 3456 789
-    return '+' + formattedNumber.replace(/(\d{2})(\d{3})(\d{4})(\d{3})/, '$1 $2 $3 $4');
+  try {
+    // Remove the WhatsApp prefix if present
+    const cleaned = phoneNumber.replace('whatsapp:', '');
+    
+    // Format Indonesian numbers
+    if (cleaned.startsWith('62')) {
+      return `+${cleaned}`;
+    }
+    
+    return cleaned;
+  } catch (error) {
+    console.error('Error formatting phone number:', error);
+    return 'Unknown';
   }
-  
-  return formattedNumber;
-}
+};
 
 // Helper function to format message timestamps
-function formatMessageTime(timestamp: string): string {
+function formatMessageTime(timestamp: string | undefined): string {
+  if (!timestamp) return '';
+  
   try {
     const date = new Date(timestamp);
+    if (isNaN(date.getTime())) return '';
     return format(date, 'HH:mm');
-  } catch (e) {
-    console.error('Error formatting message time:', e);
+  } catch (error) {
+    console.error('Error formatting timestamp:', error);
     return '';
   }
 }

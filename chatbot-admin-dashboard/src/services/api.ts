@@ -354,6 +354,24 @@ const mockChats: Chat[] = [
   },
 ];
 
+// Analytics API functions
+export const fetchAnalyticsPerformance = async () => {
+  const response = await api.get('/analytics/performance');
+  return response.data;
+};
+
+export const fetchAnalyticsUsers = async () => {
+  try {
+    console.log('Fetching user analytics...');
+    const response = await api.get('/analytics/users');
+    console.log('User analytics response:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching user analytics:', error);
+    throw error;
+  }
+};
+
 // Mock statistics for development
 const mockStats: ChatStats = {
   totalChatsToday: 15,

@@ -80,8 +80,8 @@ const ConversationList = ({ searchQuery, onChatSelect, selectedChatId }: Convers
     // Connect to WebSocket
     websocketService.connect();
     
-    // Connection status indicator
-    const connectionStatusUnsubscribe = websocketService.onConnectionStatusChange((isConnected) => {
+    // Connection status handler function
+    const handleConnectionStatus = (isConnected: boolean) => {
       console.log(`WebSocket connection status: ${isConnected ? 'connected' : 'disconnected'}`);
       
       if (!isConnected) {
@@ -91,10 +91,13 @@ const ConversationList = ({ searchQuery, onChatSelect, selectedChatId }: Convers
         // Reload chats when reconnected
         loadChats();
       }
-    });
+    };
     
-    // Subscribe to new messages to update preview text
-    const newMessageUnsubscribe = websocketService.subscribeToNewMessages((updatedChat) => {
+    // Register connection status handler
+    websocketService.onConnectionStatusChange(handleConnectionStatus);
+    
+    // New message handler function
+    const handleNewMessage = (updatedChat: Chat) => {
       console.log('🔴 Received new message via WebSocket:', updatedChat);
       console.log('Chat ID:', updatedChat.id, 'Last Message:', updatedChat.lastMessage);
       
@@ -120,16 +123,16 @@ const ConversationList = ({ searchQuery, onChatSelect, selectedChatId }: Convers
           return [updatedChat, ...prevChats];
         }
       });
-    });
+    };
     
-    // Subscribe to chat list updates
-    const chatsUpdateUnsubscribe = websocketService.subscribeToChatsUpdate((chats) => {
+    // Chats update handler function
+    const handleChatsUpdate = (chats: Chat[]) => {
       console.log('🔴 Received chats update via WebSocket:', chats);
       setChats(chats);
-    });
+    };
     
-    // Subscribe to bot status changes
-    const botStatusUnsubscribe = websocketService.subscribeToBotStatusChange(({ chatId, enabled }) => {
+    // Bot status handler function
+    const handleBotStatusChange = ({ chatId, enabled }: { chatId: string, enabled: boolean }) => {
       console.log(`Bot status changed for chat ${chatId}: ${enabled ? 'enabled' : 'disabled'}`);
       
       // Update the specific chat's bot status
@@ -138,7 +141,12 @@ const ConversationList = ({ searchQuery, onChatSelect, selectedChatId }: Convers
           chat.id === chatId ? { ...chat, botEnabled: enabled } : chat
         )
       );
-    });
+    };
+    
+    // Subscribe to events
+    websocketService.subscribeToNewMessages(handleNewMessage);
+    websocketService.subscribeToChatsUpdate(handleChatsUpdate);
+    websocketService.subscribeToBotStatusChange(handleBotStatusChange);
     
     // Log WebSocket connection status
     console.log('WebSocket setup complete, waiting for real-time updates...');
@@ -146,10 +154,11 @@ const ConversationList = ({ searchQuery, onChatSelect, selectedChatId }: Convers
     // Clean up subscriptions when component unmounts
     return () => {
       console.log('Cleaning up WebSocket subscriptions');
-      connectionStatusUnsubscribe();
-      newMessageUnsubscribe();
-      chatsUpdateUnsubscribe();
-      botStatusUnsubscribe();
+      // Unsubscribe from all events using the handler references
+      websocketService.unsubscribeFromNewMessages(handleNewMessage);
+      websocketService.unsubscribeFromChatsUpdate(handleChatsUpdate);
+      websocketService.unsubscribeFromBotStatusChange(handleBotStatusChange);
+      // Note: There's no explicit unsubscribe method for connection status in the updated service
     };
   }, []);
 

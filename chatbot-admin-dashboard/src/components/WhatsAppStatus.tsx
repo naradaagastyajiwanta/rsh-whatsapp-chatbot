@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getWhatsAppStatus, refreshWhatsAppQRCode, logoutFromWhatsApp, WhatsAppServiceStatus } from '@/services/whatsappService';
 import { PhoneIcon, QrCodeIcon, ExclamationCircleIcon, CheckCircleIcon, ArrowPathIcon } from '@heroicons/react/24/outline';
+import websocketService from '@/services/websocket';
 
 export default function WhatsAppStatus() {
   const [status, setStatus] = useState<WhatsAppServiceStatus | null>(null);
@@ -33,12 +34,29 @@ export default function WhatsAppStatus() {
       }
     };
 
+    // Initial fetch
     fetchStatus();
     
-    // Poll for status updates every 10 seconds
-    const interval = setInterval(fetchStatus, 10000);
+    // Subscribe to WebSocket updates for WhatsApp status
+    const handleWhatsAppStatusUpdate = (data: WhatsAppServiceStatus) => {
+      console.log('Received WhatsApp status update via WebSocket:', data);
+      setStatus(data);
+      setLoading(false);
+      
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setError(null);
+      }
+    };
     
-    return () => clearInterval(interval);
+    // Subscribe to whatsapp_status events
+    websocketService.subscribeToWhatsAppStatus(handleWhatsAppStatusUpdate);
+    
+    // Clean up subscription when component unmounts
+    return () => {
+      websocketService.unsubscribeFromWhatsAppStatus(handleWhatsAppStatusUpdate);
+    };
   }, []);
 
   const handleRefreshQRCode = async () => {

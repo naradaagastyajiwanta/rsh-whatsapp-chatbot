@@ -1,0 +1,167 @@
+{
+  "6287811152506@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-05-27T12:00:23.268752",
+        "analysis": {
+          "nama": null,
+          "usia": null,
+          "jenis_keluhan": null,
+          "gejala": [],
+          "riwayat_penyakit": null,
+          "tingkat_urgensi": null,
+          "emosi": "netral"
+        }
+      },
+      {
+        "timestamp": "2025-05-27T12:00:58.887139",
+        "analysis": {
+          "nama": null,
+          "usia": null,
+          "jenis_keluhan": "Insomnia",
+          "gejala": [
+            "Insomnia"
+          ],
+          "riwayat_penyakit": null,
+          "tingkat_urgensi": "rendah",
+          "emosi": "negatif"
+        }
+      },
+      {
+        "timestamp": "2025-05-27T12:04:09.870106",
+        "analysis": {
+          "nama": null,
+          "usia": null,
+          "jenis_keluhan": null,
+          "gejala": [],
+          "riwayat_penyakit": null,
+          "tingkat_urgensi": "rendah",
+          "emosi": "negatif"
+        }
+      },
+      {
+        "timestamp": "2025-05-27T12:30:31.258252",
+        "analysis": {
+          "nama": null,
+          "usia": null,
+          "jenis_keluhan": null,
+          "gejala": [],
+          "riwayat_penyakit": null,
+          "tingkat_urgensi": "rendah",
+          "emosi": "netral"
+        }
+      },
+      {
+        "timestamp": "2025-05-27T12:31:35.821828",
+        "analysis": {
+          "nama": null,
+          "usia": null,
+          "jenis_keluhan": "Informasi Biaya Program Kesehatan",
+          "gejala": null,
+          "riwayat_penyakit": null,
+          "tingkat_urgensi": "rendah",
+          "emosi": "positif"
+        }
+      },
+      {
+        "timestamp": "2025-05-27T14:13:08.302383",
+        "analysis": {
+          "nama": null,
+          "usia": null,
+          "jenis_keluhan": null,
+          "gejala": null,
+          "riwayat_penyakit": null,
+          "tingkat_urgensi": null,
+          "emosi": "netral"
+        }
+      },
+      {
+        "timestamp": "2025-05-27T14:17:16.414676",
+        "analysis": {
+          "nama": null,
+          "usia": null,
+          "jenis_keluhan": "Diabetes",
+          "gejala": [
+            "Kaki kebas"
+          ],
+          "riwayat_penyakit": "Diabetes",
+          "tingkat_urgensi": "sedang",
+          "emosi": "negatif"
+        }
+      },
+      {
+        "timestamp": "2025-05-27T14:26:03.505383",
+        "analysis": {
+          "nama": null,
+          "usia": null,
+          "jenis_keluhan": null,
+          "gejala": null,
+          "riwayat_penyakit": null,
+          "tingkat_urgensi": null,
+          "emosi": "netral"
+        }
+      },
+      {
+        "timestamp": "2025-05-27T14:26:57.941750",
+        "analysis": {
+          "nama": null,
+          "usia": null,
+          "jenis_keluhan": null,
+          "gejala": null,
+          "riwayat_penyakit": null,
+          "tingkat_urgensi": null,
+          "emosi": "positif"
+        }
+      },
+      {
+        "timestamp": "2025-05-27T14:27:50.325295",
+        "analysis": {
+          "nama": "Jiwan",
+          "usia": "28",
+          "jenis_keluhan": "diabetes",
+          "gejala": null,
+          "riwayat_penyakit": "diabetes",
+          "tingkat_urgensi": "rendah",
+          "emosi": "netral"
+        }
+      },
+      {
+        "timestamp": "2025-05-27T22:14:22.395005",
+        "analysis": {
+          "name": "Jiwan",
+          "age": 25,
+          "gender": "male",
+          "location": "Kalimantan",
+          "health_complaints": [
+            "diabetes"
+          ],
+          "conversion_barriers": [],
+          "timestamp": "2025-05-27T22:14:22.394757"
+        }
+      }
+    ],
+    "latest_analysis": {
+      "name": "Jiwan",
+      "age": 25,
+      "gender": "male",
+      "location": "Kalimantan",
+      "health_complaints": [
+        "diabetes"
+      ],
+      "conversion_barriers": [],
+      "timestamp": "2025-05-27T22:14:22.394757"
+    },
+    "first_interaction": "2025-05-27T12:00:23.268742",
+    "details": {
+      "name": "Jiwan",
+      "age": 25,
+      "gender": "male",
+      "location": "Kalimantan",
+      "health_complaints": [
+        "diabetes"
+      ],
+      "conversion_barriers": [],
+      "last_interaction": "2025-05-27T22:14:22.395005"
+    }
+  }
+}

@@ -11,6 +11,7 @@ import time
 import os
 import uuid
 from typing import Dict, Optional
+from analytics_pipeline import analytics
 
 # Import WebSocket handler (will be imported when the blueprint is registered)
 websocket_handler = None
@@ -414,6 +415,38 @@ def clear_threads():
             "status": "error",
             "message": f"Error saat membersihkan thread: {str(e)}"
         }), 500
+
+# Analytics endpoints
+@admin_bp.route('/analytics/performance', methods=['GET'])
+def get_performance_analytics():
+    try:
+        days = request.args.get('days', default=7, type=int)
+        metrics = analytics.get_performance_metrics(days)
+        return jsonify(metrics), 200
+    except Exception as e:
+        logger.error(f"Error getting performance analytics: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+
+@admin_bp.route('/analytics/users', methods=['GET'])
+def get_user_analytics():
+    try:
+        sender = request.args.get('sender', default=None)
+        insights = analytics.get_user_insights(sender)
+        return jsonify(insights), 200
+    except Exception as e:
+        logger.error(f"Error getting user analytics: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+
+@admin_bp.route('/analytics/users/<sender>/history', methods=['GET'])
+def get_user_history(sender):
+    try:
+        insights = analytics.get_user_insights(sender)
+        if not insights:
+            return jsonify({"error": "User not found"}), 404
+        return jsonify(insights), 200
+    except Exception as e:
+        logger.error(f"Error getting user history: {str(e)}")
+        return jsonify({"error": str(e)}), 500
 
 # Webhook to log messages from the WhatsApp service
 @admin_bp.route('/log', methods=['POST'])

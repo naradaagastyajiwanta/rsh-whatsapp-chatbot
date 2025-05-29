@@ -1,4 +1,14 @@
 const { getWhatsAppClient, getConnectionStatus, getQRCode, refreshQRCode, logoutWhatsApp } = require('../services/baileysClient');
+const axios = require('axios');
+
+// URL backend untuk update status via WebSocket
+const BACKEND_STATUS_URL = 'http://localhost:5000/whatsapp/status/update';
+
+// Interval untuk mengirim status ke backend (dalam ms)
+const STATUS_UPDATE_INTERVAL = 3000; // 3 detik
+
+// Simpan interval ID untuk bisa dihentikan jika diperlukan
+let statusUpdateInterval = null;
 
 /**
  * Get the current status of the WhatsApp connection
@@ -136,9 +146,59 @@ async function logoutFromWhatsApp(req, res) {
   }
 }
 
+/**
+ * Mengirim status WhatsApp ke backend untuk diteruskan via WebSocket
+ */
+async function sendStatusToBackend() {
+  try {
+    const status = getConnectionStatus();
+    
+    // Format status untuk dikirim ke backend
+    const statusData = {
+      status: status.state,
+      timestamp: new Date().toISOString(),
+      qrCode: status.qrCode,
+      connectedNumber: status.connectedNumber
+    };
+    
+    // Kirim status ke backend
+    const response = await axios.post(BACKEND_STATUS_URL, statusData, {
+      headers: { 'Content-Type': 'application/json' }
+    });
+    
+    console.log('Status sent to backend successfully:', response.data);
+    return true;
+  } catch (error) {
+    console.error('Error sending status to backend:', error.message);
+    return false;
+  }
+}
+
+/**
+ * Memulai interval untuk mengirim status ke backend secara berkala
+ */
+function startStatusUpdateInterval() {
+  // Hentikan interval yang sudah ada jika ada
+  if (statusUpdateInterval) {
+    clearInterval(statusUpdateInterval);
+  }
+  
+  // Kirim status pertama kali
+  sendStatusToBackend();
+  
+  // Set interval untuk mengirim status secara berkala
+  statusUpdateInterval = setInterval(sendStatusToBackend, STATUS_UPDATE_INTERVAL);
+  console.log(`Started status update interval (every ${STATUS_UPDATE_INTERVAL/1000} seconds)`);
+}
+
+// Mulai interval saat modul di-load
+startStatusUpdateInterval();
+
 module.exports = {
   getStatus,
   getQRCodeData,
   refreshWhatsAppQRCode,
-  logoutFromWhatsApp
+  logoutFromWhatsApp,
+  sendStatusToBackend,
+  startStatusUpdateInterval
 };
