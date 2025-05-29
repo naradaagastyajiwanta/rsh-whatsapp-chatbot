@@ -2,13 +2,13 @@
   "name": "chatbot-admin-dashboard",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "export": "next export",
-    "start": "next start",
-    "lint": "next lint"
-  },
+"scripts": {
+  "dev": "next dev",
+  "build": "next build && next export -o dist",
+  "export": "next export -o dist",
+  "start": "next start",
+  "lint": "next lint"
+},
   "dependencies": {
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.1",
