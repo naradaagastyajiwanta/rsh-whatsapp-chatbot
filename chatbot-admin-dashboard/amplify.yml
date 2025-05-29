@@ -7,13 +7,9 @@ frontend:
     build:
       commands:
         - npm run build
-        - echo "Creating dist directory"
-        - mkdir dist
-        - echo "Copying files to dist"
-        - cp -r .next dist/
-        - cp -r public dist/
+        - npm run export
   artifacts:
-    baseDirectory: dist
+    baseDirectory: out
     files:
       - '**/*'
   cache:
