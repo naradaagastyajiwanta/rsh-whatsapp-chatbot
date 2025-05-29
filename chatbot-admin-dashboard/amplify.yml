@@ -7,10 +7,11 @@ frontend:
     build:
       commands:
         - npm run build
-        - mkdir -p dist
-        - cp -r .next/* dist/
-        - cp -r public/* dist/
-        - cp next.config.js dist/
+        - echo "Creating dist directory"
+        - mkdir dist
+        - echo "Copying files to dist"
+        - cp -r .next dist/
+        - cp -r public dist/
   artifacts:
     baseDirectory: dist
     files:
@@ -19,8 +20,3 @@ frontend:
     paths:
       - node_modules/**/*
       - .next/cache/**/*
-  customHeaders:
-    - pattern: '**/*'
-      headers:
-        - key: 'Cache-Control'
-          value: 'public, max-age=0, must-revalidate'
