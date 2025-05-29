@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { getWhatsAppStatus, refreshWhatsAppQRCode, logoutFromWhatsApp, WhatsAppServiceStatus } from '@/services/whatsappService';
 import { PhoneIcon, QrCodeIcon, ExclamationCircleIcon, CheckCircleIcon, ArrowPathIcon } from '@heroicons/react/24/outline';
 import websocketService from '@/services/websocket';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function WhatsAppStatus() {
+  const { t } = useLanguage();
   const [status, setStatus] = useState<WhatsAppServiceStatus | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -27,7 +29,7 @@ export default function WhatsAppStatus() {
           setError(null);
         }
       } catch (err) {
-        setError('Failed to connect to WhatsApp service');
+        setError(t('whatsapp.errorConnect'));
         console.error(err);
       } finally {
         setLoading(false);
@@ -60,17 +62,12 @@ export default function WhatsAppStatus() {
   }, []);
 
   const handleRefreshQRCode = async () => {
-    setIsRefreshing(true);
-    setRefreshError(null);
-    setLogoutSuccess(null);
-    
     try {
-      const result = await refreshWhatsAppQRCode();
-      if (!result.success) {
-        setRefreshError(result.message);
-      }
+      setIsRefreshing(true);
+      setRefreshError(null);
+      await refreshWhatsAppQRCode();
     } catch (error) {
-      setRefreshError('Failed to refresh QR code. Please try again.');
+      setRefreshError(t('whatsapp.errorRefreshQR'));
       console.error('Error refreshing QR code:', error);
     } finally {
       setIsRefreshing(false);
@@ -78,26 +75,14 @@ export default function WhatsAppStatus() {
   };
   
   const handleLogout = async () => {
-    setIsLoggingOut(true);
-    setLogoutError(null);
-    setLogoutSuccess(null);
-    setRefreshError(null);
-    
     try {
-      const result = await logoutFromWhatsApp();
-      if (result.success) {
-        setLogoutSuccess('Successfully logged out from WhatsApp');
-        // Refresh status after logout
-        const updatedStatus = await getWhatsAppStatus();
-        setStatus(updatedStatus);
-        
-        // Automatically refresh QR code after successful logout
-        await handleRefreshQRCode();
-      } else {
-        setLogoutError(result.message);
-      }
+      setIsLoggingOut(true);
+      setLogoutError(null);
+      setLogoutSuccess(null);
+      await logoutFromWhatsApp();
+      setLogoutSuccess(t('whatsapp.logoutSuccess'));
     } catch (error) {
-      setLogoutError('Failed to logout from WhatsApp. Please try again.');
+      setLogoutError(t('whatsapp.errorLogout'));
       console.error('Error logging out from WhatsApp:', error);
     } finally {
       setIsLoggingOut(false);
@@ -110,21 +95,21 @@ export default function WhatsAppStatus() {
         return (
           <div className="flex items-center bg-green-100 text-green-700 px-3 py-1 rounded-full shadow-sm">
             <CheckCircleIcon className="h-5 w-5 mr-2" />
-            <span className="font-medium">Connected</span>
+            <span className="font-medium">{t('whatsapp.connected')}</span>
           </div>
         );
       case 'connecting':
         return (
           <div className="flex items-center bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full shadow-sm">
             <QrCodeIcon className="h-5 w-5 mr-2" />
-            <span className="font-medium">Waiting for scan</span>
+            <span className="font-medium">{t('whatsapp.waitingForScan')}</span>
           </div>
         );
       case 'disconnected':
         return (
           <div className="flex items-center bg-red-100 text-red-700 px-3 py-1 rounded-full shadow-sm">
             <ExclamationCircleIcon className="h-5 w-5 mr-2" />
-            <span className="font-medium">Disconnected</span>
+            <span className="font-medium">{t('whatsapp.disconnected')}</span>
           </div>
         );
       default:
@@ -141,7 +126,7 @@ export default function WhatsAppStatus() {
           <div className="bg-blue-500 p-2 rounded-full mr-3 shadow-md transition-all duration-300 group-hover:scale-110 group-hover:rotate-12">
             <PhoneIcon className="h-5 w-5 text-white" />
           </div>
-          WhatsApp Service Status
+          {t('whatsapp.title')}
         </h2>
         
         {/* Tombol Logout WhatsApp dengan desain yang lebih baik */}
@@ -156,14 +141,14 @@ export default function WhatsAppStatus() {
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
               </svg>
-              <span>Logging out...</span>
+              <span>{t('whatsapp.loggingOut')}</span>
             </>
           ) : (
             <>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
               </svg>
-              <span>Logout WhatsApp</span>
+              <span>{t('whatsapp.logout')}</span>
             </>
           )}
         </button>
@@ -195,7 +180,7 @@ export default function WhatsAppStatus() {
       {loading ? (
         <div className="flex flex-col items-center justify-center py-8 bg-gradient-to-b from-white to-blue-50 rounded-lg">
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mb-4"></div>
-          <p className="text-gray-500 text-sm">Connecting to WhatsApp service...</p>
+          <p className="text-gray-500 text-sm">{t('whatsapp.connecting')}</p>
           <div className="animate-pulse flex space-x-4 mt-4 w-full max-w-md">
             <div className="flex-1 space-y-3 py-1">
               <div className="h-4 bg-gray-200 rounded w-3/4 mx-auto"></div>
@@ -209,29 +194,29 @@ export default function WhatsAppStatus() {
             <div className="bg-red-100 p-2 rounded-full mr-3">
               <ExclamationCircleIcon className="h-6 w-6 text-red-500" />
             </div>
-            <span className="font-bold text-red-700 text-lg">WhatsApp Service Error</span>
+            <span className="font-bold text-red-700 text-lg">{t('whatsapp.serviceError')}</span>
           </div>
           <p className="text-sm text-red-600 mb-3 p-2 bg-red-100 rounded-md">{error}</p>
           <div className="text-sm text-gray-700 bg-white p-3 rounded-md border border-gray-100">
-            <p className="mb-2 font-medium">Possible solutions:</p>
+            <p className="mb-2 font-medium">{t('whatsapp.possibleSolutions')}:</p>
             <ul className="list-none space-y-2">
               <li className="flex items-start">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-blue-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span>Check if WhatsApp service is running at <span className="font-mono bg-gray-100 px-1 py-0.5 rounded">{process.env.NEXT_PUBLIC_WHATSAPP_SERVICE_URL || 'http://localhost:3200'}</span></span>
+                <span>{t('whatsapp.checkServiceRunning')} <span className="font-mono bg-gray-100 px-1 py-0.5 rounded">{process.env.NEXT_PUBLIC_WHATSAPP_SERVICE_URL || 'http://localhost:3200'}</span></span>
               </li>
               <li className="flex items-start">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-blue-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span>Verify that your <span className="font-mono bg-gray-100 px-1 py-0.5 rounded">.env</span> file has the correct <span className="font-mono bg-gray-100 px-1 py-0.5 rounded">NEXT_PUBLIC_WHATSAPP_SERVICE_URL</span></span>
+                <span>{t('whatsapp.verifyEnvFile')} <span className="font-mono bg-gray-100 px-1 py-0.5 rounded">.env</span> {t('whatsapp.hasCorrect')} <span className="font-mono bg-gray-100 px-1 py-0.5 rounded">NEXT_PUBLIC_WHATSAPP_SERVICE_URL</span></span>
               </li>
               <li className="flex items-start">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-blue-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span>Make sure the WhatsApp service has CORS enabled for this dashboard</span>
+                <span>{t('whatsapp.ensureCors')}</span>
               </li>
             </ul>
             <button 
@@ -241,7 +226,7 @@ export default function WhatsAppStatus() {
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
               </svg>
-              Refresh Page
+              {t('whatsapp.refreshPage')}
             </button>
           </div>
         </div>
@@ -250,14 +235,14 @@ export default function WhatsAppStatus() {
           {/* Status Card */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div className="bg-gray-50 rounded-lg p-4 shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-md hover:bg-blue-50 hover:border-blue-200">
-              <h3 className="text-sm font-medium text-gray-500 mb-2">Status</h3>
+              <h3 className="text-sm font-medium text-gray-500 mb-2">{t('whatsapp.status')}</h3>
               <div className="flex items-center">
                 {renderStatusBadge()}
               </div>
             </div>
             
             <div className="bg-gray-50 rounded-lg p-4 shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-md hover:bg-blue-50 hover:border-blue-200">
-              <h3 className="text-sm font-medium text-gray-500 mb-2">Last Updated</h3>
+              <h3 className="text-sm font-medium text-gray-500 mb-2">{t('whatsapp.lastUpdated')}</h3>
               <div className="text-gray-700 font-medium flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -274,7 +259,7 @@ export default function WhatsAppStatus() {
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                Connected Number
+                {t('whatsapp.phoneNumber')}
               </h3>
               <div className="text-gray-700 font-medium bg-white p-2 rounded-md border border-green-100">
                 {status.connectedNumber}
@@ -290,7 +275,7 @@ export default function WhatsAppStatus() {
                     <QrCodeIcon className="h-5 w-5 text-blue-600" />
                   </div>
                   <h3 className="text-lg font-medium text-gray-800">
-                    {status?.status === 'disconnected' ? 'WhatsApp disconnected' : 'Connect to WhatsApp'}
+                    {status?.status === 'disconnected' ? t('whatsapp.disconnected') : t('whatsapp.connectToWhatsApp')}
                   </h3>
                 </div>
                 
@@ -305,14 +290,12 @@ export default function WhatsAppStatus() {
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
-                      <span>Refreshing...</span>
+                      <span>{t('whatsapp.refreshing')}</span>
                     </>
                   ) : (
                     <>
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                      </svg>
-                      <span>Refresh QR Code</span>
+                      <ArrowPathIcon className="h-4 w-4 mr-2" />
+                      <span>{t('whatsapp.refreshQR')}</span>
                     </>
                   )}
                 </button>
@@ -359,8 +342,8 @@ export default function WhatsAppStatus() {
                           </div>
                         </div>
                         <div className="mt-4 text-center bg-blue-50 p-3 rounded-md border border-blue-100 shadow-sm overflow-hidden">
-                          <p className="text-blue-700 font-medium">Scan QR code ini dengan WhatsApp untuk terhubung</p>
-                          <p className="text-blue-600 text-sm mt-1">Buka WhatsApp di ponsel Anda &gt; Menu &gt; WhatsApp Web &gt; Scan QR Code</p>
+                          <p className="text-blue-700 font-medium">{t('whatsapp.scanQrCode')}</p>
+                          <p className="text-blue-600 text-sm mt-1">{t('whatsapp.scanQrCode')}</p>
                         </div>
                       </>
                     ) : (
@@ -378,15 +361,15 @@ export default function WhatsAppStatus() {
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 mx-auto text-yellow-500 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                                 </svg>
-                                <p className="text-yellow-700 font-medium">QR code tidak tersedia</p>
-                                <p className="text-gray-600 text-sm mt-1">Klik tombol Refresh QR Code di atas</p>
+                                <p className="text-yellow-700 font-medium">{t('whatsapp.qrCode')} {t('common.unknown')}</p>
+                                <p className="text-gray-600 text-sm mt-1">{t('whatsapp.refreshQR')}</p>
                               </div>
                             </div>
                           </div>
                         </div>
                         <div className="mt-4 text-center bg-yellow-50 p-3 rounded-md border border-yellow-100 shadow-sm overflow-hidden">
-                          <p className="text-yellow-700 font-medium">QR code belum tersedia</p>
-                          <p className="text-yellow-600 text-sm mt-1">Klik tombol Refresh QR Code untuk mendapatkan QR code baru</p>
+                          <p className="text-yellow-700 font-medium">{t('whatsapp.qrCode')} {t('common.unknown')}</p>
+                          <p className="text-yellow-600 text-sm mt-1">{t('whatsapp.refreshQR')}</p>
                         </div>
                       </>
                     )}

@@ -4,6 +4,22 @@ const { sendWhatsAppMessage, getWhatsAppClient } = require('../services/baileysC
 // Flask backend URL
 const FLASK_BACKEND_URL = process.env.FLASK_BACKEND_URL || 'http://localhost:5000/ask';
 
+// Cache untuk mencegah pengiriman pesan duplikat
+const messageCache = new Map();
+const CACHE_TTL = 60 * 1000; // 60 detik
+
+/**
+ * Membersihkan cache secara periodik
+ */
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, data] of messageCache.entries()) {
+    if (now - data.timestamp > CACHE_TTL) {
+      messageCache.delete(key);
+    }
+  }
+}, CACHE_TTL);
+
 /**
  * Handle incoming WhatsApp messages and forward to Flask backend
  * @param {Object} req - Express request object
@@ -30,24 +46,70 @@ async function handleIncomingMessage(req, res) {
       const sender = message.key.remoteJid;
       const text = message.message.conversation || message.message.extendedTextMessage.text;
       const senderName = message.pushName || 'User';
+      const messageId = message.key.id || `${sender}_${Date.now()}`;
+      
+      // Cek apakah pesan ini sudah diproses sebelumnya
+      if (messageCache.has(messageId)) {
+        console.log(`Skipping duplicate message with ID: ${messageId}`);
+        continue;
+      }
+      
+      // Tambahkan pesan ke cache
+      messageCache.set(messageId, {
+        timestamp: Date.now(),
+        processed: false
+      });
       
       console.log(`Received message from ${senderName} (${sender}): ${text}`);
+      console.log(`Message ID: ${messageId}`);
       
-      // Forward to Flask backend
+      // Forward to Flask backend with unique request ID
       try {
+        const requestId = `req_${Date.now()}_${Math.random().toString(36).substring(2, 10)}`;
+        console.log(`Sending request to Flask backend with ID: ${requestId}`);
+        
         const response = await axios.post(FLASK_BACKEND_URL, {
           sender: sender,
           message: text,
-          sender_name: senderName
+          sender_name: senderName,
+          request_id: requestId,
+          timestamp: Date.now()
+        }, {
+          headers: {
+            'Cache-Control': 'no-cache',
+            'X-Request-ID': requestId
+          },
+          timeout: 60000 // 60 second timeout
         });
         
-        // Send response back to WhatsApp user
+        // Verifikasi respons
         if (response.data && response.data.response) {
+          // Tandai pesan sebagai sudah diproses
+          if (messageCache.has(messageId)) {
+            messageCache.set(messageId, {
+              timestamp: Date.now(),
+              processed: true
+            });
+          }
+          
+          // Kirim respons ke pengguna WhatsApp
+          console.log(`Received response for request ${requestId}:`, response.data.response.substring(0, 100) + '...');
           await sendWhatsAppMessage(sender, response.data.response);
-          console.log(`Sent response to ${senderName}: ${response.data.response}`);
+          console.log(`Sent response to ${senderName} for message ID: ${messageId}`);
+        } else {
+          console.error(`Invalid response format for request ${requestId}:`, response.data);
+          await sendWhatsAppMessage(
+            sender, 
+            "Maaf, terjadi kesalahan saat memproses pesan Anda. Format respons tidak valid."
+          );
         }
       } catch (error) {
-        console.error('Error forwarding message to Flask backend:', error.message);
+        console.error(`Error forwarding message to Flask backend (ID: ${messageId}):`, error.message);
+        if (error.response) {
+          console.error('Response data:', error.response.data);
+          console.error('Response status:', error.response.status);
+        }
+        
         // Send error message to user
         await sendWhatsAppMessage(
           sender, 

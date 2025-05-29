@@ -7,11 +7,13 @@ import ChatTable from '@/components/ChatTable';
 import ChatDetailModal from '@/components/ChatDetailModal';
 import SearchBar from '@/components/SearchBar';
 import { Chat } from '@/types/chat';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedChat, setSelectedChat] = useState<Chat | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { t } = useLanguage();
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -31,7 +33,7 @@ export default function Home() {
       <Sidebar />
       
       <div className="flex-1 overflow-auto p-6">
-        <h1 className="text-2xl font-bold mb-6">WhatsApp Chatbot Admin Dashboard</h1>
+        <h1 className="text-2xl font-bold mb-6">{t('sidebar.appName')}</h1>
         
         {/* Analytics Cards */}
         <div className="mb-6">
@@ -45,7 +47,7 @@ export default function Home() {
         
         {/* Chat Table */}
         <div className="bg-white rounded-lg shadow mb-6">
-          <h2 className="text-lg font-semibold p-4 border-b border-gray-200">Percakapan Terbaru</h2>
+          <h2 className="text-lg font-semibold p-4 border-b border-gray-200">{t('dashboard.recentConversations')}</h2>
           <ChatTable searchQuery={searchQuery} onChatSelect={handleChatSelect} />
         </div>
         

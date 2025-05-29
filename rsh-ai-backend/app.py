@@ -158,22 +158,41 @@ def ask():
     {
         "sender": "6281234567890@s.whatsapp.net",
         "message": "Pertanyaan dari pengguna",
-        "sender_name": "User Name" (optional)
+        "sender_name": "User Name" (optional),
+        "request_id": "unique_request_id" (optional),
+        "timestamp": 1621234567890 (optional)
     }
     """
-    logger.info("[ASK] Endpoint /ask dipanggil. Menggunakan OpenAI Assistant API pipeline.")
+    # Set no-cache headers for response
+    response_headers = {
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0'
+    }
+    
+    # Log request details
+    request_id = request.json.get('request_id', f"req_{time.time()}_{os.urandom(4).hex()}")
+    timestamp = request.json.get('timestamp', int(time.time() * 1000))
+    logger.info(f"[ASK] Endpoint /ask dipanggil. Request ID: {request_id}, Timestamp: {timestamp}")
+    
+    # Log headers for debugging
+    logger.info(f"[ASK] Request headers: {dict(request.headers)}")
+    
     try:
         data = request.json
         if not data:
-            return jsonify({"error": "No data provided"}), 400
+            return jsonify({"error": "No data provided", "request_id": request_id}), 400, response_headers
 
         sender = data.get('sender')
         message = data.get('message')
         sender_name = data.get('sender_name', sender.split('@')[0] if sender else "Unknown")
 
         if not sender or not message:
-            return jsonify({"error": "Missing required fields"}), 400
+            return jsonify({"error": "Missing required fields", "request_id": request_id}), 400, response_headers
 
+        # Log full request data for debugging
+        logger.info(f"[ASK] Request data: {data}")
+        
         # Import bot_status and unanswered_messages from admin_routes
         from admin_routes import bot_status, unanswered_messages
         
@@ -208,8 +227,10 @@ def ask():
                 "sender": sender,
                 "bot_disabled": True,
                 "unanswered_count": unanswered_messages[sender],
-                "message": "Bot is disabled for this sender. Message logged for manual response."
-            }), 200
+                "message": "Bot is disabled for this sender. Message logged for manual response.",
+                "request_id": request_id,
+                "timestamp": int(time.time() * 1000)
+            }), 200, response_headers
         
         # Bot is enabled, proceed with OpenAI Assistant flow
         logger.info(f"[ASK] Mengirim ke Assistant API untuk nomor: {sender}, pesan: {message}")
@@ -286,8 +307,10 @@ def ask():
         return jsonify({
             "response": response,
             "sender": sender,
-            "response_time": round(response_time, 2)
-        }), 200
+            "response_time": round(response_time, 2),
+            "request_id": request_id,
+            "timestamp": int(time.time() * 1000)
+        }), 200, response_headers
         
     except Exception as e:
         logger.error(f"Error processing request: {str(e)}")

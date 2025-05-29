@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import { LanguageProvider } from '../context/LanguageContext';
+import { useLanguage } from '../context/LanguageContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -15,11 +17,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id">
+    <html lang="id" suppressHydrationWarning>
       <body className={inter.className}>
-        <div className="min-h-screen flex flex-col">
-          {children}
-        </div>
+        <LanguageProvider>
+          <div className="min-h-screen flex flex-col">
+            {children}
+          </div>
+        </LanguageProvider>
       </body>
     </html>
   );

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
+import { id as idLocale, enUS } from 'date-fns/locale';
 import { UserAnalytics, UserData } from '../types/analytics';
 import { ThreadMessage } from '../types/thread';
 import { fetchAnalyticsUsers } from '../services/analyticsService';
@@ -9,6 +10,7 @@ import { fetchThreadMessages } from '../services/threadService';
 import Sidebar from './Sidebar';
 import CircularProgress from '@mui/material/CircularProgress';
 import websocketService from '../services/websocket';
+import { useLanguage } from '../context/LanguageContext';
 
 interface UserCardProps {
   phoneNumber: string;
@@ -18,8 +20,9 @@ interface UserCardProps {
 }
 
 const UserCard: React.FC<UserCardProps> = ({ phoneNumber, userData, onClick, isSelected }) => {
+  const { t, language } = useLanguage();
   const displayName = userData.details.name || phoneNumber.split('@')[0];
-  const lastInteraction = new Date(userData.last_interaction || userData.first_interaction);
+  const lastInteraction = new Date(userData.details.last_interaction || userData.details.first_interaction);
   const healthComplaints = userData.details.health_complaints || [];
   const barriers = userData.details.conversion_barriers || [];
   
@@ -36,25 +39,25 @@ const UserCard: React.FC<UserCardProps> = ({ phoneNumber, userData, onClick, isS
           <p className="text-sm text-gray-500">{phoneNumber.split('@')[0]}</p>
         </div>
         <div className="text-xs text-gray-500">
-          Last active: {format(lastInteraction, 'dd MMM yyyy HH:mm')}
+          {t('analytics.lastActive')}: {format(lastInteraction, 'dd MMM yyyy HH:mm', { locale: language === 'id' ? idLocale : enUS })}
         </div>
       </div>
       
       {userData.details.gender && (
         <div className="mt-2 text-sm">
-          <span className="font-medium">Gender:</span> {userData.details.gender === 'male' ? 'Laki-laki' : 'Perempuan'}
+          <span className="font-medium">{t('analytics.gender')}:</span> {userData.details.gender === 'male' ? (language === 'en' ? 'Male' : 'Laki-laki') : (language === 'en' ? 'Female' : 'Perempuan')}
         </div>
       )}
       
       {userData.details.age && (
         <div className="mt-1 text-sm">
-          <span className="font-medium">Age:</span> {userData.details.age}
+          <span className="font-medium">{t('analytics.age')}:</span> {userData.details.age}
         </div>
       )}
       
       {healthComplaints.length > 0 && (
         <div className="mt-2">
-          <p className="text-sm font-medium">Health Complaints:</p>
+          <p className="text-sm font-medium">{t('analytics.complaints')}:</p>
           <div className="flex flex-wrap gap-1 mt-1">
             {healthComplaints.map((complaint, index) => (
               <span 
@@ -70,7 +73,7 @@ const UserCard: React.FC<UserCardProps> = ({ phoneNumber, userData, onClick, isS
       
       {barriers.length > 0 && (
         <div className="mt-2">
-          <p className="text-sm font-medium">Conversion Barriers:</p>
+          <p className="text-sm font-medium">{t('analytics.barriers')}:</p>
           <div className="flex flex-wrap gap-1 mt-1">
             {barriers.map((barrier, index) => (
               <span 
@@ -94,6 +97,7 @@ interface ThreadViewProps {
 }
 
 const ThreadView: React.FC<ThreadViewProps> = ({ phoneNumber, messages, isLoading }) => {
+  const { t } = useLanguage();
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-full">
@@ -119,9 +123,9 @@ const ThreadView: React.FC<ThreadViewProps> = ({ phoneNumber, messages, isLoadin
             d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" 
           />
         </svg>
-        <h3 className="text-lg font-medium text-gray-600">No Thread Messages</h3>
+        <h3 className="text-lg font-medium text-gray-600">{t('common.noMessages')}</h3>
         <p className="text-gray-500 text-center mt-2">
-          No OpenAI Assistant thread messages found for this user.
+          {t('conversations.threadMessagesNotFound')}
         </p>
       </div>
     );
@@ -133,9 +137,9 @@ const ThreadView: React.FC<ThreadViewProps> = ({ phoneNumber, messages, isLoadin
   return (
     <div className="h-full overflow-y-auto p-4">
       <div className="mb-4 pb-2 border-b">
-        <h2 className="text-xl font-semibold">Thread Messages</h2>
+        <h2 className="text-xl font-semibold">{t('conversations.title')}</h2>
         <p className="text-sm text-gray-500">
-          {phoneNumber.split('@')[0]} - {sortedMessages.length} messages
+          {phoneNumber.split('@')[0]} - {sortedMessages.length} {t('common.message')}
         </p>
       </div>
       
@@ -198,6 +202,7 @@ const ThreadView: React.FC<ThreadViewProps> = ({ phoneNumber, messages, isLoadin
 };
 
 const Users: React.FC = () => {
+  const { t } = useLanguage();
   const [userAnalytics, setUserAnalytics] = useState<UserAnalytics>({} as UserAnalytics);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -217,11 +222,11 @@ const Users: React.FC = () => {
       if (userData && userData.users) {
         setUserAnalytics(userData);
       } else {
-        setError('Failed to fetch user data');
+        setError(t('conversations.errorLoading'));
       }
     } catch (err) {
       console.error('Error fetching user data:', err);
-      setError('Failed to fetch user data');
+      setError(t('conversations.errorLoading'));
     } finally {
       setIsLoading(false);
     }
@@ -311,7 +316,7 @@ const Users: React.FC = () => {
               onClick={fetchUserData}
               className="mt-4 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
             >
-              Retry
+              {t('common.retry')}
             </button>
           </div>
         </div>
@@ -330,9 +335,9 @@ const Users: React.FC = () => {
       <div className="flex-1 overflow-hidden">
         <div className="h-full flex flex-col">
           <div className="bg-white p-4 shadow-sm">
-            <h1 className="text-2xl font-bold">Users</h1>
+            <h1 className="text-2xl font-bold">{t('users.title')}</h1>
             <p className="text-gray-500">
-              {userPhoneNumbers.length} total users
+              {userPhoneNumbers.length} {t('users.totalUsers')}
             </p>
           </div>
           
@@ -358,13 +363,13 @@ const Users: React.FC = () => {
                       d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" 
                     />
                   </svg>
-                  Refresh Users
+                  {t('users.refreshUsers')}
                 </button>
               </div>
               
               {userPhoneNumbers.length === 0 ? (
                 <div className="text-center p-6 bg-gray-50 rounded-lg">
-                  <p className="text-gray-500">No users found</p>
+                  <p className="text-gray-500">{t('users.noUsersFound')}</p>
                 </div>
               ) : (
                 userPhoneNumbers.map((phoneNumber) => (
@@ -403,9 +408,9 @@ const Users: React.FC = () => {
                       d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" 
                     />
                   </svg>
-                  <h3 className="text-lg font-medium text-gray-600">Select a User</h3>
+                  <h3 className="text-lg font-medium text-gray-600">{t('users.selectUser')}</h3>
                   <p className="text-gray-500 mt-2">
-                    Select a user from the list to view their OpenAI Assistant thread messages.
+                    {t('users.selectUserDescription')}
                   </p>
                 </div>
               )}
