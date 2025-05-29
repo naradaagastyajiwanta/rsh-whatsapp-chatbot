@@ -7,9 +7,9 @@ frontend:
     build:
       commands:
         - npm run build
-        - if [ ! -d dist ]; then mkdir dist; fi
-        - cp -R .next dist/
-        - cp -R public/* dist/
+        - mkdir -p dist
+        - cp -r .next/* dist/
+        - cp -r public/* dist/
         - cp next.config.js dist/
   artifacts:
     baseDirectory: dist
