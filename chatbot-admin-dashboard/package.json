@@ -5,10 +5,10 @@
 "scripts": {
   "dev": "next dev",
   "build": "next build && next export -o dist",
-  "export": "next export -o dist",
   "start": "next start",
   "lint": "next lint"
-},
+}
+,
   "dependencies": {
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.1",
