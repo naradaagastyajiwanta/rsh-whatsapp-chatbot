@@ -150,6 +150,7 @@ export const id = {
     noMatchingConversations: 'Tidak ada percakapan yang cocok dengan "{query}"',
     tryDifferentKeywords: 'Coba gunakan kata kunci pencarian yang berbeda',
     totalMessages: 'Total pesan',
+    messagesCount: '{count} pesan',
     exportChat: 'Ekspor Percakapan',
     botActive: 'Bot Aktif',
     botInactive: 'Bot Nonaktif',

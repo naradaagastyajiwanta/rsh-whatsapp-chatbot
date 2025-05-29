@@ -5,7 +5,7 @@ import { translations, Language, TranslationKeys } from '../translations';
 
 type LanguageContextType = {
   language: Language;
-  t: (key: string) => string;
+  t: (key: string, variables?: Record<string, any>) => string;
   changeLanguage: (lang: Language) => void;
 };
 
@@ -32,7 +32,8 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   };
 
   // Function to get translation by nested key path (e.g., "sidebar.dashboard")
-  const t = (key: string): string => {
+  // Also supports variable interpolation with {variableName} syntax
+  const t = (key: string, variables?: Record<string, any>): string => {
     const keys = key.split('.');
     let value: any = translations[language];
     
@@ -43,6 +44,13 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
         console.warn(`Translation key not found: ${key}`);
         return key;
       }
+    }
+    
+    // If we have variables, replace placeholders in the string
+    if (variables && typeof value === 'string') {
+      return Object.entries(variables).reduce((result, [varName, varValue]) => {
+        return result.replace(new RegExp(`{${varName}}`, 'g'), String(varValue));
+      }, value);
     }
     
     return value;

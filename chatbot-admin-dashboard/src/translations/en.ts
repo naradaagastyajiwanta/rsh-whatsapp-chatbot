@@ -138,6 +138,7 @@ export const en = {
     noMatchingConversations: 'No conversations matching "{query}"',
     tryDifferentKeywords: 'Try using different search keywords',
     totalMessages: 'Total messages',
+    messagesCount: '{count} messages',
     exportChat: 'Export Chat',
     botActive: 'Bot Active',
     botInactive: 'Bot Inactive',

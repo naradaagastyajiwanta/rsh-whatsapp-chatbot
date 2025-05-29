@@ -21,6 +21,7 @@ from document_routes import document_bp
 from chatbot_settings import get_settings, update_settings
 from websocket_handler import init_websocket
 from analytics_pipeline import analytics
+from user_preferences import user_preferences
 
 # Set up logging
 logging.basicConfig(
@@ -57,7 +58,28 @@ allowed_origins = [
 ]
 
 # Enable CORS with specific configuration
-CORS(app, resources={r"/*": {"origins": allowed_origins, "supports_credentials": True}})
+CORS(app, 
+     resources={r"/*": {
+         "origins": allowed_origins, 
+         "supports_credentials": True,
+         "allow_headers": ["Content-Type", "Authorization", "X-Requested-With"],
+         "expose_headers": ["Content-Type", "Authorization"],
+         "allow_methods": ["GET", "POST", "OPTIONS", "PUT", "DELETE"],
+         "max_age": 3600
+     }})
+
+# Add CORS headers to all responses
+@app.after_request
+def after_request(response):
+    # Bypass cache-control for preflight requests
+    if request.method == 'OPTIONS':
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization,X-Requested-With')
+        response.headers.add('Access-Control-Allow-Methods', 'GET,POST,OPTIONS,PUT,DELETE')
+        # Remove cache-control header which is causing issues
+        if 'Cache-Control' in response.headers:
+            del response.headers['Cache-Control']
+    return response
 
 # Register blueprints
 app.register_blueprint(admin_bp, url_prefix='/admin')
@@ -477,6 +499,11 @@ def get_user_analytics():
                 'users': {}
             })
         
+        # Tambahkan informasi selected_user ke response
+        selected_user = user_preferences.get_selected_user()
+        if selected_user:
+            insights['selected_user'] = selected_user
+        
         # Log successful response
         logger.info('Successfully retrieved user analytics data')
         return jsonify(insights)
@@ -514,16 +541,57 @@ def get_performance_analytics():
 
 # Performance analytics endpoint is already defined above
 
+# User preferences endpoints
+@app.route('/admin/preferences/selected-user', methods=['GET', 'OPTIONS'])
+def get_selected_user():
+    # Handle CORS preflight request
+    if request.method == 'OPTIONS':
+        response = jsonify({'status': 'ok'})
+        return response
+    
+    try:
+        selected_user = user_preferences.get_selected_user()
+        return jsonify({'selected_user': selected_user})
+    except Exception as e:
+        logger.error(f'Error getting selected user: {str(e)}')
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/admin/preferences/selected-user', methods=['POST', 'OPTIONS'])
+def set_selected_user():
+    # Handle CORS preflight request
+    if request.method == 'OPTIONS':
+        response = jsonify({'status': 'ok'})
+        return response
+    
+    try:
+        data = request.json
+        if not data or 'selected_user' not in data:
+            return jsonify({'error': 'Missing selected_user in request body'}), 400
+        
+        user_id = data['selected_user']
+        success = user_preferences.set_selected_user(user_id)
+        
+        if success:
+            # Broadcast update via WebSocket
+            if socketio:
+                socketio.emit('user_preference_update', {
+                    'type': 'selected_user',
+                    'selected_user': user_id
+                })
+            return jsonify({'success': True, 'selected_user': user_id})
+        else:
+            return jsonify({'error': 'Failed to save selected user'}), 500
+    except Exception as e:
+        logger.error(f'Error setting selected user: {str(e)}')
+        return jsonify({'error': str(e)}), 500
+
 # Thread messages endpoint
 @app.route('/admin/threads/<path:sender>/messages', methods=['GET', 'OPTIONS'])
 def get_thread_messages(sender):
     # Handle CORS preflight request
     if request.method == 'OPTIONS':
         response = jsonify({'status': 'ok'})
-        response.headers.add('Access-Control-Allow-Origin', '*')
-        response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-        response.headers.add('Access-Control-Allow-Methods', 'GET,OPTIONS')
-        response.headers.add('Access-Control-Allow-Credentials', 'true')
+        # CORS headers are automatically added by Flask-CORS
         return response
         
     try:
@@ -631,36 +699,27 @@ def get_thread_messages(sender):
             message_count = len(messages_data.get("data", []))
             logger.info(f'[Admin API] Berhasil mengambil {message_count} pesan untuk thread {thread_id}')
             
-            # Return the messages with CORS headers
-            response = jsonify({
+            # Return the messages
+            return jsonify({
                 'thread_id': thread_id,
                 'messages': messages_data.get('data', [])
             })
-            response.headers.add('Access-Control-Allow-Origin', '*')
-            response.headers.add('Access-Control-Allow-Credentials', 'true')
-            return response
             
         except requests.exceptions.RequestException as e:
             logger.error(f'[Admin API] Request error: {str(e)}')
-            response = jsonify({
+            return jsonify({
                 'error': f'Request error: {str(e)}',
                 'thread_id': thread_id,
                 'messages': []
-            })
-            response.headers.add('Access-Control-Allow-Origin', '*')
-            response.headers.add('Access-Control-Allow-Credentials', 'true')
-            return response, 500
+            }), 500
             
     except Exception as e:
         logger.error(f'[Admin API] Error retrieving thread messages: {str(e)}')
-        response = jsonify({
+        return jsonify({
             'error': str(e),
             'thread_id': '',
             'messages': []
-        })
-        response.headers.add('Access-Control-Allow-Origin', '*')
-        response.headers.add('Access-Control-Allow-Credentials', 'true')
-        return response, 500
+        }), 500
 
 # Initialize WebSocket with CORS support
 socketio = init_websocket(app)

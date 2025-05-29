@@ -30,13 +30,11 @@ export async function fetchThreadMessages(sender: string): Promise<ThreadRespons
     const regularPromise = axios.get(`${API_BASE_URL}/admin/threads/${encodeURIComponent(normalizedSender)}/messages`, {
       params: { timestamp },
       headers: {
-        'Cache-Control': 'no-cache',
-        'Pragma': 'no-cache',
-        'Expires': '0',
+        // Hapus header cache-control yang menyebabkan masalah CORS
         'Content-Type': 'application/json'
       },
       timeout: 10000,
-      withCredentials: true // Include credentials for CORS
+      withCredentials: false // Ubah menjadi false untuk menghindari masalah CORS
     }).catch(err => {
       console.log('Regular thread fetch error:', err.message);
       return { data: { thread_id: '', messages: [] }, status: 404 };
@@ -50,13 +48,11 @@ export async function fetchThreadMessages(sender: string): Promise<ThreadRespons
     const analyticsPromise = axios.get(`${API_BASE_URL}/admin/threads/${encodeURIComponent(analyticsSender)}/messages`, {
       params: { timestamp },
       headers: {
-        'Cache-Control': 'no-cache',
-        'Pragma': 'no-cache',
-        'Expires': '0',
+        // Hapus header cache-control yang menyebabkan masalah CORS
         'Content-Type': 'application/json'
       },
       timeout: 10000,
-      withCredentials: true // Include credentials for CORS
+      withCredentials: false // Ubah menjadi false untuk menghindari masalah CORS
     }).catch(err => {
       console.log('Analytics thread fetch error:', err.message);
       return { data: { thread_id: '', messages: [] }, status: 404 };
