@@ -515,72 +515,152 @@ def get_performance_analytics():
 # Performance analytics endpoint is already defined above
 
 # Thread messages endpoint
-@app.route('/admin/threads/<sender>/messages', methods=['GET', 'OPTIONS'])
+@app.route('/admin/threads/<path:sender>/messages', methods=['GET', 'OPTIONS'])
 def get_thread_messages(sender):
     # Handle CORS preflight request
     if request.method == 'OPTIONS':
         response = jsonify({'status': 'ok'})
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+        response.headers.add('Access-Control-Allow-Methods', 'GET,OPTIONS')
+        response.headers.add('Access-Control-Allow-Credentials', 'true')
         return response
         
     try:
         # Import here to avoid circular imports
         import requests
-        from assistant_thread_manager import get_thread_id_for_nomor
+        from assistant_thread_manager import get_thread_id_for_nomor, get_all_threads
         from openai_assistant_pipeline import get_headers, OPENAI_API_URL
         
+        logger.info(f'[Admin API] Mendapatkan thread messages untuk sender: {sender}')
+        
+        # Hapus karakter khusus dari sender jika ada
+        cleaned_sender = sender.strip()
+        
         # Get thread ID for the sender
-        thread_id = get_thread_id_for_nomor(sender)
+        thread_id = get_thread_id_for_nomor(cleaned_sender)
+        logger.info(f'[Admin API] Thread ID untuk {cleaned_sender}: {thread_id}')
+        
+        # Jika tidak ditemukan, coba cari dengan variasi format nomor
         if not thread_id:
-            logger.warning(f'Thread ID not found for sender: {sender}')
-            
-            # Check if this is a regular sender and we need to try with analytics_ prefix
-            if not sender.startswith('analytics_'):
-                logger.info(f'Checking for analytics thread for sender: {sender}')
-                analytics_sender = f'analytics_{sender}'
-                analytics_thread_id = get_thread_id_for_nomor(analytics_sender)
+            # Coba dengan dan tanpa @s.whatsapp.net
+            alternative_sender = cleaned_sender
+            if '@s.whatsapp.net' in cleaned_sender:
+                alternative_sender = cleaned_sender.split('@')[0]
+            else:
+                alternative_sender = f'{cleaned_sender}@s.whatsapp.net'
                 
-                if analytics_thread_id:
-                    logger.info(f'Found analytics thread ID for {analytics_sender}: {analytics_thread_id}')
-                    thread_id = analytics_thread_id
-                    sender = analytics_sender
+            logger.info(f'[Admin API] Mencoba format alternatif: {alternative_sender}')
+            thread_id = get_thread_id_for_nomor(alternative_sender)
             
-            # If still no thread ID, return 404
-            if not thread_id:
-                return jsonify({
-                    'error': 'Thread not found',
-                    'messages': []
-                }), 404
+            if thread_id:
+                logger.info(f'[Admin API] Ditemukan thread dengan format alternatif: {thread_id}')
+                cleaned_sender = alternative_sender
+        
+        # Jika masih tidak ditemukan, coba dengan prefix analytics_
+        if not thread_id:
+            logger.info(f'[Admin API] Mencoba dengan prefix analytics_')
+            if not cleaned_sender.startswith('analytics_'):
+                analytics_sender = f'analytics_{cleaned_sender}'
+                thread_id = get_thread_id_for_nomor(analytics_sender)
+                
+                if thread_id:
+                    logger.info(f'[Admin API] Ditemukan thread untuk {analytics_sender}: {thread_id}')
+                    cleaned_sender = analytics_sender
+            
+            # Jika masih tidak ditemukan, coba dengan prefix analytics_ dan format alternatif
+            if not thread_id and not cleaned_sender.startswith('analytics_'):
+                if '@s.whatsapp.net' in cleaned_sender:
+                    analytics_alt_sender = f'analytics_{cleaned_sender.split("@")[0]}'
+                else:
+                    analytics_alt_sender = f'analytics_{cleaned_sender}@s.whatsapp.net'
+                    
+                logger.info(f'[Admin API] Mencoba format analytics alternatif: {analytics_alt_sender}')
+                thread_id = get_thread_id_for_nomor(analytics_alt_sender)
+                
+                if thread_id:
+                    logger.info(f'[Admin API] Ditemukan thread dengan format analytics alternatif: {thread_id}')
+                    cleaned_sender = analytics_alt_sender
+        
+        # Jika masih tidak ditemukan, tampilkan semua thread yang tersedia untuk debugging
+        if not thread_id:
+            all_threads = get_all_threads()
+            logger.warning(f'[Admin API] Thread tidak ditemukan untuk {cleaned_sender}. Thread yang tersedia: {all_threads}')
+            return jsonify({
+                'error': 'Thread not found',
+                'thread_id': '',
+                'messages': [],
+                'available_threads': list(all_threads.keys())
+            }), 404
         
         # Get messages from OpenAI API
         headers = get_headers()
-        logger.info(f'Fetching messages for thread {thread_id} (sender: {sender})')
-        response = requests.get(
-            f"{OPENAI_API_URL}/threads/{thread_id}/messages",
-            headers=headers
-        )
+        logger.info(f'[Admin API] Mengambil pesan untuk thread {thread_id} (sender: {cleaned_sender})')
         
-        if response.status_code != 200:
-            logger.error(f'Error getting thread messages: {response.text}')
-            return jsonify({
-                'error': f'Failed to retrieve messages: {response.status_code}',
+        try:
+            response = requests.get(
+                f"{OPENAI_API_URL}/threads/{thread_id}/messages",
+                headers=headers,
+                timeout=10
+            )
+            
+            if response.status_code != 200:
+                error_message = f'Error {response.status_code}: {response.text}'
+                logger.error(f'[Admin API] {error_message}')
+                
+                # Coba sekali lagi dengan delay
+                time.sleep(2)
+                retry_response = requests.get(
+                    f"{OPENAI_API_URL}/threads/{thread_id}/messages",
+                    headers=headers,
+                    timeout=10
+                )
+                
+                if retry_response.status_code != 200:
+                    logger.error(f'[Admin API] Gagal pada percobaan kedua: {retry_response.status_code}')
+                    return jsonify({
+                        'error': f'Failed to retrieve messages: {retry_response.status_code}',
+                        'thread_id': thread_id,
+                        'messages': []
+                    }), 500
+                else:
+                    response = retry_response
+                    logger.info(f'[Admin API] Berhasil mengambil pesan pada percobaan kedua')
+            
+            messages_data = response.json()
+            message_count = len(messages_data.get("data", []))
+            logger.info(f'[Admin API] Berhasil mengambil {message_count} pesan untuk thread {thread_id}')
+            
+            # Return the messages with CORS headers
+            response = jsonify({
+                'thread_id': thread_id,
+                'messages': messages_data.get('data', [])
+            })
+            response.headers.add('Access-Control-Allow-Origin', '*')
+            response.headers.add('Access-Control-Allow-Credentials', 'true')
+            return response
+            
+        except requests.exceptions.RequestException as e:
+            logger.error(f'[Admin API] Request error: {str(e)}')
+            response = jsonify({
+                'error': f'Request error: {str(e)}',
+                'thread_id': thread_id,
                 'messages': []
-            }), 500
-        
-        messages_data = response.json()
-        message_count = len(messages_data.get("data", []))
-        logger.info(f'Retrieved {message_count} messages for thread {thread_id} (sender: {sender})')
-        
-        # Return the messages
-        return jsonify({
-            'thread_id': thread_id,
-            'messages': messages_data.get('data', [])
-        })
+            })
+            response.headers.add('Access-Control-Allow-Origin', '*')
+            response.headers.add('Access-Control-Allow-Credentials', 'true')
+            return response, 500
+            
     except Exception as e:
-        logger.error(f'Error retrieving thread messages: {str(e)}')
-        return jsonify({
+        logger.error(f'[Admin API] Error retrieving thread messages: {str(e)}')
+        response = jsonify({
             'error': str(e),
+            'thread_id': '',
             'messages': []
-        }), 500
+        })
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        response.headers.add('Access-Control-Allow-Credentials', 'true')
+        return response, 500
 
 # Initialize WebSocket with CORS support
 socketio = init_websocket(app)

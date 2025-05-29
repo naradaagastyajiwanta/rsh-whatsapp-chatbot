@@ -26,6 +26,10 @@ def save_threads():
 def get_thread_id_for_nomor(nomor: str) -> Optional[str]:
     return nomor_to_thread.get(nomor)
 
+def get_all_threads() -> Dict[str, str]:
+    """Return all available threads mapping (nomor -> thread_id)."""
+    return nomor_to_thread
+
 def set_thread_id_for_nomor(nomor: str, thread_id: str):
     nomor_to_thread[nomor] = thread_id
     save_threads()

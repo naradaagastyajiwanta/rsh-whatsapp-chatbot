@@ -12,10 +12,22 @@ export async function fetchThreadMessages(sender: string): Promise<ThreadRespons
   try {
     // Add timestamp to prevent caching
     const timestamp = new Date().getTime();
-    console.log(`Fetching thread messages for ${sender} from ${API_BASE_URL}/admin/threads/${sender}/messages`);
+    
+    // Normalize sender format
+    let normalizedSender = sender;
+    
+    // Ensure we have a clean format for the sender
+    if (normalizedSender.includes('@s.whatsapp.net')) {
+      console.log('Sender already has @s.whatsapp.net format:', normalizedSender);
+    } else {
+      normalizedSender = `${normalizedSender}@s.whatsapp.net`;
+      console.log('Added @s.whatsapp.net to sender:', normalizedSender);
+    }
+    
+    console.log(`Fetching thread messages for ${normalizedSender} from ${API_BASE_URL}/admin/threads/${encodeURIComponent(normalizedSender)}/messages`);
     
     // Try fetching both regular and analytics threads
-    const regularPromise = axios.get(`${API_BASE_URL}/admin/threads/${sender}/messages`, {
+    const regularPromise = axios.get(`${API_BASE_URL}/admin/threads/${encodeURIComponent(normalizedSender)}/messages`, {
       params: { timestamp },
       headers: {
         'Cache-Control': 'no-cache',
@@ -31,9 +43,11 @@ export async function fetchThreadMessages(sender: string): Promise<ThreadRespons
     });
     
     const analyticsPrefix = 'analytics_';
-    const analyticsSender = sender.includes(analyticsPrefix) ? sender : `${analyticsPrefix}${sender}`;
+    // Create analytics sender from normalized sender
+    const analyticsSender = normalizedSender.includes(analyticsPrefix) ? normalizedSender : `${analyticsPrefix}${normalizedSender}`;
+    console.log('Analytics sender format:', analyticsSender);
     
-    const analyticsPromise = axios.get(`${API_BASE_URL}/admin/threads/${analyticsSender}/messages`, {
+    const analyticsPromise = axios.get(`${API_BASE_URL}/admin/threads/${encodeURIComponent(analyticsSender)}/messages`, {
       params: { timestamp },
       headers: {
         'Cache-Control': 'no-cache',
@@ -46,6 +60,11 @@ export async function fetchThreadMessages(sender: string): Promise<ThreadRespons
     }).catch(err => {
       console.log('Analytics thread fetch error:', err.message);
       return { data: { thread_id: '', messages: [] }, status: 404 };
+    });
+    
+    console.log('Fetching from URLs:', {
+      regular: `${API_BASE_URL}/admin/threads/${encodeURIComponent(normalizedSender)}/messages`,
+      analytics: `${API_BASE_URL}/admin/threads/${encodeURIComponent(analyticsSender)}/messages`
     });
     
     // Wait for both requests to complete

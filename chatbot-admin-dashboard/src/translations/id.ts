@@ -138,6 +138,7 @@ export const id = {
     searchPlaceholder: 'Cari percakapan...',
     user: 'Pengguna',
     message: 'Pesan',
+    threadMessagesNotFound: 'Tidak ada pesan ditemukan untuk thread ini. Pengguna mungkin belum memiliki percakapan.',
     time: 'Waktu',
     status: 'Status',
     actions: 'Tindakan',
