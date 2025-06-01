@@ -1,6 +1,8 @@
+/* stylelint-disable */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* stylelint-enable */
 
 @layer base {
   body {
@@ -41,7 +43,7 @@
   /* Custom scrollbar styling */
   .custom-scrollbar {
     scrollbar-width: thin;
-    scrollbar-color: rgba(156, 163, 175, 0.5) rgba(229, 231, 235, 0.5);
+    scrollbar-color: rgb(156 163 175 / 50%) rgb(229 231 235 / 50%);
   }
   
   .custom-scrollbar::-webkit-scrollbar {
@@ -49,18 +51,18 @@
   }
   
   .custom-scrollbar::-webkit-scrollbar-track {
-    background: rgba(229, 231, 235, 0.5);
+    background: rgb(229 231 235 / 50%);
     border-radius: 10px;
   }
   
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background-color: rgba(156, 163, 175, 0.5);
+    background-color: rgb(156 163 175 / 50%);
     border-radius: 10px;
     border: 2px solid transparent;
   }
   
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(107, 114, 128, 0.7);
+    background-color: rgb(107 114 128 / 70%);
   }
 }
 

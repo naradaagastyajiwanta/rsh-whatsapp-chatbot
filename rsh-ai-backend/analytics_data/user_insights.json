@@ -190,5 +190,291 @@
       "urgency_level": "medium",
       "emotion": "neutral"
     }
+  },
+  "628126492995@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-01T13:42:53.929101",
+        "analysis": {
+          "name": "Santi",
+          "age": null,
+          "gender": "female",
+          "location": "Labuhan Batu Utara, Sumatera Utara",
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-01T13:42:53.928746"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-01T13:42:53.929101",
+    "details": {
+      "name": "Santi",
+      "age": null,
+      "gender": "female",
+      "location": "Labuhan Batu Utara, Sumatera Utara",
+      "health_complaints": [],
+      "conversion_barriers": [],
+      "last_interaction": "2025-06-01T13:42:53.929101",
+      "symptoms": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "Santi",
+      "age": null,
+      "gender": "female",
+      "location": "Labuhan Batu Utara, Sumatera Utara",
+      "health_complaints": [],
+      "symptoms": [],
+      "conversion_barriers": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral",
+      "timestamp": "2025-06-01T13:42:53.928746"
+    }
+  },
+  "6281362075151@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-01T15:05:53.568994",
+        "analysis": {
+          "name": "D. Sitohang",
+          "age": 74,
+          "gender": "male",
+          "location": "Medan",
+          "health_complaints": [
+            "Jantung koroner",
+            "PPOK",
+            "Darah tinggi"
+          ],
+          "symptoms": [
+            "sesak nafas",
+            "ngos-ngosan",
+            "mudah capek"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Jantung koroner sudah pasang ring 5",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-01T15:05:53.568614"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-01T15:05:53.568994",
+    "details": {
+      "name": "D. Sitohang",
+      "age": 74,
+      "gender": "male",
+      "location": "Medan",
+      "health_complaints": [
+        "Darah tinggi",
+        "PPOK",
+        "Jantung koroner"
+      ],
+      "conversion_barriers": [],
+      "last_interaction": "2025-06-01T15:05:53.568994",
+      "symptoms": [
+        "sesak nafas",
+        "ngos-ngosan",
+        "mudah capek"
+      ],
+      "medical_history": "Jantung koroner sudah pasang ring 5",
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "D. Sitohang",
+      "age": 74,
+      "gender": "male",
+      "location": "Medan",
+      "health_complaints": [
+        "Jantung koroner",
+        "PPOK",
+        "Darah tinggi"
+      ],
+      "symptoms": [
+        "sesak nafas",
+        "ngos-ngosan",
+        "mudah capek"
+      ],
+      "conversion_barriers": [],
+      "medical_history": "Jantung koroner sudah pasang ring 5",
+      "urgency_level": "medium",
+      "emotion": "neutral",
+      "timestamp": "2025-06-01T15:05:53.568614"
+    }
+  },
+  "6282245019586@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-01T17:41:32.038058",
+        "analysis": {
+          "name": "waty",
+          "age": null,
+          "gender": "female",
+          "location": "surabaya",
+          "health_complaints": [
+            "hipertensi",
+            "kolesterol",
+            "diabetes"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-01T17:41:32.037468"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-01T17:41:32.038058",
+    "details": {
+      "name": "waty",
+      "age": null,
+      "gender": "female",
+      "location": "surabaya",
+      "health_complaints": [
+        "diabetes",
+        "hipertensi",
+        "kolesterol"
+      ],
+      "conversion_barriers": [],
+      "last_interaction": "2025-06-01T17:41:32.038058",
+      "symptoms": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "waty",
+      "age": null,
+      "gender": "female",
+      "location": "surabaya",
+      "health_complaints": [
+        "hipertensi",
+        "kolesterol",
+        "diabetes"
+      ],
+      "symptoms": [],
+      "conversion_barriers": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral",
+      "timestamp": "2025-06-01T17:41:32.037468"
+    }
+  },
+  "6282330108196@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-01T19:44:05.910765",
+        "analysis": {
+          "name": "Dwi",
+          "age": null,
+          "gender": "female",
+          "location": "Jombang Jatim",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-01T19:44:05.910400"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-01T19:44:05.910765",
+    "details": {
+      "name": "Dwi",
+      "age": null,
+      "gender": "female",
+      "location": "Jombang Jatim",
+      "health_complaints": [
+        "Hipertensi"
+      ],
+      "conversion_barriers": [],
+      "last_interaction": "2025-06-01T19:44:05.910765",
+      "symptoms": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "Dwi",
+      "age": null,
+      "gender": "female",
+      "location": "Jombang Jatim",
+      "health_complaints": [
+        "Hipertensi"
+      ],
+      "symptoms": [],
+      "conversion_barriers": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral",
+      "timestamp": "2025-06-01T19:44:05.910400"
+    }
+  },
+  "6281355639172@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-01T20:32:04.446667",
+        "analysis": {
+          "name": "Richard Weku",
+          "age": 53,
+          "gender": "male",
+          "location": "Manado",
+          "health_complaints": [
+            "Darah tinggi",
+            "Diabetes"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-01T20:32:04.446098"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-01T20:32:04.446667",
+    "details": {
+      "name": "Richard Weku",
+      "age": 53,
+      "gender": "male",
+      "location": "Manado",
+      "health_complaints": [
+        "Darah tinggi",
+        "Diabetes"
+      ],
+      "conversion_barriers": [],
+      "last_interaction": "2025-06-01T20:32:04.446667",
+      "symptoms": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "Richard Weku",
+      "age": 53,
+      "gender": "male",
+      "location": "Manado",
+      "health_complaints": [
+        "Darah tinggi",
+        "Diabetes"
+      ],
+      "symptoms": [],
+      "conversion_barriers": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral",
+      "timestamp": "2025-06-01T20:32:04.446098"
+    }
   }
 }
