@@ -106,46 +106,8 @@ class AnalyticsPipeline:
             headers = self.get_headers()
             assistant_id = self.get_analytics_assistant_id()
             
-            # Create system message with instructions
-            system_message = """Anda adalah asisten analitik yang mengklasifikasikan pesan chat dari pasien RSH.
-Analisis pesan untuk mengekstrak informasi berikut dalam format JSON:
-{
-    "name": "string | null",  # nama jika disebutkan
-    "age": "number | null",  # usia dalam angka
-    "gender": "male | female | null",  # jenis kelamin
-    "location": "string | null",  # domisili/kota
-    "health_complaints": ["string"],  # list keluhan kesehatan
-    "symptoms": ["string"],  # list gejala spesifik
-    "medical_history": "string | null",  # riwayat penyakit
-    "urgency_level": "low | medium | high",  # tingkat urgensi
-    "emotion": "positive | neutral | negative",  # sentiment pesan
-    "conversion_barriers": ["string"],  # hambatan untuk bergabung program RSH
-    "interest_level": "low | medium | high",  # tingkat ketertarikan ke program
-    "program_awareness": "none | basic | detailed"  # pemahaman tentang program RSH
-}
-
-Untuk conversion_barriers, analisis hambatan seperti:
-- Masalah biaya/finansial
-- Jarak/lokasi
-- Waktu/kesibukan
-- Keraguan akan efektivitas
-- Dukungan keluarga
-- Pemahaman program
-
-Berikan response dalam format JSON yang valid. Gunakan null untuk informasi yang tidak ditemukan."""
-            
-            # Send system message first
-            logger.info(f"[AnalyticsAPI] Mengirim system message ke thread {thread_id}")
-            sys_msg_resp = requests.post(
-                f"{OPENAI_API_URL}/threads/{thread_id}/messages",
-                headers=headers,
-                json={"role": "user", "content": system_message}
-            )
-            
-            if sys_msg_resp.status_code != 200:
-                logger.error(f"[AnalyticsAPI] Gagal mengirim system message: {sys_msg_resp.json()}")
-            
-            # Send user message
+            # Send user message directly to the Assistant
+            # Since the Assistant already has the initial prompt configured, we don't need to send the system message
             logger.info(f"[AnalyticsAPI] Mengirim pesan untuk analisis ke thread {thread_id}: {message}")
             msg_resp = requests.post(
                 f"{OPENAI_API_URL}/threads/{thread_id}/messages",
