@@ -402,16 +402,64 @@ export const getSelectedUser = async () => {
 export const saveSelectedUser = async (phoneNumber: string) => {
   try {
     console.log(`Saving selected user to server: ${phoneNumber}`);
-    const response = await api.post('/admin/preferences/selected-user', {
-      selected_user: phoneNumber
+    
+    // Pastikan phoneNumber tidak kosong untuk menghindari error
+    if (!phoneNumber) {
+      console.warn('Attempted to save empty phone number, using fallback');
+      localStorage.setItem('selectedUser', '');
+      return { success: false, message: 'Empty phone number' };
+    }
+    
+    // Gunakan JSON.stringify secara eksplisit untuk memastikan format yang benar
+    const payload = JSON.stringify({ selected_user: phoneNumber });
+    console.log('Sending payload:', payload);
+    
+    // Gunakan fetch API sebagai alternatif untuk axios
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/admin/preferences/selected-user`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: payload,
+      credentials: 'include',
     });
-    console.log('Save selected user response:', response.data);
-    return response.data;
-  } catch (error) {
+    
+    if (!response.ok) {
+      throw new Error(`Server responded with ${response.status}: ${response.statusText}`);
+    }
+    
+    const data = await response.json();
+    console.log('Save selected user response:', data);
+    
+    // Simpan juga ke localStorage sebagai fallback
+    localStorage.setItem('selectedUser', phoneNumber);
+    
+    return data;
+  } catch (error: any) {
+    // Logging error yang lebih terperinci
     console.error('Error saving selected user:', error);
+    
     // Fallback: save to localStorage
     localStorage.setItem('selectedUser', phoneNumber);
-    throw error;
+    
+    // Return objek error yang lebih informatif daripada throw
+    return { 
+      success: false, 
+      error: error.message || 'Unknown error',
+      fallback: true
+    };
+  }
+};
+
+// Function to fetch thread messages for a specific user
+export const fetchThreadMessages = async (phoneNumber: string) => {
+  try {
+    const response = await api.get(`/admin/thread-messages/${phoneNumber}`);
+    return response.data.messages || [];
+  } catch (error) {
+    console.error('Error fetching thread messages:', error);
+    // Return empty array if API fails
+    return [];
   }
 };
 

@@ -467,9 +467,10 @@ const Users: React.FC = () => {
     localStorage.setItem('selectedUser', phoneNumber);
     
     // Simpan selected user ke server untuk persistensi antar sesi
-    try {
-      console.log(`Attempting to save selected user to server: ${phoneNumber}`);
-      const result = await saveSelectedUser(phoneNumber);
+    console.log(`Attempting to save selected user to server: ${phoneNumber}`);
+    const result = await saveSelectedUser(phoneNumber);
+    
+    if (result.success !== false) {
       console.log('Selected user successfully saved to server:', result);
       
       // Jika berhasil disimpan ke server, emitkan juga event WebSocket
@@ -481,10 +482,10 @@ const Users: React.FC = () => {
         });
         console.log('Sent selected user update via WebSocket');
       }
-    } catch (error) {
-      console.error('Error saving selected user to server:', error);
-      // Tidak perlu tindakan tambahan karena localStorage sudah diset
-      // dan state sudah diupdate
+    } else {
+      // Jika gagal, tampilkan pesan error tapi tetap lanjutkan dengan localStorage
+      console.warn('Failed to save selected user to server:', result.error || 'Unknown error');
+      console.info('Using localStorage fallback instead');
     }
   };
   

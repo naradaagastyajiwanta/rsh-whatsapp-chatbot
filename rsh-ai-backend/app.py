@@ -542,7 +542,7 @@ def get_performance_analytics():
 # Performance analytics endpoint is already defined above
 
 # User preferences endpoints
-@app.route('/admin/preferences/selected_user', methods=['GET', 'OPTIONS'])
+@app.route('/admin/preferences/selected-user', methods=['GET', 'OPTIONS'])
 def get_selected_user():
     # Handle CORS preflight request
     if request.method == 'OPTIONS':
@@ -565,17 +565,29 @@ def get_selected_user():
         logger.error(f"Error saat mengambil selected user: {str(e)}")
         return jsonify({'error': str(e)}), 500
 
-@app.route('/admin/preferences/selected_user', methods=['POST', 'OPTIONS'])
+@app.route('/admin/preferences/selected-user', methods=['POST', 'OPTIONS'])
 def save_selected_user():
     # Handle CORS preflight request
     if request.method == 'OPTIONS':
         response = jsonify({'status': 'ok'})
+        response.headers.add('Access-Control-Allow-Origin', request.headers.get('Origin', '*'))
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization,X-Requested-With,pragma,cache-control')
+        response.headers.add('Access-Control-Allow-Methods', 'POST,OPTIONS')
+        response.headers.add('Access-Control-Allow-Credentials', 'true')
         return response
     
     try:
-        logger.info(f"Received POST to /admin/preferences/selected_user")
+        logger.info(f"Received POST to /admin/preferences/selected-user")
         logger.info(f"Request content type: {request.content_type}")
+        logger.info(f"Request origin: {request.headers.get('Origin', 'unknown')}")
         logger.info(f"Request data: {request.data}")
+        
+        # Set CORS headers for the main response too
+        headers = {
+            'Access-Control-Allow-Origin': request.headers.get('Origin', '*'),
+            'Access-Control-Allow-Credentials': 'true',
+            'Content-Type': 'application/json'
+        }
         
         # Coba parse request JSON
         try:
@@ -583,15 +595,24 @@ def save_selected_user():
             logger.info(f"Parsed JSON data: {data}")
         except Exception as json_error:
             logger.error(f"Failed to parse JSON: {str(json_error)}")
-            return jsonify({'error': f'Invalid JSON format: {str(json_error)}'}), 400
+            response = jsonify({'error': f'Invalid JSON format: {str(json_error)}'})
+            response.headers.add('Access-Control-Allow-Origin', request.headers.get('Origin', '*'))
+            response.headers.add('Access-Control-Allow-Credentials', 'true')
+            return response, 400
         
         if not data:
             logger.error("Request data is empty")
-            return jsonify({'error': 'No data provided'}), 400
+            response = jsonify({'error': 'No data provided'})
+            response.headers.add('Access-Control-Allow-Origin', request.headers.get('Origin', '*'))
+            response.headers.add('Access-Control-Allow-Credentials', 'true')
+            return response, 400
             
         if 'selected_user' not in data:
             logger.error(f"No selected_user in data keys: {list(data.keys())}")
-            return jsonify({'error': 'No selected_user provided'}), 400
+            response = jsonify({'error': 'No selected_user provided'})
+            response.headers.add('Access-Control-Allow-Origin', request.headers.get('Origin', '*'))
+            response.headers.add('Access-Control-Allow-Credentials', 'true')
+            return response, 400
             
         selected_user = data.get('selected_user', '')
         logger.info(f"Selected user value: '{selected_user}'")
@@ -626,24 +647,54 @@ def save_selected_user():
         preferences['selected_user'] = selected_user
         logger.info(f"Updated preferences: {preferences}")
         
-        # Tulis kembali ke file
+        # Tulis kembali ke file dengan penanganan error yang lebih baik
         try:
-            with open(preferences_path, 'w') as file:
-                json.dump(preferences, file)
-                logger.info(f"Successfully wrote preferences to {preferences_path}")
+            # Pastikan file dapat ditulis
+            if os.path.exists(preferences_path) and not os.access(preferences_path, os.W_OK):
+                logger.error(f"No write permission for {preferences_path}")
+                response = jsonify({'error': 'No write permission for preferences file'})
+                response.headers.add('Access-Control-Allow-Origin', request.headers.get('Origin', '*'))
+                response.headers.add('Access-Control-Allow-Credentials', 'true')
+                return response, 500
+                
+            # Gunakan atomic write untuk menghindari corruption
+            temp_file = preferences_path + '.tmp'
+            with open(temp_file, 'w') as file:
+                json.dump(preferences, file, indent=2)
+                file.flush()
+                os.fsync(file.fileno())
+            
+            # Rename temporary file to target file (should be atomic on most systems)
+            if os.path.exists(preferences_path):
+                os.replace(temp_file, preferences_path)
+            else:
+                os.rename(temp_file, preferences_path)
+                
+            logger.info(f"Successfully wrote preferences to {preferences_path}")
         except Exception as write_error:
             logger.error(f"Failed to write preferences: {str(write_error)}")
-            return jsonify({'error': f'Failed to save preferences: {str(write_error)}'}), 500
+            response = jsonify({'error': f'Failed to save preferences: {str(write_error)}'})
+            response.headers.add('Access-Control-Allow-Origin', request.headers.get('Origin', '*'))
+            response.headers.add('Access-Control-Allow-Credentials', 'true')
+            return response, 500
         
         # Catatan: Socket.io emit dihilangkan karena socketio tidak terdefinisi di app.py
         # WebSocket event akan dihandle melalui polling dari frontend atau
         # bisa diimplementasikan nanti dengan mengimpor socketio dari cors_server
         logger.info(f"Selected user saved: {selected_user}")
         
-        return jsonify({'success': True, 'selected_user': selected_user})
+        response = jsonify({'success': True, 'selected_user': selected_user})
+        # Tambahkan header CORS ke response
+        response.headers.add('Access-Control-Allow-Origin', request.headers.get('Origin', '*'))
+        response.headers.add('Access-Control-Allow-Credentials', 'true')
+        return response
     except Exception as e:
         logger.error(f"Error saat menyimpan selected user: {str(e)}")
-        return jsonify({'error': str(e)}), 500
+        response = jsonify({'error': str(e)})
+        # Tambahkan header CORS ke response error
+        response.headers.add('Access-Control-Allow-Origin', request.headers.get('Origin', '*'))
+        response.headers.add('Access-Control-Allow-Credentials', 'true')
+        return response, 500
 
 # Thread messages endpoint
 @app.route('/admin/threads/<path:sender>/messages', methods=['GET', 'OPTIONS'])
