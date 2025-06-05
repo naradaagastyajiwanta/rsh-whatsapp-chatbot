@@ -24,6 +24,12 @@ export async function fetchThreadMessages(sender: string): Promise<ThreadRespons
       console.log('Added @s.whatsapp.net to sender:', normalizedSender);
     }
     
+    // Log the selected user from localStorage for debugging
+    const selectedUser = localStorage.getItem('selectedUser');
+    console.log('Selected user from localStorage:', selectedUser);
+    console.log('Current sender parameter:', sender);
+    console.log('Are they equal?', selectedUser === sender);
+    
     console.log(`Fetching thread messages for ${normalizedSender} from ${API_BASE_URL}/admin/threads/${encodeURIComponent(normalizedSender)}/messages`);
     
     // Try fetching both regular and analytics threads

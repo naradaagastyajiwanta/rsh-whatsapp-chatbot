@@ -420,10 +420,8 @@ const Users: React.FC = () => {
         
         // Tetap lakukan fetch di background untuk update data
         fetchThreadMessages(phoneNumber).then(freshData => {
-          if (freshData && freshData.messages) {
-            console.log(`Background refresh of thread messages for ${phoneNumber}`);
-            setThreadMessages(freshData.messages);
-          }
+          console.log(`Background refresh of thread messages for ${phoneNumber}`);
+          setThreadMessages(freshData);
         }).catch(err => console.error('Background thread fetch error:', err));
         
         return;
@@ -433,8 +431,9 @@ const Users: React.FC = () => {
       const threadData = await fetchThreadMessages(phoneNumber);
       console.log('Fetched thread messages:', threadData);
       
-      if (threadData && threadData.messages) {
-        setThreadMessages(threadData.messages);
+      // threadData sekarang adalah array pesan langsung
+      if (threadData && threadData.length > 0) {
+        setThreadMessages(threadData);
       } else if (cachedMessages) {
         // Jika gagal fetch tapi ada cache, gunakan cache
         setThreadMessages(JSON.parse(cachedMessages));

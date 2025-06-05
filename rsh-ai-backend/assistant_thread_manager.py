@@ -3,6 +3,7 @@ import json
 import time
 import requests
 import logging
+import os
 from typing import Optional, Dict, Tuple
 
 logger = logging.getLogger(__name__)
@@ -24,7 +25,58 @@ def save_threads():
         json.dump(nomor_to_thread, f, ensure_ascii=False, indent=2)
 
 def get_thread_id_for_nomor(nomor: str) -> Optional[str]:
-    return nomor_to_thread.get(nomor)
+    """Get thread ID for a given WhatsApp number with format handling.
+    
+    Args:
+        nomor: WhatsApp number, with or without @s.whatsapp.net suffix
+        
+    Returns:
+        Thread ID if found, None otherwise
+    """
+    # Normalize input
+    cleaned_nomor = nomor.strip()
+    
+    # Try direct lookup first
+    thread_id = nomor_to_thread.get(cleaned_nomor)
+    if thread_id:
+        logger.info(f"Found thread ID {thread_id} for exact match: {cleaned_nomor}")
+        return thread_id
+    
+    # Try with and without @s.whatsapp.net suffix
+    if '@s.whatsapp.net' in cleaned_nomor:
+        # Try without suffix
+        base_nomor = cleaned_nomor.split('@')[0]
+        thread_id = nomor_to_thread.get(base_nomor)
+        if thread_id:
+            logger.info(f"Found thread ID {thread_id} for base number: {base_nomor}")
+            return thread_id
+    else:
+        # Try with suffix
+        suffixed_nomor = f"{cleaned_nomor}@s.whatsapp.net"
+        thread_id = nomor_to_thread.get(suffixed_nomor)
+        if thread_id:
+            logger.info(f"Found thread ID {thread_id} for suffixed number: {suffixed_nomor}")
+            return thread_id
+    
+    # Try with analytics_ prefix
+    if not cleaned_nomor.startswith('analytics_'):
+        analytics_nomor = f"analytics_{cleaned_nomor}"
+        thread_id = nomor_to_thread.get(analytics_nomor)
+        if thread_id:
+            logger.info(f"Found thread ID {thread_id} for analytics prefix: {analytics_nomor}")
+            return thread_id
+            
+        # Try analytics_ prefix with suffix
+        if '@s.whatsapp.net' not in cleaned_nomor:
+            analytics_suffixed = f"analytics_{cleaned_nomor}@s.whatsapp.net"
+            thread_id = nomor_to_thread.get(analytics_suffixed)
+            if thread_id:
+                logger.info(f"Found thread ID {thread_id} for analytics suffixed: {analytics_suffixed}")
+                return thread_id
+    
+    # Log available threads for debugging
+    logger.warning(f"No thread found for {cleaned_nomor}. Available threads: {list(nomor_to_thread.keys())[:10]}")
+    return None
 
 def get_all_threads() -> Dict[str, str]:
     """Return all available threads mapping (nomor -> thread_id)."""

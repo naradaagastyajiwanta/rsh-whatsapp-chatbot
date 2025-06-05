@@ -2382,11 +2382,29 @@
         "response": "Hai, Bapak Jiwan! Senang mendengar dari Bapak. Ada yang ingin Bapak bicarakan atau tanyakan hari ini? Saya di sini untuk membantu. \ud83c\udf3f",
         "timestamp": "2025-06-05T12:47:42.806269",
         "response_time": 8.009389162063599
+      },
+      {
+        "id": "6287811152506_1749115438",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "senang juga",
+        "response": "Alhamdulillah, Bapak Jiwan! Senang mendengar Bapak merasa senang. Jika ada hal yang ingin dibicarakan atau pertanyaan yang ingin diajukan, silakan saja. Saya siap untuk mendengarkan dan membantu. \ud83c\udf3f\u2728",
+        "timestamp": "2025-06-05T16:23:58.768951",
+        "response_time": 7.561259984970093
+      },
+      {
+        "id": "6287811152506_1749118827",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "6287811152506",
+        "message": "[This is a placeholder for user's previous message]",
+        "response": "hi",
+        "timestamp": "2025-06-05T17:20:27.416384",
+        "response_time": 0.1
       }
     ],
     "first_timestamp": "2025-05-26T08:43:22.514563",
-    "last_timestamp": "2025-06-05T12:47:42.806269",
-    "last_message": "hai"
+    "last_timestamp": "2025-06-05T17:20:27.416384",
+    "last_message": "[This is a placeholder for user's previous message]"
   },
   {
     "id": "conv_6283145916630",
@@ -3323,11 +3341,20 @@
         "response": "Ksp, dalam sesi privat, Anda akan ditangani oleh para terapis berpengalaman di Rumah Sehat Holistik Satu Bumi. Mereka memiliki pemahaman mendalam tentang masalah tidur, stres, dan keseimbangan emosi. Terapis kami dilatih untuk mendekati setiap masalah dengan penuh empati dan pendekatan holistik.\n\nMereka akan mendengarkan pengalaman Ksp, membantu mengidentifikasi akar masalah yang mempengaruhi tidur dan kesejahteraan mental, serta merumuskan rencana perawatan yang sesuai dengan kebutuhan individu Ksp.\n\nJika Ksp merasa nyaman, kami dapat menjadwalkan sesi awal dengan salah satu terapis kami, dan Ksp dapat berdiskusi lebih lanjut tentang harapan serta kebutuhan spesifik. Apakah Ksp ingin melanjutkan dengan penjadwalan sesi ini atau ada pertanyaan lain?",
         "timestamp": "2025-06-02T20:28:58.810384",
         "response_time": 9.463576078414917
+      },
+      {
+        "id": "6281238321622_1749118802",
+        "sender": "6281238321622@s.whatsapp.net",
+        "sender_name": "6281238321622",
+        "message": "[This is a placeholder for user's previous message]",
+        "response": "sav",
+        "timestamp": "2025-06-05T17:20:02.291377",
+        "response_time": 0.1
       }
     ],
     "first_timestamp": "2025-06-02T20:06:20.137754",
-    "last_timestamp": "2025-06-02T20:28:58.810384",
-    "last_message": "Siapa yang akan menangani saya?"
+    "last_timestamp": "2025-06-05T17:20:02.291377",
+    "last_message": "[This is a placeholder for user's previous message]"
   },
   {
     "id": "conv_6282226067190",
