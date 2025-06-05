@@ -1,38 +1,79 @@
-# Ignore environment files
-.env
-*.env
+# Node.js
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+.pnpm-lock.yaml
 
-# Ignore Python virtual environment
-venv/
-env/
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
-
-# Ignore Node.js dependencies
-node_modules/
-.next/
-.nuxt/
-dist/
+*.so
+.Python
+env/
 build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 
-# Ignore logs
+# Environment variables
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Logs
+logs
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 
-# Ignore OS specific files
-.DS_Store
-Thumbs.db
+# Frontend build
+.next/
+out/
+build/
+dist/
+coverage/
 
-# Ignore IDE specific files
+# Backend specific
+venv/
+.venv/
+ENV/
+migrations/
+*.sqlite
+*.db
+*.pid
+
+# IDE specific
 .idea/
 .vscode/
 *.swp
 *.swo
+.DS_Store
+*.sublime-project
+*.sublime-workspace
 
-# Ignore local configuration
-config.local.js
-config.local.json
-settings.local.json
+# WhatsApp service specific
+whatsapp-service/baileys_store.json
+whatsapp-service/baileys_auth_info/
+whatsapp-service/node_modules/
+
+# Analytics data (jika ingin disimpan di git, hapus baris ini)
+# analytics_data/

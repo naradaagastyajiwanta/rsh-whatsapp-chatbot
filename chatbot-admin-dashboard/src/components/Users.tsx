@@ -5,9 +5,7 @@ import { format } from 'date-fns';
 import { id as idLocale, enUS } from 'date-fns/locale';
 import { UserAnalytics, UserData } from '../types/analytics';
 import { ThreadMessage } from '../types/thread';
-import { fetchAnalyticsUsers } from '../services/analyticsService';
-import { fetchThreadMessages } from '../services/threadService';
-import { getSelectedUser, setSelectedUser as saveSelectedUser } from '../services/userPreferencesService';
+import { fetchAnalyticsUsers, fetchThreadMessages, getSelectedUser, saveSelectedUser } from '../services/api';
 import Sidebar from './Sidebar';
 import CircularProgress from '@mui/material/CircularProgress';
 import websocketService from '../services/websocket';
@@ -458,9 +456,36 @@ const Users: React.FC = () => {
   };
   
   // Handle user selection dengan menyimpan pilihan ke server
-  const handleUserSelect = (phoneNumber: string) => {
+  const handleUserSelect = async (phoneNumber: string) => {
+    // Update state terlebih dahulu untuk responsivitas UI
     setSelectedUser(phoneNumber);
+    
+    // Segera fetch thread messages untuk UX yang lebih baik
     fetchUserThreadMessages(phoneNumber);
+    
+    // Simpan ke localStorage sebagai fallback utama
+    localStorage.setItem('selectedUser', phoneNumber);
+    
+    // Simpan selected user ke server untuk persistensi antar sesi
+    try {
+      console.log(`Attempting to save selected user to server: ${phoneNumber}`);
+      const result = await saveSelectedUser(phoneNumber);
+      console.log('Selected user successfully saved to server:', result);
+      
+      // Jika berhasil disimpan ke server, emitkan juga event WebSocket
+      // untuk memastikan semua client terhubung mendapatkan update yang sama
+      if (websocketService.isConnected()) {
+        websocketService.emit('user_preference_update', {
+          type: 'selected_user',
+          selected_user: phoneNumber
+        });
+        console.log('Sent selected user update via WebSocket');
+      }
+    } catch (error) {
+      console.error('Error saving selected user to server:', error);
+      // Tidak perlu tindakan tambahan karena localStorage sudah diset
+      // dan state sudah diupdate
+    }
   };
   
   // Function untuk me-refresh data secara manual

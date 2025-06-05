@@ -385,6 +385,36 @@ export const fetchAnalyticsUsers = async () => {
   }
 };
 
+// Function untuk mendapatkan user yang dipilih dari server
+export const getSelectedUser = async () => {
+  try {
+    console.log('Fetching selected user from server...');
+    const response = await api.get('/admin/preferences/selected_user');
+    console.log('Selected user response:', response.data);
+    return response.data.selected_user;
+  } catch (error) {
+    console.error('Error fetching selected user:', error);
+    return null;
+  }
+};
+
+// Function untuk menyimpan user yang dipilih ke server
+export const saveSelectedUser = async (phoneNumber: string) => {
+  try {
+    console.log(`Saving selected user to server: ${phoneNumber}`);
+    const response = await api.post('/admin/preferences/selected-user', {
+      selected_user: phoneNumber
+    });
+    console.log('Save selected user response:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error saving selected user:', error);
+    // Fallback: save to localStorage
+    localStorage.setItem('selectedUser', phoneNumber);
+    throw error;
+  }
+};
+
 // Mock statistics for development
 const mockStats: ChatStats = {
   totalChatsToday: 15,

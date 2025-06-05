@@ -41,7 +41,7 @@ def add_cors_headers(response, request):
     # JANGAN gunakan wildcard dengan credentials
     if origin in allowed_origins:
         response.headers['Access-Control-Allow-Origin'] = origin
-        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, X-Requested-With, Cache-Control, cache-control, Content-Length, Accept, Origin'
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, X-Requested-With, Cache-Control, cache-control, Content-Length, Accept, Origin, pragma'
         response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
         response.headers['Access-Control-Allow-Credentials'] = 'true'
         response.headers['Access-Control-Expose-Headers'] = 'Content-Type, Authorization'

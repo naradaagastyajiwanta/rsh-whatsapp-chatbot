@@ -476,6 +476,7 @@ def update_whatsapp_status():
     except Exception as e:
         logger.error(f"Error updating WhatsApp status: {str(e)}")
         return jsonify({"error": str(e)}), 500
+        
 
 # Analytics endpoints
 @app.route('/admin/analytics/users', methods=['GET', 'OPTIONS'])
@@ -541,7 +542,7 @@ def get_performance_analytics():
 # Performance analytics endpoint is already defined above
 
 # User preferences endpoints
-@app.route('/admin/preferences/selected-user', methods=['GET', 'OPTIONS'])
+@app.route('/admin/preferences/selected_user', methods=['GET', 'OPTIONS'])
 def get_selected_user():
     # Handle CORS preflight request
     if request.method == 'OPTIONS':
@@ -549,39 +550,99 @@ def get_selected_user():
         return response
     
     try:
-        selected_user = user_preferences.get_selected_user()
-        return jsonify({'selected_user': selected_user})
+        # Baca dari file JSON
+        preferences_path = os.path.join('analytics_data', 'user_preferences.json')
+        if os.path.exists(preferences_path):
+            with open(preferences_path, 'r') as file:
+                preferences = json.load(file)
+                return jsonify({'selected_user': preferences.get('selected_user', '')})
+        else:
+            # Jika file belum ada, buat file kosong
+            with open(preferences_path, 'w') as file:
+                json.dump({'selected_user': '', 'admin_preferences': {}}, file)
+            return jsonify({'selected_user': ''})
     except Exception as e:
-        logger.error(f'Error getting selected user: {str(e)}')
+        logger.error(f"Error saat mengambil selected user: {str(e)}")
         return jsonify({'error': str(e)}), 500
 
-@app.route('/admin/preferences/selected-user', methods=['POST', 'OPTIONS'])
-def set_selected_user():
+@app.route('/admin/preferences/selected_user', methods=['POST', 'OPTIONS'])
+def save_selected_user():
     # Handle CORS preflight request
     if request.method == 'OPTIONS':
         response = jsonify({'status': 'ok'})
         return response
     
     try:
-        data = request.json
-        if not data or 'selected_user' not in data:
-            return jsonify({'error': 'Missing selected_user in request body'}), 400
+        logger.info(f"Received POST to /admin/preferences/selected_user")
+        logger.info(f"Request content type: {request.content_type}")
+        logger.info(f"Request data: {request.data}")
         
-        user_id = data['selected_user']
-        success = user_preferences.set_selected_user(user_id)
+        # Coba parse request JSON
+        try:
+            data = request.json
+            logger.info(f"Parsed JSON data: {data}")
+        except Exception as json_error:
+            logger.error(f"Failed to parse JSON: {str(json_error)}")
+            return jsonify({'error': f'Invalid JSON format: {str(json_error)}'}), 400
         
-        if success:
-            # Broadcast update via WebSocket
-            if socketio:
-                socketio.emit('user_preference_update', {
-                    'type': 'selected_user',
-                    'selected_user': user_id
-                })
-            return jsonify({'success': True, 'selected_user': user_id})
+        if not data:
+            logger.error("Request data is empty")
+            return jsonify({'error': 'No data provided'}), 400
+            
+        if 'selected_user' not in data:
+            logger.error(f"No selected_user in data keys: {list(data.keys())}")
+            return jsonify({'error': 'No selected_user provided'}), 400
+            
+        selected_user = data.get('selected_user', '')
+        logger.info(f"Selected user value: '{selected_user}'")
+        
+        # Validasi format nomor telepon (opsional)
+        if selected_user and not selected_user.endswith('@s.whatsapp.net'):
+            logger.info(f"Adding @s.whatsapp.net suffix to {selected_user}")
+            selected_user = f"{selected_user}@s.whatsapp.net"
+        
+        # Simpan ke file JSON
+        preferences_path = os.path.join('analytics_data', 'user_preferences.json')
+        logger.info(f"Will save to {preferences_path}")
+        
+        # Pastikan direktori analytics_data ada
+        if not os.path.exists('analytics_data'):
+            logger.info("Creating analytics_data directory")
+            os.makedirs('analytics_data')
+        
+        # Baca file yang sudah ada jika tersedia
+        preferences = {'admin_preferences': {}}
+        if os.path.exists(preferences_path):
+            try:
+                with open(preferences_path, 'r') as file:
+                    preferences = json.load(file)
+                    logger.info(f"Loaded existing preferences: {preferences}")
+            except json.JSONDecodeError as json_err:
+                logger.warning(f"Invalid JSON in preferences file: {str(json_err)}")
         else:
-            return jsonify({'error': 'Failed to save selected user'}), 500
+            logger.info("Preferences file doesn't exist, will create new one")
+        
+        # Update dan simpan
+        preferences['selected_user'] = selected_user
+        logger.info(f"Updated preferences: {preferences}")
+        
+        # Tulis kembali ke file
+        try:
+            with open(preferences_path, 'w') as file:
+                json.dump(preferences, file)
+                logger.info(f"Successfully wrote preferences to {preferences_path}")
+        except Exception as write_error:
+            logger.error(f"Failed to write preferences: {str(write_error)}")
+            return jsonify({'error': f'Failed to save preferences: {str(write_error)}'}), 500
+        
+        # Catatan: Socket.io emit dihilangkan karena socketio tidak terdefinisi di app.py
+        # WebSocket event akan dihandle melalui polling dari frontend atau
+        # bisa diimplementasikan nanti dengan mengimpor socketio dari cors_server
+        logger.info(f"Selected user saved: {selected_user}")
+        
+        return jsonify({'success': True, 'selected_user': selected_user})
     except Exception as e:
-        logger.error(f'Error setting selected user: {str(e)}')
+        logger.error(f"Error saat menyimpan selected user: {str(e)}")
         return jsonify({'error': str(e)}), 500
 
 # Thread messages endpoint
@@ -783,7 +844,7 @@ if __name__ == '__main__':
         if origin in allowed_origins:
             response.headers['Access-Control-Allow-Origin'] = origin
             response.headers['Access-Control-Allow-Credentials'] = 'true'
-            response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, X-Requested-With, Cache-Control, cache-control, Content-Length, Accept, X-Requested-With, Origin'
+            response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, X-Requested-With, Cache-Control, cache-control, Content-Length, Accept, X-Requested-With, Origin, pragma'
             response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
             response.headers['Access-Control-Expose-Headers'] = 'Content-Type, Authorization'
             response.headers['Access-Control-Max-Age'] = '3600'
