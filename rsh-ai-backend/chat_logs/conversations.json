@@ -2364,11 +2364,29 @@
         "response": "Halo, Bapak Jiwan! Senang mendengar dari Bapak. Ada yang ingin Bapak diskusikan atau tanyakan hari ini? Saya siap membantu. \ud83c\udf3f",
         "timestamp": "2025-06-05T11:27:22.602598",
         "response_time": 12.478248119354248
+      },
+      {
+        "id": "6287811152506_1749098557",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "hi",
+        "response": "Hi, Bapak Jiwan! How can I assist you today? If you have any questions or topics you want to discuss, feel free to share. I'm here to help! \ud83c\udf3f",
+        "timestamp": "2025-06-05T11:42:37.107347",
+        "response_time": 7.378364324569702
+      },
+      {
+        "id": "6287811152506_1749102462",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "hai",
+        "response": "Hai, Bapak Jiwan! Senang mendengar dari Bapak. Ada yang ingin Bapak bicarakan atau tanyakan hari ini? Saya di sini untuk membantu. \ud83c\udf3f",
+        "timestamp": "2025-06-05T12:47:42.806269",
+        "response_time": 8.009389162063599
       }
     ],
     "first_timestamp": "2025-05-26T08:43:22.514563",
-    "last_timestamp": "2025-06-05T11:27:22.602598",
-    "last_message": "halo"
+    "last_timestamp": "2025-06-05T12:47:42.806269",
+    "last_message": "hai"
   },
   {
     "id": "conv_6283145916630",

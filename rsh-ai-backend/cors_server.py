@@ -14,8 +14,19 @@ app = Flask(__name__)
 # Initialize SocketIO
 socketio = SocketIO(app, cors_allowed_origins="*", async_mode='threading')
 
+# Define allowed origins (same as in app.py to avoid circular imports)
+allowed_origins = [
+    'http://localhost:3000',  # Next.js development server
+    'http://127.0.0.1:3000',
+    'http://localhost:8080',  # Alternative port
+    'http://127.0.0.1:8080'
+]
+
 # Fungsi untuk menambahkan header CORS ke respons
-def add_cors_headers(response):
+def add_cors_headers(response, request):
+    # Get origin from request
+    origin = request.headers.get('Origin')
+    
     # Hapus header CORS yang mungkin sudah ada untuk menghindari duplikasi
     if 'Access-Control-Allow-Origin' in response.headers:
         del response.headers['Access-Control-Allow-Origin']
@@ -23,16 +34,24 @@ def add_cors_headers(response):
         del response.headers['Access-Control-Allow-Headers']
     if 'Access-Control-Allow-Methods' in response.headers:
         del response.headers['Access-Control-Allow-Methods']
+    if 'Access-Control-Allow-Credentials' in response.headers:
+        del response.headers['Access-Control-Allow-Credentials']
         
-    # Tambahkan header CORS yang benar
-    response.headers['Access-Control-Allow-Origin'] = '*'
-    response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, Cache-Control, Pragma, Expires'
-    response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS, PATCH'
+    # Hanya set header CORS untuk origin yang diizinkan
+    # JANGAN gunakan wildcard dengan credentials
+    if origin in allowed_origins:
+        response.headers['Access-Control-Allow-Origin'] = origin
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, X-Requested-With, Cache-Control, cache-control, Content-Length, Accept, Origin'
+        response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
+        response.headers['Access-Control-Allow-Credentials'] = 'true'
+        response.headers['Access-Control-Expose-Headers'] = 'Content-Type, Authorization'
+        response.headers['Access-Control-Max-Age'] = '3600'
+    
     return response
 
 @app.after_request
 def after_request_middleware(response):
-    return add_cors_headers(response)
+    return add_cors_headers(response, request)
 
 # Endpoint health check
 @app.route('/health', methods=['GET', 'OPTIONS'])
@@ -40,7 +59,7 @@ def health_check():
     # Handle OPTIONS request for CORS preflight
     if request.method == 'OPTIONS':
         response = jsonify({})
-        return add_cors_headers(response)
+        return add_cors_headers(response, request)
     
     response = jsonify({
         'status': 'ok',
@@ -49,7 +68,7 @@ def health_check():
         'server_time': time.time()
     })
     
-    return response
+    return add_cors_headers(response, request)
 
 # Endpoint untuk analytics performance
 @app.route('/admin/analytics/performance', methods=['GET', 'OPTIONS'])

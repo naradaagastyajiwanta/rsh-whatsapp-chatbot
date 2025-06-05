@@ -476,8 +476,9 @@ const Users: React.FC = () => {
   useEffect(() => {
     console.log('Setting up data fetching and WebSocket');
     
-    // Muat data dari cache atau server
-    fetchUserData(false); // Gunakan cache jika tersedia untuk menghindari loading state
+    // PENTING: Segera ambil data users dari server tanpa menunggu cache
+    // Gunakan true untuk force refresh data langsung dari server
+    fetchUserData(true);
     
     // Ambil selectedUser dari server
     const loadSelectedUser = async () => {
@@ -486,14 +487,14 @@ const Users: React.FC = () => {
         if (serverSelectedUser) {
           console.log(`Loaded selected user from server: ${serverSelectedUser}`);
           setSelectedUser(serverSelectedUser);
-          fetchUserThreadMessages(serverSelectedUser, false);
+          fetchUserThreadMessages(serverSelectedUser, true); // Force refresh thread messages
         } else {
           // Fallback ke localStorage jika tidak ada di server
           const localSelectedUser = localStorage.getItem('selectedUser');
           if (localSelectedUser) {
             console.log(`Loaded selected user from localStorage: ${localSelectedUser}`);
             setSelectedUser(localSelectedUser);
-            fetchUserThreadMessages(localSelectedUser, false);
+            fetchUserThreadMessages(localSelectedUser, true); // Force refresh thread messages
           }
         }
       } catch (e) {
@@ -518,12 +519,7 @@ const Users: React.FC = () => {
     console.log('Setting up WebSocket connection');
 
   loadSelectedUser();
-
-  // Jika ada selectedUser yang tersimpan, muat thread messages-nya
-  if (selectedUser) {
-    fetchUserThreadMessages(selectedUser, false); // Gunakan cache jika tersedia
-  }
-
+    
   // Setup socket connection and handlers
   console.log('Setting up WebSocket connection');
 
@@ -531,6 +527,16 @@ const Users: React.FC = () => {
   if (!websocketService.isConnected()) {
     websocketService.connect();
   }
+    
+  // Tambahkan event listener untuk connection events
+  const socketConnectHandler = () => {
+    console.log('WebSocket connected, explicitly requesting analytics data');
+    // Segera minta data analytics saat terhubung
+    websocketService.emit('request_analytics_users');
+    websocketService.emit('subscribe_to_analytics');
+  };
+  
+  websocketService.on('connect', socketConnectHandler);
 
   // Definisikan callback untuk analytics:users event
   const analyticsUsersCallback = (data: UserAnalytics) => {
@@ -639,10 +645,12 @@ const Users: React.FC = () => {
   };
 
   // Explicitly subscribe to analytics events via WebSocket
-  if (websocketService.isConnected()) {
-    console.log('Explicitly subscribing to analytics events via socket');
-    websocketService.emit('subscribe_to_analytics');
-  }
+  console.log('Explicitly subscribing to analytics events via socket');
+  websocketService.emit('subscribe_to_analytics');
+  
+  // Segera minta data analytics users
+  console.log('Explicitly requesting analytics users data');
+  websocketService.emit('request_analytics_users');
 
   // Subscribe to all events
   websocketService.subscribeToAnalyticsUsers(analyticsUsersCallback);
@@ -651,7 +659,7 @@ const Users: React.FC = () => {
   websocketService.on('thread_update', threadUpdateCallback);
 
   // Setup a gentler background refresh that won't disrupt UX
-  // Only fetch if WebSocket isn't functioning or as a fallback
+  // Fetch every 15 seconds as backup if WebSocket fails
   let lastRefreshTime = Date.now();
   const backgroundRefreshInterval = setInterval(() => {
     // Only fetch if it's been at least 30 seconds since last update
@@ -688,6 +696,14 @@ const Users: React.FC = () => {
               users: mergedUsers
             };
           });
+          
+          // Simpan ke localStorage untuk persistence
+          try {
+            localStorage.setItem('userAnalytics', JSON.stringify(freshData));
+            localStorage.setItem('userAnalyticsLastFetch', new Date().getTime().toString());
+          } catch (e) {
+            console.error('Error saving to localStorage:', e);
+          }
         } else {
           console.log('Background refresh returned no users, keeping current state');
         }
@@ -698,20 +714,26 @@ const Users: React.FC = () => {
       console.log(`Last update was ${timeSinceLastUpdate/1000}s ago, skipping background refresh`);
     }
   }, 15000); // Check every 15 seconds
-
-  // Cleanup interval dan WebSocket saat komponen unmount
+  
+  // CLEAN UP FUNCTION - sangat penting untuk mencegah memory leak
   return () => {
-    console.log('Cleaning up component');
+    console.log('Cleaning up WebSocket subscriptions and intervals');
+    
+    // Clear the background refresh interval
     clearInterval(backgroundRefreshInterval);
+    
+    // Unsubscribe from all WebSocket events
     websocketService.unsubscribeFromAnalyticsUsers(analyticsUsersCallback);
     websocketService.off('analytics_update', analyticsUpdateCallback);
     websocketService.off('user_preference_update', userPreferenceCallback);
     websocketService.off('thread_update', threadUpdateCallback);
+    websocketService.off('connect', socketConnectHandler);
+    
+    console.log('Cleanup completed successfully');
   };
-}, [selectedUser]); // Re-run effect jika selectedUser berubah
 
-// Render loading state
-  
+}, [selectedUser]); // useEffect dependency
+
   // Render loading state
   if (isLoading) {
     return (

@@ -51,39 +51,38 @@ app = Flask(__name__)
 
 # Configure CORS to allow requests from the frontend
 allowed_origins = [
-    'http://localhost:3000',  # Next.js development server
-    'http://127.0.0.1:3000',
-    'http://localhost:8080',  # Alternative port
-    'http://127.0.0.1:8080'
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:3001",
+    "http://127.0.0.1:3001",
+    # Tambahkan semua origin yang valid di sini
 ]
 
-# Enable CORS with specific configuration
-CORS(app, 
-     resources={r"/*": {
-         "origins": allowed_origins, 
-         "supports_credentials": True,
-         "allow_headers": ["Content-Type", "Authorization", "X-Requested-With"],
-         "expose_headers": ["Content-Type", "Authorization"],
-         "allow_methods": ["GET", "POST", "OPTIONS", "PUT", "DELETE"],
-         "max_age": 3600
-     }})
-
-# Add CORS headers to all responses
-@app.after_request
-def after_request(response):
-    # Bypass cache-control for preflight requests
-    if request.method == 'OPTIONS':
-        response.headers.add('Access-Control-Allow-Origin', '*')
-        response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization,X-Requested-With')
-        response.headers.add('Access-Control-Allow-Methods', 'GET,POST,OPTIONS,PUT,DELETE')
-        # Remove cache-control header which is causing issues
-        if 'Cache-Control' in response.headers:
-            del response.headers['Cache-Control']
-    return response
+# Initialize CORS but don't automatically apply it
+# We'll handle this manually in the after_request handler
+cors = CORS(app, resources={r"/*": {"origins": []}}, automatic_options=False)
 
 # Register blueprints
 app.register_blueprint(admin_bp, url_prefix='/admin')
 app.register_blueprint(document_bp, url_prefix='/documents')
+
+# Add OPTIONS method handler for all routes to support CORS preflight requests
+@app.route('/', defaults={'path': ''}, methods=['OPTIONS'])
+@app.route('/<path:path>', methods=['OPTIONS'])
+def options_handler(path):
+    response = app.make_default_options_response()
+    return response
+
+# Add a special health check endpoint for CORS testing
+@app.route('/cors-test', methods=['GET', 'OPTIONS'])
+def cors_test():
+    logger.info(f'CORS test requested from: {request.headers.get("Origin", "Unknown")}')
+    return jsonify({
+        'status': 'ok',
+        'message': 'CORS is working correctly',
+        'headers_received': dict(request.headers),
+        'origin': request.headers.get('Origin', 'Unknown')
+    })
 
 # Add a route to handle CORS preflight requests
 @app.route('/health', methods=['GET', 'OPTIONS'])
@@ -763,23 +762,43 @@ if __name__ == '__main__':
     })
     
     # Add CORS headers to all responses
+    # Comprehensive CORS handling in a single place to avoid duplicated headers
     @app.after_request
-    def after_request(response):
-        origin = request.headers.get('Origin')
+    def add_cors_headers(response):
+        # Get origin from request
+        origin = request.headers.get('Origin', '')
+        
+        # First, clear any existing CORS headers to prevent duplicates
+        if 'Access-Control-Allow-Origin' in response.headers:
+            del response.headers['Access-Control-Allow-Origin']
+        if 'Access-Control-Allow-Headers' in response.headers:
+            del response.headers['Access-Control-Allow-Headers']
+        if 'Access-Control-Allow-Methods' in response.headers:
+            del response.headers['Access-Control-Allow-Methods']
+        if 'Access-Control-Allow-Credentials' in response.headers:
+            del response.headers['Access-Control-Allow-Credentials']
+        
+        # Set CORS headers for all responses regardless of origin
+        # CRITICAL: For credentials support, must specify exact origin, not wildcard *
         if origin in allowed_origins:
-            response.headers.add('Access-Control-Allow-Origin', origin)
-            response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-            response.headers.add('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS')
-            response.headers.add('Access-Control-Allow-Credentials', 'true')
-        else:
-            # For development, allow all origins if not in the allowed list
-            response.headers.add('Access-Control-Allow-Origin', '*')
-            response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-            response.headers.add('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS')
+            response.headers['Access-Control-Allow-Origin'] = origin
+            response.headers['Access-Control-Allow-Credentials'] = 'true'
+            response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, X-Requested-With, Cache-Control, cache-control, Content-Length, Accept, X-Requested-With, Origin'
+            response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
+            response.headers['Access-Control-Expose-Headers'] = 'Content-Type, Authorization'
+            response.headers['Access-Control-Max-Age'] = '3600'
+        
+        # Special handling for preflight OPTIONS requests - make sure they get a 200 response
+        if request.method == 'OPTIONS':
+            # Remove cache-control header which is causing issues
+            if 'Cache-Control' in response.headers:
+                del response.headers['Cache-Control']
+            # Ensure OPTIONS requests return 200 OK
+            response.status_code = 200
         
         # Log the request and response for debugging
-        logger.debug(f"Request: {request.method} {request.path} - Origin: {origin}")
-        logger.debug(f"Response headers: {dict(response.headers)}")
+        logger.debug(f"CORS: {request.method} {request.path} - Origin: {origin} - Status: {response.status_code}")
+        logger.debug(f"CORS Headers: {dict(response.headers)}")
         
         return response
     

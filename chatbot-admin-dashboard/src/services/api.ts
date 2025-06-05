@@ -14,6 +14,7 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  withCredentials: true,   // Penting untuk CORS dengan credentials
 });
 
 // Function to fetch all chats
@@ -363,11 +364,23 @@ export const fetchAnalyticsPerformance = async () => {
 export const fetchAnalyticsUsers = async () => {
   try {
     console.log('Fetching user analytics...');
-    const response = await api.get('/analytics/users');
+    // Memperbaiki path endpoint sesuai dengan backend
+    const response = await api.get('/admin/analytics/users');
     console.log('User analytics response:', response.data);
     return response.data;
   } catch (error) {
     console.error('Error fetching user analytics:', error);
+    // Tambahkan log detail untuk debugging
+    if (axios.isAxiosError(error)) {
+      console.error('Axios error details:', {
+        message: error.message,
+        status: error.response?.status,
+        statusText: error.response?.statusText,
+        url: error.config?.url,
+        headers: error.config?.headers,
+        responseData: error.response?.data
+      });
+    }
     throw error;
   }
 };
