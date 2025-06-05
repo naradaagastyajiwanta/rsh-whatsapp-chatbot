@@ -96,6 +96,12 @@ interface ThreadViewProps {
   onRefresh: (phoneNumber: string) => void;
 }
 
+interface AnalyticsViewProps {
+  phoneNumber: string;
+  userData: UserData;
+  isLoading: boolean;
+}
+
 const ThreadView: React.FC<ThreadViewProps> = ({ phoneNumber, messages, isLoading, onRefresh }) => {
   const { t } = useLanguage();
   
@@ -121,7 +127,7 @@ const ThreadView: React.FC<ThreadViewProps> = ({ phoneNumber, messages, isLoadin
       {/* Header dengan tombol refresh */}
       <div className="bg-white p-4 shadow-sm flex justify-between items-center">
         <div>
-          <h2 className="text-lg font-semibold">{phoneNumber}</h2>
+          <h2 className="text-lg font-semibold">{t('conversations.chatThread')}</h2>
           <p className="text-sm text-gray-500">
             {messages.length > 0 ? 
               t('conversations.messagesCount', { count: messages.length }) : 
@@ -234,6 +240,178 @@ const ThreadView: React.FC<ThreadViewProps> = ({ phoneNumber, messages, isLoadin
     </div>
   );
 };
+
+const AnalyticsView: React.FC<AnalyticsViewProps> = ({ phoneNumber, userData, isLoading }) => {
+  const { t, language } = useLanguage();
+  
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-full">
+        <CircularProgress />
+      </div>
+    );
+  }
+  
+  if (!userData) {
+    return (
+      <div className="h-full flex flex-col">
+        <div className="bg-white p-4 shadow-sm">
+          <h2 className="text-lg font-semibold">{t('analytics.analyticsThread')}</h2>
+        </div>
+        <div className="flex-1 flex items-center justify-center p-4">
+          <div className="text-center">
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              className="h-16 w-16 text-gray-400 mx-auto mb-4" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={1.5} 
+                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" 
+              />
+            </svg>
+            <h3 className="text-lg font-medium text-gray-600">{t('analytics.noDataAvailable')}</h3>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  
+  // Extract user details
+  const { details, latest_analysis, interactions } = userData;
+  const lastInteraction = new Date(details.last_interaction || details.first_interaction);
+  
+  return (
+    <div className="h-full flex flex-col">
+      <div className="bg-white p-4 shadow-sm">
+        <h2 className="text-lg font-semibold">{t('analytics.analyticsThread')}</h2>
+      </div>
+      
+      <div className="flex-1 overflow-y-auto p-4">
+        {/* User Profile Section */}
+        <div className="bg-white rounded-lg shadow-sm p-4 mb-4">
+          <h3 className="text-md font-semibold mb-2">{t('analytics.userProfile')}</h3>
+          
+          <div className="grid grid-cols-2 gap-2">
+            <div className="text-sm">
+              <span className="font-medium">{t('analytics.name')}:</span> 
+              <span className="ml-1">{details.name || t('analytics.notProvided')}</span>
+            </div>
+            
+            {details.gender && (
+              <div className="text-sm">
+                <span className="font-medium">{t('analytics.gender')}:</span>
+                <span className="ml-1">
+                  {details.gender === 'male' ? (language === 'en' ? 'Male' : 'Laki-laki') : (language === 'en' ? 'Female' : 'Perempuan')}
+                </span>
+              </div>
+            )}
+            
+            {details.age && (
+              <div className="text-sm">
+                <span className="font-medium">{t('analytics.age')}:</span>
+                <span className="ml-1">{details.age}</span>
+              </div>
+            )}
+            
+            <div className="text-sm">
+              <span className="font-medium">{t('analytics.lastActive')}:</span>
+              <span className="ml-1">{format(lastInteraction, 'dd MMM yyyy HH:mm', { locale: language === 'id' ? idLocale : enUS })}</span>
+            </div>
+          </div>
+        </div>
+        
+        {/* Health Complaints Section */}
+        {details.health_complaints && details.health_complaints.length > 0 && (
+          <div className="bg-white rounded-lg shadow-sm p-4 mb-4">
+            <h3 className="text-md font-semibold mb-2">{t('analytics.complaints')}</h3>
+            <div className="flex flex-wrap gap-1">
+              {details.health_complaints.map((complaint, index) => (
+                <span 
+                  key={index}
+                  className="px-2 py-1 text-xs bg-red-100 text-red-800 rounded-full"
+                >
+                  {complaint}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+        
+        {/* Conversion Barriers Section */}
+        {details.conversion_barriers && details.conversion_barriers.length > 0 && (
+          <div className="bg-white rounded-lg shadow-sm p-4 mb-4">
+            <h3 className="text-md font-semibold mb-2">{t('analytics.barriers')}</h3>
+            <div className="flex flex-wrap gap-1">
+              {details.conversion_barriers.map((barrier, index) => (
+                <span 
+                  key={index}
+                  className="px-2 py-1 text-xs bg-yellow-100 text-yellow-800 rounded-full"
+                >
+                  {barrier}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+        
+        {/* Interaction History */}
+        {interactions && interactions.length > 0 && (
+          <div className="bg-white rounded-lg shadow-sm p-4">
+            <h3 className="text-md font-semibold mb-2">{t('analytics.interactionHistory')}</h3>
+            <div className="space-y-3">
+              {interactions.map((interaction, index) => {
+                const interactionDate = new Date(interaction.timestamp);
+                return (
+                  <div key={index} className="border-l-2 border-blue-500 pl-3 py-1">
+                    <div className="text-xs text-gray-500">
+                      {format(interactionDate, 'dd MMM yyyy HH:mm', { locale: language === 'id' ? idLocale : enUS })}
+                    </div>
+                    
+                    {interaction.analysis.emotion && (
+                      <div className="text-sm mt-1">
+                        <span className="font-medium">{t('analytics.emotion')}:</span>
+                        <span className={`ml-1 ${interaction.analysis.emotion === 'positive' ? 'text-green-600' : interaction.analysis.emotion === 'negative' ? 'text-red-600' : 'text-gray-600'}`}>
+                          {interaction.analysis.emotion === 'positive' ? t('analytics.positive') : 
+                           interaction.analysis.emotion === 'negative' ? t('analytics.negative') : t('analytics.neutral')}
+                        </span>
+                      </div>
+                    )}
+                    
+                    {interaction.analysis.interest_level && (
+                      <div className="text-sm">
+                        <span className="font-medium">{t('analytics.interestLevel')}:</span>
+                        <span className="ml-1">
+                          {interaction.analysis.interest_level === 'high' ? t('analytics.high') : 
+                           interaction.analysis.interest_level === 'medium' ? t('analytics.medium') : t('analytics.low')}
+                        </span>
+                      </div>
+                    )}
+                    
+                    {interaction.analysis.urgency_level && (
+                      <div className="text-sm">
+                        <span className="font-medium">{t('analytics.urgencyLevel')}:</span>
+                        <span className={`ml-1 ${interaction.analysis.urgency_level === 'high' ? 'text-red-600' : interaction.analysis.urgency_level === 'medium' ? 'text-yellow-600' : 'text-green-600'}`}>
+                          {interaction.analysis.urgency_level === 'high' ? t('analytics.high') : 
+                           interaction.analysis.urgency_level === 'medium' ? t('analytics.medium') : t('analytics.low')}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
 
 const Users: React.FC = () => {
   const { t } = useLanguage();
@@ -828,7 +1006,7 @@ const Users: React.FC = () => {
           
           <div className="flex-1 overflow-hidden flex">
             {/* Left panel - User list */}
-            <div className="w-1/3 p-4 overflow-y-auto border-r">
+            <div className="w-1/4 p-4 overflow-y-auto border-r">
               <div className="mb-4">
                 <button 
                   onClick={handleRefreshData}
@@ -869,8 +1047,8 @@ const Users: React.FC = () => {
               )}
             </div>
             
-            {/* Right panel - Thread messages */}
-            <div className="w-2/3 overflow-hidden">
+            {/* Middle panel - Chat conversation thread */}
+            <div className="w-2/5 overflow-hidden border-r">
               {selectedUser ? (
                 <ThreadView 
                   phoneNumber={selectedUser}
@@ -897,6 +1075,38 @@ const Users: React.FC = () => {
                   <h3 className="text-lg font-medium text-gray-600">{t('users.selectUser')}</h3>
                   <p className="text-gray-500 mt-2">
                     {t('users.selectUserDescription')}
+                  </p>
+                </div>
+              )}
+            </div>
+            
+            {/* Right panel - Analytics thread */}
+            <div className="w-1/3 overflow-hidden">
+              {selectedUser && users[selectedUser] ? (
+                <AnalyticsView
+                  phoneNumber={selectedUser}
+                  userData={users[selectedUser]}
+                  isLoading={isLoading}
+                />
+              ) : (
+                <div className="flex flex-col items-center justify-center h-full p-6 text-center">
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    className="h-16 w-16 text-gray-400 mb-4" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={1.5} 
+                      d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" 
+                    />
+                  </svg>
+                  <h3 className="text-lg font-medium text-gray-600">{t('analytics.selectUser')}</h3>
+                  <p className="text-gray-500 mt-2">
+                    {t('analytics.selectUserDescription')}
                   </p>
                 </div>
               )}

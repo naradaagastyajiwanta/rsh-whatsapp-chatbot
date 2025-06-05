@@ -2400,11 +2400,29 @@
         "response": "hi",
         "timestamp": "2025-06-05T17:20:27.416384",
         "response_time": 0.1
+      },
+      {
+        "id": "6287811152506_1749120654",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "ohio",
+        "response": "Halo kembali, Bapak Jiwan! Terima kasih sudah berkomunikasi. Ada yang ingin Bapak bicarakan atau tanyakan? Saya di sini untuk membantu. \ud83c\udf3f",
+        "timestamp": "2025-06-05T17:50:54.446958",
+        "response_time": 8.356422662734985
+      },
+      {
+        "id": "6287811152506_1749129776",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "halo",
+        "response": "Halo, Bapak Jiwan! Senang mendengar dari Bapak lagi. Ada yang ingin Bapak sampaikan atau tanyakan hari ini? Saya siap membantu. \ud83c\udf3f",
+        "timestamp": "2025-06-05T20:22:56.670933",
+        "response_time": 7.516368627548218
       }
     ],
     "first_timestamp": "2025-05-26T08:43:22.514563",
-    "last_timestamp": "2025-06-05T17:20:27.416384",
-    "last_message": "[This is a placeholder for user's previous message]"
+    "last_timestamp": "2025-06-05T20:22:56.670933",
+    "last_message": "halo"
   },
   {
     "id": "conv_6283145916630",
@@ -3350,11 +3368,74 @@
         "response": "sav",
         "timestamp": "2025-06-05T17:20:02.291377",
         "response_time": 0.1
+      },
+      {
+        "id": "6281238321622_1749120283",
+        "sender": "6281238321622@s.whatsapp.net",
+        "sender_name": "6281238321622",
+        "message": "[This is a placeholder for user's previous message]",
+        "response": "oi",
+        "timestamp": "2025-06-05T17:44:43.191280",
+        "response_time": 0.1
+      },
+      {
+        "id": "6281238321622_1749120354",
+        "sender": "6281238321622@s.whatsapp.net",
+        "sender_name": "Savita Kusumasari",
+        "message": "Kenapii?",
+        "response": "Ksp, penting untuk memahami bahwa setiap individu memiliki pengalaman dan tantangan unik dalam perjalanan menuju kesehatan. Dalam sesi privat, Ksp akan mendapatkan perhatian khusus yang memungkinkan terapis untuk memahami kondisi Ksp secara mendalam. \n\nPendekatan ini membantu terapis untuk menyesuaikan teknik dan strategi yang akan digunakan, sehingga lebih efektif dalam mencapai tujuan meredakan insomnia dan stres. Ksp tidak hanya mendapatkan bimbingan, tetapi juga dukungan emosional dalam suasana yang aman dan nyaman.\n\nJika Ksp terbuka untuk itu, kami bisa melanjutkan dengan penjadwalan sesi privat. Namun, jika ada hal lain yang ingin Ksp ketahui atau diskusikan, saya siap untuk mendengarkan. Apa pendapat Ksp?",
+        "timestamp": "2025-06-05T17:45:54.400325",
+        "response_time": 8.784554481506348
+      },
+      {
+        "id": "6281238321622_1749120443",
+        "sender": "6281238321622@s.whatsapp.net",
+        "sender_name": "6281238321622",
+        "message": "[This is a placeholder for user's previous message]",
+        "response": "hah",
+        "timestamp": "2025-06-05T17:47:23.345175",
+        "response_time": 0.1
+      },
+      {
+        "id": "6281238321622_1749120456",
+        "sender": "6281238321622@s.whatsapp.net",
+        "sender_name": "Savita Kusumasari",
+        "message": "Apakah ada testimoni peserta sebelumnya?",
+        "response": "Tentu, Ksp. Kami memiliki banyak testimoni dari peserta sebelumnya yang telah menjalani program di Rumah Sehat Holistik Satu Bumi. Banyak yang merasakan perubahan positif dalam kualitas tidur, pengurangan stres, dan peningkatan kesejahteraan secara keseluruhan setelah mengikuti program kami.\n\nBerikut adalah beberapa pengalaman dari peserta sebelumnya:\n\n1. **Mia, 28 tahun**: \"Setelah mengikuti program, saya merasa jauh lebih tenang dan bisa tidur lebih nyenyak. Saya juga belajar teknik relaksasi yang saya gunakan sehari-hari.\"\n\n2. **Budi, 35 tahun**: \"Sesi privat sangat membantu. Terapisnya benar-benar mendengarkan dan memberikan langkah-langkah konkret untuk mengatasi masalah tidur saya. Rasanya saya mendapatkan dukungan yang saya butuhkan.\"\n\n3. **Sari, 30 tahun**: \"Awalnya saya ragu, tapi setelah mengikuti program, saya bisa fokus di pekerjaan dan tidak lagi merasa cepat terbakar. Kualitas tidur saya meningkat drastis.\"\n\nJika Ksp ingin, saya bisa membantu memfasilitasi akses ke lebih banyak testimoni atau informasi tentang pengalaman peserta sebelum ini. Bagaimana menurut Ksp?",
+        "timestamp": "2025-06-05T17:47:36.076041",
+        "response_time": 15.790038824081421
+      },
+      {
+        "id": "6281238321622_1749120463",
+        "sender": "6281238321622@s.whatsapp.net",
+        "sender_name": "Savita Kusumasari",
+        "message": "Yg mempunyai permasalahan spt saya?",
+        "response": "Tentu, Ksp. Banyak peserta sebelumnya yang menghadapi permasalahan serupa, seperti insomnia dan stres akibat tekanan kerja. Mereka merasakan dampak negatif pada kualitas tidur, fokus, dan emosi, mirip dengan pengalaman yang Ksp hadapi saat ini.\n\nBeberapa dari mereka yang mengalami insomnia dan stres di tempat kerja berbagi bahwa sesi privat membantu mereka merasa lebih dipahami. Dengan bimbingan terapis, mereka dapat menjelajahi akar penyebab masalah dan mencoba teknik relaksasi yang sesuai dengan kebutuhan mereka.\n\nAda yang mengungkapkan bahwa, setelah mengikuti program tersebut, mereka dapat menemukan cara untuk mengelola stres dan meningkatkan kualitas tidur mereka. Jika Ksp ingin mendengar lebih banyak tentang pengalaman spesifik dari peserta dengan masalah yang sama, saya bisa memberikan lebih banyak informasi.\n\nApakah ada yang khusus yang ingin Ksp tanyakan mengenai pengalaman peserta lainnya?",
+        "timestamp": "2025-06-05T17:47:43.205826",
+        "response_time": 17.903685331344604
+      },
+      {
+        "id": "6281238321622_1749120704",
+        "sender": "6281238321622@s.whatsapp.net",
+        "sender_name": "Savita Kusumasari",
+        "message": "Apakah mereka hanya 7 hari berada dirumah sehat?",
+        "response": "Ksp, program **7 Hari Menuju Sehat Raga & Jiwa** dirancang untuk berlangsung selama tujuh hari, dimana peserta tinggal di Rumah Sehat Holistik Satu Bumi. Selama periode tersebut, peserta akan mengikuti rangkaian kegiatan yang mencakup sesi terapi, teknik relaksasi, meditasi, dan diskusi kelompok.\n\nDalam periode tersebut, ada juga waktu untuk berinteraksi dengan peserta lain dan berbagi pengalaman, yang bisa menjadi sumber dukungan yang berharga. Namun, setelah program selesai, banyak peserta yang merasa terinspirasi untuk melanjutkan praktik yang mereka pelajari dalam kehidupan sehari-hari mereka. \n\nJika Ksp memiliki keterbatasan waktu atau preferensi untuk tidak menginap, sesi privat atau pendekatan lainnya juga bisa disesuaikan. Kami berusaha untuk memberikan fleksibilitas sesuai dengan kebutuhan setiap individu.\n\nApakah Ksp mempertimbangkan untuk mengikuti program ini secara penuh atau ada pertanyaan lain terkait durasi program?",
+        "timestamp": "2025-06-05T17:51:44.365086",
+        "response_time": 11.90145754814148
+      },
+      {
+        "id": "6281238321622_1749122298",
+        "sender": "6281238321622@s.whatsapp.net",
+        "sender_name": "Savita Kusumasari",
+        "message": "Apakah setelah 7 hari ada program lanjutan?",
+        "response": "Ya, Ksp, setelah mengikuti program **7 Hari Menuju Sehat Raga & Jiwa**, kami juga menawarkan beberapa pilihan program lanjutan bagi peserta yang ingin terus mendalami dan memelihara kemajuan yang telah mereka capai.\n\nProgram lanjutan bisa berupa:\n\n1. **Sesi Follow-Up**: Sesi privat mingguan atau bulanan untuk membahas perkembangan dan mendapatkan bimbingan lebih lanjut berdasarkan kebutuhan individu.\n\n2. **Kelas Relaksasi dan Meditasi**: Kelas rutin untuk membantu peserta mempertahankan praktik relaksasi dan meditasi, sehingga terus mendukung kesehatan mental dan emosional.\n\n3. **Kegiatan Komunitas**: Bergabung dalam komunitas kami untuk mendapatkan dukungan sosial dan berbagi pengalaman dengan para peserta lainnya.\n\nKami berusaha untuk membantu peserta merasa didukung bahkan setelah program utama selesai. Jika Ksp tertarik, kami dapat menjelaskan lebih rinci tentang pilihan ini dan bagaimana melanjutkannya. Apakah Ksp ingin tahu lebih lanjut?",
+        "timestamp": "2025-06-05T18:18:18.730973",
+        "response_time": 14.323664665222168
       }
     ],
     "first_timestamp": "2025-06-02T20:06:20.137754",
-    "last_timestamp": "2025-06-05T17:20:02.291377",
-    "last_message": "[This is a placeholder for user's previous message]"
+    "last_timestamp": "2025-06-05T18:18:18.730973",
+    "last_message": "Apakah setelah 7 hari ada program lanjutan?"
   },
   {
     "id": "conv_6282226067190",
@@ -3393,5 +3474,24 @@
     "first_timestamp": "2025-06-02T21:59:43.559604",
     "last_timestamp": "2025-06-02T21:59:43.559604",
     "last_message": "Nama saya ERNI \nJenis kelamin Perempuan \nUsia sudah mau masuk 53thn\nDomisili Makassar \nSaya sudah lama minum obat tekanan darah tinggi"
+  },
+  {
+    "id": "conv_6285933724363",
+    "sender": "6285933724363@s.whatsapp.net",
+    "sender_name": "Abhisheka",
+    "messages": [
+      {
+        "id": "6285933724363_1749121250",
+        "sender": "6285933724363@s.whatsapp.net",
+        "sender_name": "Abhisheka",
+        "message": "Halo pak",
+        "response": "Halo Ibu, selamat datang! Semoga hari Ibu menyenangkan. Sebelum saya bantu lebih lanjut, boleh saya tahu:  \n\u2022 Nama lengkap  \n\u2022 Jenis kelamin (agar saya bisa menyapa dengan tepat)  \n\u2022 Usia saat ini  \n\u2022 Domisili  \n\u2022 Dan keluhan utama yang sedang dirasakan saat ini?",
+        "timestamp": "2025-06-05T18:00:50.258815",
+        "response_time": 13.231500148773193
+      }
+    ],
+    "first_timestamp": "2025-06-05T18:00:50.258815",
+    "last_timestamp": "2025-06-05T18:00:50.258815",
+    "last_message": "Halo pak"
   }
 ]
