@@ -476,5 +476,279 @@
       "emotion": "neutral",
       "timestamp": "2025-06-01T20:32:04.446098"
     }
+  },
+  "6281336899436@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-02T17:59:38.135813",
+        "analysis": {
+          "name": "Saiful",
+          "age": null,
+          "gender": "male",
+          "location": "Lumajang",
+          "health_complaints": [
+            "tensi tidak stabil"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-02T17:59:38.134970"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-02T17:59:38.135813",
+    "details": {
+      "name": "Saiful",
+      "age": null,
+      "gender": "male",
+      "location": "Lumajang",
+      "health_complaints": [
+        "tensi tidak stabil"
+      ],
+      "conversion_barriers": [],
+      "last_interaction": "2025-06-02T17:59:38.135813",
+      "symptoms": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "Saiful",
+      "age": null,
+      "gender": "male",
+      "location": "Lumajang",
+      "health_complaints": [
+        "tensi tidak stabil"
+      ],
+      "symptoms": [],
+      "conversion_barriers": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral",
+      "timestamp": "2025-06-02T17:59:38.134970"
+    }
+  },
+  "62882016721849@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-02T19:56:44.652072",
+        "analysis": {
+          "name": "M. SOFYAN DAMANIK",
+          "age": 47,
+          "gender": "male",
+          "location": "LUBUK PAKAM SUMATERA UTARA",
+          "health_complaints": [
+            "TENSI TINGGI"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-02T19:56:44.651374"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-02T19:56:44.652072",
+    "details": {
+      "name": "M. SOFYAN DAMANIK",
+      "age": 47,
+      "gender": "male",
+      "location": "LUBUK PAKAM SUMATERA UTARA",
+      "health_complaints": [
+        "TENSI TINGGI"
+      ],
+      "conversion_barriers": [],
+      "last_interaction": "2025-06-02T19:56:44.652072",
+      "symptoms": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "M. SOFYAN DAMANIK",
+      "age": 47,
+      "gender": "male",
+      "location": "LUBUK PAKAM SUMATERA UTARA",
+      "health_complaints": [
+        "TENSI TINGGI"
+      ],
+      "symptoms": [],
+      "conversion_barriers": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral",
+      "timestamp": "2025-06-02T19:56:44.651374"
+    }
+  },
+  "6285813926536@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-02T20:02:43.487195",
+        "analysis": {
+          "name": "sahroni",
+          "age": 47,
+          "gender": "male",
+          "location": "karawang",
+          "health_complaints": [
+            "hipertensi",
+            "GERD"
+          ],
+          "symptoms": [
+            "aslam"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": null,
+          "emotion": "neutral",
+          "timestamp": "2025-06-02T20:02:43.486719"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-02T20:02:43.487195",
+    "details": {
+      "name": "sahroni",
+      "age": 47,
+      "gender": "male",
+      "location": "karawang",
+      "health_complaints": [
+        "GERD",
+        "hipertensi"
+      ],
+      "conversion_barriers": [],
+      "last_interaction": "2025-06-02T20:02:43.487195",
+      "symptoms": [
+        "aslam"
+      ],
+      "medical_history": null,
+      "urgency_level": null,
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "sahroni",
+      "age": 47,
+      "gender": "male",
+      "location": "karawang",
+      "health_complaints": [
+        "hipertensi",
+        "GERD"
+      ],
+      "symptoms": [
+        "aslam"
+      ],
+      "conversion_barriers": [],
+      "medical_history": null,
+      "urgency_level": null,
+      "emotion": "neutral",
+      "timestamp": "2025-06-02T20:02:43.486719"
+    }
+  },
+  "6281238321622@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-02T20:09:09.614786",
+        "analysis": {
+          "name": "Ksp",
+          "age": 24,
+          "gender": "female",
+          "location": "garuda maju",
+          "health_complaints": [
+            "insomnia"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-02T20:09:09.614231"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-02T20:09:09.614786",
+    "details": {
+      "name": "Ksp",
+      "age": 24,
+      "gender": "female",
+      "location": "garuda maju",
+      "health_complaints": [
+        "insomnia"
+      ],
+      "conversion_barriers": [],
+      "last_interaction": "2025-06-02T20:09:09.614786",
+      "symptoms": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "Ksp",
+      "age": 24,
+      "gender": "female",
+      "location": "garuda maju",
+      "health_complaints": [
+        "insomnia"
+      ],
+      "symptoms": [],
+      "conversion_barriers": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral",
+      "timestamp": "2025-06-02T20:09:09.614231"
+    }
+  },
+  "628124469964@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-02T21:59:34.861781",
+        "analysis": {
+          "name": "ERNI",
+          "age": 53,
+          "gender": "female",
+          "location": "Makassar",
+          "health_complaints": [
+            "tekanan darah tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": "sudah lama minum obat tekanan darah tinggi",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-02T21:59:34.768718"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-02T21:59:34.861781",
+    "details": {
+      "name": "ERNI",
+      "age": 53,
+      "gender": "female",
+      "location": "Makassar",
+      "health_complaints": [
+        "tekanan darah tinggi"
+      ],
+      "conversion_barriers": [],
+      "last_interaction": "2025-06-02T21:59:34.861781",
+      "symptoms": [],
+      "medical_history": "sudah lama minum obat tekanan darah tinggi",
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "ERNI",
+      "age": 53,
+      "gender": "female",
+      "location": "Makassar",
+      "health_complaints": [
+        "tekanan darah tinggi"
+      ],
+      "symptoms": [],
+      "conversion_barriers": [],
+      "medical_history": "sudah lama minum obat tekanan darah tinggi",
+      "urgency_level": "medium",
+      "emotion": "neutral",
+      "timestamp": "2025-06-02T21:59:34.768718"
+    }
   }
 }

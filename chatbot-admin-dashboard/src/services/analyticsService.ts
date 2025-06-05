@@ -97,31 +97,71 @@ export async function fetchAnalyticsUsers(sender?: string) {
         'Cache-Control': 'no-cache',
         'Pragma': 'no-cache',
         'Expires': '0',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
       },
-      timeout: 10000, // 10 second timeout
+      timeout: 15000, // 15 second timeout
       withCredentials: true // Include credentials for CORS
     });
     
     console.log('Analytics users API response status:', response.status);
-    console.log('Analytics users response data:', JSON.stringify(response.data, null, 2));
+    console.log('Analytics users response headers:', response.headers);
+    console.log('Analytics users raw data type:', typeof response.data);
     
     // Validate response data structure
-    if (!response.data || typeof response.data !== 'object') {
-      console.error('Invalid analytics users response format:', response.data);
-      throw new Error('Invalid response format from analytics users API');
+    if (!response.data) {
+      console.error('Empty response data');
+      return {
+        total_users: 0,
+        active_users: 0,
+        new_users: 0,
+        users: {}
+      };
+    }
+    
+    // Handle if response.data is a string (sometimes happens with some JSON parsing issues)
+    let parsedData = response.data;
+    if (typeof parsedData === 'string') {
+      try {
+        parsedData = JSON.parse(parsedData);
+        console.log('Parsed string data into object');
+      } catch (e) {
+        console.error('Failed to parse string data:', e);
+        parsedData = {};
+      }
+    }
+    
+    // Ensure users object exists and is valid
+    if (!parsedData.users || typeof parsedData.users !== 'object') {
+      console.warn('Users data is missing or invalid:', parsedData.users);
+      parsedData.users = {};
+      
+      // Try to extract users from structure if it exists elsewhere
+      if (parsedData.data && typeof parsedData.data === 'object') {
+        console.log('Attempting to extract users from data property');
+        parsedData.users = parsedData.data.users || {};
+      }
     }
     
     // Normalize the response data structure to match the expected format
     const normalizedData = {
-      total_users: response.data.total_users || 0,
-      active_users: response.data.active_users || 0,
-      new_users: response.data.new_users || 0,
-      users: response.data.users || {}
+      total_users: parsedData.total_users || 0,
+      active_users: parsedData.active_users || 0,
+      new_users: parsedData.new_users || 0,
+      users: parsedData.users || {}
     };
     
-    console.log('Normalized analytics users data:', JSON.stringify(normalizedData, null, 2));
-    console.log('Users count:', Object.keys(normalizedData.users || {}).length);
+    console.log('Normalized analytics users data structure:', 
+      Object.keys(normalizedData), 
+      'Users count:', Object.keys(normalizedData.users).length);
+    
+    // Debug first user if available
+    const userKeys = Object.keys(normalizedData.users);
+    if (userKeys.length > 0) {
+      const firstUserKey = userKeys[0];
+      console.log('Sample user data structure:', 
+        Object.keys(normalizedData.users[firstUserKey]));
+    }
     
     return normalizedData;
   } catch (error) {

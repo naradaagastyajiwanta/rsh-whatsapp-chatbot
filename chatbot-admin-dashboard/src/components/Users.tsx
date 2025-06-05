@@ -358,7 +358,27 @@ const Users: React.FC = () => {
       console.log('Fetched fresh user analytics data:', userData);
       
       if (userData && userData.users) {
-        setUserAnalytics(userData);
+        // Menggunakan pendekatan merge yang sama dengan WebSocket handler
+        setUserAnalytics(prevState => {
+          // Jika prevState kosong atau tidak memiliki users, gunakan data baru
+          if (!prevState || !prevState.users || Object.keys(prevState.users).length === 0) {
+            return userData;
+          }
+          
+          // Merge users dari data baru dengan data yang sudah ada
+          const mergedUsers = { ...prevState.users };
+          
+          // Update atau tambahkan user baru
+          Object.entries(userData.users).forEach(([phone, userData]) => {
+            mergedUsers[phone] = userData as UserData;
+          });
+          
+          // Return state baru dengan users yang sudah di-merge
+          return {
+            ...userData,
+            users: mergedUsers
+          };
+        });
       } else {
         // Jika gagal fetch data baru tapi ada cache, gunakan cache
         if (cachedData) {
@@ -494,79 +514,203 @@ const Users: React.FC = () => {
       fetchUserThreadMessages(selectedUser, false); // Gunakan cache jika tersedia
     }
     
-    // Set up WebSocket untuk pembaruan real-time
-    const setupWebSocket = () => {
-      console.log('Setting up WebSocket connection');
-      websocketService.connect();
-      
-      // Listen untuk pembaruan data pengguna
-      websocketService.on('analytics_update', (data: any) => {
-        if (data.type === 'users') {
-          console.log('Received user analytics update via WebSocket');
-          // Pastikan data yang diterima valid
-          if (data.data && data.data.users) {
-            // Update state dengan data baru
-            setUserAnalytics(data.data);
-            
-            // Jika ada selected_user di data, update state
-            if (data.data.selected_user) {
-              setSelectedUser(data.data.selected_user);
+    // Setup socket connection and handlers
+    console.log('Setting up WebSocket connection');
+
+  loadSelectedUser();
+
+  // Jika ada selectedUser yang tersimpan, muat thread messages-nya
+  if (selectedUser) {
+    fetchUserThreadMessages(selectedUser, false); // Gunakan cache jika tersedia
+  }
+
+  // Setup socket connection and handlers
+  console.log('Setting up WebSocket connection');
+
+  // Force websocket connection if not already connected
+  if (!websocketService.isConnected()) {
+    websocketService.connect();
+  }
+
+  // Definisikan callback untuk analytics:users event
+  const analyticsUsersCallback = (data: UserAnalytics) => {
+    console.log('Received analytics:users event:', data);
+    console.log('Users count:', data && data.users ? Object.keys(data.users).length : 0);
+
+    // Pastikan data yang diterima valid
+    if (data) {
+      // Buat deep copy data untuk menghindari referensi issues
+      const safeData = JSON.parse(JSON.stringify(data));
+
+      // Ensure users object exists
+      if (!safeData.users) safeData.users = {};
+
+      // Merge data baru dengan data yang sudah ada, bukan mengganti seluruhnya
+      setUserAnalytics(prevState => {
+        // Jika prevState kosong atau tidak memiliki users, gunakan data baru
+        if (!prevState || !prevState.users || Object.keys(prevState.users).length === 0) {
+          console.log('No previous state, using new data directly');
+          return safeData;
+        }
+
+        // Merge users dari data baru dengan data yang sudah ada
+        const mergedUsers = { ...prevState.users };
+
+        // Update atau tambahkan user baru
+        if (safeData.users) {
+          Object.entries(safeData.users).forEach(([phone, userData]) => {
+            if (userData) {
+              mergedUsers[phone] = userData as UserData;
             }
-          }
+          });
         }
+
+        console.log('Merged users count:', Object.keys(mergedUsers).length);
+
+        // Return state baru dengan users yang sudah di-merge
+        return {
+          ...safeData,
+          users: mergedUsers
+        };
       });
-      
-      // Listen untuk pembaruan preferensi pengguna
-      websocketService.on('user_preference_update', (data: any) => {
-        if (data.type === 'selected_user' && data.selected_user) {
-          console.log(`Received selected user update via WebSocket: ${data.selected_user}`);
-          setSelectedUser(data.selected_user);
-        }
-      });
-      
-      // Listen untuk pembaruan thread messages
-      websocketService.on('thread_update', (data: any) => {
-        if (data.sender === selectedUser) {
-          console.log(`Received thread update for ${selectedUser} via WebSocket`);
-          if (data.messages && Array.isArray(data.messages)) {
-            setThreadMessages(data.messages);
-          }
-        }
-      });
-      
-      return () => {
-        websocketService.disconnect();
-      };
-    };
-    
-    const cleanup = setupWebSocket();
-    
-    // Polling untuk memastikan data tetap segar
-    const pollingInterval = setInterval(() => {
-      // Fetch user data di background
-      fetchAnalyticsUsers().then(freshData => {
-        if (freshData && freshData.users) {
-          console.log('Polling refresh of user analytics data');
-          setUserAnalytics(freshData);
-        }
-      }).catch(err => console.error('Polling fetch error:', err));
-      
-      // Fetch thread messages jika ada selectedUser
-      if (selectedUser) {
-        fetchThreadMessages(selectedUser).then(freshData => {
-          if (freshData && freshData.messages) {
-            console.log(`Polling refresh of thread messages for ${selectedUser}`);
-            setThreadMessages(freshData.messages);
-          }
-        }).catch(err => console.error('Polling thread fetch error:', err));
+
+      // Simpan data ke localStorage untuk fallback
+      try {
+        const dataToStore = { ...safeData };
+        if (!dataToStore.users) dataToStore.users = {};
+        localStorage.setItem('userAnalytics', JSON.stringify(dataToStore));
+      } catch (err) {
+        console.error('Error saving analytics data to localStorage:', err);
       }
-    }, 10000); // Polling setiap 10 detik
-    
-    return () => {
-      cleanup();
-      clearInterval(pollingInterval);
-    };
-  }, [selectedUser]); // Re-run effect jika selectedUser berubah
+    }
+  };
+
+  // Definisikan callback untuk analytics_update event
+  const analyticsUpdateCallback = (data: any) => {
+    console.log('Received analytics_update event:', data);
+
+    // Check if this is user analytics data
+    if (data && data.type === 'user_analytics' && data.data) {
+      console.log('Processing user analytics from analytics_update');
+
+      // Process the data similar to analytics:users event
+      const safeData = JSON.parse(JSON.stringify(data.data));
+
+      if (!safeData.users) {
+        console.warn('analytics_update data missing users object');
+        return;
+      }
+
+      // Update state with merged data
+      setUserAnalytics(prevState => {
+        if (!prevState || !prevState.users) return safeData;
+
+        const mergedUsers = { ...prevState.users };
+
+        // Merge new users with existing ones
+        Object.entries(safeData.users).forEach(([phone, userData]) => {
+          if (userData) mergedUsers[phone] = userData as UserData;
+        });
+
+        return {
+          ...safeData,
+          users: mergedUsers
+        };
+      });
+    }
+  };
+
+  // Definisikan callback untuk user_preference_update event
+  const userPreferenceCallback = (data: any) => {
+    if (data && data.type === 'selected_user' && data.selected_user) {
+      console.log(`Received selected user update via WebSocket: ${data.selected_user}`);
+      setSelectedUser(data.selected_user);
+    }
+  };
+
+  // Definisikan callback untuk thread_update event
+  const threadUpdateCallback = (data: any) => {
+    if (data && data.sender === selectedUser) {
+      console.log(`Received thread update for ${selectedUser} via WebSocket`);
+      if (data.messages && Array.isArray(data.messages)) {
+        setThreadMessages(data.messages);
+      }
+    }
+  };
+
+  // Explicitly subscribe to analytics events via WebSocket
+  if (websocketService.isConnected()) {
+    console.log('Explicitly subscribing to analytics events via socket');
+    websocketService.emit('subscribe_to_analytics');
+  }
+
+  // Subscribe to all events
+  websocketService.subscribeToAnalyticsUsers(analyticsUsersCallback);
+  websocketService.on('analytics_update', analyticsUpdateCallback);
+  websocketService.on('user_preference_update', userPreferenceCallback);
+  websocketService.on('thread_update', threadUpdateCallback);
+
+  // Setup a gentler background refresh that won't disrupt UX
+  // Only fetch if WebSocket isn't functioning or as a fallback
+  let lastRefreshTime = Date.now();
+  const backgroundRefreshInterval = setInterval(() => {
+    // Only fetch if it's been at least 30 seconds since last update
+    const now = Date.now();
+    const timeSinceLastUpdate = now - lastRefreshTime;
+
+    if (timeSinceLastUpdate > 30000) { // 30 seconds
+      console.log(`Last update was ${timeSinceLastUpdate/1000}s ago, doing background refresh`);
+
+      // Fetch user data in background without loading state
+      fetchAnalyticsUsers().then(freshData => {
+        if (freshData && freshData.users && Object.keys(freshData.users).length > 0) {
+          console.log('Background refresh successful, got', Object.keys(freshData.users).length, 'users');
+          lastRefreshTime = Date.now();
+
+          // Use the same merge approach as the WebSocket handler
+          setUserAnalytics(prevState => {
+            // If there's no previous state, use the new data
+            if (!prevState || !prevState.users || Object.keys(prevState.users).length === 0) {
+              return freshData;
+            }
+
+            // Merge users
+            const mergedUsers = { ...prevState.users };
+            Object.entries(freshData.users).forEach(([phone, userData]) => {
+              if (userData) {
+                mergedUsers[phone] = userData as UserData;
+              }
+            });
+
+            // Return merged state with original count values preserved
+            return {
+              ...freshData,
+              users: mergedUsers
+            };
+          });
+        } else {
+          console.log('Background refresh returned no users, keeping current state');
+        }
+      }).catch(err => {
+        console.error('Error in background refresh:', err);
+      });
+    } else {
+      console.log(`Last update was ${timeSinceLastUpdate/1000}s ago, skipping background refresh`);
+    }
+  }, 15000); // Check every 15 seconds
+
+  // Cleanup interval dan WebSocket saat komponen unmount
+  return () => {
+    console.log('Cleaning up component');
+    clearInterval(backgroundRefreshInterval);
+    websocketService.unsubscribeFromAnalyticsUsers(analyticsUsersCallback);
+    websocketService.off('analytics_update', analyticsUpdateCallback);
+    websocketService.off('user_preference_update', userPreferenceCallback);
+    websocketService.off('thread_update', threadUpdateCallback);
+  };
+}, [selectedUser]); // Re-run effect jika selectedUser berubah
+
+// Render loading state
   
   // Render loading state
   if (isLoading) {

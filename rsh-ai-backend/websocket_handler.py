@@ -280,10 +280,19 @@ def broadcast_analytics_update(update_type: str, data: dict):
         update_type: Type of update ('user_insight', 'performance', etc)
         data: The update data to broadcast
     """
+    # First broadcast the legacy format for compatibility
     socketio.emit('analytics_update', {
         'type': update_type,
         'data': data
     })
+    
+    # Also broadcast in the format expected by the frontend
+    if update_type == 'user_insight_update' or update_type == 'users':
+        logger.info(f"Broadcasting analytics:users event with {len(data.get('users', {})) if isinstance(data, dict) else 'N/A'} users")
+        socketio.emit('analytics:users', data)
+    elif update_type == 'performance':
+        logger.info("Broadcasting analytics:performance event")
+        socketio.emit('analytics:performance', data)
 
 def broadcast_user_analytics_update(sender: str):
     """Broadcast updated user analytics for a specific sender
@@ -293,6 +302,14 @@ def broadcast_user_analytics_update(sender: str):
     """
     user_data = analytics.get_user_insights(sender)
     if user_data:
+        # Log the user data structure before broadcasting
+        logger.info(f"Broadcasting user analytics update for {sender}")
+        logger.info(f"User data contains {len(user_data.get('users', {}))} users")
+        
+        # Send directly to analytics:users for the frontend
+        socketio.emit('analytics:users', user_data)
+        
+        # Also maintain backwards compatibility
         broadcast_analytics_update('user_insight_update', {
             'sender': sender,
             'data': user_data

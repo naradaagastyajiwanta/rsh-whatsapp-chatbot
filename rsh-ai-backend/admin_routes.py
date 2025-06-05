@@ -431,11 +431,29 @@ def get_performance_analytics():
 def get_user_analytics():
     try:
         sender = request.args.get('sender', default=None)
+        logger.info(f"Fetching user analytics data for sender: {sender}")
+        
         insights = analytics.get_user_insights(sender)
-        return jsonify(insights), 200
+        
+        # Log the structure to help diagnose issues
+        users_count = len(insights.get('users', {}))
+        logger.info(f"Sending user analytics response with {users_count} users")
+        logger.info(f"Response structure: {list(insights.keys())}")
+        
+        # Ensure the response has the expected structure
+        if 'users' not in insights or not isinstance(insights['users'], dict):
+            logger.warning(f"Users data structure is not correct: {type(insights.get('users'))}")
+            insights['users'] = insights.get('users', {})
+            
+        # Return properly formatted JSON response with correct content type
+        response = jsonify(insights)
+        response.headers['Content-Type'] = 'application/json'
+        return response, 200
     except Exception as e:
         logger.error(f"Error getting user analytics: {str(e)}")
-        return jsonify({"error": str(e)}), 500
+        import traceback
+        logger.error(traceback.format_exc())
+        return jsonify({"error": str(e), "type": "analytics_error"}), 500
 
 @admin_bp.route('/analytics/users/<sender>/history', methods=['GET'])
 def get_user_history(sender):
