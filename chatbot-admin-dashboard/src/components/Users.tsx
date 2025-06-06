@@ -21,7 +21,33 @@ interface UserCardProps {
 const UserCard: React.FC<UserCardProps> = ({ phoneNumber, userData, onClick, isSelected }) => {
   const { t, language } = useLanguage();
   const displayName = userData.details.name || phoneNumber.split('@')[0];
-  const lastInteraction = new Date(userData.details.last_interaction || userData.details.first_interaction);
+  
+  // Cek last_interaction di berbagai lokasi yang mungkin (untuk kompatibilitas dengan berbagai format data)
+  const lastInteractionStr = userData.details.last_interaction || 
+                           (userData as any).last_interaction || 
+                           userData.details.first_interaction || 
+                           (userData as any).first_interaction;
+                           
+  // Pastikan lastInteraction adalah Date yang valid
+  let lastInteraction;
+  try {
+    // Pastikan kita selalu mendapatkan timestamp terbaru
+    lastInteraction = new Date(lastInteractionStr);
+    // Validasi tanggal - jika invalid, gunakan waktu sekarang
+    if (isNaN(lastInteraction.getTime())) {
+      console.warn(`Invalid last_interaction date for user ${phoneNumber}: ${lastInteractionStr}`);
+      lastInteraction = new Date();
+    }
+  } catch (e) {
+    console.error(`Error parsing last_interaction date for user ${phoneNumber}:`, e);
+    lastInteraction = new Date();
+  }
+  
+  // Gunakan React.useMemo untuk memastikan format tanggal hanya dihitung ulang saat lastInteraction berubah
+  const formattedDate = React.useMemo(() => {
+    return format(lastInteraction, 'dd MMM yyyy HH:mm', { locale: language === 'id' ? idLocale : enUS });
+  }, [lastInteraction, language]);
+  
   const healthComplaints = userData.details.health_complaints || [];
   const barriers = userData.details.conversion_barriers || [];
   
@@ -38,7 +64,7 @@ const UserCard: React.FC<UserCardProps> = ({ phoneNumber, userData, onClick, isS
           <p className="text-sm text-gray-500">{phoneNumber.split('@')[0]}</p>
         </div>
         <div className="text-xs text-gray-500">
-          {t('analytics.lastActive')}: {format(lastInteraction, 'dd MMM yyyy HH:mm', { locale: language === 'id' ? idLocale : enUS })}
+          {t('analytics.lastActive')}: {formattedDate}
         </div>
       </div>
       
@@ -429,6 +455,9 @@ const Users: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   
+  // State untuk memaksa re-render komponen
+  const [forceUpdate, setForceUpdate] = useState<number>(0);
+  
   // Inisialisasi selectedUser sebagai null, akan diambil dari server
   const [selectedUser, setSelectedUser] = useState<string | null>(null);
   
@@ -818,14 +847,44 @@ const Users: React.FC = () => {
 
         // Merge new users with existing ones
         Object.entries(safeData.users).forEach(([phone, userData]) => {
-          if (userData) mergedUsers[phone] = userData as UserData;
+          if (userData) {
+            // Pastikan last_interaction dipertahankan jika sudah ada
+            if (mergedUsers[phone]) {
+              const existingLastInteraction = mergedUsers[phone].details?.last_interaction;
+              const newLastInteraction = (userData as any).details?.last_interaction;
+              
+              // Gunakan timestamp terbaru
+              if (existingLastInteraction && newLastInteraction) {
+                const existingDate = new Date(existingLastInteraction).getTime();
+                const newDate = new Date(newLastInteraction).getTime();
+                
+                // Jika timestamp yang ada lebih baru, pertahankan
+                if (existingDate > newDate) {
+                  (userData as any).details.last_interaction = existingLastInteraction;
+                }
+              } else if (existingLastInteraction) {
+                // Jika data baru tidak memiliki last_interaction, gunakan yang lama
+                (userData as any).details.last_interaction = existingLastInteraction;
+              }
+            }
+            
+            // Tambahkan data baru ke mergedUsers
+            mergedUsers[phone] = userData as UserData;
+          }
         });
 
+        // Force re-render dengan membuat objek baru
         return {
           ...safeData,
-          users: mergedUsers
+          users: { ...mergedUsers }
         };
       });
+      
+      // Log untuk debugging
+      console.log('Updated user analytics state after analytics_update');
+      
+      // Force re-render komponen
+      setForceUpdate(prev => prev + 1);
     }
   };
 
@@ -837,13 +896,129 @@ const Users: React.FC = () => {
     }
   };
 
+  // Definisikan callback untuk user_activity event
+  const userActivityCallback = (data: any) => {
+    if (data && data.user_id) {
+      console.log(`Received user activity for ${data.user_id} via WebSocket`);
+      
+      // Update last_interaction timestamp in user analytics
+      setUserAnalytics(prevState => {
+        if (!prevState || !prevState.users) return prevState;
+        
+        const updatedUsers = { ...prevState.users };
+        // Normalisasi format nomor telepon (hapus @s.whatsapp.net jika ada)
+        const phoneNumber = data.user_id.replace('@s.whatsapp.net', '');
+        
+        // Cek apakah user ada di analytics dengan berbagai format ID
+        const userKey = updatedUsers[phoneNumber] ? phoneNumber : 
+                       updatedUsers[data.user_id] ? data.user_id : 
+                       updatedUsers[`${phoneNumber}@s.whatsapp.net`] ? `${phoneNumber}@s.whatsapp.net` : null;
+        
+        if (userKey) {
+          // Pastikan timestamp selalu dalam format ISO string yang valid
+          const currentTime = data.timestamp || new Date().toISOString();
+          
+          console.log(`Updating last_interaction for user ${userKey} to ${currentTime}`);
+          
+          // Perbarui last_interaction dalam details dan juga di root object untuk kompatibilitas
+          const updatedUser = {
+            ...updatedUsers[userKey],
+            last_interaction: currentTime, // Tambahkan di root level untuk kompatibilitas
+            details: {
+              ...updatedUsers[userKey].details,
+              last_interaction: currentTime
+            }
+          };
+          
+          // Tambahkan juga interaksi baru ke array interactions jika ada
+          if (updatedUsers[userKey].interactions) {
+            updatedUser.interactions = [
+              ...updatedUsers[userKey].interactions,
+              {
+                timestamp: currentTime,
+                analysis: updatedUsers[userKey].latest_analysis || {
+                  name: null,
+                  age: null,
+                  gender: null,
+                  location: null,
+                  health_complaints: [],
+                  symptoms: [],
+                  medical_history: null,
+                  urgency_level: null,
+                  emotion: null,
+                  conversion_barriers: [],
+                  interest_level: null,
+                  program_awareness: null,
+                  timestamp: currentTime
+                }
+              }
+            ].slice(-10); // Simpan hanya 10 interaksi terakhir untuk efisiensi
+          }
+          
+          updatedUsers[userKey] = updatedUser;
+          console.log(`Updated last_interaction timestamp for user ${userKey} to ${currentTime}`);
+          
+          // Simpan ke localStorage untuk persistence
+          try {
+            const updatedAnalytics = {
+              ...prevState,
+              users: { ...updatedUsers },
+              lastUpdated: new Date().toISOString()
+            };
+            localStorage.setItem('userAnalytics', JSON.stringify(updatedAnalytics));
+            localStorage.setItem('userAnalyticsLastFetch', new Date().getTime().toString());
+          } catch (e) {
+            console.error('Error saving updated user activity to localStorage:', e);
+          }
+          
+          // Force re-render dengan membuat objek baru
+          return {
+            ...prevState,
+            users: { ...updatedUsers },
+            lastUpdated: new Date().toISOString() // Tambahkan timestamp update untuk memastikan React mendeteksi perubahan
+          };
+        } else {
+          console.warn(`User ${data.user_id} not found in analytics data`);
+          // Jika user tidak ditemukan, mungkin perlu refresh data dari server
+          fetchUserData(true);
+          return prevState;
+        }
+      });
+      
+      // Force re-render komponen dengan increment counter
+      setForceUpdate(prev => prev + 1);
+      
+      // Jika ini adalah user yang sedang dipilih, refresh thread messages juga
+      if (selectedUser && (data.user_id === selectedUser || data.user_id.replace('@s.whatsapp.net', '') === selectedUser)) {
+        console.log(`Refreshing thread messages for selected user ${selectedUser}`);
+        fetchUserThreadMessages(selectedUser, true); // Force refresh
+      }
+    }
+  };
+  
   // Definisikan callback untuk thread_update event
   const threadUpdateCallback = (data: any) => {
-    if (data && data.sender === selectedUser) {
-      console.log(`Received thread update for ${selectedUser} via WebSocket`);
-      if (data.messages && Array.isArray(data.messages)) {
+    if (data && data.sender) {
+      console.log(`Received thread update for ${data.sender} via WebSocket`);
+      
+      // Update thread messages if this is the selected user
+      if (data.sender === selectedUser && data.messages && Array.isArray(data.messages)) {
         setThreadMessages(data.messages);
       }
+      
+      // Trigger user activity update to update last_interaction
+      userActivityCallback({
+        user_id: data.sender,
+        activity_type: 'message',
+        timestamp: data.timestamp || new Date().toISOString()
+      });
+      
+      // Emit user activity event to WebSocket to ensure backend is updated
+      websocketService.emit('user_activity', {
+        user_id: data.sender,
+        activity_type: 'message',
+        timestamp: data.timestamp || new Date().toISOString()
+      });
     }
   };
 
@@ -860,6 +1035,7 @@ const Users: React.FC = () => {
   websocketService.on('analytics_update', analyticsUpdateCallback);
   websocketService.on('user_preference_update', userPreferenceCallback);
   websocketService.on('thread_update', threadUpdateCallback);
+  websocketService.on('user_activity', userActivityCallback); // Tambahkan subscription untuk user_activity
 
   // Setup a gentler background refresh that won't disrupt UX
   // Fetch every 15 seconds as backup if WebSocket fails
@@ -930,6 +1106,7 @@ const Users: React.FC = () => {
     websocketService.off('analytics_update', analyticsUpdateCallback);
     websocketService.off('user_preference_update', userPreferenceCallback);
     websocketService.off('thread_update', threadUpdateCallback);
+    websocketService.off('user_activity', userActivityCallback); // Bersihkan langganan user_activity
     websocketService.off('connect', socketConnectHandler);
     
     console.log('Cleanup completed successfully');

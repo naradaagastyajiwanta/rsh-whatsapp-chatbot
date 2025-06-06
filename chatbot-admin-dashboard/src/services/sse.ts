@@ -4,6 +4,7 @@
  */
 
 import { API_BASE_URL } from './api';
+import websocketService from './websocket';
 
 // Define event types
 export type SSEEventType = 'whatsapp-status' | 'chat-update' | 'analytics-update' | 'user-update';
@@ -57,6 +58,29 @@ const connect = () => {
     eventSource.addEventListener('chat-update', (event) => {
       const data = JSON.parse(event.data);
       console.log('Received chat-update event:', data);
+      
+      // Update last_interaction timestamp if this is a new message
+      if (data && data.type === 'new_message' && data.sender) {
+        console.log(`Updating last_interaction for user ${data.sender} from SSE chat-update`);
+        
+        // Emit a user_activity event to the WebSocket if available
+        if (websocketService && websocketService.isConnected()) {
+          // Emit user activity event to update last_interaction timestamp
+          websocketService.emit('user_activity', {
+            user_id: data.sender,
+            activity_type: 'message',
+            timestamp: new Date().toISOString()
+          });
+          
+          // Also emit thread_update to trigger UI updates
+          websocketService.emit('thread_update', {
+            sender: data.sender,
+            timestamp: new Date().toISOString(),
+            type: 'new_message'
+          });
+        }
+      }
+      
       listeners['chat-update'].forEach(listener => listener(data));
     });
 

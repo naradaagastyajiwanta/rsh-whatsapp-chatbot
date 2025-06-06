@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { Chat, ChatStats } from '@/types/chat';
 
+// Define API base URL
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+
 // Interface for sending messages
 interface SendMessageRequest {
   recipient: string;
@@ -10,7 +13,7 @@ interface SendMessageRequest {
 
 // Create an axios instance with base URL
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000',
+  baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -21,7 +24,7 @@ const api = axios.create({
 export const fetchChats = async (): Promise<Chat[]> => {
   try {
     console.log('Fetching chats from API...');
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/admin/chats`);
+    const response = await fetch(`${API_BASE_URL}/admin/chats`);
     
     if (!response.ok) {
       console.warn(`API returned status ${response.status}: ${response.statusText}`);
@@ -63,7 +66,7 @@ export const fetchChats = async (): Promise<Chat[]> => {
     try {
       const chatsWithStatus = await Promise.all(validatedChats.map(async (chat: Chat) => {
         try {
-          const statusResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/admin/bot-status/${chat.id}`);
+          const statusResponse = await fetch(`${API_BASE_URL}/admin/bot-status/${chat.id}`);
           if (statusResponse.ok) {
             const statusData = await statusResponse.json();
             return {
@@ -102,7 +105,7 @@ export const fetchChatById = async (id: string): Promise<Chat> => {
     
     // Also fetch bot status and unanswered count
     try {
-      const statusResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/admin/bot-status/${id}`);
+      const statusResponse = await fetch(`${API_BASE_URL}/admin/bot-status/${id}`);
       if (statusResponse.ok) {
         const statusData = await statusResponse.json();
         return {

@@ -101,11 +101,31 @@ class SocketIOService {
     this.socket.off('analytics:performance');
     this.socket.off('analytics:users');
     this.socket.off('whatsapp_status');
+    this.socket.off('user_activity');
+    this.socket.off('thread_update');
+    this.socket.off('analytics_update');
     
     // Set up new listeners with more detailed logging
     this.socket.on('new_message', (data: Chat) => {
       console.log('🟡 Received new_message event:', data);
       console.log(`Chat ID: ${data.id}, Last Message: ${data.lastMessage}`);
+      
+      // Emit a special event to update user's last_interaction timestamp
+      if (data.sender) {
+        console.log(`Emitting user_activity event for ${data.sender}`);
+        this.socket?.emit('user_activity', {
+          user_id: data.sender,
+          activity_type: 'message',
+          timestamp: new Date().toISOString()
+        });
+        
+        // Also emit thread_update to trigger UI updates
+        this.socket?.emit('thread_update', {
+          sender: data.sender,
+          timestamp: new Date().toISOString(),
+          type: 'new_message'
+        });
+      }
       
       if (this.newMessageCallbacks.length === 0) {
         console.warn('No callbacks registered for new_message events');
@@ -191,6 +211,31 @@ class SocketIOService {
       }
     });
     
+    // User activity event handler - for real-time last active updates
+    this.socket.off('user_activity');
+    this.socket.on('user_activity', (data: any) => {
+      console.log('🟡 Received user_activity event:', data);
+      
+      // Jika ada user_id, update last_interaction timestamp
+      if (data && data.user_id) {
+        console.log(`Processing user activity for ${data.user_id}`);
+        
+        // Trigger local update untuk last_interaction timestamp
+        this.emitLocalUserActivityUpdate(data.user_id, data.timestamp || new Date().toISOString());
+        
+        // Notifikasi semua subscribers
+        this.notifyEventSubscribers('user_activity', data);
+      }
+    });
+    
+    // Thread update event handler
+    this.socket.on('thread_update', (data: any) => {
+      console.log('🟡 Received thread_update event:', data);
+      
+      // Notify all subscribers with this event
+      this.notifyEventSubscribers('thread_update', data);
+    });
+    
     // WhatsApp status event handler
     this.socket.on('whatsapp_status', (data: WhatsAppServiceStatus) => {
       console.log('🟡 Received whatsapp_status event:', data);
@@ -209,8 +254,13 @@ class SocketIOService {
       }
     });
     
-    // Set up custom event handlers
+    // This section is now handled in the user_activity event handler above
+    
+    // Set up custom event handlers for other events
     this.customEventCallbacks.forEach((callbacks, eventName) => {
+      // Skip user_activity since we already set it up above
+      if (eventName === 'user_activity') return;
+      
       if (this.socket) {
         this.socket.off(eventName); // Remove existing handler
         this.socket.on(eventName, (data: any) => {
@@ -300,16 +350,26 @@ class SocketIOService {
     return this.socket !== null && this.socket.connected;
   }
   
-  // Emit an event to the server
-  emit(event: string, data?: any): void {
-    if (!this.isConnected()) {
-      console.warn(`Cannot emit ${event} event: Socket not connected`);
-      return;
+  // Method to emit events to the server
+  emit(eventName: string, data?: any) {
+    if (this.socket && this.socket.connected) {
+      console.log(`Emitting ${eventName} event:`, data || {});
+      this.socket.emit(eventName, data);
+      
+      // Special handling for user_activity events to update last_interaction locally
+      if (eventName === 'user_activity' && data && data.user_id) {
+        // Trigger a local update for the user's last_interaction timestamp
+        this.emitLocalUserActivityUpdate(data.user_id, data.timestamp || new Date().toISOString());
+      }
+      
+      return true;
+    } else {
+      console.warn(`Cannot emit ${eventName} event: socket not connected`);
+      return false;
     }
-    
-    console.log(`Emitting ${event} event`, data || '');
-    this.socket!.emit(event, data);
   }
+  
+  // WebSocket event handling methods
 
   // Register callbacks for new message events
   subscribeToNewMessages(callback: (chat: Chat) => void) {
@@ -476,6 +536,54 @@ class SocketIOService {
         this.customEventCallbacks.set(eventName, filteredCallbacks);
         console.log(`Unsubscribed from custom event ${eventName}. Remaining subscribers: ${filteredCallbacks.length}`);
       }
+    }
+  }
+  
+  /**
+   * Emits a local user activity update to update the last_interaction timestamp
+   * @param userId The user ID
+   * @param timestamp The timestamp of the activity
+   */
+  emitLocalUserActivityUpdate(userId: string, timestamp: string) {
+    console.log(`Emitting local user activity update for ${userId} at ${timestamp}`);
+    
+    // Create a synthetic analytics_update event to update last_interaction locally
+    const updateData = {
+      type: 'user_insight_update',
+      data: {
+        sender: userId,
+        details: {
+          last_interaction: timestamp
+        }
+      }
+    };
+    
+    // Notify subscribers of analytics_update event
+    this.notifyEventSubscribers('analytics_update', updateData);
+    
+    // Also notify user_activity subscribers directly
+    const activityData = {
+      user_id: userId,
+      timestamp: timestamp,
+      activity_type: 'activity'
+    };
+    this.notifyEventSubscribers('user_activity', activityData);
+  }
+  
+  // Notify all subscribers for a specific event
+  private notifyEventSubscribers(eventName: string, data: any) {
+    const callbacks = this.customEventCallbacks.get(eventName);
+    if (callbacks && callbacks.length > 0) {
+      console.log(`Notifying ${callbacks.length} subscribers for event: ${eventName}`);
+      callbacks.forEach(callback => {
+        try {
+          callback(data);
+        } catch (error) {
+          console.error(`Error in ${eventName} callback:`, error);
+        }
+      });
+    } else {
+      console.log(`No subscribers for event: ${eventName}`);
     }
   }
 }

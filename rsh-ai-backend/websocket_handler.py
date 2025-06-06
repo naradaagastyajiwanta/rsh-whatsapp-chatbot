@@ -1,6 +1,8 @@
 import json
 import logging
-from flask import Flask
+import os
+from datetime import datetime
+from flask import Flask, request
 from flask_socketio import SocketIO, emit
 from chat_logger import ChatLogger
 from bot_manager import BotManager
@@ -160,6 +162,29 @@ def register_handlers():
             logger.info(f"Sent initial WhatsApp status: {status}")
         except Exception as e:
             logger.error(f"Error sending initial WhatsApp status: {str(e)}")
+            logger.exception(e)
+            
+    @socketio.on('user_activity')
+    def handle_user_activity(data):
+        logger.info(f"Received user_activity event: {data}")
+        try:
+            if not data or not isinstance(data, dict) or 'user_id' not in data:
+                logger.error(f"Invalid user_activity data: {data}")
+                return
+                
+            user_id = data['user_id']
+            timestamp = data.get('timestamp') or datetime.now().isoformat()
+            activity_type = data.get('activity_type', 'message')
+            
+            # Update user insights file directly
+            update_user_last_interaction(user_id, timestamp)
+            
+            # Broadcast the update to all connected clients
+            broadcast_user_activity_update(user_id, timestamp, activity_type)
+            
+            logger.info(f"Successfully processed user_activity for {user_id}")
+        except Exception as e:
+            logger.error(f"Error processing user_activity: {str(e)}")
             logger.exception(e)
 
 def get_all_chats():
@@ -327,12 +352,117 @@ def broadcast_whatsapp_status_update(status_data):
         status_data: WhatsApp status data to broadcast
     """
     try:
-        print(f"Broadcasting WhatsApp status update: {status_data}")
-        socketio.emit('whatsapp_status', status_data)
+        if socketio:
+            logger.info(f"Broadcasting WhatsApp status update: {status_data}")
+            socketio.emit('whatsapp_status', status_data)
+            return True
+        return False
     except Exception as e:
-        print(f"Error broadcasting WhatsApp status: {str(e)}")
-        import traceback
-        print(traceback.format_exc())
+        logger.error(f"Error broadcasting WhatsApp status update: {str(e)}")
+        return False
+        
+def update_user_last_interaction(user_id, timestamp):
+    """Update user's last_interaction timestamp in user_insights.json
+    
+    Args:
+        user_id: The WhatsApp number of the user
+        timestamp: The timestamp of the interaction
+    """
+    try:
+        insights_file = os.path.join("analytics_data", "user_insights.json")
+        
+        # Ensure file exists
+        if not os.path.exists(insights_file):
+            logger.error(f"User insights file not found: {insights_file}")
+            return False
+        
+        # Read current insights
+        with open(insights_file, "r") as f:
+            insights = json.load(f)
+        
+        # Update last_interaction timestamp
+        if user_id in insights:
+            # Update in details
+            if 'details' in insights[user_id]:
+                insights[user_id]['details']['last_interaction'] = timestamp
+            
+            # Add a new interaction entry
+            if 'interactions' in insights[user_id]:
+                # Get the latest analysis if available
+                latest_analysis = insights[user_id].get('latest_analysis', {})
+                if not latest_analysis and insights[user_id]['interactions']:
+                    latest_analysis = insights[user_id]['interactions'][-1].get('analysis', {})
+                
+                # Add new interaction with timestamp
+                insights[user_id]['interactions'].append({
+                    "timestamp": timestamp,
+                    "analysis": latest_analysis
+                })
+                
+                # Limit to last 20 interactions to prevent file growth
+                if len(insights[user_id]['interactions']) > 20:
+                    insights[user_id]['interactions'] = insights[user_id]['interactions'][-20:]
+            
+            # Write updated insights back to file
+            with open(insights_file, "w") as f:
+                json.dump(insights, f, indent=2)
+            
+            logger.info(f"Updated last_interaction for {user_id} to {timestamp}")
+            return True
+        else:
+            logger.warning(f"User {user_id} not found in insights file")
+            return False
+    except Exception as e:
+        logger.error(f"Error updating user last_interaction: {str(e)}")
+        logger.exception(e)
+        return False
+
+def broadcast_user_activity_update(user_id, timestamp, activity_type):
+    """Broadcast user activity update to all connected clients
+    
+    Args:
+        user_id: The WhatsApp number of the user
+        timestamp: The timestamp of the activity
+        activity_type: The type of activity (message, etc.)
+    """
+    try:
+        if socketio:
+            # Get updated user insights
+            user_insights = analytics.get_user_insights(user_id)
+            
+            # Broadcast user_activity event
+            activity_data = {
+                'user_id': user_id,
+                'timestamp': timestamp,
+                'activity_type': activity_type
+            }
+            
+            logger.info(f"Broadcasting user_activity update: {activity_data}")
+            socketio.emit('user_activity', activity_data)
+            
+            # Also broadcast analytics update with full user data
+            socketio.emit('analytics_update', {
+                'type': 'user_insight_update',
+                'data': {
+                    'sender': user_id,
+                    'details': user_insights.get('details', {}),
+                    'latest_analysis': user_insights.get('latest_analysis', {})
+                }
+            })
+            
+            # Update the full users list
+            all_user_insights = analytics.get_user_insights()
+            socketio.emit('analytics_update', {
+                'type': 'users',
+                'data': all_user_insights
+            })
+            
+            return True
+        return False
+    except Exception as e:
+        logger.error(f"Error broadcasting user activity update: {str(e)}")
+        logger.exception(e)
+        return False
 
 def format_chat_for_frontend(chat):
     """Format a chat object for the frontend"""

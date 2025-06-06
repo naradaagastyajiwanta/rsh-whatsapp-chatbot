@@ -4,6 +4,7 @@ from flask_cors import CORS
 import os
 import time
 import requests
+from datetime import datetime
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
@@ -263,7 +264,21 @@ def ask():
             
             # Broadcast analytics update via WebSocket
             try:
-                from websocket_handler import broadcast_analytics_update, broadcast_user_analytics_update
+                from websocket_handler import broadcast_analytics_update, broadcast_user_analytics_update, broadcast_user_activity_update, update_user_last_interaction
+                
+                # Update user's last_interaction timestamp directly
+                current_time = data.get('timestamp')
+                if not current_time:
+                    current_time = datetime.now().isoformat()
+                elif isinstance(current_time, (int, float)):
+                    # Convert milliseconds timestamp to ISO format
+                    current_time = datetime.fromtimestamp(current_time / 1000).isoformat()
+                
+                # Update user_insights.json directly
+                update_user_last_interaction(sender, current_time)
+                
+                # Broadcast user_activity event for real-time updates
+                broadcast_user_activity_update(sender, current_time, 'message')
                 
                 # Broadcast user-specific analytics update
                 broadcast_user_analytics_update(sender)
@@ -272,11 +287,13 @@ def ask():
                 user_insights = analytics.get_user_insights()
                 broadcast_analytics_update('users', user_insights)
                 
-                logger.info(f"[WEBSOCKET] Broadcasted analytics update for {sender}")
+                logger.info(f"[WEBSOCKET] Broadcasted user activity and analytics update for {sender}")
             except Exception as ws_error:
                 logger.error(f"[WEBSOCKET] Error broadcasting analytics update: {str(ws_error)}")
+                logger.exception(ws_error)
         except Exception as analysis_error:
             logger.error(f"[ANALYTICS] Error analyzing message: {str(analysis_error)}")
+            logger.exception(analysis_error)
         
         # Verify API credentials before sending
         if not os.getenv('OPENAI_API_KEY'):
