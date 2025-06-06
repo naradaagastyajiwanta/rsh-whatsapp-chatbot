@@ -209,6 +209,7 @@ const Analytics = (): JSX.Element => {
 
   useEffect(() => {
     let isSubscribed = true;
+    let connectionCheckInterval: NodeJS.Timeout | null = null;
     
     // Define callback functions outside so we can reference them for unsubscribing
     const performanceCallback = (data: PerformanceMetrics) => {
@@ -217,20 +218,35 @@ const Analytics = (): JSX.Element => {
         
         // Ensure we have valid data structure
         if (data && typeof data === 'object') {
-          setPerformanceMetrics(data);
+          // Create a valid data structure by merging with current state
+          const currentMetrics = performanceMetrics || {};
+          const validData = {
+            api_calls: data.api_calls || currentMetrics.api_calls || 0,
+            total_response_time: data.total_response_time || currentMetrics.total_response_time || 0,
+            average_response_time: data.average_response_time || currentMetrics.average_response_time || 0,
+            success_rate: data.success_rate || currentMetrics.success_rate || 0,
+            error_count: data.error_count || currentMetrics.error_count || 0,
+            daily_metrics: {
+              ...currentMetrics.daily_metrics,
+              ...data.daily_metrics
+            }
+          };
+          
+          setPerformanceMetrics(validData);
           console.log('Updated performance metrics state');
           
           // Save to localStorage
           if (typeof window !== 'undefined') {
-            localStorage.setItem('analytics_performance', JSON.stringify(data));
+            localStorage.setItem('analytics_performance', JSON.stringify(validData));
             console.log('Saved performance metrics to localStorage after WebSocket update');
           }
         } else {
-          console.error('Invalid performance data received from WebSocket:', data);
+          console.error('Invalid performance metrics data received from WebSocket:', data);
         }
       }
     };
     
+    // User analytics callback for WebSocket updates
     const usersCallback = (data: UserAnalytics) => {
       if (isSubscribed) {
         console.log('Received user analytics via WebSocket:', data);
@@ -246,11 +262,15 @@ const Analytics = (): JSX.Element => {
         
         if (data && typeof data === 'object') {
           // Ensure data has the expected structure
+          const currentUserData = userAnalytics || {};
           const validData: UserAnalytics = {
-            total_users: data.total_users || 0,
-            active_users: data.active_users || 0,
-            new_users: data.new_users || 0,
-            users: data.users || {}
+            total_users: data.total_users || currentUserData.total_users || 0,
+            active_users: data.active_users || currentUserData.active_users || 0,
+            new_users: data.new_users || currentUserData.new_users || 0,
+            users: {
+              ...currentUserData.users,
+              ...data.users
+            }
           };
           
           console.log('Processed user analytics data:', validData);
@@ -343,13 +363,13 @@ const Analytics = (): JSX.Element => {
         setTimeout(() => {
           if (websocketService.isConnected()) {
             console.log('Explicitly requesting analytics data via WebSocket...');
-            websocketService.emit('subscribe_to_analytics');
+            // Use the new requestAnalyticsUpdate method instead of just subscribing
+            websocketService.requestAnalyticsUpdate();
           } else {
             console.warn('WebSocket not connected, cannot request analytics data');
+            // Fetch initial data via HTTP as a fallback if WebSocket is not connected
+            void fetchInitialData();
           }
-          
-          // Fetch initial data via HTTP as a backup
-          void fetchInitialData();
         }, 1000); // Wait for connection to establish
         
         return websocketService;
@@ -368,8 +388,30 @@ const Analytics = (): JSX.Element => {
     // Initialize WebSocket for real-time updates
     const ws = initializeWebSocket();
 
+    // Set up connection check interval to periodically verify WebSocket status and request fresh data
+    connectionCheckInterval = setInterval(() => {
+      if (isSubscribed && websocketService) {
+        if (websocketService.isConnected()) {
+          console.log('WebSocket connection check: Connected');
+          // Request fresh analytics data every 30 seconds to ensure data is up-to-date
+          websocketService.requestAnalyticsUpdate();
+        } else {
+          console.warn('WebSocket connection check: Disconnected');
+          // Try to reconnect
+          websocketService.connect();
+          // Fallback to HTTP API if WebSocket is disconnected
+          void fetchInitialData();
+        }
+      }
+    }, 30000); // Check every 30 seconds
+    
     return () => {
       isSubscribed = false;
+      // Clear the connection check interval
+      if (connectionCheckInterval) {
+        clearInterval(connectionCheckInterval);
+      }
+      
       // Properly cleanup WebSocket subscriptions
       if (websocketService) {
         // Unsubscribe from analytics events using the same callback references

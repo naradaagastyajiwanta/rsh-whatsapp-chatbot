@@ -433,7 +433,11 @@ class SocketIOService {
     
     // Subscribe to analytics events if not already subscribed
     if (this.socket?.connected) {
+      console.log('Explicitly requesting analytics data via WebSocket (performance subscription)');
       this.socket.emit('subscribe_to_analytics');
+      
+      // Also request specific performance metrics
+      this.socket.emit('get_performance_metrics');
     }
   }
   
@@ -452,13 +456,30 @@ class SocketIOService {
     
     // Subscribe to analytics events if not already subscribed
     if (this.socket?.connected) {
+      console.log('Explicitly requesting analytics data via WebSocket (users subscription)');
       this.socket.emit('subscribe_to_analytics');
+      
+      // Also request specific user analytics
+      this.socket.emit('get_user_analytics');
     }
   }
   
   unsubscribeFromAnalyticsUsers(callback: (data: UserAnalytics) => void) {
     this.analyticsUsersCallbacks = this.analyticsUsersCallbacks.filter(cb => cb !== callback);
     console.log(`Unregistered analytics users callback. Remaining: ${this.analyticsUsersCallbacks.length}`);
+  }
+  
+  // Request fresh analytics data from the server
+  requestAnalyticsUpdate() {
+    if (this.socket?.connected) {
+      console.log('Requesting fresh analytics data from server');
+      this.socket.emit('get_performance_metrics');
+      this.socket.emit('get_user_analytics');
+      return true;
+    } else {
+      console.warn('Cannot request analytics update: socket not connected');
+      return false;
+    }
   }
   
   // Register callbacks for WhatsApp status updates

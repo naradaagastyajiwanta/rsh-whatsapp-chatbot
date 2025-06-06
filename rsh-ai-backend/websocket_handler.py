@@ -1,6 +1,7 @@
 import json
 import logging
 import os
+import traceback
 from datetime import datetime
 from flask import Flask, request
 from flask_socketio import SocketIO, emit
@@ -106,6 +107,11 @@ def register_handlers():
             logger.info(f"User analytics data: {user_analytics}")
             logger.info(f"Performance metrics: {performance_metrics}")
             
+            # Send individual updates
+            emit('analytics:users', user_analytics)
+            emit('analytics:performance', performance_metrics)
+            
+            # Also send in the legacy format for compatibility
             emit('analytics_update', {
                 'type': 'users',
                 'data': user_analytics
@@ -114,6 +120,15 @@ def register_handlers():
             emit('analytics_update', {
                 'type': 'performance',
                 'data': performance_metrics
+            })
+            
+            # Send combined data in one message
+            emit('analytics_update', {
+                'type': 'initial_data',
+                'data': {
+                    'users': user_analytics,
+                    'performance': performance_metrics
+                }
             })
             
             logger.info("Successfully sent analytics data")
@@ -128,6 +143,44 @@ def register_handlers():
     @socketio.on('disconnect')
     def handle_disconnect():
         logger.info("Client disconnected")
+        
+    @socketio.on('get_performance_metrics')
+    def handle_get_performance_metrics():
+        try:
+            logger.info("Received get_performance_metrics event")
+            performance_metrics = analytics.get_performance_metrics(7)
+            logger.info(f"Sending performance metrics: {performance_metrics}")
+            
+            # Send using both event types for compatibility
+            emit('analytics:performance', performance_metrics)
+            emit('analytics_update', {
+                'type': 'performance',
+                'data': performance_metrics
+            })
+            
+            logger.info("Successfully sent performance metrics")
+        except Exception as e:
+            logger.error(f"Error sending performance metrics: {str(e)}")
+            logger.exception(e)
+    
+    @socketio.on('get_user_analytics')
+    def handle_get_user_analytics():
+        try:
+            logger.info("Received get_user_analytics event")
+            user_analytics = analytics.get_user_insights()
+            logger.info(f"Sending user analytics with {len(user_analytics.get('users', {}))} users")
+            
+            # Send using both event types for compatibility
+            emit('analytics:users', user_analytics)
+            emit('analytics_update', {
+                'type': 'users',
+                'data': user_analytics
+            })
+            
+            logger.info("Successfully sent user analytics")
+        except Exception as e:
+            logger.error(f"Error sending user analytics: {str(e)}")
+            logger.exception(e)
     
     @socketio.on('subscribe_to_chats')
     def handle_subscribe_to_chats():
@@ -135,19 +188,6 @@ def register_handlers():
         chats = get_all_chats()
         print(f"Client subscribed to chats, sending: {len(chats)} chats")
         emit('chats_update', chats)
-        
-    @socketio.on('subscribe_to_analytics')
-    def handle_subscribe_to_analytics():
-        # Send initial analytics data
-        user_analytics = analytics.get_user_insights()
-        performance_metrics = analytics.get_performance_metrics(7)
-        emit('analytics_update', {
-            'type': 'initial_data',
-            'data': {
-                'users': user_analytics,
-                'performance': performance_metrics
-            }
-        })
         
     @socketio.on('subscribe_to_whatsapp_status')
     def handle_subscribe_to_whatsapp_status():
@@ -343,7 +383,7 @@ def broadcast_user_analytics_update(sender: str):
 def broadcast_performance_metrics_update():
     """Broadcast updated performance metrics"""
     metrics = analytics.get_performance_metrics(7)
-    broadcast_analytics_update('performance_update', metrics)
+    broadcast_analytics_update('performance', metrics)
 
 def broadcast_whatsapp_status_update(status_data):
     """Broadcast WhatsApp status update to all connected clients

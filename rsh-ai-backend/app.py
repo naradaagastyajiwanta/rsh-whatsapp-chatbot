@@ -505,7 +505,7 @@ def get_user_analytics():
         
     try:
         insights = analytics.get_user_insights()
-        logger.info(f'Raw user insights data: {insights}')
+        logger.info(f'Raw user insights data structure: {list(insights.keys()) if isinstance(insights, dict) else "not a dict"}')
         
         if not insights or not isinstance(insights, dict):
             logger.error('Invalid insights data structure')
@@ -516,16 +516,55 @@ def get_user_analytics():
                 'users': {}
             })
         
+        # Ensure the insights have all the expected fields
+        default_insights = {
+            'total_users': 0,
+            'active_users': 0,
+            'new_users': 0,
+            'users': {}
+        }
+        
+        # Merge with defaults to ensure all fields exist
+        for key, value in default_insights.items():
+            if key not in insights:
+                insights[key] = value
+                
+        # Ensure users is a dictionary
+        if not isinstance(insights['users'], dict):
+            logger.warning(f"Users field is not a dictionary: {type(insights['users'])}")
+            insights['users'] = {}
+            
+        # Process each user to ensure they have the expected structure
+        for phone, user_data in insights['users'].items():
+            if not isinstance(user_data, dict):
+                insights['users'][phone] = {}
+                continue
+                
+            # Ensure details field exists
+            if 'details' not in user_data or not isinstance(user_data['details'], dict):
+                user_data['details'] = {}
+                
+            # Ensure latest_analysis field exists
+            if 'latest_analysis' not in user_data or not isinstance(user_data['latest_analysis'], dict):
+                user_data['latest_analysis'] = {}
+        
         # Tambahkan informasi selected_user ke response
         selected_user = user_preferences.get_selected_user()
         if selected_user:
             insights['selected_user'] = selected_user
         
         # Log successful response
-        logger.info('Successfully retrieved user analytics data')
-        return jsonify(insights)
+        logger.info(f'Successfully retrieved user analytics data with {len(insights["users"])} users')
+        logger.info(f'User analytics structure: {list(insights.keys())}')
+        
+        # Set proper content type
+        response = jsonify(insights)
+        response.headers['Content-Type'] = 'application/json'
+        return response
     except Exception as e:
         logger.error(f'Error getting user analytics: {str(e)}')
+        import traceback
+        logger.error(traceback.format_exc())
         return jsonify({
             'total_users': 0,
             'active_users': 0,
@@ -544,9 +583,39 @@ def get_performance_analytics():
         days = request.args.get('days', default=7, type=int)
         metrics = analytics.get_performance_metrics(days)
         logger.info(f'Performance metrics for last {days} days: {metrics}')
+        
+        # Ensure the metrics have all the expected fields
+        if not metrics or not isinstance(metrics, dict):
+            metrics = {}
+            
+        # Ensure all required fields exist
+        default_metrics = {
+            'api_calls': 0,
+            'total_response_time': 0,
+            'average_response_time': 0,
+            'success_rate': 0,
+            'error_count': 0,
+            'daily_metrics': {}
+        }
+        
+        # Merge with defaults to ensure all fields exist
+        for key, value in default_metrics.items():
+            if key not in metrics:
+                metrics[key] = value
+                
+        # Ensure daily_metrics is a dictionary
+        if not isinstance(metrics['daily_metrics'], dict):
+            metrics['daily_metrics'] = {}
+            
+        # Log the structure being returned
+        logger.info(f'Returning performance metrics with structure: {list(metrics.keys())}')
+        logger.info(f'Daily metrics count: {len(metrics["daily_metrics"])}')
+        
         return jsonify(metrics)
     except Exception as e:
         logger.error(f'Error getting performance metrics: {str(e)}')
+        import traceback
+        logger.error(traceback.format_exc())
         return jsonify({
             'api_calls': 0,
             'total_response_time': 0,

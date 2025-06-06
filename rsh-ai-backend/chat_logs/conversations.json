@@ -2654,11 +2654,20 @@
         "response": "Saya merasakan keceriaan dari Bapak/Ibu. Terkadang berbagi tawa bisa menjadi cara yang baik untuk melepaskan ketegangan. Jika ada yang ingin Bapak/Ibu katakan atau bagikan lebih lanjut, baik itu serius atau santai, saya di sini untuk mendengarkan. \ud83c\udf3f\ud83d\ude04",
         "timestamp": "2025-06-05T22:00:23.565472",
         "response_time": 14.730335235595703
+      },
+      {
+        "id": "120363386545619185_1749189088",
+        "sender": "120363386545619185@g.us",
+        "sender_name": "Anand",
+        "message": "Gas",
+        "response": "Tentu, Bapak/Ibu! Apakah ada hal tertentu yang ingin Bapak/Ibu bahas atau tanyakan? Saya siap membantu dan mendampingi dalam perjalanan ini. Silakan beri tahu saya! \ud83c\udf1f\u2728",
+        "timestamp": "2025-06-06T12:51:28.617064",
+        "response_time": 9.221004009246826
       }
     ],
     "first_timestamp": "2025-06-01T12:31:26.967094",
-    "last_timestamp": "2025-06-05T22:00:23.565472",
-    "last_message": "lol"
+    "last_timestamp": "2025-06-06T12:51:28.617064",
+    "last_message": "Gas"
   },
   {
     "id": "conv_447710173736",
