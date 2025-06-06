@@ -174,6 +174,24 @@
           "emotion": "neutral",
           "timestamp": "2025-05-29T14:46:47.713903"
         }
+      },
+      {
+        "timestamp": "2025-06-06T14:34:37.558000",
+        "analysis": {
+          "name": "jiwan",
+          "age": null,
+          "gender": "male",
+          "location": "Jakarta",
+          "health_complaints": [
+            "insomnia"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": "insomnia",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-05-29T14:46:47.713903"
+        }
       }
     ],
     "latest_analysis": {
@@ -202,7 +220,7 @@
         "diabetes"
       ],
       "conversion_barriers": [],
-      "last_interaction": "2025-06-06T12:26:10.047000",
+      "last_interaction": "2025-06-06T14:34:37.558000",
       "symptoms": [],
       "medical_history": "insomnia",
       "urgency_level": "medium",

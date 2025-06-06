@@ -59,6 +59,12 @@ const Analytics = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { t, language } = useLanguage();
+  
+  // Fallback translations if t function not available yet
+  const loadingTexts = {
+    performance: t ? t('analytics.loadingPerformanceData') : 'Loading performance metrics...',
+    users: t ? t('analytics.loadingUserData') : 'Loading user analytics...',
+  };
 
   // Function to fetch initial data
   const fetchInitialData = async () => {
@@ -1034,19 +1040,29 @@ const Analytics = (): JSX.Element => {
           </Tabs>
         </div>
 
-        {isLoading ? (
-          <div className="flex items-center justify-center h-64">
-            <CircularProgress />
-          </div>
-        ) : error ? (
+        {error ? (
           renderError()
         ) : (
-          <div>
-            {tabValue === 0 ? renderPerformanceMetrics() : (
-              <div>
-                {renderUserAnalytics()}
-                {renderUserTable()}
-              </div>
+          <div className="mt-4">
+            {tabValue === 0 ? (
+              isLoading ? (
+                <div className="flex flex-col items-center justify-center h-64 bg-white rounded-lg shadow-sm p-6">
+                  <CircularProgress size={60} thickness={4} />
+                  <p className="mt-4 text-gray-600 font-medium">{t('analytics.loadingPerformanceData')}</p>
+                </div>
+              ) : renderPerformanceMetrics()
+            ) : (
+              isLoading ? (
+                <div className="flex flex-col items-center justify-center h-64 bg-white rounded-lg shadow-sm p-6">
+                  <CircularProgress size={60} thickness={4} />
+                  <p className="mt-4 text-gray-600 font-medium">{t('analytics.loadingUserData')}</p>
+                </div>
+              ) : (
+                <div>
+                  {renderUserAnalytics()}
+                  {renderUserTable()}
+                </div>
+              )
             )}
           </div>
         )}

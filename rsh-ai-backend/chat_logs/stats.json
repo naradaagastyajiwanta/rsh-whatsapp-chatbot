@@ -1,7 +1,7 @@
 {
-  "total_messages": 380,
-  "total_conversations": 21,
-  "unique_users": 21,
+  "total_messages": 382,
+  "total_conversations": 22,
+  "unique_users": 22,
   "response_times": [
     3.5,
     3.5,
@@ -370,6 +370,8 @@
     14.730335235595703,
     27.241907119750977,
     7.9536919593811035,
-    9.221004009246826
+    9.221004009246826,
+    7.358968019485474,
+    7.067071199417114
   ]
 }

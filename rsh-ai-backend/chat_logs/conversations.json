@@ -2481,11 +2481,20 @@
         "response": "Hai, Bapak Jiwan! Senang mendengar dari Bapak. Ada yang ingin Bapak bicarakan atau tanyakan hari ini? Saya di sini untuk membantu. \ud83c\udf3f",
         "timestamp": "2025-06-06T12:26:25.972297",
         "response_time": 7.9536919593811035
+      },
+      {
+        "id": "6287811152506_1749195296",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "ok",
+        "response": "Baik, Bapak Jiwan! Jika ada yang ingin Bapak sampaikan atau tanyakan, silakan saja. Saya siap mendengarkan dan membantu Bapak. \ud83c\udf3f\u2728",
+        "timestamp": "2025-06-06T14:34:56.303432",
+        "response_time": 7.067071199417114
       }
     ],
     "first_timestamp": "2025-05-26T08:43:22.514563",
-    "last_timestamp": "2025-06-06T12:26:25.972297",
-    "last_message": "hai"
+    "last_timestamp": "2025-06-06T14:34:56.303432",
+    "last_message": "ok"
   },
   {
     "id": "conv_6283145916630",
@@ -3628,5 +3637,24 @@
     "first_timestamp": "2025-06-05T18:00:50.258815",
     "last_timestamp": "2025-06-05T18:00:50.258815",
     "last_message": "Halo pak"
+  },
+  {
+    "id": "conv_6285182016877",
+    "sender": "6285182016877@s.whatsapp.net",
+    "sender_name": "6285182016877",
+    "messages": [
+      {
+        "id": "6285182016877_1749193390",
+        "sender": "6285182016877@s.whatsapp.net",
+        "sender_name": "6285182016877",
+        "message": "Bagaimana ka? Apakah kaka tertarik untuk melakukan treatment di Sozo Dental dengan promo yang tersedia dan meneruskan proses reservasinya ?\ud83d\ude0a",
+        "response": "Selamat datang! Sebelum kita membahas lebih lanjut tentang treatment di Sozo Dental, boleh saya tahu:\n\n\u2022 Nama lengkap  \n\u2022 Jenis kelamin (agar saya bisa menyapa dengan tepat)  \n\u2022 Usia saat ini  \n\u2022 Domisili  \n\u2022 Dan keluhan utama yang sedang Bapak/Ibu rasakan saat ini? \n\nDengan informasi tersebut, saya bisa lebih memahami kondisi Bapak/Ibu. Terima kasih! \ud83c\udf3f",
+        "timestamp": "2025-06-06T14:03:10.139729",
+        "response_time": 7.358968019485474
+      }
+    ],
+    "first_timestamp": "2025-06-06T14:03:10.139729",
+    "last_timestamp": "2025-06-06T14:03:10.139729",
+    "last_message": "Bagaimana ka? Apakah kaka tertarik untuk melakukan treatment di Sozo Dental dengan promo yang tersedia dan meneruskan proses reservasinya ?\ud83d\ude0a"
   }
 ]
