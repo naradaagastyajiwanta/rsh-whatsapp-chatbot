@@ -2,56 +2,6 @@
   "6287811152506@s.whatsapp.net": {
     "interactions": [
       {
-        "timestamp": "2025-05-27T12:00:23.268752",
-        "analysis": {
-          "nama": null,
-          "usia": null,
-          "jenis_keluhan": null,
-          "gejala": [],
-          "riwayat_penyakit": null,
-          "tingkat_urgensi": null,
-          "emosi": "netral"
-        }
-      },
-      {
-        "timestamp": "2025-05-27T12:00:58.887139",
-        "analysis": {
-          "nama": null,
-          "usia": null,
-          "jenis_keluhan": "Insomnia",
-          "gejala": [
-            "Insomnia"
-          ],
-          "riwayat_penyakit": null,
-          "tingkat_urgensi": "rendah",
-          "emosi": "negatif"
-        }
-      },
-      {
-        "timestamp": "2025-05-27T12:04:09.870106",
-        "analysis": {
-          "nama": null,
-          "usia": null,
-          "jenis_keluhan": null,
-          "gejala": [],
-          "riwayat_penyakit": null,
-          "tingkat_urgensi": "rendah",
-          "emosi": "negatif"
-        }
-      },
-      {
-        "timestamp": "2025-05-27T12:30:31.258252",
-        "analysis": {
-          "nama": null,
-          "usia": null,
-          "jenis_keluhan": null,
-          "gejala": [],
-          "riwayat_penyakit": null,
-          "tingkat_urgensi": "rendah",
-          "emosi": "netral"
-        }
-      },
-      {
         "timestamp": "2025-05-27T12:31:35.821828",
         "analysis": {
           "nama": null,
@@ -192,6 +142,186 @@
           "emotion": "neutral",
           "timestamp": "2025-05-29T14:46:47.713903"
         }
+      },
+      {
+        "timestamp": "2025-06-06T18:23:30.485000",
+        "analysis": {
+          "name": "jiwan",
+          "age": null,
+          "gender": "male",
+          "location": "Jakarta",
+          "health_complaints": [
+            "insomnia"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": "insomnia",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-05-29T14:46:47.713903"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T18:24:07.685000",
+        "analysis": {
+          "name": "jiwan",
+          "age": null,
+          "gender": "male",
+          "location": "Jakarta",
+          "health_complaints": [
+            "insomnia"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": "insomnia",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-05-29T14:46:47.713903"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T18:26:47.787000",
+        "analysis": {
+          "name": "jiwan",
+          "age": null,
+          "gender": "male",
+          "location": "Jakarta",
+          "health_complaints": [
+            "insomnia"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": "insomnia",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-05-29T14:46:47.713903"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T18:29:15.948000",
+        "analysis": {
+          "name": "jiwan",
+          "age": null,
+          "gender": "male",
+          "location": "Jakarta",
+          "health_complaints": [
+            "insomnia"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": "insomnia",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-05-29T14:46:47.713903"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T18:30:34.782000",
+        "analysis": {
+          "name": "jiwan",
+          "age": null,
+          "gender": "male",
+          "location": "Jakarta",
+          "health_complaints": [
+            "insomnia"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": "insomnia",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-05-29T14:46:47.713903"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T19:32:04.374000",
+        "analysis": {
+          "name": "jiwan",
+          "age": null,
+          "gender": "male",
+          "location": "Jakarta",
+          "health_complaints": [
+            "insomnia"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": "insomnia",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-05-29T14:46:47.713903"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T19:33:17.772000",
+        "analysis": {
+          "name": "jiwan",
+          "age": null,
+          "gender": "male",
+          "location": "Jakarta",
+          "health_complaints": [
+            "insomnia"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": "insomnia",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-05-29T14:46:47.713903"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T19:33:51.088000",
+        "analysis": {
+          "name": "jiwan",
+          "age": null,
+          "gender": "male",
+          "location": "Jakarta",
+          "health_complaints": [
+            "insomnia"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": "insomnia",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-05-29T14:46:47.713903"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T19:35:17.903000",
+        "analysis": {
+          "name": "jiwan",
+          "age": null,
+          "gender": "male",
+          "location": "Jakarta",
+          "health_complaints": [
+            "insomnia"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": "insomnia",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-05-29T14:46:47.713903"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T19:37:43.019000",
+        "analysis": {
+          "name": "jiwan",
+          "age": null,
+          "gender": "male",
+          "location": "Jakarta",
+          "health_complaints": [
+            "insomnia"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": "insomnia",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-05-29T14:46:47.713903"
+        }
       }
     ],
     "latest_analysis": {
@@ -220,7 +350,7 @@
         "diabetes"
       ],
       "conversion_barriers": [],
-      "last_interaction": "2025-06-06T14:34:37.558000",
+      "last_interaction": "2025-06-06T19:37:43.019000",
       "symptoms": [],
       "medical_history": "insomnia",
       "urgency_level": "medium",
@@ -785,6 +915,797 @@
       "urgency_level": "medium",
       "emotion": "neutral",
       "timestamp": "2025-06-02T21:59:34.768718"
+    }
+  },
+  "6282146122942@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-06T18:17:43.625398",
+        "analysis": {
+          "name": "I MADE PRIATAMA PRANANDA",
+          "age": 19,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "kelebihan berat badan"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-06T18:17:43.624763"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T18:17:36.667000",
+        "analysis": {
+          "name": "I MADE PRIATAMA PRANANDA",
+          "age": 19,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "kelebihan berat badan"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-06T18:17:43.624763"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T18:18:16.968000",
+        "analysis": {
+          "name": "I MADE PRIATAMA PRANANDA",
+          "age": 19,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "kelebihan berat badan"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-06T18:17:43.624763"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T18:18:22.464124",
+        "analysis": {
+          "name": "I MADE PRIATAMA PRANANDA",
+          "age": 19,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "kelebihan berat badan"
+          ],
+          "symptoms": [
+            "stres"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-06T18:18:22.463381"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T18:18:15.424000",
+        "analysis": {
+          "name": "I MADE PRIATAMA PRANANDA",
+          "age": 19,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "kelebihan berat badan"
+          ],
+          "symptoms": [
+            "stres"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-06T18:18:22.463381"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T18:19:10.812970",
+        "analysis": {
+          "name": "I MADE PRIATAMA PRANANDA",
+          "age": 19,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "kelebihan berat badan"
+          ],
+          "symptoms": [
+            "stres"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-06T18:19:10.812297"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T18:19:04.271000",
+        "analysis": {
+          "name": "I MADE PRIATAMA PRANANDA",
+          "age": 19,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "kelebihan berat badan"
+          ],
+          "symptoms": [
+            "stres"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-06T18:19:10.812297"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T18:19:53.285754",
+        "analysis": {
+          "name": "I MADE PRIATAMA PRANANDA",
+          "age": 19,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "kelebihan berat badan"
+          ],
+          "symptoms": [
+            "stres"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-06T18:19:53.284128"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T18:19:47.120000",
+        "analysis": {
+          "name": "I MADE PRIATAMA PRANANDA",
+          "age": 19,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "kelebihan berat badan"
+          ],
+          "symptoms": [
+            "stres"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-06T18:19:53.284128"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T18:20:27.941081",
+        "analysis": {
+          "name": "I MADE PRIATAMA PRANANDA",
+          "age": 19,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "kelebihan berat badan"
+          ],
+          "symptoms": [
+            "stres"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-06T18:20:27.939355"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T18:20:21.135000",
+        "analysis": {
+          "name": "I MADE PRIATAMA PRANANDA",
+          "age": 19,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "kelebihan berat badan"
+          ],
+          "symptoms": [
+            "stres"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-06T18:20:27.939355"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-06T18:17:43.625398",
+    "details": {
+      "name": "I MADE PRIATAMA PRANANDA",
+      "age": 19,
+      "gender": "male",
+      "location": "Bali",
+      "health_complaints": [
+        "kelebihan berat badan"
+      ],
+      "conversion_barriers": [],
+      "last_interaction": "2025-06-06T18:20:21.135000",
+      "symptoms": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "I MADE PRIATAMA PRANANDA",
+      "age": 19,
+      "gender": "male",
+      "location": "Bali",
+      "health_complaints": [
+        "kelebihan berat badan"
+      ],
+      "symptoms": [
+        "stres"
+      ],
+      "conversion_barriers": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "positive",
+      "timestamp": "2025-06-06T18:20:27.939355"
+    }
+  },
+  "6287845141403@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-06T18:46:03.822576",
+        "analysis": {
+          "name": "Ibu Beti",
+          "age": 63,
+          "gender": "female",
+          "location": "Jakarta Selatan",
+          "health_complaints": [
+            "stroke"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": "stroke for 1 year",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-06T18:46:03.821235"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T18:45:56.038000",
+        "analysis": {
+          "name": "Ibu Beti",
+          "age": 63,
+          "gender": "female",
+          "location": "Jakarta Selatan",
+          "health_complaints": [
+            "stroke"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": "stroke for 1 year",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-06T18:46:03.821235"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T18:48:52.077124",
+        "analysis": {
+          "name": "Ibu Beti",
+          "age": 63,
+          "gender": "female",
+          "location": "Jakarta Selatan",
+          "health_complaints": [
+            "stroke"
+          ],
+          "symptoms": [
+            "jalan goyang",
+            "tidak stabil",
+            "sering merasa sedih"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "stroke for 1 year",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-06T18:48:52.076486"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T18:48:41.832000",
+        "analysis": {
+          "name": "Ibu Beti",
+          "age": 63,
+          "gender": "female",
+          "location": "Jakarta Selatan",
+          "health_complaints": [
+            "stroke"
+          ],
+          "symptoms": [
+            "jalan goyang",
+            "tidak stabil",
+            "sering merasa sedih"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "stroke for 1 year",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-06T18:48:52.076486"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T18:50:58.103510",
+        "analysis": {
+          "name": "Ibu Beti",
+          "age": 63,
+          "gender": "female",
+          "location": "Jakarta Selatan",
+          "health_complaints": [
+            "stroke"
+          ],
+          "symptoms": [
+            "jalan goyang",
+            "tidak stabil",
+            "sering merasa sedih"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "stroke for 1 year, pernah terapi fisik, terapi listrik, tusuk jarum, akupresur, psikologis 1x",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-06T18:50:58.102692"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T18:50:51.221000",
+        "analysis": {
+          "name": "Ibu Beti",
+          "age": 63,
+          "gender": "female",
+          "location": "Jakarta Selatan",
+          "health_complaints": [
+            "stroke"
+          ],
+          "symptoms": [
+            "jalan goyang",
+            "tidak stabil",
+            "sering merasa sedih"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "stroke for 1 year, pernah terapi fisik, terapi listrik, tusuk jarum, akupresur, psikologis 1x",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-06T18:50:58.102692"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T18:53:22.096614",
+        "analysis": {
+          "name": "Ibu Beti",
+          "age": 63,
+          "gender": "female",
+          "location": "Jakarta Selatan",
+          "health_complaints": [
+            "stroke"
+          ],
+          "symptoms": [
+            "jalan goyang",
+            "tidak stabil",
+            "sering merasa sedih",
+            "susah tidur",
+            "emotional disturbance",
+            "tidak pernah sosialisasi"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "stroke for 1 year, pernah terapi fisik, terapi listrik, tusuk jarum, akupresur, psikologis 1x",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-06T18:53:22.094688"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T18:53:12.523000",
+        "analysis": {
+          "name": "Ibu Beti",
+          "age": 63,
+          "gender": "female",
+          "location": "Jakarta Selatan",
+          "health_complaints": [
+            "stroke"
+          ],
+          "symptoms": [
+            "jalan goyang",
+            "tidak stabil",
+            "sering merasa sedih",
+            "susah tidur",
+            "emotional disturbance",
+            "tidak pernah sosialisasi"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "stroke for 1 year, pernah terapi fisik, terapi listrik, tusuk jarum, akupresur, psikologis 1x",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-06T18:53:22.094688"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T18:55:46.917198",
+        "analysis": {
+          "name": "Ibu Beti",
+          "age": 63,
+          "gender": "female",
+          "location": "Jakarta Selatan",
+          "health_complaints": [
+            "stroke"
+          ],
+          "symptoms": [
+            "jalan goyang",
+            "tidak stabil",
+            "sering merasa sedih",
+            "susah tidur",
+            "emotional disturbance",
+            "tidak pernah sosialisasi"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "stroke for 1 year, pernah terapi fisik, terapi listrik, tusuk jarum, akupresur, psikologis 1x",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-06T18:55:46.916469"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T18:55:38.254000",
+        "analysis": {
+          "name": "Ibu Beti",
+          "age": 63,
+          "gender": "female",
+          "location": "Jakarta Selatan",
+          "health_complaints": [
+            "stroke"
+          ],
+          "symptoms": [
+            "jalan goyang",
+            "tidak stabil",
+            "sering merasa sedih",
+            "susah tidur",
+            "emotional disturbance",
+            "tidak pernah sosialisasi"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "stroke for 1 year, pernah terapi fisik, terapi listrik, tusuk jarum, akupresur, psikologis 1x",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-06T18:55:46.916469"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T18:59:27.065651",
+        "analysis": {
+          "name": "Ibu Beti",
+          "age": 63,
+          "gender": "female",
+          "location": "Jakarta Selatan",
+          "health_complaints": [
+            "stroke"
+          ],
+          "symptoms": [
+            "jalan goyang",
+            "tidak stabil",
+            "sering merasa sedih",
+            "susah tidur",
+            "emotional disturbance",
+            "tidak pernah sosialisasi"
+          ],
+          "conversion_barriers": [
+            "pemahaman program"
+          ],
+          "medical_history": "stroke for 1 year, pernah terapi fisik, terapi listrik, tusuk jarum, akupresur, psikologis 1x",
+          "urgency_level": "high",
+          "emotion": "neutral",
+          "timestamp": "2025-06-06T18:59:27.063880"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T18:59:19.282000",
+        "analysis": {
+          "name": "Ibu Beti",
+          "age": 63,
+          "gender": "female",
+          "location": "Jakarta Selatan",
+          "health_complaints": [
+            "stroke"
+          ],
+          "symptoms": [
+            "jalan goyang",
+            "tidak stabil",
+            "sering merasa sedih",
+            "susah tidur",
+            "emotional disturbance",
+            "tidak pernah sosialisasi"
+          ],
+          "conversion_barriers": [
+            "pemahaman program"
+          ],
+          "medical_history": "stroke for 1 year, pernah terapi fisik, terapi listrik, tusuk jarum, akupresur, psikologis 1x",
+          "urgency_level": "high",
+          "emotion": "neutral",
+          "timestamp": "2025-06-06T18:59:27.063880"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T19:02:00.667131",
+        "analysis": {
+          "name": "Ibu Beti",
+          "age": 63,
+          "gender": "female",
+          "location": "Jakarta Selatan",
+          "health_complaints": [
+            "stroke"
+          ],
+          "symptoms": [
+            "jalan goyang",
+            "tidak stabil",
+            "sering merasa sedih",
+            "susah tidur",
+            "emotional disturbance",
+            "tidak pernah sosialisasi"
+          ],
+          "conversion_barriers": [
+            "pemahaman program"
+          ],
+          "medical_history": "stroke for 1 year, pernah terapi fisik, terapi listrik, tusuk jarum, akupresur, psikologis 1x",
+          "urgency_level": "high",
+          "emotion": "neutral",
+          "timestamp": "2025-06-06T19:02:00.666470"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T19:01:52.217000",
+        "analysis": {
+          "name": "Ibu Beti",
+          "age": 63,
+          "gender": "female",
+          "location": "Jakarta Selatan",
+          "health_complaints": [
+            "stroke"
+          ],
+          "symptoms": [
+            "jalan goyang",
+            "tidak stabil",
+            "sering merasa sedih",
+            "susah tidur",
+            "emotional disturbance",
+            "tidak pernah sosialisasi"
+          ],
+          "conversion_barriers": [
+            "pemahaman program"
+          ],
+          "medical_history": "stroke for 1 year, pernah terapi fisik, terapi listrik, tusuk jarum, akupresur, psikologis 1x",
+          "urgency_level": "high",
+          "emotion": "neutral",
+          "timestamp": "2025-06-06T19:02:00.666470"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T19:04:39.763682",
+        "analysis": {
+          "name": "Ibu Beti",
+          "age": 63,
+          "gender": "female",
+          "location": "Jakarta Selatan",
+          "health_complaints": [
+            "stroke"
+          ],
+          "symptoms": [
+            "jalan goyang",
+            "tidak stabil",
+            "sering merasa sedih",
+            "susah tidur",
+            "emotional disturbance",
+            "tidak pernah sosialisasi"
+          ],
+          "conversion_barriers": [
+            "pemahaman program"
+          ],
+          "medical_history": "stroke for 1 year, pernah terapi fisik, terapi listrik, tusuk jarum, akupresur, psikologis 1x",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-06T19:04:39.763003"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T19:04:32.797000",
+        "analysis": {
+          "name": "Ibu Beti",
+          "age": 63,
+          "gender": "female",
+          "location": "Jakarta Selatan",
+          "health_complaints": [
+            "stroke"
+          ],
+          "symptoms": [
+            "jalan goyang",
+            "tidak stabil",
+            "sering merasa sedih",
+            "susah tidur",
+            "emotional disturbance",
+            "tidak pernah sosialisasi"
+          ],
+          "conversion_barriers": [
+            "pemahaman program"
+          ],
+          "medical_history": "stroke for 1 year, pernah terapi fisik, terapi listrik, tusuk jarum, akupresur, psikologis 1x",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-06T19:04:39.763003"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T19:08:51.035325",
+        "analysis": {
+          "name": "Ibu Beti",
+          "age": 63,
+          "gender": "female",
+          "location": "Jakarta Selatan",
+          "health_complaints": [
+            "stroke"
+          ],
+          "symptoms": [
+            "jalan goyang",
+            "tidak stabil",
+            "sering merasa sedih",
+            "susah tidur",
+            "emotional disturbance",
+            "tidak pernah sosialisasi"
+          ],
+          "conversion_barriers": [
+            "pemahaman program"
+          ],
+          "medical_history": "stroke for 1 year, pernah terapi fisik, terapi listrik, tusuk jarum, akupresur, psikologis 1x",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-06T19:08:51.034650"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T19:08:43.551000",
+        "analysis": {
+          "name": "Ibu Beti",
+          "age": 63,
+          "gender": "female",
+          "location": "Jakarta Selatan",
+          "health_complaints": [
+            "stroke"
+          ],
+          "symptoms": [
+            "jalan goyang",
+            "tidak stabil",
+            "sering merasa sedih",
+            "susah tidur",
+            "emotional disturbance",
+            "tidak pernah sosialisasi"
+          ],
+          "conversion_barriers": [
+            "pemahaman program"
+          ],
+          "medical_history": "stroke for 1 year, pernah terapi fisik, terapi listrik, tusuk jarum, akupresur, psikologis 1x",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-06T19:08:51.034650"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T19:11:28.546809",
+        "analysis": {
+          "name": "Ibu Beti",
+          "age": 63,
+          "gender": "female",
+          "location": "Jakarta Selatan",
+          "health_complaints": [
+            "stroke"
+          ],
+          "symptoms": [
+            "jalan goyang",
+            "tidak stabil",
+            "sering merasa sedih",
+            "susah tidur",
+            "emotional disturbance",
+            "tidak pernah sosialisasi"
+          ],
+          "conversion_barriers": [
+            "pemahaman program"
+          ],
+          "medical_history": "stroke for 1 year, pernah terapi fisik, terapi listrik, tusuk jarum, akupresur, psikologis 1x",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-06T19:11:28.546093"
+        }
+      },
+      {
+        "timestamp": "2025-06-06T19:11:21.942000",
+        "analysis": {
+          "name": "Ibu Beti",
+          "age": 63,
+          "gender": "female",
+          "location": "Jakarta Selatan",
+          "health_complaints": [
+            "stroke"
+          ],
+          "symptoms": [
+            "jalan goyang",
+            "tidak stabil",
+            "sering merasa sedih",
+            "susah tidur",
+            "emotional disturbance",
+            "tidak pernah sosialisasi"
+          ],
+          "conversion_barriers": [
+            "pemahaman program"
+          ],
+          "medical_history": "stroke for 1 year, pernah terapi fisik, terapi listrik, tusuk jarum, akupresur, psikologis 1x",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-06T19:11:28.546093"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-06T18:43:54.209509",
+    "details": {
+      "name": "Ibu Beti",
+      "age": 63,
+      "gender": "female",
+      "location": "Jakarta Selatan",
+      "health_complaints": [
+        "stroke"
+      ],
+      "conversion_barriers": [
+        "pemahaman program"
+      ],
+      "last_interaction": "2025-06-06T19:11:21.942000",
+      "symptoms": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "positive"
+    },
+    "latest_analysis": {
+      "name": "Ibu Beti",
+      "age": 63,
+      "gender": "female",
+      "location": "Jakarta Selatan",
+      "health_complaints": [
+        "stroke"
+      ],
+      "symptoms": [
+        "jalan goyang",
+        "tidak stabil",
+        "sering merasa sedih",
+        "susah tidur",
+        "emotional disturbance",
+        "tidak pernah sosialisasi"
+      ],
+      "conversion_barriers": [
+        "pemahaman program"
+      ],
+      "medical_history": "stroke for 1 year, pernah terapi fisik, terapi listrik, tusuk jarum, akupresur, psikologis 1x",
+      "urgency_level": "high",
+      "emotion": "positive",
+      "timestamp": "2025-06-06T19:11:28.546093"
     }
   }
 }

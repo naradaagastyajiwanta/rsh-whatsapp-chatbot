@@ -120,6 +120,14 @@ def log_chat_message(sender: str, sender_name: str, message: str, response: str,
             websocket_handler.broadcast_new_message(chat_id, message)
             # Broadcast updated chat list
             websocket_handler.broadcast_chats_update()
+            
+            # Broadcast user activity update to ensure new users are immediately visible
+            current_time = datetime.now().isoformat()
+            websocket_handler.broadcast_user_activity_update(sender, current_time, "message")
+            
+            # Also broadcast analytics update for this user to ensure new users appear in the list
+            websocket_handler.broadcast_user_analytics_update(sender)
+            
             logger.info("WebSocket broadcast completed successfully")
         except Exception as e:
             logger.error(f"Error broadcasting via WebSocket: {str(e)}")
