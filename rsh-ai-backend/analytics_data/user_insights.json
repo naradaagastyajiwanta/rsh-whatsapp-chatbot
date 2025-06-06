@@ -1,374 +1,4 @@
 {
-  "6287811152506@s.whatsapp.net": {
-    "interactions": [
-      {
-        "timestamp": "2025-05-27T14:17:16.414676",
-        "analysis": {
-          "nama": null,
-          "usia": null,
-          "jenis_keluhan": "Diabetes",
-          "gejala": [
-            "Kaki kebas"
-          ],
-          "riwayat_penyakit": "Diabetes",
-          "tingkat_urgensi": "sedang",
-          "emosi": "negatif"
-        }
-      },
-      {
-        "timestamp": "2025-05-27T14:26:03.505383",
-        "analysis": {
-          "nama": null,
-          "usia": null,
-          "jenis_keluhan": null,
-          "gejala": null,
-          "riwayat_penyakit": null,
-          "tingkat_urgensi": null,
-          "emosi": "netral"
-        }
-      },
-      {
-        "timestamp": "2025-05-27T14:26:57.941750",
-        "analysis": {
-          "nama": null,
-          "usia": null,
-          "jenis_keluhan": null,
-          "gejala": null,
-          "riwayat_penyakit": null,
-          "tingkat_urgensi": null,
-          "emosi": "positif"
-        }
-      },
-      {
-        "timestamp": "2025-05-27T14:27:50.325295",
-        "analysis": {
-          "nama": "Jiwan",
-          "usia": "28",
-          "jenis_keluhan": "diabetes",
-          "gejala": null,
-          "riwayat_penyakit": "diabetes",
-          "tingkat_urgensi": "rendah",
-          "emosi": "netral"
-        }
-      },
-      {
-        "timestamp": "2025-05-27T22:14:22.395005",
-        "analysis": {
-          "name": "Jiwan",
-          "age": 25,
-          "gender": "male",
-          "location": "Kalimantan",
-          "health_complaints": [
-            "diabetes"
-          ],
-          "conversion_barriers": [],
-          "timestamp": "2025-05-27T22:14:22.394757"
-        }
-      },
-      {
-        "timestamp": "2025-05-29T14:46:47.714379",
-        "analysis": {
-          "name": "jiwan",
-          "age": null,
-          "gender": "male",
-          "location": "Jakarta",
-          "health_complaints": [
-            "insomnia"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [],
-          "medical_history": "insomnia",
-          "urgency_level": "medium",
-          "emotion": "neutral",
-          "timestamp": "2025-05-29T14:46:47.713903"
-        }
-      },
-      {
-        "timestamp": "2025-06-06T12:26:10.047000",
-        "analysis": {
-          "name": "jiwan",
-          "age": null,
-          "gender": "male",
-          "location": "Jakarta",
-          "health_complaints": [
-            "insomnia"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [],
-          "medical_history": "insomnia",
-          "urgency_level": "medium",
-          "emotion": "neutral",
-          "timestamp": "2025-05-29T14:46:47.713903"
-        }
-      },
-      {
-        "timestamp": "2025-06-06T14:34:37.558000",
-        "analysis": {
-          "name": "jiwan",
-          "age": null,
-          "gender": "male",
-          "location": "Jakarta",
-          "health_complaints": [
-            "insomnia"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [],
-          "medical_history": "insomnia",
-          "urgency_level": "medium",
-          "emotion": "neutral",
-          "timestamp": "2025-05-29T14:46:47.713903"
-        }
-      },
-      {
-        "timestamp": "2025-06-06T18:23:30.485000",
-        "analysis": {
-          "name": "jiwan",
-          "age": null,
-          "gender": "male",
-          "location": "Jakarta",
-          "health_complaints": [
-            "insomnia"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [],
-          "medical_history": "insomnia",
-          "urgency_level": "medium",
-          "emotion": "neutral",
-          "timestamp": "2025-05-29T14:46:47.713903"
-        }
-      },
-      {
-        "timestamp": "2025-06-06T18:24:07.685000",
-        "analysis": {
-          "name": "jiwan",
-          "age": null,
-          "gender": "male",
-          "location": "Jakarta",
-          "health_complaints": [
-            "insomnia"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [],
-          "medical_history": "insomnia",
-          "urgency_level": "medium",
-          "emotion": "neutral",
-          "timestamp": "2025-05-29T14:46:47.713903"
-        }
-      },
-      {
-        "timestamp": "2025-06-06T18:26:47.787000",
-        "analysis": {
-          "name": "jiwan",
-          "age": null,
-          "gender": "male",
-          "location": "Jakarta",
-          "health_complaints": [
-            "insomnia"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [],
-          "medical_history": "insomnia",
-          "urgency_level": "medium",
-          "emotion": "neutral",
-          "timestamp": "2025-05-29T14:46:47.713903"
-        }
-      },
-      {
-        "timestamp": "2025-06-06T18:29:15.948000",
-        "analysis": {
-          "name": "jiwan",
-          "age": null,
-          "gender": "male",
-          "location": "Jakarta",
-          "health_complaints": [
-            "insomnia"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [],
-          "medical_history": "insomnia",
-          "urgency_level": "medium",
-          "emotion": "neutral",
-          "timestamp": "2025-05-29T14:46:47.713903"
-        }
-      },
-      {
-        "timestamp": "2025-06-06T18:30:34.782000",
-        "analysis": {
-          "name": "jiwan",
-          "age": null,
-          "gender": "male",
-          "location": "Jakarta",
-          "health_complaints": [
-            "insomnia"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [],
-          "medical_history": "insomnia",
-          "urgency_level": "medium",
-          "emotion": "neutral",
-          "timestamp": "2025-05-29T14:46:47.713903"
-        }
-      },
-      {
-        "timestamp": "2025-06-06T19:32:04.374000",
-        "analysis": {
-          "name": "jiwan",
-          "age": null,
-          "gender": "male",
-          "location": "Jakarta",
-          "health_complaints": [
-            "insomnia"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [],
-          "medical_history": "insomnia",
-          "urgency_level": "medium",
-          "emotion": "neutral",
-          "timestamp": "2025-05-29T14:46:47.713903"
-        }
-      },
-      {
-        "timestamp": "2025-06-06T19:33:17.772000",
-        "analysis": {
-          "name": "jiwan",
-          "age": null,
-          "gender": "male",
-          "location": "Jakarta",
-          "health_complaints": [
-            "insomnia"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [],
-          "medical_history": "insomnia",
-          "urgency_level": "medium",
-          "emotion": "neutral",
-          "timestamp": "2025-05-29T14:46:47.713903"
-        }
-      },
-      {
-        "timestamp": "2025-06-06T19:33:51.088000",
-        "analysis": {
-          "name": "jiwan",
-          "age": null,
-          "gender": "male",
-          "location": "Jakarta",
-          "health_complaints": [
-            "insomnia"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [],
-          "medical_history": "insomnia",
-          "urgency_level": "medium",
-          "emotion": "neutral",
-          "timestamp": "2025-05-29T14:46:47.713903"
-        }
-      },
-      {
-        "timestamp": "2025-06-06T19:35:17.903000",
-        "analysis": {
-          "name": "jiwan",
-          "age": null,
-          "gender": "male",
-          "location": "Jakarta",
-          "health_complaints": [
-            "insomnia"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [],
-          "medical_history": "insomnia",
-          "urgency_level": "medium",
-          "emotion": "neutral",
-          "timestamp": "2025-05-29T14:46:47.713903"
-        }
-      },
-      {
-        "timestamp": "2025-06-06T19:37:43.019000",
-        "analysis": {
-          "name": "jiwan",
-          "age": null,
-          "gender": "male",
-          "location": "Jakarta",
-          "health_complaints": [
-            "insomnia"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [],
-          "medical_history": "insomnia",
-          "urgency_level": "medium",
-          "emotion": "neutral",
-          "timestamp": "2025-05-29T14:46:47.713903"
-        }
-      },
-      {
-        "timestamp": "2025-06-07T06:18:17.519000",
-        "analysis": {
-          "name": "jiwan",
-          "age": null,
-          "gender": "male",
-          "location": "Jakarta",
-          "health_complaints": [
-            "insomnia"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [],
-          "medical_history": "insomnia",
-          "urgency_level": "medium",
-          "emotion": "neutral",
-          "timestamp": "2025-05-29T14:46:47.713903"
-        }
-      },
-      {
-        "timestamp": "2025-06-07T06:19:12.657000",
-        "analysis": {
-          "name": "jiwan",
-          "age": null,
-          "gender": "male",
-          "location": "Jakarta",
-          "health_complaints": [
-            "insomnia"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [],
-          "medical_history": "insomnia",
-          "urgency_level": "medium",
-          "emotion": "neutral",
-          "timestamp": "2025-05-29T14:46:47.713903"
-        }
-      }
-    ],
-    "latest_analysis": {
-      "name": "jiwan",
-      "age": null,
-      "gender": "male",
-      "location": "Jakarta",
-      "health_complaints": [
-        "insomnia"
-      ],
-      "symptoms": [],
-      "conversion_barriers": [],
-      "medical_history": "insomnia",
-      "urgency_level": "medium",
-      "emotion": "neutral",
-      "timestamp": "2025-05-29T14:46:47.713903"
-    },
-    "first_interaction": "2025-05-27T12:00:23.268742",
-    "details": {
-      "name": "jiwan",
-      "age": 25,
-      "gender": "male",
-      "location": "Jakarta",
-      "health_complaints": [
-        "insomnia",
-        "diabetes"
-      ],
-      "conversion_barriers": [],
-      "last_interaction": "2025-06-07T06:19:12.657000",
-      "symptoms": [],
-      "medical_history": "insomnia",
-      "urgency_level": "medium",
-      "emotion": "neutral"
-    }
-  },
   "628126492995@s.whatsapp.net": {
     "interactions": [
       {
@@ -1718,6 +1348,81 @@
       "urgency_level": "high",
       "emotion": "positive",
       "timestamp": "2025-06-06T19:11:28.546093"
+    }
+  },
+  "6287811152506@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-07T06:42:47.166463",
+        "analysis": {
+          "name": "Jiwan",
+          "age": 21,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Diabetes",
+            "Insomnia"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T06:42:47.165840"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T06:42:40.893000",
+        "analysis": {
+          "name": "Jiwan",
+          "age": 21,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Diabetes",
+            "Insomnia"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T06:42:47.165840"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-07T06:42:47.166463",
+    "details": {
+      "name": "Jiwan",
+      "age": 21,
+      "gender": "male",
+      "location": "Bali",
+      "health_complaints": [
+        "Diabetes",
+        "Insomnia"
+      ],
+      "conversion_barriers": [],
+      "last_interaction": "2025-06-07T06:42:40.893000",
+      "symptoms": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "Jiwan",
+      "age": 21,
+      "gender": "male",
+      "location": "Bali",
+      "health_complaints": [
+        "Diabetes",
+        "Insomnia"
+      ],
+      "symptoms": [],
+      "conversion_barriers": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral",
+      "timestamp": "2025-06-07T06:42:47.165840"
     }
   }
 }

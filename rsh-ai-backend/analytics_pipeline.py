@@ -562,116 +562,109 @@ class AnalyticsPipeline:
                     
             return insights
         except Exception as e:
-            logger.error(f"Error saat migrasi data: {str(e)}")
-            return {}
-    
+            logger.error(f"[AnalyticsAPI] Error menghapus data analytics untuk {phone_number}: {str(e)}")
+            import traceback
+            logger.error(traceback.format_exc())
+            return False
+
     def get_user_insights(self, sender: Optional[str] = None) -> Dict:
         """Ambil insights untuk semua user atau user tertentu"""
         try:
             # Ensure analytics directory exists
             self.ensure_analytics_dir()
             
-            # Read insights file
             try:
                 with open(self.insights_file, "r") as f:
                     insights = json.load(f)
-            except FileNotFoundError:
+            except (FileNotFoundError, json.JSONDecodeError):
                 insights = {}
-            except json.JSONDecodeError:
-                insights = {}
-
+                
             if sender:
-                return insights.get(sender, {})
-
-            # Format data for frontend
-            formatted_insights = {
-                'total_users': len(insights),
-                'active_users': 0,
-                'new_users': 0,
-                'users': {}
-            }
-
-            now = datetime.now()
-            seven_days_ago = now - timedelta(days=7)
-
-            # Format user data
-            for phone, user_data in insights.items():
-                try:
-                    details = user_data.get('details', {})
-                    last_interaction_str = details.get('last_interaction', now.isoformat())
-                    first_interaction_str = user_data.get('first_interaction', now.isoformat())
-                    
-                    try:
-                        last_interaction = datetime.fromisoformat(last_interaction_str)
-                        first_interaction = datetime.fromisoformat(first_interaction_str)
-                    except ValueError:
-                        logger.error(f"Invalid datetime format for user {phone}")
-                        last_interaction = now
-                        first_interaction = now
-
-                    # Update counters
-                    if last_interaction > seven_days_ago:
-                        formatted_insights['active_users'] += 1
-                    if (now - first_interaction).days <= 7:
-                        formatted_insights['new_users'] += 1
-
-                    # Normalize latest_analysis to match frontend expectations
-                    latest_analysis = user_data.get('latest_analysis', {})
-                    
-                    # Ensure all required fields exist with correct types
-                    self._ensure_field_exists(latest_analysis, 'name', None)
-                    self._ensure_field_exists(latest_analysis, 'age', None)
-                    self._ensure_field_exists(latest_analysis, 'gender', None)
-                    self._ensure_field_exists(latest_analysis, 'location', None)
-                    self._ensure_field_exists(latest_analysis, 'medical_history', None)
-                    self._ensure_field_exists(latest_analysis, 'urgency_level', None)
-                    self._ensure_field_exists(latest_analysis, 'emotion', 'neutral')
-                    
-                    # Ensure array fields
-                    self._ensure_array_field(latest_analysis, 'health_complaints')
-                    self._ensure_array_field(latest_analysis, 'symptoms')
-                    self._ensure_array_field(latest_analysis, 'conversion_barriers')
-                    
-                    # Normalize details to match frontend expectations
-                    self._ensure_field_exists(details, 'name', latest_analysis.get('name'))
-                    self._ensure_field_exists(details, 'age', latest_analysis.get('age'))
-                    self._ensure_field_exists(details, 'gender', latest_analysis.get('gender'))
-                    self._ensure_field_exists(details, 'location', latest_analysis.get('location'))
-                    
-                    # Ensure array fields in details
-                    self._ensure_array_field(details, 'health_complaints')
-                    self._ensure_array_field(details, 'conversion_barriers')
-                    
-                    # Format user data
-                    formatted_insights['users'][phone] = {
-                        'details': details,
-                        'latest_analysis': latest_analysis,
-                        'first_interaction': first_interaction.isoformat(),
-                        'interactions': user_data.get('interactions', [])
-                    }
-                except Exception as e:
-                    logger.error(f"Error processing user {phone}: {str(e)}")
-                    logger.error(f"Exception details: {str(e.__class__.__name__)}")
-                    import traceback
-                    logger.error(traceback.format_exc())
-                    continue
-
-            # Log detail untuk debugging
-            logger.info(f"Returning formatted insights with {len(formatted_insights['users'])} users")
-            logger.debug(f"Formatted insights structure: {json.dumps({k: type(v).__name__ for k, v in formatted_insights.items()}, indent=2)}")
-            
-            return formatted_insights
-
+                # Return insights for specific sender
+                if sender in insights:
+                    return {"users": {sender: insights[sender]}}
+                else:
+                    return {"users": {}}
+            else:
+                # Return all insights
+                return {"users": insights}
         except Exception as e:
-            logger.error(f"Error getting user insights: {str(e)}")
+            logger.error(f"Error saat mengambil user insights: {str(e)}")
+            return {"users": {}}
+                
+    def delete_user_insights(self, phone_number: str) -> bool:
+        """Hapus data analytics untuk nomor telepon tertentu
+        
+        Args:
+            phone_number: Nomor telepon yang akan dihapus datanya
+            
+        Returns:
+            bool: True jika berhasil dihapus, False jika gagal
+        """
+        try:
+            # Normalize input
+            cleaned_nomor = phone_number.strip()
+            
+            # Ensure analytics directory exists
+            self.ensure_analytics_dir()
+            
+            try:
+                with open(self.insights_file, "r") as f:
+                    insights = json.load(f)
+            except (FileNotFoundError, json.JSONDecodeError):
+                logger.warning(f"[AnalyticsAPI] Analytics file tidak ditemukan atau kosong saat mencoba menghapus {cleaned_nomor}")
+                return False
+            
+            deleted = False
+            
+            # Coba hapus dengan format nomor yang berbeda
+            formats_to_try = [
+                cleaned_nomor,  # Format asli
+                cleaned_nomor.split('@')[0] if '@' in cleaned_nomor else cleaned_nomor,  # Tanpa suffix
+                f"{cleaned_nomor}@s.whatsapp.net" if '@' not in cleaned_nomor else cleaned_nomor,  # Dengan suffix
+                f"analytics_{cleaned_nomor}" if not cleaned_nomor.startswith('analytics_') else cleaned_nomor,  # Dengan prefix
+                f"analytics_{cleaned_nomor.split('@')[0]}" if '@' in cleaned_nomor and not cleaned_nomor.startswith('analytics_') else cleaned_nomor  # Dengan prefix tanpa suffix
+            ]
+            
+            for format_nomor in formats_to_try:
+                if format_nomor in insights:
+                    logger.info(f"[AnalyticsAPI] Menghapus data analytics untuk {format_nomor}")
+                    del insights[format_nomor]
+                    deleted = True
+            
+            if deleted:
+                # Simpan perubahan ke file
+                with open(self.insights_file, "w") as f:
+                    json.dump(insights, f, indent=2)
+                
+                # Emit WebSocket event jika handler tersedia
+                if hasattr(self, 'websocket_handler') and self.websocket_handler:
+                    self.websocket_handler.emit('analytics_update', {
+                        'type': 'user_deleted',
+                        'data': {
+                            'phone_number': cleaned_nomor,
+                            'timestamp': datetime.now().isoformat()
+                        }
+                    })
+                    
+                    # Kirim update user analytics keseluruhan
+                    all_user_insights = self.get_user_insights()
+                    self.websocket_handler.emit('analytics_update', {
+                        'type': 'users',
+                        'data': all_user_insights
+                    })
+                
+                logger.info(f"[AnalyticsAPI] Berhasil menghapus data analytics untuk {cleaned_nomor}")
+                return True
+            else:
+                logger.warning(f"[AnalyticsAPI] Tidak ada data analytics ditemukan untuk {cleaned_nomor}")
+                return False
+                
+        except Exception as e:
+            logger.error(f"[AnalyticsAPI] Error menghapus data analytics untuk {phone_number}: {str(e)}")
             import traceback
             logger.error(traceback.format_exc())
-            return {
-                'total_users': 0,
-                'active_users': 0,
-                'new_users': 0,
-                'users': {}
-            }
+            return False
             
     def _ensure_field_exists(self, data_dict: Dict, field_name: str, default_value: Any) -> None:
         """Memastikan field tertentu ada dalam dictionary

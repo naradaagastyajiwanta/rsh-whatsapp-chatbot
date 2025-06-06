@@ -2598,11 +2598,38 @@
         "response": "Terima kasih, Iwan. Boleh saya tahu:  \n\u2022 Jenis kelamin (agar saya bisa menyapa dengan tepat)  \n\u2022 Usia saat ini  \n\u2022 Domisili  \n\u2022 Dan keluhan utama yang sedang dirasakan saat ini?",
         "timestamp": "2025-06-07T06:19:24.608841",
         "response_time": 6.777965784072876
+      },
+      {
+        "id": "6287811152506_1749252913",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "hai",
+        "response": "Selamat datang, Bapak/Ibu. Bagaimana kabar Anda hari ini? Apakah ada yang ingin Anda diskusikan atau tanyakan?",
+        "timestamp": "2025-06-07T06:35:13.845762",
+        "response_time": 9.11251425743103
+      },
+      {
+        "id": "6287811152506_1749253231",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "saya mau tahu mengenai rumah sehat",
+        "response": "Sebelum saya bantu lebih lanjut, boleh saya tahu:  \n\u2022 Nama lengkap  \n\u2022 Jenis kelamin (agar saya bisa menyapa dengan tepat)  \n\u2022 Usia saat ini  \n\u2022 Domisili  \n\u2022 Dan keluhan utama yang sedang dirasakan saat ini?",
+        "timestamp": "2025-06-07T06:40:31.820571",
+        "response_time": 8.959971189498901
+      },
+      {
+        "id": "6287811152506_1749253375",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "Sebelum saya bantu lebih lanjut, boleh saya tahu:  \n\u2022 Nama lengkap   Jiwan\n\u2022 Jenis kelamin (agar saya bisa menyapa dengan tepat)  Laki\n\u2022 Usia saat ini  21\n\u2022 Domisili  Bali\n\u2022 Dan keluhan utama yang sedang dirasakan saat ini? Diabetes dan insomnia",
+        "response": "Terima kasih, Bapak Jiwan, telah membagikan informasi ini. Saya ingin mendalami lebih lanjut tentang keluhan yang Bapak rasakan.\n\nKalau boleh saya tahu, sejak kapan Bapak mulai merasakan keluhan diabetes dan insomnia ini?",
+        "timestamp": "2025-06-07T06:42:55.153079",
+        "response_time": 7.673180103302002
       }
     ],
     "first_timestamp": "2025-05-26T08:43:22.514563",
-    "last_timestamp": "2025-06-07T06:19:24.608841",
-    "last_message": "sayaj iwan"
+    "last_timestamp": "2025-06-07T06:42:55.153079",
+    "last_message": "Sebelum saya bantu lebih lanjut, boleh saya tahu:  \n\u2022 Nama lengkap   Jiwan\n\u2022 Jenis kelamin (agar saya bisa menyapa dengan tepat)  Laki\n\u2022 Usia saat ini  21\n\u2022 Domisili  Bali\n\u2022 Dan keluhan utama yang sedang dirasakan saat ini? Diabetes dan insomnia"
   },
   {
     "id": "conv_6283145916630",

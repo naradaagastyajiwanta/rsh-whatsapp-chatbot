@@ -430,27 +430,46 @@ def delete_thread(phone_number):
     try:
         # Import the thread manager
         from assistant_thread_manager import delete_thread_for_nomor
+        # Import analytics pipeline for analytics data deletion
+        from analytics_pipeline import analytics
         
         # Normalize the phone number
         phone_number = phone_number.strip()
         
         # Delete the thread
-        success = delete_thread_for_nomor(phone_number)
+        thread_success = delete_thread_for_nomor(phone_number)
         
-        if success:
-            logger.info(f"[ADMIN] Successfully deleted thread for {phone_number}")
+        # Delete associated analytics data
+        analytics_success = False
+        analytics_message = ""
+        try:
+            analytics_success = analytics.delete_user_insights(phone_number)
+            if analytics_success:
+                analytics_message = "and associated analytics data "
+                logger.info(f"[ADMIN] Successfully deleted analytics data for {phone_number}")
+            else:
+                analytics_message = "but no analytics data found "
+                logger.warning(f"[ADMIN] No analytics data found for {phone_number}")
+        except Exception as analytics_error:
+            analytics_message = "but failed to delete analytics data "
+            logger.error(f"[ADMIN] Error deleting analytics data: {str(analytics_error)}")
+        
+        if thread_success:
+            logger.info(f"[ADMIN] Successfully deleted thread {analytics_message}for {phone_number}")
             
             # Broadcast thread deletion via WebSocket if available
             if websocket_handler:
                 websocket_handler.broadcast_event('thread_deleted', {
                     'phone_number': phone_number,
+                    'analytics_deleted': analytics_success,
                     'timestamp': datetime.utcnow().isoformat(),
                     'status': 'success'
                 })
             
             return jsonify({
                 "status": "success",
-                "message": f"Thread for {phone_number} successfully deleted"
+                "message": f"Thread {analytics_message}for {phone_number} successfully deleted",
+                "analytics_deleted": analytics_success
             }), 200
         else:
             logger.warning(f"[ADMIN] No thread found for {phone_number} to delete")

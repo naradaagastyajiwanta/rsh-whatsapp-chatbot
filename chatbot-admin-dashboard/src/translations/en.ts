@@ -246,6 +246,8 @@ export const en = {
     age: 'Age',
     healthComplaints: 'Health Complaints',
     conversionBarriers: 'Conversion Barriers',
+    confirmDeleteThread: 'Delete Thread?',
+    confirmDeleteThreadMessage: 'Are you sure you want to delete this thread? This action cannot be undone and will also remove the associated analytics data.'
   },
   documents: {
     title: 'Documents',

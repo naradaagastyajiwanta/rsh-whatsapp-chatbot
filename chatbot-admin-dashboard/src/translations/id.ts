@@ -259,6 +259,8 @@ export const id = {
     age: 'Usia',
     healthComplaints: 'Keluhan Kesehatan',
     conversionBarriers: 'Hambatan Konversi',
+    confirmDeleteThread: 'Hapus Percakapan?',
+    confirmDeleteThreadMessage: 'Apakah Anda yakin ingin menghapus percakapan ini? Tindakan ini tidak dapat dibatalkan dan juga akan menghapus data analitik terkait.'
   },
   documents: {
     title: 'Dokumen',
