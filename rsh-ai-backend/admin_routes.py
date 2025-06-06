@@ -424,6 +424,47 @@ def clear_threads():
             "message": f"Error saat membersihkan thread: {str(e)}"
         }), 500
 
+# Delete thread for a specific user
+@admin_bp.route('/delete-thread/<phone_number>', methods=['DELETE'])
+def delete_thread(phone_number):
+    try:
+        # Import the thread manager
+        from assistant_thread_manager import delete_thread_for_nomor
+        
+        # Normalize the phone number
+        phone_number = phone_number.strip()
+        
+        # Delete the thread
+        success = delete_thread_for_nomor(phone_number)
+        
+        if success:
+            logger.info(f"[ADMIN] Successfully deleted thread for {phone_number}")
+            
+            # Broadcast thread deletion via WebSocket if available
+            if websocket_handler:
+                websocket_handler.broadcast_event('thread_deleted', {
+                    'phone_number': phone_number,
+                    'timestamp': datetime.utcnow().isoformat(),
+                    'status': 'success'
+                })
+            
+            return jsonify({
+                "status": "success",
+                "message": f"Thread for {phone_number} successfully deleted"
+            }), 200
+        else:
+            logger.warning(f"[ADMIN] No thread found for {phone_number} to delete")
+            return jsonify({
+                "status": "warning",
+                "message": f"No thread found for {phone_number}"
+            }), 404
+    except Exception as e:
+        logger.error(f"[ADMIN] Error deleting thread: {str(e)}")
+        return jsonify({
+            "status": "error",
+            "message": f"Error deleting thread: {str(e)}"
+        }), 500
+
 # Analytics endpoints
 @admin_bp.route('/analytics/performance', methods=['GET'])
 def get_performance_analytics():

@@ -2,30 +2,6 @@
   "6287811152506@s.whatsapp.net": {
     "interactions": [
       {
-        "timestamp": "2025-05-27T12:31:35.821828",
-        "analysis": {
-          "nama": null,
-          "usia": null,
-          "jenis_keluhan": "Informasi Biaya Program Kesehatan",
-          "gejala": null,
-          "riwayat_penyakit": null,
-          "tingkat_urgensi": "rendah",
-          "emosi": "positif"
-        }
-      },
-      {
-        "timestamp": "2025-05-27T14:13:08.302383",
-        "analysis": {
-          "nama": null,
-          "usia": null,
-          "jenis_keluhan": null,
-          "gejala": null,
-          "riwayat_penyakit": null,
-          "tingkat_urgensi": null,
-          "emosi": "netral"
-        }
-      },
-      {
         "timestamp": "2025-05-27T14:17:16.414676",
         "analysis": {
           "nama": null,
@@ -322,6 +298,42 @@
           "emotion": "neutral",
           "timestamp": "2025-05-29T14:46:47.713903"
         }
+      },
+      {
+        "timestamp": "2025-06-07T06:18:17.519000",
+        "analysis": {
+          "name": "jiwan",
+          "age": null,
+          "gender": "male",
+          "location": "Jakarta",
+          "health_complaints": [
+            "insomnia"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": "insomnia",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-05-29T14:46:47.713903"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T06:19:12.657000",
+        "analysis": {
+          "name": "jiwan",
+          "age": null,
+          "gender": "male",
+          "location": "Jakarta",
+          "health_complaints": [
+            "insomnia"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": "insomnia",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-05-29T14:46:47.713903"
+        }
       }
     ],
     "latest_analysis": {
@@ -350,7 +362,7 @@
         "diabetes"
       ],
       "conversion_barriers": [],
-      "last_interaction": "2025-06-06T19:37:43.019000",
+      "last_interaction": "2025-06-07T06:19:12.657000",
       "symptoms": [],
       "medical_history": "insomnia",
       "urgency_level": "medium",

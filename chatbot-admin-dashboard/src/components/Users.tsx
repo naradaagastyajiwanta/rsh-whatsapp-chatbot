@@ -5,7 +5,7 @@ import { format } from 'date-fns';
 import { id as idLocale, enUS } from 'date-fns/locale';
 import { UserAnalytics, UserData } from '../types/analytics';
 import { ThreadMessage } from '../types/thread';
-import { fetchAnalyticsUsers, fetchThreadMessages, getSelectedUser, saveSelectedUser } from '../services/api';
+import { fetchAnalyticsUsers, fetchThreadMessages, getSelectedUser, saveSelectedUser, deleteThread } from '../services/api';
 import Sidebar from './Sidebar';
 import CircularProgress from '@mui/material/CircularProgress';
 import websocketService from '../services/websocket';
@@ -120,6 +120,8 @@ interface ThreadViewProps {
   messages: ThreadMessage[];
   isLoading: boolean;
   onRefresh: (phoneNumber: string) => void;
+  onDeleteThread: () => Promise<void>;
+  isDeletingThread?: boolean;
 }
 
 interface AnalyticsViewProps {
@@ -128,13 +130,36 @@ interface AnalyticsViewProps {
   isLoading: boolean;
 }
 
-const ThreadView: React.FC<ThreadViewProps> = ({ phoneNumber, messages, isLoading, onRefresh }) => {
+const ThreadView: React.FC<ThreadViewProps> = ({ phoneNumber, messages, isLoading, onRefresh, onDeleteThread, isDeletingThread = false }) => {
   const { t } = useLanguage();
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   
   // Handler untuk tombol refresh
   const handleRefreshClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     onRefresh(phoneNumber);
+  };
+  
+  // Handler for delete button
+  const handleDeleteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setShowDeleteConfirm(true);
+  };
+  
+  // Handler for confirming deletion
+  const handleConfirmDelete = async () => {
+    try {
+      await onDeleteThread();
+    } catch (error) {
+      console.error('Error in delete thread confirmation:', error);
+    } finally {
+      setShowDeleteConfirm(false);
+    }
+  };
+  
+  // Handler for canceling deletion
+  const handleCancelDelete = () => {
+    setShowDeleteConfirm(false);
   };
   
   if (isLoading) {
@@ -150,7 +175,7 @@ const ThreadView: React.FC<ThreadViewProps> = ({ phoneNumber, messages, isLoadin
   
   return (
     <div className="h-full flex flex-col">
-      {/* Header dengan tombol refresh */}
+      {/* Header dengan tombol refresh dan delete */}
       <div className="bg-white p-4 shadow-sm flex justify-between items-center">
         <div>
           <h2 className="text-lg font-semibold">{t('conversations.chatThread')}</h2>
@@ -160,28 +185,77 @@ const ThreadView: React.FC<ThreadViewProps> = ({ phoneNumber, messages, isLoadin
               t('conversations.noMessages')}
           </p>
         </div>
-        <button 
-          onClick={handleRefreshClick}
-          className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center"
-          disabled={isLoading}
-        >
-          <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            className="h-4 w-4 mr-1" 
-            fill="none" 
-            viewBox="0 0 24 24" 
-            stroke="currentColor"
+        <div className="flex space-x-2">
+          <button 
+            onClick={handleDeleteClick}
+            className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 flex items-center"
+            disabled={isLoading || isDeletingThread}
           >
-            <path 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              strokeWidth={2} 
-              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" 
-            />
-          </svg>
-          {t('common.refresh')}
-        </button>
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              className="h-4 w-4 mr-1" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" 
+              />
+            </svg>
+            {t('common.delete') || 'Delete'}
+          </button>
+          <button 
+            onClick={handleRefreshClick}
+            className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center"
+            disabled={isLoading}
+          >
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              className="h-4 w-4 mr-1" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" 
+              />
+            </svg>
+            {t('common.refresh')}
+          </button>
+        </div>
       </div>
+      
+      {/* Delete confirmation dialog */}
+      {showDeleteConfirm && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 max-w-sm w-full">
+            <h3 className="text-lg font-medium text-gray-900 mb-4">{t('users.confirmDeleteThread') || 'Delete Thread?'}</h3>
+            <p className="text-sm text-gray-500 mb-5">
+              {t('users.confirmDeleteThreadMessage') || 'Are you sure you want to delete this thread? This action cannot be undone.'}
+            </p>
+            <div className="flex justify-end space-x-3">
+              <button
+                onClick={handleCancelDelete}
+                className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
+              >
+                {t('common.cancel') || 'Cancel'}
+              </button>
+              <button
+                onClick={handleConfirmDelete}
+                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+              >
+                {t('common.delete') || 'Delete'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       
       {/* Konten pesan */}
       <div className="flex-1 overflow-y-auto p-4">
@@ -460,8 +534,6 @@ const Users: React.FC = () => {
   
   // Inisialisasi selectedUser sebagai null, akan diambil dari server
   const [selectedUser, setSelectedUser] = useState<string | null>(null);
-  
-  // Inisialisasi threadMessages dari localStorage berdasarkan selectedUser jika ada
   const [threadMessages, setThreadMessages] = useState<ThreadMessage[]>(() => {
     try {
       if (selectedUser) {
@@ -476,6 +548,52 @@ const Users: React.FC = () => {
     }
   });
   const [isLoadingThread, setIsLoadingThread] = useState(false);
+  const [isDeletingThread, setIsDeletingThread] = useState(false);
+  const [isShowingThreadPanel, setIsShowingThreadPanel] = useState(true);
+  const [isShowingAnalyticsPanel, setIsShowingAnalyticsPanel] = useState(false);
+  const [sortBy, setSortBy] = useState<string>('lastMessage');
+  const [selectedUserData, setSelectedUserData] = useState<UserData | null>(null);
+  const [analyticsRefreshTimestamp, setAnalyticsRefreshTimestamp] = useState<number>(Date.now());
+  const [isLoadingUserAnalytics, setIsLoadingUserAnalytics] = useState<boolean>(false);
+  const [showPersistentError, setShowPersistentError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
+
+  // Handle thread deletion for a specific user
+  const handleDeleteThread = async () => {
+    if (!selectedUser) return;
+    
+    setIsDeletingThread(true);
+    try {
+      const result = await deleteThread(selectedUser);
+      
+      if (result.status === 'success') {
+        console.log(`Thread for ${selectedUser} deleted successfully`);
+        // Clear the thread messages
+        setThreadMessages([]);
+        
+        // Update localStorage cache
+        const cacheKey = `threadMessages_${selectedUser}`;
+        localStorage.removeItem(cacheKey);
+        localStorage.removeItem(`${cacheKey}_lastFetch`);
+        
+        // Show success message
+        setErrorMessage('');
+        
+        // Force refresh user analytics to reflect changes
+        fetchUserData(true);
+      } else {
+        console.error('Failed to delete thread:', result.message || 'Unknown error');
+        setErrorMessage(t('users.errorDeletingThread') || 'Failed to delete thread');
+        setShowPersistentError(true);
+      }
+    } catch (error) {
+      console.error('Error deleting thread:', error);
+      setErrorMessage(t('users.errorDeletingThread') || 'Failed to delete thread');
+      setShowPersistentError(true);
+    } finally {
+      setIsDeletingThread(false);
+    }
+  };
   
   // Simpan data ke localStorage setiap kali berubah
   useEffect(() => {
@@ -1004,21 +1122,40 @@ const Users: React.FC = () => {
       // Update thread messages if this is the selected user
       if (data.sender === selectedUser && data.messages && Array.isArray(data.messages)) {
         setThreadMessages(data.messages);
+        
+        // Save to cache with timestamp
+        try {
+          const cacheKey = `threadMessages_${data.sender}`;
+          localStorage.setItem(cacheKey, JSON.stringify(data.messages));
+          localStorage.setItem(`${cacheKey}_lastFetch`, Date.now().toString());
+        } catch (e) {
+          console.error('Error caching thread messages:', e);
+        }
+      }
+    }
+  };
+
+  // Handle thread deletion WebSocket events
+  const threadDeletedCallback = (data: any) => {
+    if (data && data.phone_number) {
+      console.log(`Received thread deletion event for ${data.phone_number}`);
+      
+      // If this is the currently selected user, clear the thread messages
+      if (selectedUser === data.phone_number) {
+        setThreadMessages([]);
+        
+        // Clear the cache
+        const cacheKey = `threadMessages_${data.phone_number}`;
+        localStorage.removeItem(cacheKey);
+        localStorage.removeItem(`${cacheKey}_lastFetch`);
+        
+        // Show a message
+        setErrorMessage(t('users.threadDeleted') || 'Thread has been deleted');
+        setTimeout(() => setErrorMessage(''), 5000);
       }
       
-      // Trigger user activity update to update last_interaction
-      userActivityCallback({
-        user_id: data.sender,
-        activity_type: 'message',
-        timestamp: data.timestamp || new Date().toISOString()
-      });
-      
-      // Emit user activity event to WebSocket to ensure backend is updated
-      websocketService.emit('user_activity', {
-        user_id: data.sender,
-        activity_type: 'message',
-        timestamp: data.timestamp || new Date().toISOString()
-      });
+      // Update analytics to reflect the change
+      fetchUserData(true);
     }
   };
 
@@ -1036,6 +1173,7 @@ const Users: React.FC = () => {
   websocketService.on('user_preference_update', userPreferenceCallback);
   websocketService.on('thread_update', threadUpdateCallback);
   websocketService.on('user_activity', userActivityCallback); // Tambahkan subscription untuk user_activity
+  websocketService.on('thread_deleted', threadDeletedCallback); // Add subscription for thread deletion events
 
   // Setup a gentler background refresh that won't disrupt UX
   // Fetch every 15 seconds as backup if WebSocket fails
@@ -1096,20 +1234,15 @@ const Users: React.FC = () => {
   
   // CLEAN UP FUNCTION - sangat penting untuk mencegah memory leak
   return () => {
-    console.log('Cleaning up WebSocket subscriptions and intervals');
-    
-    // Clear the background refresh interval
+    console.log('Cleaning up WebSocket listeners');
     clearInterval(backgroundRefreshInterval);
-    
-    // Unsubscribe from all WebSocket events
+    websocketService.off('connect', socketConnectHandler);
     websocketService.unsubscribeFromAnalyticsUsers(analyticsUsersCallback);
     websocketService.off('analytics_update', analyticsUpdateCallback);
     websocketService.off('user_preference_update', userPreferenceCallback);
     websocketService.off('thread_update', threadUpdateCallback);
-    websocketService.off('user_activity', userActivityCallback); // Bersihkan langganan user_activity
-    websocketService.off('connect', socketConnectHandler);
-    
-    console.log('Cleanup completed successfully');
+    websocketService.off('user_activity', userActivityCallback); // Clean up user activity subscription
+    websocketService.off('thread_deleted', threadDeletedCallback); // Clean up thread deletion subscription
   };
 
 }, [selectedUser]); // useEffect dependency
@@ -1232,6 +1365,8 @@ const Users: React.FC = () => {
                   messages={threadMessages}
                   isLoading={isLoadingThread}
                   onRefresh={(phoneNumber) => fetchUserThreadMessages(phoneNumber, true)}
+                  onDeleteThread={handleDeleteThread}
+                  isDeletingThread={isDeletingThread}
                 />
               ) : (
                 <div className="flex flex-col items-center justify-center h-full p-6 text-center">

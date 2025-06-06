@@ -2580,11 +2580,29 @@
         "response": "Gagal mengirim pesan ke Assistant setelah beberapa percobaan. Silakan coba lagi nanti.",
         "timestamp": "2025-06-06T19:37:57.728258",
         "response_time": 7.70832896232605
+      },
+      {
+        "id": "6287811152506_1749251913",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "halo",
+        "response": "Halo, Bapak/Ibu. Senang bisa berinteraksi dengan Anda. Sebelum saya bantu lebih lanjut, boleh saya tahu:  \n\u2022 Nama lengkap  \n\u2022 Jenis kelamin (agar saya bisa menyapa dengan tepat)  \n\u2022 Usia saat ini  \n\u2022 Domisili  \n\u2022 Dan keluhan utama yang sedang dirasakan saat ini?",
+        "timestamp": "2025-06-07T06:18:33.864197",
+        "response_time": 7.781290292739868
+      },
+      {
+        "id": "6287811152506_1749251964",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "sayaj iwan",
+        "response": "Terima kasih, Iwan. Boleh saya tahu:  \n\u2022 Jenis kelamin (agar saya bisa menyapa dengan tepat)  \n\u2022 Usia saat ini  \n\u2022 Domisili  \n\u2022 Dan keluhan utama yang sedang dirasakan saat ini?",
+        "timestamp": "2025-06-07T06:19:24.608841",
+        "response_time": 6.777965784072876
       }
     ],
     "first_timestamp": "2025-05-26T08:43:22.514563",
-    "last_timestamp": "2025-06-06T19:37:57.728258",
-    "last_message": "Hmmm"
+    "last_timestamp": "2025-06-07T06:19:24.608841",
+    "last_message": "sayaj iwan"
   },
   {
     "id": "conv_6283145916630",

@@ -528,6 +528,60 @@ async function saveSelectedUserWithUrl(phoneNumber: string, apiUrl: string): Pro
   }
 };
 
+/**
+ * Function to delete a thread for a specific phone number
+ * @param phoneNumber The phone number to delete the thread for
+ * @returns An object with status ('success' or 'error') and optional message
+ */
+export const deleteThread = async (phoneNumber: string): Promise<{
+  status: 'success' | 'error';
+  message?: string;
+}> => {
+  try {
+    const response = await api.delete(`/admin/delete-thread/${encodeURIComponent(phoneNumber)}`);
+    
+    console.log('Thread deletion response:', response.data);
+    
+    // If the backend returns its own status, use that
+    if (response.data && typeof response.data === 'object') {
+      if (response.data.status) {
+        return response.data;
+      }
+      
+      // For backward compatibility with backend that might return success property
+      if (response.data.success === false) {
+        return {
+          status: 'error',
+          message: response.data.error || response.data.message || 'Unknown error'
+        };
+      }
+    }
+    
+    // Default success response
+    return {
+      status: 'success',
+      message: 'Thread deleted successfully'
+    };
+  } catch (error: any) {
+    console.error('Error deleting thread:', error);
+    
+    // Handle errors with response
+    if (error.response) {
+      console.error('Server response:', error.response.data);
+      return { 
+        status: 'error', 
+        message: error.response.data.message || 'Failed to delete thread'
+      };
+    }
+    
+    // Handle network errors
+    return { 
+      status: 'error', 
+      message: error.message || 'Network error while deleting thread'
+    };
+  }
+};
+
 // Function to fetch thread messages for a specific user with improved error handling and normalization
 export const fetchThreadMessages = async (phoneNumber: string, retryCount = 0): Promise<any[]> => {
   try {

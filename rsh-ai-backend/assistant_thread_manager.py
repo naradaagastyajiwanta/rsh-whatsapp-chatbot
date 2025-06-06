@@ -135,6 +135,68 @@ def reset_thread_for_nomor(nomor: str, headers: Dict[str, str]) -> Tuple[bool, O
         logger.error(f"[ThreadManager] Error resetting thread for {nomor}: {str(e)}")
         return False, None
 
+# Delete thread for a specific user
+def delete_thread_for_nomor(nomor: str) -> bool:
+    """
+    Delete thread mapping for a specific WhatsApp number
+    
+    Args:
+        nomor: WhatsApp number with or without @s.whatsapp.net suffix
+        
+    Returns:
+        bool: True if deletion was successful, False otherwise
+    """
+    try:
+        # Normalize the phone number
+        cleaned_nomor = nomor.strip()
+        
+        # Try direct removal
+        if cleaned_nomor in nomor_to_thread:
+            logger.info(f"[ThreadManager] Deleting thread for {cleaned_nomor}")
+            del nomor_to_thread[cleaned_nomor]
+            save_threads()
+            return True
+        
+        # Try with and without @s.whatsapp.net suffix
+        if '@s.whatsapp.net' in cleaned_nomor:
+            base_nomor = cleaned_nomor.split('@')[0]
+            if base_nomor in nomor_to_thread:
+                logger.info(f"[ThreadManager] Deleting thread for base number {base_nomor}")
+                del nomor_to_thread[base_nomor]
+                save_threads()
+                return True
+        else:
+            suffixed_nomor = f"{cleaned_nomor}@s.whatsapp.net"
+            if suffixed_nomor in nomor_to_thread:
+                logger.info(f"[ThreadManager] Deleting thread for suffixed number {suffixed_nomor}")
+                del nomor_to_thread[suffixed_nomor]
+                save_threads()
+                return True
+        
+        # Try with analytics_ prefix
+        if not cleaned_nomor.startswith('analytics_'):
+            analytics_nomor = f"analytics_{cleaned_nomor}"
+            if analytics_nomor in nomor_to_thread:
+                logger.info(f"[ThreadManager] Deleting thread for analytics prefix {analytics_nomor}")
+                del nomor_to_thread[analytics_nomor]
+                save_threads()
+                return True
+            
+            # Try analytics_ prefix with suffix
+            if '@s.whatsapp.net' not in cleaned_nomor:
+                analytics_suffixed = f"analytics_{cleaned_nomor}@s.whatsapp.net"
+                if analytics_suffixed in nomor_to_thread:
+                    logger.info(f"[ThreadManager] Deleting thread for analytics suffixed {analytics_suffixed}")
+                    del nomor_to_thread[analytics_suffixed]
+                    save_threads()
+                    return True
+        
+        logger.warning(f"[ThreadManager] No thread found for {cleaned_nomor} to delete")
+        return False
+    except Exception as e:
+        logger.error(f"[ThreadManager] Error deleting thread for {nomor}: {str(e)}")
+        return False
+
 # Utility to clear all (for admin/testing only)
 def clear_all_threads():
     global nomor_to_thread
