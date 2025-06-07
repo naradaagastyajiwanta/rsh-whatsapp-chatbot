@@ -1353,76 +1353,208 @@
   "6287811152506@s.whatsapp.net": {
     "interactions": [
       {
-        "timestamp": "2025-06-07T06:42:47.166463",
+        "timestamp": "2025-06-07T08:23:43.598556",
         "analysis": {
           "name": "Jiwan",
-          "age": 21,
+          "age": 23,
           "gender": "male",
           "location": "Bali",
           "health_complaints": [
-            "Diabetes",
+            "Diabetes"
+          ],
+          "symptoms": [
             "Insomnia"
           ],
-          "symptoms": [],
           "conversion_barriers": [],
           "medical_history": null,
           "urgency_level": "medium",
           "emotion": "neutral",
-          "timestamp": "2025-06-07T06:42:47.165840"
+          "timestamp": "2025-06-07T08:23:43.597868"
         }
       },
       {
-        "timestamp": "2025-06-07T06:42:40.893000",
+        "timestamp": "2025-06-07T08:23:37.576000",
         "analysis": {
           "name": "Jiwan",
-          "age": 21,
+          "age": 23,
           "gender": "male",
           "location": "Bali",
           "health_complaints": [
-            "Diabetes",
+            "Diabetes"
+          ],
+          "symptoms": [
             "Insomnia"
           ],
-          "symptoms": [],
           "conversion_barriers": [],
           "medical_history": null,
           "urgency_level": "medium",
           "emotion": "neutral",
-          "timestamp": "2025-06-07T06:42:47.165840"
+          "timestamp": "2025-06-07T08:23:43.597868"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T08:24:11.210977",
+        "analysis": {
+          "name": "Jiwan",
+          "age": 23,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Diabetes"
+          ],
+          "symptoms": [
+            "Insomnia"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sejak 2 tahun lalu",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T08:24:11.210320"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T08:23:59.577000",
+        "analysis": {
+          "name": "Jiwan",
+          "age": 23,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Diabetes"
+          ],
+          "symptoms": [
+            "Insomnia"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sejak 2 tahun lalu",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T08:24:11.210320"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T08:24:46.482593",
+        "analysis": {
+          "name": "Jiwan",
+          "age": 23,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Diabetes"
+          ],
+          "symptoms": [
+            "Insomnia"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sejak 2 tahun lalu",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T08:24:46.481961"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T08:24:39.325000",
+        "analysis": {
+          "name": "Jiwan",
+          "age": 23,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Diabetes"
+          ],
+          "symptoms": [
+            "Insomnia"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sejak 2 tahun lalu",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T08:24:46.481961"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T08:25:23.105781",
+        "analysis": {
+          "name": "Jiwan",
+          "age": 23,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Diabetes"
+          ],
+          "symptoms": [
+            "Insomnia"
+          ],
+          "conversion_barriers": [
+            "Pemahaman program"
+          ],
+          "medical_history": "Sejak 2 tahun lalu",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T08:25:23.105135"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T08:25:14.215000",
+        "analysis": {
+          "name": "Jiwan",
+          "age": 23,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Diabetes"
+          ],
+          "symptoms": [
+            "Insomnia"
+          ],
+          "conversion_barriers": [
+            "Pemahaman program"
+          ],
+          "medical_history": "Sejak 2 tahun lalu",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T08:25:23.105135"
         }
       }
     ],
-    "first_interaction": "2025-06-07T06:42:47.166463",
+    "first_interaction": "2025-06-07T08:23:43.598556",
     "details": {
       "name": "Jiwan",
-      "age": 21,
+      "age": 23,
       "gender": "male",
       "location": "Bali",
       "health_complaints": [
-        "Diabetes",
+        "Diabetes"
+      ],
+      "conversion_barriers": [
+        "Pemahaman program"
+      ],
+      "last_interaction": "2025-06-07T08:25:14.215000",
+      "symptoms": [
         "Insomnia"
       ],
-      "conversion_barriers": [],
-      "last_interaction": "2025-06-07T06:42:40.893000",
-      "symptoms": [],
       "medical_history": null,
       "urgency_level": "medium",
       "emotion": "neutral"
     },
     "latest_analysis": {
       "name": "Jiwan",
-      "age": 21,
+      "age": 23,
       "gender": "male",
       "location": "Bali",
       "health_complaints": [
-        "Diabetes",
+        "Diabetes"
+      ],
+      "symptoms": [
         "Insomnia"
       ],
-      "symptoms": [],
-      "conversion_barriers": [],
-      "medical_history": null,
+      "conversion_barriers": [
+        "Pemahaman program"
+      ],
+      "medical_history": "Sejak 2 tahun lalu",
       "urgency_level": "medium",
       "emotion": "neutral",
-      "timestamp": "2025-06-07T06:42:47.165840"
+      "timestamp": "2025-06-07T08:25:23.105135"
     }
   }
 }
