@@ -1350,211 +1350,4895 @@
       "timestamp": "2025-06-06T19:11:28.546093"
     }
   },
-  "6287811152506@s.whatsapp.net": {
+  "6281330798926@s.whatsapp.net": {
     "interactions": [
       {
-        "timestamp": "2025-06-07T08:23:43.598556",
+        "timestamp": "2025-06-07T11:36:42.047331",
         "analysis": {
-          "name": "Jiwan",
-          "age": 23,
+          "name": "gde trilokasianta baloma",
+          "age": 46,
           "gender": "male",
-          "location": "Bali",
-          "health_complaints": [
-            "Diabetes"
-          ],
+          "location": "denpasar, bali",
+          "health_complaints": [],
           "symptoms": [
-            "Insomnia"
+            "sakit kepala"
           ],
           "conversion_barriers": [],
           "medical_history": null,
           "urgency_level": "medium",
           "emotion": "neutral",
-          "timestamp": "2025-06-07T08:23:43.597868"
+          "timestamp": "2025-06-07T11:36:42.046651"
         }
       },
       {
-        "timestamp": "2025-06-07T08:23:37.576000",
+        "timestamp": "2025-06-07T11:36:35.099000",
         "analysis": {
-          "name": "Jiwan",
-          "age": 23,
+          "name": "gde trilokasianta baloma",
+          "age": 46,
           "gender": "male",
-          "location": "Bali",
-          "health_complaints": [
-            "Diabetes"
-          ],
+          "location": "denpasar, bali",
+          "health_complaints": [],
           "symptoms": [
-            "Insomnia"
+            "sakit kepala"
           ],
           "conversion_barriers": [],
           "medical_history": null,
           "urgency_level": "medium",
           "emotion": "neutral",
-          "timestamp": "2025-06-07T08:23:43.597868"
+          "timestamp": "2025-06-07T11:36:42.046651"
         }
       },
       {
-        "timestamp": "2025-06-07T08:24:11.210977",
+        "timestamp": "2025-06-07T11:37:09.529816",
         "analysis": {
-          "name": "Jiwan",
-          "age": 23,
+          "name": "baloma",
+          "age": 46,
           "gender": "male",
-          "location": "Bali",
-          "health_complaints": [
-            "Diabetes"
-          ],
+          "location": "denpasar, bali",
+          "health_complaints": [],
           "symptoms": [
-            "Insomnia"
+            "sakit kepala"
           ],
           "conversion_barriers": [],
-          "medical_history": "Sejak 2 tahun lalu",
+          "medical_history": null,
           "urgency_level": "medium",
           "emotion": "neutral",
-          "timestamp": "2025-06-07T08:24:11.210320"
+          "timestamp": "2025-06-07T11:37:09.529051"
         }
       },
       {
-        "timestamp": "2025-06-07T08:23:59.577000",
+        "timestamp": "2025-06-07T11:37:03.345000",
         "analysis": {
-          "name": "Jiwan",
-          "age": 23,
+          "name": "baloma",
+          "age": 46,
           "gender": "male",
-          "location": "Bali",
-          "health_complaints": [
-            "Diabetes"
-          ],
+          "location": "denpasar, bali",
+          "health_complaints": [],
           "symptoms": [
-            "Insomnia"
+            "sakit kepala"
           ],
           "conversion_barriers": [],
-          "medical_history": "Sejak 2 tahun lalu",
+          "medical_history": null,
           "urgency_level": "medium",
           "emotion": "neutral",
-          "timestamp": "2025-06-07T08:24:11.210320"
+          "timestamp": "2025-06-07T11:37:09.529051"
         }
       },
       {
-        "timestamp": "2025-06-07T08:24:46.482593",
+        "timestamp": "2025-06-07T11:37:56.079144",
         "analysis": {
-          "name": "Jiwan",
-          "age": 23,
+          "name": "baloma",
+          "age": 46,
           "gender": "male",
-          "location": "Bali",
-          "health_complaints": [
-            "Diabetes"
-          ],
+          "location": "denpasar, bali",
+          "health_complaints": [],
           "symptoms": [
-            "Insomnia"
+            "sakit kepala"
           ],
           "conversion_barriers": [],
-          "medical_history": "Sejak 2 tahun lalu",
-          "urgency_level": "high",
-          "emotion": "negative",
-          "timestamp": "2025-06-07T08:24:46.481961"
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T11:37:56.078437"
         }
       },
       {
-        "timestamp": "2025-06-07T08:24:39.325000",
+        "timestamp": "2025-06-07T11:37:49.623000",
         "analysis": {
-          "name": "Jiwan",
-          "age": 23,
+          "name": "baloma",
+          "age": 46,
           "gender": "male",
-          "location": "Bali",
-          "health_complaints": [
-            "Diabetes"
-          ],
+          "location": "denpasar, bali",
+          "health_complaints": [],
           "symptoms": [
-            "Insomnia"
+            "sakit kepala"
           ],
           "conversion_barriers": [],
-          "medical_history": "Sejak 2 tahun lalu",
-          "urgency_level": "high",
-          "emotion": "negative",
-          "timestamp": "2025-06-07T08:24:46.481961"
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T11:37:56.078437"
         }
       },
       {
-        "timestamp": "2025-06-07T08:25:23.105781",
+        "timestamp": "2025-06-07T11:38:53.945505",
         "analysis": {
-          "name": "Jiwan",
-          "age": 23,
+          "name": "baloma",
+          "age": 46,
           "gender": "male",
-          "location": "Bali",
-          "health_complaints": [
-            "Diabetes"
-          ],
+          "location": "denpasar, bali",
+          "health_complaints": [],
           "symptoms": [
-            "Insomnia"
+            "sakit kepala"
           ],
-          "conversion_barriers": [
-            "Pemahaman program"
-          ],
-          "medical_history": "Sejak 2 tahun lalu",
+          "conversion_barriers": [],
+          "medical_history": null,
           "urgency_level": "medium",
           "emotion": "neutral",
-          "timestamp": "2025-06-07T08:25:23.105135"
+          "timestamp": "2025-06-07T11:38:53.944586"
         }
       },
       {
-        "timestamp": "2025-06-07T08:25:14.215000",
+        "timestamp": "2025-06-07T11:38:44.906000",
         "analysis": {
-          "name": "Jiwan",
-          "age": 23,
+          "name": "baloma",
+          "age": 46,
           "gender": "male",
-          "location": "Bali",
-          "health_complaints": [
-            "Diabetes"
-          ],
+          "location": "denpasar, bali",
+          "health_complaints": [],
           "symptoms": [
-            "Insomnia"
+            "sakit kepala"
           ],
-          "conversion_barriers": [
-            "Pemahaman program"
-          ],
-          "medical_history": "Sejak 2 tahun lalu",
+          "conversion_barriers": [],
+          "medical_history": null,
           "urgency_level": "medium",
           "emotion": "neutral",
-          "timestamp": "2025-06-07T08:25:23.105135"
+          "timestamp": "2025-06-07T11:38:53.944586"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T11:39:51.130133",
+        "analysis": {
+          "name": "baloma",
+          "age": 46,
+          "gender": "male",
+          "location": "denpasar, bali",
+          "health_complaints": [],
+          "symptoms": [
+            "sakit kepala"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T11:39:51.129031"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T11:39:45.487000",
+        "analysis": {
+          "name": "baloma",
+          "age": 46,
+          "gender": "male",
+          "location": "denpasar, bali",
+          "health_complaints": [],
+          "symptoms": [
+            "sakit kepala"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T11:39:51.129031"
         }
       }
     ],
-    "first_interaction": "2025-06-07T08:23:43.598556",
+    "first_interaction": "2025-06-07T11:36:42.047331",
     "details": {
-      "name": "Jiwan",
-      "age": 23,
+      "name": "baloma",
+      "age": 46,
       "gender": "male",
-      "location": "Bali",
-      "health_complaints": [
-        "Diabetes"
-      ],
-      "conversion_barriers": [
-        "Pemahaman program"
-      ],
-      "last_interaction": "2025-06-07T08:25:14.215000",
+      "location": "denpasar, bali",
+      "health_complaints": [],
+      "conversion_barriers": [],
+      "last_interaction": "2025-06-07T11:39:45.487000",
       "symptoms": [
-        "Insomnia"
+        "sakit kepala"
       ],
       "medical_history": null,
       "urgency_level": "medium",
       "emotion": "neutral"
     },
     "latest_analysis": {
-      "name": "Jiwan",
-      "age": 23,
+      "name": "baloma",
+      "age": 46,
       "gender": "male",
-      "location": "Bali",
-      "health_complaints": [
-        "Diabetes"
-      ],
+      "location": "denpasar, bali",
+      "health_complaints": [],
       "symptoms": [
+        "sakit kepala"
+      ],
+      "conversion_barriers": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral",
+      "timestamp": "2025-06-07T11:39:51.129031"
+    }
+  },
+  "6285819606740@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-07T13:33:35.017928",
+        "analysis": {
+          "name": "Siska",
+          "age": 56,
+          "gender": "female",
+          "location": "Bekasi",
+          "health_complaints": [
+            "Diabetes",
+            "Stroke"
+          ],
+          "symptoms": [
+            "Darting"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T13:33:35.016277"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T13:33:26.604000",
+        "analysis": {
+          "name": "Siska",
+          "age": 56,
+          "gender": "female",
+          "location": "Bekasi",
+          "health_complaints": [
+            "Diabetes",
+            "Stroke"
+          ],
+          "symptoms": [
+            "Darting"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T13:33:35.016277"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T13:35:02.962653",
+        "analysis": {
+          "name": "Siska",
+          "age": 56,
+          "gender": "female",
+          "location": "Bekasi",
+          "health_complaints": [
+            "Diabetes",
+            "Stroke"
+          ],
+          "symptoms": [
+            "Darting"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sudah merasakan keluhan selama 1,5 tahun",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T13:35:02.961413"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T13:34:56.925000",
+        "analysis": {
+          "name": "Siska",
+          "age": 56,
+          "gender": "female",
+          "location": "Bekasi",
+          "health_complaints": [
+            "Diabetes",
+            "Stroke"
+          ],
+          "symptoms": [
+            "Darting"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sudah merasakan keluhan selama 1,5 tahun",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T13:35:02.961413"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T13:35:37.497726",
+        "analysis": {
+          "name": "Siska",
+          "age": 56,
+          "gender": "female",
+          "location": "Bekasi",
+          "health_complaints": [
+            "Diabetes",
+            "Stroke",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Darting"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sudah merasakan keluhan selama 1,5 tahun",
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T13:35:37.496905"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T13:35:30.590000",
+        "analysis": {
+          "name": "Siska",
+          "age": 56,
+          "gender": "female",
+          "location": "Bekasi",
+          "health_complaints": [
+            "Diabetes",
+            "Stroke",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Darting"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sudah merasakan keluhan selama 1,5 tahun",
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T13:35:37.496905"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T13:36:49.412289",
+        "analysis": {
+          "name": "Siska",
+          "age": 56,
+          "gender": "female",
+          "location": "Bekasi",
+          "health_complaints": [
+            "Diabetes",
+            "Stroke",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Darting"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sudah merasakan keluhan selama 1,5 tahun",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T13:36:49.411346"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T13:36:43.039000",
+        "analysis": {
+          "name": "Siska",
+          "age": 56,
+          "gender": "female",
+          "location": "Bekasi",
+          "health_complaints": [
+            "Diabetes",
+            "Stroke",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Darting"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sudah merasakan keluhan selama 1,5 tahun",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T13:36:49.411346"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T13:37:18.637105",
+        "analysis": {
+          "name": "Siska",
+          "age": 56,
+          "gender": "female",
+          "location": "Bekasi",
+          "health_complaints": [
+            "Diabetes",
+            "Stroke",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Darting"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": "Sudah merasakan keluhan selama 1,5 tahun",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T13:37:18.636348"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T13:37:12.517000",
+        "analysis": {
+          "name": "Siska",
+          "age": 56,
+          "gender": "female",
+          "location": "Bekasi",
+          "health_complaints": [
+            "Diabetes",
+            "Stroke",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Darting"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": "Sudah merasakan keluhan selama 1,5 tahun",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T13:37:18.636348"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T13:38:27.382308",
+        "analysis": {
+          "name": "Siska",
+          "age": 56,
+          "gender": "female",
+          "location": "Bekasi",
+          "health_complaints": [
+            "Diabetes",
+            "Stroke",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Darting"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sudah merasakan keluhan selama 1,5 tahun",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T13:38:27.380976"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T13:38:20.954000",
+        "analysis": {
+          "name": "Siska",
+          "age": 56,
+          "gender": "female",
+          "location": "Bekasi",
+          "health_complaints": [
+            "Diabetes",
+            "Stroke",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Darting"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sudah merasakan keluhan selama 1,5 tahun",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T13:38:27.380976"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T13:39:15.867016",
+        "analysis": {
+          "name": "Siska",
+          "age": 56,
+          "gender": "female",
+          "location": "Bekasi",
+          "health_complaints": [
+            "Diabetes",
+            "Stroke",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Darting"
+          ],
+          "conversion_barriers": [
+            "Dukungan keluarga"
+          ],
+          "medical_history": "Sudah merasakan keluhan selama 1,5 tahun",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T13:39:15.865664"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T13:39:08.242000",
+        "analysis": {
+          "name": "Siska",
+          "age": 56,
+          "gender": "female",
+          "location": "Bekasi",
+          "health_complaints": [
+            "Diabetes",
+            "Stroke",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Darting"
+          ],
+          "conversion_barriers": [
+            "Dukungan keluarga"
+          ],
+          "medical_history": "Sudah merasakan keluhan selama 1,5 tahun",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T13:39:15.865664"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T13:39:23.621000",
+        "analysis": {
+          "name": "Siska",
+          "age": 56,
+          "gender": "female",
+          "location": "Bekasi",
+          "health_complaints": [
+            "Diabetes",
+            "Stroke",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Darting"
+          ],
+          "conversion_barriers": [
+            "Dukungan keluarga"
+          ],
+          "medical_history": "Sudah merasakan keluhan selama 1,5 tahun",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T13:39:15.865664"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-07T13:33:35.017928",
+    "details": {
+      "name": "Siska",
+      "age": 56,
+      "gender": "female",
+      "location": "Bekasi",
+      "health_complaints": [
+        "Diabetes",
+        "Stroke",
         "Insomnia"
       ],
       "conversion_barriers": [
-        "Pemahaman program"
+        "Dukungan keluarga",
+        "Masalah biaya/finansial"
       ],
-      "medical_history": "Sejak 2 tahun lalu",
+      "last_interaction": "2025-06-07T13:39:23.621000",
+      "symptoms": [
+        "Darting"
+      ],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "Siska",
+      "age": 56,
+      "gender": "female",
+      "location": "Bekasi",
+      "health_complaints": [
+        "Diabetes",
+        "Stroke",
+        "Insomnia"
+      ],
+      "symptoms": [
+        "Darting"
+      ],
+      "conversion_barriers": [
+        "Dukungan keluarga"
+      ],
+      "medical_history": "Sudah merasakan keluhan selama 1,5 tahun",
       "urgency_level": "medium",
       "emotion": "neutral",
-      "timestamp": "2025-06-07T08:25:23.105135"
+      "timestamp": "2025-06-07T13:39:15.865664"
+    }
+  },
+  "6281325496431@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-07T13:39:19.273650",
+        "analysis": {
+          "name": "Nina BS",
+          "age": 51,
+          "gender": "female",
+          "location": "Malang Jatim",
+          "health_complaints": [],
+          "symptoms": [
+            "keringat deras",
+            "panas",
+            "sakit pinggang kanan",
+            "masuk angin",
+            "migren"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T13:39:19.272815"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T13:39:10.037000",
+        "analysis": {
+          "name": "Nina BS",
+          "age": 51,
+          "gender": "female",
+          "location": "Malang Jatim",
+          "health_complaints": [],
+          "symptoms": [
+            "keringat deras",
+            "panas",
+            "sakit pinggang kanan",
+            "masuk angin",
+            "migren"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T13:39:19.272815"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T13:40:45.292132",
+        "analysis": {
+          "name": "Nina BS",
+          "age": 51,
+          "gender": "female",
+          "location": "Malang Jatim",
+          "health_complaints": [],
+          "symptoms": [
+            "keringat deras",
+            "panas",
+            "sakit pinggang kanan",
+            "masuk angin",
+            "migren"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "migren",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T13:40:45.289755"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T13:40:37.812000",
+        "analysis": {
+          "name": "Nina BS",
+          "age": 51,
+          "gender": "female",
+          "location": "Malang Jatim",
+          "health_complaints": [],
+          "symptoms": [
+            "keringat deras",
+            "panas",
+            "sakit pinggang kanan",
+            "masuk angin",
+            "migren"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "migren",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T13:40:45.289755"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:05:26.642000",
+        "analysis": {
+          "name": "Nina BS",
+          "age": 51,
+          "gender": "female",
+          "location": "Malang Jatim",
+          "health_complaints": [],
+          "symptoms": [
+            "keringat deras",
+            "panas",
+            "sakit pinggang kanan",
+            "masuk angin",
+            "migren"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "migren",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T13:40:45.289755"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:05:34.574000",
+        "analysis": {
+          "name": "Nina BS",
+          "age": 51,
+          "gender": "female",
+          "location": "Malang Jatim",
+          "health_complaints": [],
+          "symptoms": [
+            "keringat deras",
+            "panas",
+            "sakit pinggang kanan",
+            "masuk angin",
+            "migren"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "migren",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T13:40:45.289755"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:22:03.576000",
+        "analysis": {
+          "name": "Nina BS",
+          "age": 51,
+          "gender": "female",
+          "location": "Malang Jatim",
+          "health_complaints": [],
+          "symptoms": [
+            "keringat deras",
+            "panas",
+            "sakit pinggang kanan",
+            "masuk angin",
+            "migren"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "migren",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T13:40:45.289755"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-07T13:39:19.273650",
+    "details": {
+      "name": "Nina BS",
+      "age": 51,
+      "gender": "female",
+      "location": "Malang Jatim",
+      "health_complaints": [],
+      "conversion_barriers": [],
+      "last_interaction": "2025-06-07T17:22:03.576000",
+      "symptoms": [
+        "keringat deras",
+        "panas",
+        "sakit pinggang kanan",
+        "masuk angin",
+        "migren"
+      ],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "Nina BS",
+      "age": 51,
+      "gender": "female",
+      "location": "Malang Jatim",
+      "health_complaints": [],
+      "symptoms": [
+        "keringat deras",
+        "panas",
+        "sakit pinggang kanan",
+        "masuk angin",
+        "migren"
+      ],
+      "conversion_barriers": [],
+      "medical_history": "migren",
+      "urgency_level": "medium",
+      "emotion": "neutral",
+      "timestamp": "2025-06-07T13:40:45.289755"
+    }
+  },
+  "6281321260702@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-07T13:45:42.419608",
+        "analysis": {
+          "name": "Yani Waryani Abidin",
+          "age": 62,
+          "gender": "female",
+          "location": "Cianjur",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T13:45:42.418723"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T13:45:36.631000",
+        "analysis": {
+          "name": "Yani Waryani Abidin",
+          "age": 62,
+          "gender": "female",
+          "location": "Cianjur",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T13:45:42.418723"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T13:53:37.326000",
+        "analysis": {
+          "name": "Yani Waryani Abidin",
+          "age": 62,
+          "gender": "female",
+          "location": "Cianjur",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T13:45:42.418723"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T13:55:26.532000",
+        "analysis": {
+          "name": "Yani Waryani Abidin",
+          "age": 62,
+          "gender": "female",
+          "location": "Cianjur",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T13:45:42.418723"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T13:57:05.668502",
+        "analysis": {
+          "name": "Yani Waryani Abidin",
+          "age": 62,
+          "gender": "female",
+          "location": "Cianjur",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Mahal nggak?"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T13:57:05.664891"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T13:56:59.386000",
+        "analysis": {
+          "name": "Yani Waryani Abidin",
+          "age": 62,
+          "gender": "female",
+          "location": "Cianjur",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Mahal nggak?"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T13:57:05.664891"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T13:58:48.288595",
+        "analysis": {
+          "name": "Yani Waryani Abidin",
+          "age": 62,
+          "gender": "female",
+          "location": "Cianjur",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "low",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T13:58:48.287199"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T13:58:43.789000",
+        "analysis": {
+          "name": "Yani Waryani Abidin",
+          "age": 62,
+          "gender": "female",
+          "location": "Cianjur",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "low",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T13:58:48.287199"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T13:59:36.618000",
+        "analysis": {
+          "name": "Yani Waryani Abidin",
+          "age": 62,
+          "gender": "female",
+          "location": "Cianjur",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "low",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T13:58:48.287199"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T14:10:06.342000",
+        "analysis": {
+          "name": "Yani Waryani Abidin",
+          "age": 62,
+          "gender": "female",
+          "location": "Cianjur",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "low",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T13:58:48.287199"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-07T13:45:42.419608",
+    "details": {
+      "name": "Yani Waryani Abidin",
+      "age": 62,
+      "gender": "female",
+      "location": "Cianjur",
+      "health_complaints": [
+        "Hipertensi"
+      ],
+      "conversion_barriers": [
+        "Mahal nggak?"
+      ],
+      "last_interaction": "2025-06-07T14:10:06.342000",
+      "symptoms": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "Yani Waryani Abidin",
+      "age": 62,
+      "gender": "female",
+      "location": "Cianjur",
+      "health_complaints": [
+        "Hipertensi"
+      ],
+      "symptoms": [],
+      "conversion_barriers": [],
+      "medical_history": null,
+      "urgency_level": "low",
+      "emotion": "negative",
+      "timestamp": "2025-06-07T13:58:48.287199"
+    }
+  },
+  "6281368205701@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-07T15:52:45.577463",
+        "analysis": {
+          "name": "Eko Subri Marleansyah",
+          "age": 38,
+          "gender": "male",
+          "location": "Kota Prabumulih Sumatera Selatan",
+          "health_complaints": [],
+          "symptoms": [
+            "Tidak bisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T15:52:45.576092"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T15:52:38.534000",
+        "analysis": {
+          "name": "Eko Subri Marleansyah",
+          "age": 38,
+          "gender": "male",
+          "location": "Kota Prabumulih Sumatera Selatan",
+          "health_complaints": [],
+          "symptoms": [
+            "Tidak bisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T15:52:45.576092"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T15:54:09.010955",
+        "analysis": {
+          "name": "Eko Subri Marleansyah",
+          "age": 38,
+          "gender": "male",
+          "location": "Kota Prabumulih Sumatera Selatan",
+          "health_complaints": [],
+          "symptoms": [
+            "Tidak bisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sempat konsumsi obat tidur",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T15:54:09.009939"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T15:54:01.773000",
+        "analysis": {
+          "name": "Eko Subri Marleansyah",
+          "age": 38,
+          "gender": "male",
+          "location": "Kota Prabumulih Sumatera Selatan",
+          "health_complaints": [],
+          "symptoms": [
+            "Tidak bisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sempat konsumsi obat tidur",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T15:54:09.009939"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T15:54:39.493922",
+        "analysis": {
+          "name": "Eko Subri Marleansyah",
+          "age": 38,
+          "gender": "male",
+          "location": "Kota Prabumulih Sumatera Selatan",
+          "health_complaints": [],
+          "symptoms": [
+            "Tidak bisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sempat konsumsi obat tidur",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T15:54:39.492912"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T15:54:33.217000",
+        "analysis": {
+          "name": "Eko Subri Marleansyah",
+          "age": 38,
+          "gender": "male",
+          "location": "Kota Prabumulih Sumatera Selatan",
+          "health_complaints": [],
+          "symptoms": [
+            "Tidak bisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sempat konsumsi obat tidur",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T15:54:39.492912"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T15:55:58.708078",
+        "analysis": {
+          "name": "Eko Subri Marleansyah",
+          "age": 38,
+          "gender": "male",
+          "location": "Kota Prabumulih Sumatera Selatan",
+          "health_complaints": [],
+          "symptoms": [
+            "Tidak bisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sempat konsumsi obat tidur",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T15:55:58.706915"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T15:55:51.142000",
+        "analysis": {
+          "name": "Eko Subri Marleansyah",
+          "age": 38,
+          "gender": "male",
+          "location": "Kota Prabumulih Sumatera Selatan",
+          "health_complaints": [],
+          "symptoms": [
+            "Tidak bisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sempat konsumsi obat tidur",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T15:55:58.706915"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T16:45:29.029231",
+        "analysis": {
+          "name": "Eko Subri Marleansyah",
+          "age": 38,
+          "gender": "male",
+          "location": "Kota Prabumulih Sumatera Selatan",
+          "health_complaints": [],
+          "symptoms": [
+            "Tidak bisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sempat konsumsi obat tidur",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T16:45:28.959252"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T16:45:20.652000",
+        "analysis": {
+          "name": "Eko Subri Marleansyah",
+          "age": 38,
+          "gender": "male",
+          "location": "Kota Prabumulih Sumatera Selatan",
+          "health_complaints": [],
+          "symptoms": [
+            "Tidak bisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sempat konsumsi obat tidur",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T16:45:28.959252"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-07T15:52:45.577463",
+    "details": {
+      "name": "Eko Subri Marleansyah",
+      "age": 38,
+      "gender": "male",
+      "location": "Kota Prabumulih Sumatera Selatan",
+      "health_complaints": [],
+      "conversion_barriers": [],
+      "last_interaction": "2025-06-07T16:45:20.652000",
+      "symptoms": [
+        "Tidak bisa tidur"
+      ],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "positive"
+    },
+    "latest_analysis": {
+      "name": "Eko Subri Marleansyah",
+      "age": 38,
+      "gender": "male",
+      "location": "Kota Prabumulih Sumatera Selatan",
+      "health_complaints": [],
+      "symptoms": [
+        "Tidak bisa tidur"
+      ],
+      "conversion_barriers": [],
+      "medical_history": "Sempat konsumsi obat tidur",
+      "urgency_level": "medium",
+      "emotion": "neutral",
+      "timestamp": "2025-06-07T16:45:28.959252"
+    }
+  },
+  "6289509544174@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-07T16:04:25.814785",
+        "analysis": {
+          "name": "Norma",
+          "age": 43,
+          "gender": "female",
+          "location": "Makassar",
+          "health_complaints": [],
+          "symptoms": [
+            "susah tidur",
+            "sering merasa cemas"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T16:04:25.813763"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T16:04:19.153000",
+        "analysis": {
+          "name": "Norma",
+          "age": 43,
+          "gender": "female",
+          "location": "Makassar",
+          "health_complaints": [],
+          "symptoms": [
+            "susah tidur",
+            "sering merasa cemas"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T16:04:25.813763"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T16:04:29.380000",
+        "analysis": {
+          "name": "Norma",
+          "age": 43,
+          "gender": "female",
+          "location": "Makassar",
+          "health_complaints": [],
+          "symptoms": [
+            "susah tidur",
+            "sering merasa cemas"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T16:04:25.813763"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T16:05:24.371167",
+        "analysis": {
+          "name": "Norma",
+          "age": 43,
+          "gender": "female",
+          "location": "Makassar",
+          "health_complaints": [],
+          "symptoms": [
+            "susah tidur",
+            "sering merasa cemas",
+            "mata tidak ngantuk",
+            "hati tidak normal",
+            "pikiran tidak normal",
+            "perasaan tidak normal"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T16:05:24.370212"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T16:05:17.941000",
+        "analysis": {
+          "name": "Norma",
+          "age": 43,
+          "gender": "female",
+          "location": "Makassar",
+          "health_complaints": [],
+          "symptoms": [
+            "susah tidur",
+            "sering merasa cemas",
+            "mata tidak ngantuk",
+            "hati tidak normal",
+            "pikiran tidak normal",
+            "perasaan tidak normal"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T16:05:24.370212"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T16:06:13.954925",
+        "analysis": {
+          "name": "Norma",
+          "age": 43,
+          "gender": "female",
+          "location": "Makassar",
+          "health_complaints": [],
+          "symptoms": [
+            "susah tidur",
+            "sering merasa cemas",
+            "mata tidak ngantuk",
+            "hati tidak normal",
+            "pikiran tidak normal",
+            "perasaan tidak normal"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T16:06:13.953346"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T16:06:06.434000",
+        "analysis": {
+          "name": "Norma",
+          "age": 43,
+          "gender": "female",
+          "location": "Makassar",
+          "health_complaints": [],
+          "symptoms": [
+            "susah tidur",
+            "sering merasa cemas",
+            "mata tidak ngantuk",
+            "hati tidak normal",
+            "pikiran tidak normal",
+            "perasaan tidak normal"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T16:06:13.953346"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T16:10:04.975216",
+        "analysis": {
+          "name": "Norma",
+          "age": 43,
+          "gender": "female",
+          "location": "Makassar",
+          "health_complaints": [],
+          "symptoms": [
+            "susah tidur",
+            "sering merasa cemas",
+            "mata tidak ngantuk",
+            "hati tidak normal",
+            "pikiran tidak normal",
+            "perasaan tidak normal"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T16:10:04.972149"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T16:09:58.689000",
+        "analysis": {
+          "name": "Norma",
+          "age": 43,
+          "gender": "female",
+          "location": "Makassar",
+          "health_complaints": [],
+          "symptoms": [
+            "susah tidur",
+            "sering merasa cemas",
+            "mata tidak ngantuk",
+            "hati tidak normal",
+            "pikiran tidak normal",
+            "perasaan tidak normal"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T16:10:04.972149"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T16:11:05.192485",
+        "analysis": {
+          "name": "Norma",
+          "age": 43,
+          "gender": "female",
+          "location": "Makassar",
+          "health_complaints": [],
+          "symptoms": [
+            "susah tidur",
+            "sering merasa cemas",
+            "mata tidak ngantuk",
+            "hati tidak normal",
+            "pikiran tidak normal",
+            "perasaan tidak normal"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T16:11:05.191209"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T16:10:59.049000",
+        "analysis": {
+          "name": "Norma",
+          "age": 43,
+          "gender": "female",
+          "location": "Makassar",
+          "health_complaints": [],
+          "symptoms": [
+            "susah tidur",
+            "sering merasa cemas",
+            "mata tidak ngantuk",
+            "hati tidak normal",
+            "pikiran tidak normal",
+            "perasaan tidak normal"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T16:11:05.191209"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T16:12:01.007833",
+        "analysis": {
+          "name": "Norma",
+          "age": 43,
+          "gender": "female",
+          "location": "Makassar",
+          "health_complaints": [],
+          "symptoms": [
+            "susah tidur",
+            "sering merasa cemas",
+            "mata tidak ngantuk",
+            "hati tidak normal",
+            "pikiran tidak normal",
+            "perasaan tidak normal"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T16:12:01.006251"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T16:11:51.444000",
+        "analysis": {
+          "name": "Norma",
+          "age": 43,
+          "gender": "female",
+          "location": "Makassar",
+          "health_complaints": [],
+          "symptoms": [
+            "susah tidur",
+            "sering merasa cemas",
+            "mata tidak ngantuk",
+            "hati tidak normal",
+            "pikiran tidak normal",
+            "perasaan tidak normal"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T16:12:01.006251"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T16:13:15.891208",
+        "analysis": {
+          "name": "Norma",
+          "age": 43,
+          "gender": "female",
+          "location": "Makassar",
+          "health_complaints": [],
+          "symptoms": [
+            "susah tidur",
+            "sering merasa cemas",
+            "mata tidak ngantuk",
+            "hati tidak normal",
+            "pikiran tidak normal",
+            "perasaan tidak normal"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T16:13:15.889834"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T16:13:07.690000",
+        "analysis": {
+          "name": "Norma",
+          "age": 43,
+          "gender": "female",
+          "location": "Makassar",
+          "health_complaints": [],
+          "symptoms": [
+            "susah tidur",
+            "sering merasa cemas",
+            "mata tidak ngantuk",
+            "hati tidak normal",
+            "pikiran tidak normal",
+            "perasaan tidak normal"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T16:13:15.889834"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-07T16:04:25.814785",
+    "details": {
+      "name": "Norma",
+      "age": 43,
+      "gender": "female",
+      "location": "Makassar",
+      "health_complaints": [],
+      "conversion_barriers": [
+        "Masalah biaya/finansial"
+      ],
+      "last_interaction": "2025-06-07T16:13:07.690000",
+      "symptoms": [
+        "susah tidur",
+        "sering merasa cemas"
+      ],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "positive"
+    },
+    "latest_analysis": {
+      "name": "Norma",
+      "age": 43,
+      "gender": "female",
+      "location": "Makassar",
+      "health_complaints": [],
+      "symptoms": [
+        "susah tidur",
+        "sering merasa cemas",
+        "mata tidak ngantuk",
+        "hati tidak normal",
+        "pikiran tidak normal",
+        "perasaan tidak normal"
+      ],
+      "conversion_barriers": [
+        "Masalah biaya/finansial"
+      ],
+      "medical_history": null,
+      "urgency_level": "high",
+      "emotion": "negative",
+      "timestamp": "2025-06-07T16:13:15.889834"
+    }
+  },
+  "6285174451974@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-07T16:40:05.844275",
+        "analysis": {
+          "name": "lydia",
+          "age": 49,
+          "gender": "female",
+          "location": "kalideres jakbar",
+          "health_complaints": [
+            "Hipertensi",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T16:40:05.837403"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T16:39:58.441000",
+        "analysis": {
+          "name": "lydia",
+          "age": 49,
+          "gender": "female",
+          "location": "kalideres jakbar",
+          "health_complaints": [
+            "Hipertensi",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T16:40:05.837403"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T16:41:19.181260",
+        "analysis": {
+          "name": "lydia",
+          "age": 49,
+          "gender": "female",
+          "location": "kalideres jakbar",
+          "health_complaints": [
+            "Hipertensi",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T16:41:19.178390"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T16:41:12.472000",
+        "analysis": {
+          "name": "lydia",
+          "age": 49,
+          "gender": "female",
+          "location": "kalideres jakbar",
+          "health_complaints": [
+            "Hipertensi",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T16:41:19.178390"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T16:42:28.900430",
+        "analysis": {
+          "name": "lydia",
+          "age": 49,
+          "gender": "female",
+          "location": "serang",
+          "health_complaints": [
+            "Hipertensi",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T16:42:28.898092"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T16:42:22.472000",
+        "analysis": {
+          "name": "lydia",
+          "age": 49,
+          "gender": "female",
+          "location": "serang",
+          "health_complaints": [
+            "Hipertensi",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T16:42:28.898092"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-07T16:40:05.844275",
+    "details": {
+      "name": "lydia",
+      "age": 49,
+      "gender": "female",
+      "location": "serang",
+      "health_complaints": [
+        "Kolesterol Tinggi",
+        "Hipertensi"
+      ],
+      "conversion_barriers": [
+        "Jarak/lokasi"
+      ],
+      "last_interaction": "2025-06-07T16:42:22.472000",
+      "symptoms": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "lydia",
+      "age": 49,
+      "gender": "female",
+      "location": "serang",
+      "health_complaints": [
+        "Hipertensi",
+        "Kolesterol Tinggi"
+      ],
+      "symptoms": [],
+      "conversion_barriers": [
+        "Jarak/lokasi"
+      ],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral",
+      "timestamp": "2025-06-07T16:42:28.898092"
+    }
+  },
+  "6281366463380@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-07T17:09:53.000611",
+        "analysis": {
+          "name": "betmanida",
+          "age": 50,
+          "gender": "female",
+          "location": "sunai penuh kerinci jambi",
+          "health_complaints": [],
+          "symptoms": [
+            "asam lambung",
+            "jantung berdebar",
+            "takut sesak",
+            "takut makan nasi"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:09:52.998602"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:09:43.600000",
+        "analysis": {
+          "name": "betmanida",
+          "age": 50,
+          "gender": "female",
+          "location": "sunai penuh kerinci jambi",
+          "health_complaints": [],
+          "symptoms": [
+            "asam lambung",
+            "jantung berdebar",
+            "takut sesak",
+            "takut makan nasi"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:09:52.998602"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:12:35.611808",
+        "analysis": {
+          "name": "betmanida",
+          "age": 50,
+          "gender": "female",
+          "location": "sunai penuh kerinci jambi",
+          "health_complaints": [
+            "GERD"
+          ],
+          "symptoms": [
+            "asam lambung",
+            "jantung berdebar",
+            "takut sesak",
+            "takut makan nasi"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:12:35.610189"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:12:29.618000",
+        "analysis": {
+          "name": "betmanida",
+          "age": 50,
+          "gender": "female",
+          "location": "sunai penuh kerinci jambi",
+          "health_complaints": [
+            "GERD"
+          ],
+          "symptoms": [
+            "asam lambung",
+            "jantung berdebar",
+            "takut sesak",
+            "takut makan nasi"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:12:35.610189"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:14:44.637399",
+        "analysis": {
+          "name": "betmanida",
+          "age": 50,
+          "gender": "female",
+          "location": "sunai penuh kerinci jambi",
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:14:44.634729"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:14:38.529000",
+        "analysis": {
+          "name": "betmanida",
+          "age": 50,
+          "gender": "female",
+          "location": "sunai penuh kerinci jambi",
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:14:44.634729"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:16:08.346424",
+        "analysis": {
+          "name": "betmanida",
+          "age": 50,
+          "gender": "female",
+          "location": "sunai penuh kerinci jambi",
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T17:16:08.345214"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:16:01.625000",
+        "analysis": {
+          "name": "betmanida",
+          "age": 50,
+          "gender": "female",
+          "location": "sunai penuh kerinci jambi",
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T17:16:08.345214"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:18:02.696784",
+        "analysis": {
+          "name": "betmanida",
+          "age": 50,
+          "gender": "female",
+          "location": "sunai penuh kerinci jambi",
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Jarak/lokasi",
+            "Dukungan keluarga"
+          ],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:18:02.694332"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:17:56.915000",
+        "analysis": {
+          "name": "betmanida",
+          "age": 50,
+          "gender": "female",
+          "location": "sunai penuh kerinci jambi",
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Jarak/lokasi",
+            "Dukungan keluarga"
+          ],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:18:02.694332"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:18:30.976438",
+        "analysis": {
+          "name": "betmanida",
+          "age": 50,
+          "gender": "female",
+          "location": "sunai penuh kerinci jambi",
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T17:18:30.975282"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:18:23.435000",
+        "analysis": {
+          "name": "betmanida",
+          "age": 50,
+          "gender": "female",
+          "location": "sunai penuh kerinci jambi",
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T17:18:30.975282"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:21:13.661898",
+        "analysis": {
+          "name": "betmanida",
+          "age": 50,
+          "gender": "female",
+          "location": "sunai penuh kerinci jambi",
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:21:13.659300"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:21:07.395000",
+        "analysis": {
+          "name": "betmanida",
+          "age": 50,
+          "gender": "female",
+          "location": "sunai penuh kerinci jambi",
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:21:13.659300"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:22:53.157844",
+        "analysis": {
+          "name": "betmanida",
+          "age": 50,
+          "gender": "female",
+          "location": "sunai penuh kerinci jambi",
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:22:53.156505"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:22:42.975000",
+        "analysis": {
+          "name": "betmanida",
+          "age": 50,
+          "gender": "female",
+          "location": "sunai penuh kerinci jambi",
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:22:53.156505"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-07T17:09:53.000611",
+    "details": {
+      "name": "betmanida",
+      "age": 50,
+      "gender": "female",
+      "location": "sunai penuh kerinci jambi",
+      "health_complaints": [
+        "GERD"
+      ],
+      "conversion_barriers": [
+        "Dukungan keluarga",
+        "Jarak/lokasi"
+      ],
+      "last_interaction": "2025-06-07T17:22:42.975000",
+      "symptoms": [
+        "asam lambung",
+        "jantung berdebar",
+        "takut sesak",
+        "takut makan nasi"
+      ],
+      "medical_history": null,
+      "urgency_level": "high",
+      "emotion": "negative"
+    },
+    "latest_analysis": {
+      "name": "betmanida",
+      "age": 50,
+      "gender": "female",
+      "location": "sunai penuh kerinci jambi",
+      "health_complaints": [],
+      "symptoms": [],
+      "conversion_barriers": [
+        "Jarak/lokasi"
+      ],
+      "medical_history": null,
+      "urgency_level": "high",
+      "emotion": "negative",
+      "timestamp": "2025-06-07T17:22:53.156505"
+    }
+  },
+  "628129435746@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-07T17:24:55.225778",
+        "analysis": {
+          "name": "Hartini",
+          "age": 57,
+          "gender": "female",
+          "location": "Tangerang",
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "low",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T17:24:55.224338"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:24:49.451000",
+        "analysis": {
+          "name": "Hartini",
+          "age": 57,
+          "gender": "female",
+          "location": "Tangerang",
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "low",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T17:24:55.224338"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:25:26.741247",
+        "analysis": {
+          "name": "Hartini",
+          "age": 57,
+          "gender": "female",
+          "location": "Tangerang",
+          "health_complaints": [
+            "Hipertensi",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T17:25:26.739673"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:25:20.884000",
+        "analysis": {
+          "name": "Hartini",
+          "age": 57,
+          "gender": "female",
+          "location": "Tangerang",
+          "health_complaints": [
+            "Hipertensi",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T17:25:26.739673"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:27:01.274746",
+        "analysis": {
+          "name": "Hartini",
+          "age": 57,
+          "gender": "female",
+          "location": "Tangerang",
+          "health_complaints": [
+            "Hipertensi",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [
+            "Tensi naik"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T17:27:01.272953"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:26:53.248000",
+        "analysis": {
+          "name": "Hartini",
+          "age": 57,
+          "gender": "female",
+          "location": "Tangerang",
+          "health_complaints": [
+            "Hipertensi",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [
+            "Tensi naik"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T17:27:01.272953"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:28:55.797029",
+        "analysis": {
+          "name": "Hartini",
+          "age": 57,
+          "gender": "female",
+          "location": "Tangerang",
+          "health_complaints": [
+            "Hipertensi",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T17:28:55.794651"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:28:49.032000",
+        "analysis": {
+          "name": "Hartini",
+          "age": 57,
+          "gender": "female",
+          "location": "Tangerang",
+          "health_complaints": [
+            "Hipertensi",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T17:28:55.794651"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:31:47.202499",
+        "analysis": {
+          "name": "Hartini",
+          "age": 57,
+          "gender": "female",
+          "location": "Tangerang",
+          "health_complaints": [
+            "Hipertensi",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [
+            "Syaraf kejepit"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T17:31:47.200023"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:31:39.685000",
+        "analysis": {
+          "name": "Hartini",
+          "age": 57,
+          "gender": "female",
+          "location": "Tangerang",
+          "health_complaints": [
+            "Hipertensi",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [
+            "Syaraf kejepit"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T17:31:47.200023"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:39:15.773799",
+        "analysis": {
+          "name": "Hartini",
+          "age": 57,
+          "gender": "female",
+          "location": "Tangerang",
+          "health_complaints": [
+            "Hipertensi",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [
+            "Syaraf kejepit"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T17:39:15.772493"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:39:08.159000",
+        "analysis": {
+          "name": "Hartini",
+          "age": 57,
+          "gender": "female",
+          "location": "Tangerang",
+          "health_complaints": [
+            "Hipertensi",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [
+            "Syaraf kejepit"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T17:39:15.772493"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T18:49:04.993563",
+        "analysis": {
+          "name": "Hartini",
+          "age": 57,
+          "gender": "female",
+          "location": "Tangerang",
+          "health_complaints": [
+            "Hipertensi",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [
+            "Syaraf kejepit"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial",
+            "Waktu/kesibukan"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T18:49:04.991685"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T18:48:58.770000",
+        "analysis": {
+          "name": "Hartini",
+          "age": 57,
+          "gender": "female",
+          "location": "Tangerang",
+          "health_complaints": [
+            "Hipertensi",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [
+            "Syaraf kejepit"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial",
+            "Waktu/kesibukan"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T18:49:04.991685"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T20:23:48.822065",
+        "analysis": {
+          "name": "Hartini",
+          "age": 57,
+          "gender": "female",
+          "location": "Tangerang",
+          "health_complaints": [
+            "Hipertensi",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [
+            "Syaraf kejepit"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T20:23:48.819755"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T20:23:42.679000",
+        "analysis": {
+          "name": "Hartini",
+          "age": 57,
+          "gender": "female",
+          "location": "Tangerang",
+          "health_complaints": [
+            "Hipertensi",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [
+            "Syaraf kejepit"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T20:23:48.819755"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-07T17:24:55.225778",
+    "details": {
+      "name": "Hartini",
+      "age": 57,
+      "gender": "female",
+      "location": "Tangerang",
+      "health_complaints": [
+        "Kolesterol Tinggi",
+        "Hipertensi"
+      ],
+      "conversion_barriers": [
+        "Masalah biaya/finansial",
+        "Waktu/kesibukan"
+      ],
+      "last_interaction": "2025-06-07T20:23:42.679000",
+      "symptoms": [],
+      "medical_history": null,
+      "urgency_level": "low",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "Hartini",
+      "age": 57,
+      "gender": "female",
+      "location": "Tangerang",
+      "health_complaints": [
+        "Hipertensi",
+        "Kolesterol Tinggi"
+      ],
+      "symptoms": [
+        "Syaraf kejepit"
+      ],
+      "conversion_barriers": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral",
+      "timestamp": "2025-06-07T20:23:48.819755"
+    }
+  },
+  "6282298019947@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-07T17:32:10.077787",
+        "analysis": {
+          "name": "Tabroni",
+          "age": 55,
+          "gender": "male",
+          "location": "Gunung Putri, Bogor",
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "low",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T17:32:10.076502"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:32:03.122000",
+        "analysis": {
+          "name": "Tabroni",
+          "age": 55,
+          "gender": "male",
+          "location": "Gunung Putri, Bogor",
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "low",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T17:32:10.076502"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:37:21.059120",
+        "analysis": {
+          "name": "Tabroni",
+          "age": 55,
+          "gender": "male",
+          "location": "Gunung Putri, Bogor",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "sakit pinggang sebelah kanan",
+            "nyeri menjalar ke kaki",
+            "nyeri di paha",
+            "nyeri di betis",
+            "nyeri di pergelangan kaki",
+            "nyeri di punggung",
+            "nyeri di tangan sebelah kanan"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T17:37:21.057248"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:37:12.565000",
+        "analysis": {
+          "name": "Tabroni",
+          "age": 55,
+          "gender": "male",
+          "location": "Gunung Putri, Bogor",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "sakit pinggang sebelah kanan",
+            "nyeri menjalar ke kaki",
+            "nyeri di paha",
+            "nyeri di betis",
+            "nyeri di pergelangan kaki",
+            "nyeri di punggung",
+            "nyeri di tangan sebelah kanan"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T17:37:21.057248"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:38:46.703856",
+        "analysis": {
+          "name": "Tabroni",
+          "age": 55,
+          "gender": "male",
+          "location": "Gunung Putri, Bogor",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "sakit pinggang sebelah kanan",
+            "nyeri menjalar ke kaki",
+            "nyeri di paha",
+            "nyeri di betis",
+            "nyeri di pergelangan kaki",
+            "nyeri di punggung",
+            "nyeri di tangan sebelah kanan"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T17:38:46.701912"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:38:38.767000",
+        "analysis": {
+          "name": "Tabroni",
+          "age": 55,
+          "gender": "male",
+          "location": "Gunung Putri, Bogor",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "sakit pinggang sebelah kanan",
+            "nyeri menjalar ke kaki",
+            "nyeri di paha",
+            "nyeri di betis",
+            "nyeri di pergelangan kaki",
+            "nyeri di punggung",
+            "nyeri di tangan sebelah kanan"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T17:38:46.701912"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:40:45.102418",
+        "analysis": {
+          "name": "Tabroni",
+          "age": 55,
+          "gender": "male",
+          "location": "Gunung Putri, Bogor",
+          "health_complaints": [
+            "Hipertensi",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "sakit pinggang sebelah kanan",
+            "nyeri menjalar ke kaki",
+            "nyeri di paha",
+            "nyeri di betis",
+            "nyeri di pergelangan kaki",
+            "nyeri di punggung",
+            "nyeri di tangan sebelah kanan"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:40:45.100958"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:40:35.309000",
+        "analysis": {
+          "name": "Tabroni",
+          "age": 55,
+          "gender": "male",
+          "location": "Gunung Putri, Bogor",
+          "health_complaints": [
+            "Hipertensi",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "sakit pinggang sebelah kanan",
+            "nyeri menjalar ke kaki",
+            "nyeri di paha",
+            "nyeri di betis",
+            "nyeri di pergelangan kaki",
+            "nyeri di punggung",
+            "nyeri di tangan sebelah kanan"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:40:45.100958"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:43:43.635225",
+        "analysis": {
+          "name": "Tabroni",
+          "age": 55,
+          "gender": "male",
+          "location": "Gunung Putri, Bogor",
+          "health_complaints": [
+            "Hipertensi",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "sakit pinggang sebelah kanan",
+            "nyeri menjalar ke kaki",
+            "nyeri di paha",
+            "nyeri di betis",
+            "nyeri di pergelangan kaki",
+            "nyeri di punggung",
+            "nyeri di tangan sebelah kanan"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:43:43.633638"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:43:35.783000",
+        "analysis": {
+          "name": "Tabroni",
+          "age": 55,
+          "gender": "male",
+          "location": "Gunung Putri, Bogor",
+          "health_complaints": [
+            "Hipertensi",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "sakit pinggang sebelah kanan",
+            "nyeri menjalar ke kaki",
+            "nyeri di paha",
+            "nyeri di betis",
+            "nyeri di pergelangan kaki",
+            "nyeri di punggung",
+            "nyeri di tangan sebelah kanan"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:43:43.633638"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-07T17:32:10.077787",
+    "details": {
+      "name": "Tabroni",
+      "age": 55,
+      "gender": "male",
+      "location": "Gunung Putri, Bogor",
+      "health_complaints": [
+        "Hipertensi",
+        "Insomnia"
+      ],
+      "conversion_barriers": [
+        "Masalah biaya/finansial"
+      ],
+      "last_interaction": "2025-06-07T17:43:35.783000",
+      "symptoms": [],
+      "medical_history": null,
+      "urgency_level": "low",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "Tabroni",
+      "age": 55,
+      "gender": "male",
+      "location": "Gunung Putri, Bogor",
+      "health_complaints": [
+        "Hipertensi",
+        "Insomnia"
+      ],
+      "symptoms": [
+        "sakit pinggang sebelah kanan",
+        "nyeri menjalar ke kaki",
+        "nyeri di paha",
+        "nyeri di betis",
+        "nyeri di pergelangan kaki",
+        "nyeri di punggung",
+        "nyeri di tangan sebelah kanan"
+      ],
+      "conversion_barriers": [
+        "Masalah biaya/finansial"
+      ],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "negative",
+      "timestamp": "2025-06-07T17:43:43.633638"
+    }
+  },
+  "6285798469711@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-07T17:37:16.067000",
+        "analysis": {
+          "name": "Dedi",
+          "age": 55,
+          "gender": "male",
+          "location": "Sukabumi",
+          "health_complaints": [
+            "Penyakit Jantung",
+            "Hipertensi",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Gabisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:35:09.940965"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:37:31.628000",
+        "analysis": {
+          "name": "Dedi",
+          "age": 55,
+          "gender": "male",
+          "location": "Sukabumi",
+          "health_complaints": [
+            "Penyakit Jantung",
+            "Hipertensi",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Gabisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:35:09.940965"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:38:40.214000",
+        "analysis": {
+          "name": "Dedi",
+          "age": 55,
+          "gender": "male",
+          "location": "Sukabumi",
+          "health_complaints": [
+            "Penyakit Jantung",
+            "Hipertensi",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Gabisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:35:09.940965"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:38:47.892000",
+        "analysis": {
+          "name": "Dedi",
+          "age": 55,
+          "gender": "male",
+          "location": "Sukabumi",
+          "health_complaints": [
+            "Penyakit Jantung",
+            "Hipertensi",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Gabisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:35:09.940965"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:40:18.291000",
+        "analysis": {
+          "name": "Dedi",
+          "age": 55,
+          "gender": "male",
+          "location": "Sukabumi",
+          "health_complaints": [
+            "Penyakit Jantung",
+            "Hipertensi",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Gabisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:35:09.940965"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:41:24.295000",
+        "analysis": {
+          "name": "Dedi",
+          "age": 55,
+          "gender": "male",
+          "location": "Sukabumi",
+          "health_complaints": [
+            "Penyakit Jantung",
+            "Hipertensi",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Gabisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:35:09.940965"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:43:07.631000",
+        "analysis": {
+          "name": "Dedi",
+          "age": 55,
+          "gender": "male",
+          "location": "Sukabumi",
+          "health_complaints": [
+            "Penyakit Jantung",
+            "Hipertensi",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Gabisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:35:09.940965"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:43:24.251000",
+        "analysis": {
+          "name": "Dedi",
+          "age": 55,
+          "gender": "male",
+          "location": "Sukabumi",
+          "health_complaints": [
+            "Penyakit Jantung",
+            "Hipertensi",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Gabisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:35:09.940965"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:45:27.482000",
+        "analysis": {
+          "name": "Dedi",
+          "age": 55,
+          "gender": "male",
+          "location": "Sukabumi",
+          "health_complaints": [
+            "Penyakit Jantung",
+            "Hipertensi",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Gabisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:35:09.940965"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:46:20.131000",
+        "analysis": {
+          "name": "Dedi",
+          "age": 55,
+          "gender": "male",
+          "location": "Sukabumi",
+          "health_complaints": [
+            "Penyakit Jantung",
+            "Hipertensi",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Gabisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:35:09.940965"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:47:26.695000",
+        "analysis": {
+          "name": "Dedi",
+          "age": 55,
+          "gender": "male",
+          "location": "Sukabumi",
+          "health_complaints": [
+            "Penyakit Jantung",
+            "Hipertensi",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Gabisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:35:09.940965"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:47:52.236000",
+        "analysis": {
+          "name": "Dedi",
+          "age": 55,
+          "gender": "male",
+          "location": "Sukabumi",
+          "health_complaints": [
+            "Penyakit Jantung",
+            "Hipertensi",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Gabisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:35:09.940965"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:48:43.630000",
+        "analysis": {
+          "name": "Dedi",
+          "age": 55,
+          "gender": "male",
+          "location": "Sukabumi",
+          "health_complaints": [
+            "Penyakit Jantung",
+            "Hipertensi",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Gabisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:35:09.940965"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:50:04.593000",
+        "analysis": {
+          "name": "Dedi",
+          "age": 55,
+          "gender": "male",
+          "location": "Sukabumi",
+          "health_complaints": [
+            "Penyakit Jantung",
+            "Hipertensi",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Gabisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:35:09.940965"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:51:13.825000",
+        "analysis": {
+          "name": "Dedi",
+          "age": 55,
+          "gender": "male",
+          "location": "Sukabumi",
+          "health_complaints": [
+            "Penyakit Jantung",
+            "Hipertensi",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Gabisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:35:09.940965"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:51:31.285000",
+        "analysis": {
+          "name": "Dedi",
+          "age": 55,
+          "gender": "male",
+          "location": "Sukabumi",
+          "health_complaints": [
+            "Penyakit Jantung",
+            "Hipertensi",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Gabisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:35:09.940965"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:52:12.934000",
+        "analysis": {
+          "name": "Dedi",
+          "age": 55,
+          "gender": "male",
+          "location": "Sukabumi",
+          "health_complaints": [
+            "Penyakit Jantung",
+            "Hipertensi",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Gabisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:35:09.940965"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T19:10:05.623000",
+        "analysis": {
+          "name": "Dedi",
+          "age": 55,
+          "gender": "male",
+          "location": "Sukabumi",
+          "health_complaints": [
+            "Penyakit Jantung",
+            "Hipertensi",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Gabisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:35:09.940965"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T19:10:24.071000",
+        "analysis": {
+          "name": "Dedi",
+          "age": 55,
+          "gender": "male",
+          "location": "Sukabumi",
+          "health_complaints": [
+            "Penyakit Jantung",
+            "Hipertensi",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Gabisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:35:09.940965"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T19:12:10.995000",
+        "analysis": {
+          "name": "Dedi",
+          "age": 55,
+          "gender": "male",
+          "location": "Sukabumi",
+          "health_complaints": [
+            "Penyakit Jantung",
+            "Hipertensi",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Gabisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:35:09.940965"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-07T17:35:09.942242",
+    "details": {
+      "name": "Dedi",
+      "age": 55,
+      "gender": "male",
+      "location": "Sukabumi",
+      "health_complaints": [
+        "Insomnia",
+        "Hipertensi",
+        "Penyakit Jantung"
+      ],
+      "conversion_barriers": [],
+      "last_interaction": "2025-06-07T19:12:10.995000",
+      "symptoms": [
+        "Gabisa tidur"
+      ],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "negative"
+    },
+    "latest_analysis": {
+      "name": "Dedi",
+      "age": 55,
+      "gender": "male",
+      "location": "Sukabumi",
+      "health_complaints": [
+        "Penyakit Jantung",
+        "Hipertensi",
+        "Insomnia"
+      ],
+      "symptoms": [
+        "Gabisa tidur"
+      ],
+      "conversion_barriers": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "negative",
+      "timestamp": "2025-06-07T17:35:09.940965"
+    }
+  },
+  "6281375719192@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-07T17:50:53.165893",
+        "analysis": {
+          "name": "MUHAMMAD SUBHI",
+          "age": 42,
+          "gender": "male",
+          "location": "MEDAN",
+          "health_complaints": [],
+          "symptoms": [
+            "ANXIETY",
+            "DEPRESI"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T17:50:53.160917"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:50:46.443000",
+        "analysis": {
+          "name": "MUHAMMAD SUBHI",
+          "age": 42,
+          "gender": "male",
+          "location": "MEDAN",
+          "health_complaints": [],
+          "symptoms": [
+            "ANXIETY",
+            "DEPRESI"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T17:50:53.160917"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:52:49.062078",
+        "analysis": {
+          "name": "MUHAMMAD SUBHI",
+          "age": 42,
+          "gender": "male",
+          "location": "MEDAN",
+          "health_complaints": [],
+          "symptoms": [
+            "ANXIETY",
+            "DEPRESI",
+            "LELAH",
+            "SULIT TIDUR"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:52:49.060469"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:52:42.022000",
+        "analysis": {
+          "name": "MUHAMMAD SUBHI",
+          "age": 42,
+          "gender": "male",
+          "location": "MEDAN",
+          "health_complaints": [],
+          "symptoms": [
+            "ANXIETY",
+            "DEPRESI",
+            "LELAH",
+            "SULIT TIDUR"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:52:49.060469"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:54:26.528433",
+        "analysis": {
+          "name": "MUHAMMAD SUBHI",
+          "age": 42,
+          "gender": "male",
+          "location": "MEDAN",
+          "health_complaints": [],
+          "symptoms": [
+            "ANXIETY",
+            "DEPRESI",
+            "LELAH",
+            "SULIT TIDUR"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T17:54:26.524993"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:54:18.888000",
+        "analysis": {
+          "name": "MUHAMMAD SUBHI",
+          "age": 42,
+          "gender": "male",
+          "location": "MEDAN",
+          "health_complaints": [],
+          "symptoms": [
+            "ANXIETY",
+            "DEPRESI",
+            "LELAH",
+            "SULIT TIDUR"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T17:54:26.524993"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:56:15.405000",
+        "analysis": {
+          "name": "MUHAMMAD SUBHI",
+          "age": 42,
+          "gender": "male",
+          "location": "MEDAN",
+          "health_complaints": [],
+          "symptoms": [
+            "ANXIETY",
+            "DEPRESI",
+            "LELAH",
+            "SULIT TIDUR"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T17:54:26.524993"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:57:35.719000",
+        "analysis": {
+          "name": "MUHAMMAD SUBHI",
+          "age": 42,
+          "gender": "male",
+          "location": "MEDAN",
+          "health_complaints": [],
+          "symptoms": [
+            "ANXIETY",
+            "DEPRESI",
+            "LELAH",
+            "SULIT TIDUR"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T17:54:26.524993"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:58:22.084000",
+        "analysis": {
+          "name": "MUHAMMAD SUBHI",
+          "age": 42,
+          "gender": "male",
+          "location": "MEDAN",
+          "health_complaints": [],
+          "symptoms": [
+            "ANXIETY",
+            "DEPRESI",
+            "LELAH",
+            "SULIT TIDUR"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T17:54:26.524993"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:59:37.695754",
+        "analysis": {
+          "name": "MUHAMMAD SUBHI",
+          "age": 42,
+          "gender": "male",
+          "location": "MEDAN",
+          "health_complaints": [],
+          "symptoms": [
+            "ANXIETY",
+            "DEPRESI",
+            "LELAH",
+            "SULIT TIDUR"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T17:59:37.692822"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:59:30.514000",
+        "analysis": {
+          "name": "MUHAMMAD SUBHI",
+          "age": 42,
+          "gender": "male",
+          "location": "MEDAN",
+          "health_complaints": [],
+          "symptoms": [
+            "ANXIETY",
+            "DEPRESI",
+            "LELAH",
+            "SULIT TIDUR"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T17:59:37.692822"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-07T17:50:53.165893",
+    "details": {
+      "name": "MUHAMMAD SUBHI",
+      "age": 42,
+      "gender": "male",
+      "location": "MEDAN",
+      "health_complaints": [],
+      "conversion_barriers": [
+        "Masalah biaya/finansial"
+      ],
+      "last_interaction": "2025-06-07T17:59:30.514000",
+      "symptoms": [
+        "ANXIETY",
+        "DEPRESI"
+      ],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "MUHAMMAD SUBHI",
+      "age": 42,
+      "gender": "male",
+      "location": "MEDAN",
+      "health_complaints": [],
+      "symptoms": [
+        "ANXIETY",
+        "DEPRESI",
+        "LELAH",
+        "SULIT TIDUR"
+      ],
+      "conversion_barriers": [
+        "Masalah biaya/finansial"
+      ],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "positive",
+      "timestamp": "2025-06-07T17:59:37.692822"
+    }
+  },
+  "6287744420222@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-07T17:50:57.623170",
+        "analysis": {
+          "name": "Ridwan Adib Zahran",
+          "age": 23,
+          "gender": "male",
+          "location": "Kuningan Jabar",
+          "health_complaints": [
+            "Insomnia"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T17:50:57.620373"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:50:47.245000",
+        "analysis": {
+          "name": "Ridwan Adib Zahran",
+          "age": 23,
+          "gender": "male",
+          "location": "Kuningan Jabar",
+          "health_complaints": [
+            "Insomnia"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T17:50:57.620373"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:52:18.657695",
+        "analysis": {
+          "name": "Ridwan Adib Zahran",
+          "age": 23,
+          "gender": "male",
+          "location": "Kuningan Jabar",
+          "health_complaints": [
+            "Insomnia"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": "Insomnia sejak SMK 2016/2017",
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T17:52:18.652788"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:52:11.736000",
+        "analysis": {
+          "name": "Ridwan Adib Zahran",
+          "age": 23,
+          "gender": "male",
+          "location": "Kuningan Jabar",
+          "health_complaints": [
+            "Insomnia"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": "Insomnia sejak SMK 2016/2017",
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T17:52:18.652788"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:53:15.055725",
+        "analysis": {
+          "name": "Ridwan Adib Zahran",
+          "age": 23,
+          "gender": "male",
+          "location": "Kuningan Jabar",
+          "health_complaints": [
+            "Insomnia"
+          ],
+          "symptoms": [
+            "kelelahan",
+            "kesulitan merasa tenang"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Insomnia sejak SMK 2016/2017",
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:53:15.054114"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:53:08.486000",
+        "analysis": {
+          "name": "Ridwan Adib Zahran",
+          "age": 23,
+          "gender": "male",
+          "location": "Kuningan Jabar",
+          "health_complaints": [
+            "Insomnia"
+          ],
+          "symptoms": [
+            "kelelahan",
+            "kesulitan merasa tenang"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Insomnia sejak SMK 2016/2017",
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:53:15.054114"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:55:04.327000",
+        "analysis": {
+          "name": "Ridwan Adib Zahran",
+          "age": 23,
+          "gender": "male",
+          "location": "Kuningan Jabar",
+          "health_complaints": [
+            "Insomnia"
+          ],
+          "symptoms": [
+            "kelelahan",
+            "kesulitan merasa tenang"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Insomnia sejak SMK 2016/2017",
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:53:15.054114"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:57:37.513077",
+        "analysis": {
+          "name": "Ridwan Adib Zahran",
+          "age": 23,
+          "gender": "male",
+          "location": "Kuningan Jabar",
+          "health_complaints": [
+            "Insomnia"
+          ],
+          "symptoms": [
+            "kelelahan",
+            "kesulitan merasa tenang"
+          ],
+          "conversion_barriers": [
+            "Jarak/lokasi",
+            "Waktu/kesibukan"
+          ],
+          "medical_history": "Insomnia sejak SMK 2016/2017",
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:57:37.509729"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T17:57:29.675000",
+        "analysis": {
+          "name": "Ridwan Adib Zahran",
+          "age": 23,
+          "gender": "male",
+          "location": "Kuningan Jabar",
+          "health_complaints": [
+            "Insomnia"
+          ],
+          "symptoms": [
+            "kelelahan",
+            "kesulitan merasa tenang"
+          ],
+          "conversion_barriers": [
+            "Jarak/lokasi",
+            "Waktu/kesibukan"
+          ],
+          "medical_history": "Insomnia sejak SMK 2016/2017",
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:57:37.509729"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-07T17:50:57.623170",
+    "details": {
+      "name": "Ridwan Adib Zahran",
+      "age": 23,
+      "gender": "male",
+      "location": "Kuningan Jabar",
+      "health_complaints": [
+        "Insomnia"
+      ],
+      "conversion_barriers": [
+        "Jarak/lokasi",
+        "Waktu/kesibukan"
+      ],
+      "last_interaction": "2025-06-07T17:57:29.675000",
+      "symptoms": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "positive"
+    },
+    "latest_analysis": {
+      "name": "Ridwan Adib Zahran",
+      "age": 23,
+      "gender": "male",
+      "location": "Kuningan Jabar",
+      "health_complaints": [
+        "Insomnia"
+      ],
+      "symptoms": [
+        "kelelahan",
+        "kesulitan merasa tenang"
+      ],
+      "conversion_barriers": [
+        "Jarak/lokasi",
+        "Waktu/kesibukan"
+      ],
+      "medical_history": "Insomnia sejak SMK 2016/2017",
+      "urgency_level": "medium",
+      "emotion": "negative",
+      "timestamp": "2025-06-07T17:57:37.509729"
+    }
+  },
+  "6282193866730@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-07T19:11:34.739155",
+        "analysis": {
+          "name": "Trisnowati Rahayu",
+          "age": 59,
+          "gender": "female",
+          "location": "Surabaya",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T19:11:34.737128"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T19:11:28.065000",
+        "analysis": {
+          "name": "Trisnowati Rahayu",
+          "age": 59,
+          "gender": "female",
+          "location": "Surabaya",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T19:11:34.737128"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T19:12:08.834683",
+        "analysis": {
+          "name": "Trisnowati Rahayu",
+          "age": 59,
+          "gender": "female",
+          "location": "Surabaya",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": "Sudah 2 tahun mengalami hipertensi",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T19:12:08.831312"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T19:12:03.078000",
+        "analysis": {
+          "name": "Trisnowati Rahayu",
+          "age": 59,
+          "gender": "female",
+          "location": "Surabaya",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": "Sudah 2 tahun mengalami hipertensi",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T19:12:08.831312"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T19:13:01.880758",
+        "analysis": {
+          "name": "Trisnowati Rahayu",
+          "age": 59,
+          "gender": "female",
+          "location": "Surabaya",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "Kesulitan tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sudah 2 tahun mengalami hipertensi",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T19:13:01.878245"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T19:12:53.888000",
+        "analysis": {
+          "name": "Trisnowati Rahayu",
+          "age": 59,
+          "gender": "female",
+          "location": "Surabaya",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "Kesulitan tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sudah 2 tahun mengalami hipertensi",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T19:13:01.878245"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T19:14:46.753092",
+        "analysis": {
+          "name": "Trisnowati Rahayu",
+          "age": 59,
+          "gender": "female",
+          "location": "Surabaya",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "Kesulitan tidur"
+          ],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami hipertensi",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T19:14:46.750823"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T19:14:40.905000",
+        "analysis": {
+          "name": "Trisnowati Rahayu",
+          "age": 59,
+          "gender": "female",
+          "location": "Surabaya",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "Kesulitan tidur"
+          ],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami hipertensi",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T19:14:46.750823"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T19:16:23.564320",
+        "analysis": {
+          "name": "Trisnowati Rahayu",
+          "age": 59,
+          "gender": "female",
+          "location": "Surabaya",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "Kesulitan tidur"
+          ],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami hipertensi",
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T19:16:23.562357"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T19:16:16.406000",
+        "analysis": {
+          "name": "Trisnowati Rahayu",
+          "age": 59,
+          "gender": "female",
+          "location": "Surabaya",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "Kesulitan tidur"
+          ],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami hipertensi",
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T19:16:23.562357"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T19:18:01.148726",
+        "analysis": {
+          "name": "Trisnowati Rahayu",
+          "age": 59,
+          "gender": "female",
+          "location": "Surabaya",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "Kesulitan tidur"
+          ],
+          "conversion_barriers": [
+            "Waktu/kesibukan"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami hipertensi",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T19:18:01.145316"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T19:17:53.223000",
+        "analysis": {
+          "name": "Trisnowati Rahayu",
+          "age": 59,
+          "gender": "female",
+          "location": "Surabaya",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "Kesulitan tidur"
+          ],
+          "conversion_barriers": [
+            "Waktu/kesibukan"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami hipertensi",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T19:18:01.145316"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T19:19:08.103335",
+        "analysis": {
+          "name": "Trisnowati Rahayu",
+          "age": 59,
+          "gender": "female",
+          "location": "Surabaya",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "Kesulitan tidur"
+          ],
+          "conversion_barriers": [
+            "Waktu/kesibukan"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami hipertensi",
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T19:19:08.101731"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T19:19:02.182000",
+        "analysis": {
+          "name": "Trisnowati Rahayu",
+          "age": 59,
+          "gender": "female",
+          "location": "Surabaya",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "Kesulitan tidur"
+          ],
+          "conversion_barriers": [
+            "Waktu/kesibukan"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami hipertensi",
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T19:19:08.101731"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T19:21:28.532597",
+        "analysis": {
+          "name": "Trisnowati Rahayu",
+          "age": 59,
+          "gender": "female",
+          "location": "Surabaya",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "Kesulitan tidur"
+          ],
+          "conversion_barriers": [
+            "Waktu/kesibukan"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami hipertensi",
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T19:21:28.530685"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T19:21:22.725000",
+        "analysis": {
+          "name": "Trisnowati Rahayu",
+          "age": 59,
+          "gender": "female",
+          "location": "Surabaya",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "Kesulitan tidur"
+          ],
+          "conversion_barriers": [
+            "Waktu/kesibukan"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami hipertensi",
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T19:21:28.530685"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-07T19:11:34.739155",
+    "details": {
+      "name": "Trisnowati Rahayu",
+      "age": 59,
+      "gender": "female",
+      "location": "Surabaya",
+      "health_complaints": [
+        "Hipertensi"
+      ],
+      "conversion_barriers": [
+        "Jarak/lokasi",
+        "Waktu/kesibukan"
+      ],
+      "last_interaction": "2025-06-07T19:21:22.725000",
+      "symptoms": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "Trisnowati Rahayu",
+      "age": 59,
+      "gender": "female",
+      "location": "Surabaya",
+      "health_complaints": [
+        "Hipertensi"
+      ],
+      "symptoms": [
+        "Kesulitan tidur"
+      ],
+      "conversion_barriers": [
+        "Waktu/kesibukan"
+      ],
+      "medical_history": "Sudah 2 tahun mengalami hipertensi",
+      "urgency_level": "medium",
+      "emotion": "positive",
+      "timestamp": "2025-06-07T19:21:28.530685"
+    }
+  },
+  "6285602356225@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-07T20:14:20.067721",
+        "analysis": {
+          "name": "Istikomah",
+          "age": 57,
+          "gender": "female",
+          "location": "Desa Tanjung Kecamatan Kalidawir Kab. Tulungagung Jatim",
+          "health_complaints": [],
+          "symptoms": [
+            "tidak bisa tidur",
+            "over thinking",
+            "lambung sakit"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T20:14:20.066042"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T20:14:12.349000",
+        "analysis": {
+          "name": "Istikomah",
+          "age": 57,
+          "gender": "female",
+          "location": "Desa Tanjung Kecamatan Kalidawir Kab. Tulungagung Jatim",
+          "health_complaints": [],
+          "symptoms": [
+            "tidak bisa tidur",
+            "over thinking",
+            "lambung sakit"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T20:14:20.066042"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T20:15:20.336141",
+        "analysis": {
+          "name": "Istikomah",
+          "age": 57,
+          "gender": "female",
+          "location": "Desa Tanjung Kecamatan Kalidawir Kab. Tulungagung Jatim",
+          "health_complaints": [],
+          "symptoms": [
+            "tidak bisa tidur",
+            "over thinking",
+            "lambung sakit"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sudah ada dua tahun berobat ke psikiatri",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T20:15:20.333373"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T20:15:12.992000",
+        "analysis": {
+          "name": "Istikomah",
+          "age": 57,
+          "gender": "female",
+          "location": "Desa Tanjung Kecamatan Kalidawir Kab. Tulungagung Jatim",
+          "health_complaints": [],
+          "symptoms": [
+            "tidak bisa tidur",
+            "over thinking",
+            "lambung sakit"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sudah ada dua tahun berobat ke psikiatri",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T20:15:20.333373"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T20:15:36.328250",
+        "analysis": {
+          "name": "Istikomah",
+          "age": 57,
+          "gender": "female",
+          "location": "Desa Tanjung Kecamatan Kalidawir Kab. Tulungagung Jatim",
+          "health_complaints": [],
+          "symptoms": [
+            "tidak bisa tidur",
+            "over thinking",
+            "lambung sakit"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sudah ada dua tahun berobat ke psikiatri",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T20:15:36.326556"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T20:15:28.470000",
+        "analysis": {
+          "name": "Istikomah",
+          "age": 57,
+          "gender": "female",
+          "location": "Desa Tanjung Kecamatan Kalidawir Kab. Tulungagung Jatim",
+          "health_complaints": [],
+          "symptoms": [
+            "tidak bisa tidur",
+            "over thinking",
+            "lambung sakit"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sudah ada dua tahun berobat ke psikiatri",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T20:15:36.326556"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T20:16:42.403810",
+        "analysis": {
+          "name": "Istikomah",
+          "age": 57,
+          "gender": "female",
+          "location": "Desa Tanjung Kecamatan Kalidawir Kab. Tulungagung Jatim",
+          "health_complaints": [],
+          "symptoms": [
+            "tidak bisa tidur",
+            "over thinking",
+            "lambung sakit"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sudah ada dua tahun berobat ke psikiatri",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T20:16:42.401606"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T20:16:34.398000",
+        "analysis": {
+          "name": "Istikomah",
+          "age": 57,
+          "gender": "female",
+          "location": "Desa Tanjung Kecamatan Kalidawir Kab. Tulungagung Jatim",
+          "health_complaints": [],
+          "symptoms": [
+            "tidak bisa tidur",
+            "over thinking",
+            "lambung sakit"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sudah ada dua tahun berobat ke psikiatri",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T20:16:42.401606"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T20:17:28.205839",
+        "analysis": {
+          "name": "Istikomah",
+          "age": 57,
+          "gender": "female",
+          "location": "Desa Tanjung Kecamatan Kalidawir Kab. Tulungagung Jatim",
+          "health_complaints": [],
+          "symptoms": [
+            "tidak bisa tidur",
+            "over thinking",
+            "lambung sakit"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sudah ada dua tahun berobat ke psikiatri",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T20:17:28.203698"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T20:17:21.030000",
+        "analysis": {
+          "name": "Istikomah",
+          "age": 57,
+          "gender": "female",
+          "location": "Desa Tanjung Kecamatan Kalidawir Kab. Tulungagung Jatim",
+          "health_complaints": [],
+          "symptoms": [
+            "tidak bisa tidur",
+            "over thinking",
+            "lambung sakit"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sudah ada dua tahun berobat ke psikiatri",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-07T20:17:28.203698"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T20:18:06.610166",
+        "analysis": {
+          "name": "Istikomah",
+          "age": 57,
+          "gender": "female",
+          "location": "Desa Tanjung Kecamatan Kalidawir Kab. Tulungagung Jatim",
+          "health_complaints": [],
+          "symptoms": [
+            "tidak bisa tidur",
+            "over thinking",
+            "lambung sakit"
+          ],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": "Sudah ada dua tahun berobat ke psikiatri",
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T20:18:06.608124"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T20:17:58.463000",
+        "analysis": {
+          "name": "Istikomah",
+          "age": 57,
+          "gender": "female",
+          "location": "Desa Tanjung Kecamatan Kalidawir Kab. Tulungagung Jatim",
+          "health_complaints": [],
+          "symptoms": [
+            "tidak bisa tidur",
+            "over thinking",
+            "lambung sakit"
+          ],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": "Sudah ada dua tahun berobat ke psikiatri",
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T20:18:06.608124"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T20:18:12.948000",
+        "analysis": {
+          "name": "Istikomah",
+          "age": 57,
+          "gender": "female",
+          "location": "Desa Tanjung Kecamatan Kalidawir Kab. Tulungagung Jatim",
+          "health_complaints": [],
+          "symptoms": [
+            "tidak bisa tidur",
+            "over thinking",
+            "lambung sakit"
+          ],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": "Sudah ada dua tahun berobat ke psikiatri",
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T20:18:06.608124"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T20:19:38.311315",
+        "analysis": {
+          "name": "Istikomah",
+          "age": 57,
+          "gender": "female",
+          "location": "Desa Tanjung Kecamatan Kalidawir Kab. Tulungagung Jatim",
+          "health_complaints": [],
+          "symptoms": [
+            "tidak bisa tidur",
+            "over thinking",
+            "lambung sakit"
+          ],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": "Sudah ada dua tahun berobat ke psikiatri",
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T20:19:38.308873"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T20:19:30.664000",
+        "analysis": {
+          "name": "Istikomah",
+          "age": 57,
+          "gender": "female",
+          "location": "Desa Tanjung Kecamatan Kalidawir Kab. Tulungagung Jatim",
+          "health_complaints": [],
+          "symptoms": [
+            "tidak bisa tidur",
+            "over thinking",
+            "lambung sakit"
+          ],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": "Sudah ada dua tahun berobat ke psikiatri",
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T20:19:38.308873"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-07T20:14:20.067721",
+    "details": {
+      "name": "Istikomah",
+      "age": 57,
+      "gender": "female",
+      "location": "Desa Tanjung Kecamatan Kalidawir Kab. Tulungagung Jatim",
+      "health_complaints": [],
+      "conversion_barriers": [
+        "Jarak/lokasi"
+      ],
+      "last_interaction": "2025-06-07T20:19:30.664000",
+      "symptoms": [
+        "tidak bisa tidur",
+        "over thinking",
+        "lambung sakit"
+      ],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "Istikomah",
+      "age": 57,
+      "gender": "female",
+      "location": "Desa Tanjung Kecamatan Kalidawir Kab. Tulungagung Jatim",
+      "health_complaints": [],
+      "symptoms": [
+        "tidak bisa tidur",
+        "over thinking",
+        "lambung sakit"
+      ],
+      "conversion_barriers": [
+        "Jarak/lokasi"
+      ],
+      "medical_history": "Sudah ada dua tahun berobat ke psikiatri",
+      "urgency_level": "medium",
+      "emotion": "positive",
+      "timestamp": "2025-06-07T20:19:38.308873"
+    }
+  },
+  "6287780402232@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-07T21:13:01.948646",
+        "analysis": {
+          "name": "Isty",
+          "age": null,
+          "gender": "female",
+          "location": null,
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "low",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T21:13:01.946380"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T21:12:56.144000",
+        "analysis": {
+          "name": "Isty",
+          "age": null,
+          "gender": "female",
+          "location": null,
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "low",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T21:13:01.946380"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T21:14:24.152000",
+        "analysis": {
+          "name": "Isty",
+          "age": null,
+          "gender": "female",
+          "location": null,
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "low",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T21:13:01.946380"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T21:15:04.664000",
+        "analysis": {
+          "name": "Isty",
+          "age": null,
+          "gender": "female",
+          "location": null,
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "low",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T21:13:01.946380"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-07T21:13:01.948646",
+    "details": {
+      "name": "Isty",
+      "age": null,
+      "gender": "female",
+      "location": null,
+      "health_complaints": [],
+      "conversion_barriers": [],
+      "last_interaction": "2025-06-07T21:15:04.664000",
+      "symptoms": [],
+      "medical_history": null,
+      "urgency_level": "low",
+      "emotion": "positive"
+    },
+    "latest_analysis": {
+      "name": "Isty",
+      "age": null,
+      "gender": "female",
+      "location": null,
+      "health_complaints": [],
+      "symptoms": [],
+      "conversion_barriers": [],
+      "medical_history": null,
+      "urgency_level": "low",
+      "emotion": "positive",
+      "timestamp": "2025-06-07T21:13:01.946380"
+    }
+  },
+  "6285232496209@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-07T21:37:03.521520",
+        "analysis": {
+          "name": "Fachri Rozi",
+          "age": 50,
+          "gender": "male",
+          "location": "jbi",
+          "health_complaints": [],
+          "symptoms": [
+            "susah tidur",
+            "Bab susah"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T21:37:03.518793"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T21:36:44.914000",
+        "analysis": {
+          "name": "Fachri Rozi",
+          "age": 50,
+          "gender": "male",
+          "location": "jbi",
+          "health_complaints": [],
+          "symptoms": [
+            "susah tidur",
+            "Bab susah"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T21:37:03.518793"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T21:38:38.828197",
+        "analysis": {
+          "name": "Fachri Rozi",
+          "age": 50,
+          "gender": "male",
+          "location": "jbi",
+          "health_complaints": [],
+          "symptoms": [
+            "susah tidur",
+            "Bab susah"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T21:38:38.826125"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T21:38:31.593000",
+        "analysis": {
+          "name": "Fachri Rozi",
+          "age": 50,
+          "gender": "male",
+          "location": "jbi",
+          "health_complaints": [],
+          "symptoms": [
+            "susah tidur",
+            "Bab susah"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T21:38:38.826125"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T21:38:58.107000",
+        "analysis": {
+          "name": "Fachri Rozi",
+          "age": 50,
+          "gender": "male",
+          "location": "jbi",
+          "health_complaints": [],
+          "symptoms": [
+            "susah tidur",
+            "Bab susah"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T21:38:38.826125"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T21:41:32.633487",
+        "analysis": {
+          "name": "Fachri Rozi",
+          "age": 50,
+          "gender": "male",
+          "location": "jbi",
+          "health_complaints": [],
+          "symptoms": [
+            "susah tidur",
+            "Bab susah"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T21:41:32.631301"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T21:41:25.358000",
+        "analysis": {
+          "name": "Fachri Rozi",
+          "age": 50,
+          "gender": "male",
+          "location": "jbi",
+          "health_complaints": [],
+          "symptoms": [
+            "susah tidur",
+            "Bab susah"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T21:41:32.631301"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T21:45:11.836095",
+        "analysis": {
+          "name": "Fachri Rozi",
+          "age": 50,
+          "gender": "male",
+          "location": "jbi",
+          "health_complaints": [],
+          "symptoms": [
+            "susah tidur",
+            "Bab susah"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T21:45:11.834352"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T21:45:04.901000",
+        "analysis": {
+          "name": "Fachri Rozi",
+          "age": 50,
+          "gender": "male",
+          "location": "jbi",
+          "health_complaints": [],
+          "symptoms": [
+            "susah tidur",
+            "Bab susah"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T21:45:11.834352"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T21:47:15.287000",
+        "analysis": {
+          "name": "Fachri Rozi",
+          "age": 50,
+          "gender": "male",
+          "location": "jbi",
+          "health_complaints": [],
+          "symptoms": [
+            "susah tidur",
+            "Bab susah"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T21:45:11.834352"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T21:49:48.553000",
+        "analysis": {
+          "name": "Fachri Rozi",
+          "age": 50,
+          "gender": "male",
+          "location": "jbi",
+          "health_complaints": [],
+          "symptoms": [
+            "susah tidur",
+            "Bab susah"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T21:45:11.834352"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T21:50:58.940000",
+        "analysis": {
+          "name": "Fachri Rozi",
+          "age": 50,
+          "gender": "male",
+          "location": "jbi",
+          "health_complaints": [],
+          "symptoms": [
+            "susah tidur",
+            "Bab susah"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T21:45:11.834352"
+        }
+      },
+      {
+        "timestamp": "2025-06-07T21:51:41.810000",
+        "analysis": {
+          "name": "Fachri Rozi",
+          "age": 50,
+          "gender": "male",
+          "location": "jbi",
+          "health_complaints": [],
+          "symptoms": [
+            "susah tidur",
+            "Bab susah"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-07T21:45:11.834352"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-07T21:37:03.521520",
+    "details": {
+      "name": "Fachri Rozi",
+      "age": 50,
+      "gender": "male",
+      "location": "jbi",
+      "health_complaints": [],
+      "conversion_barriers": [],
+      "last_interaction": "2025-06-07T21:51:41.810000",
+      "symptoms": [
+        "susah tidur",
+        "Bab susah"
+      ],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "positive"
+    },
+    "latest_analysis": {
+      "name": "Fachri Rozi",
+      "age": 50,
+      "gender": "male",
+      "location": "jbi",
+      "health_complaints": [],
+      "symptoms": [
+        "susah tidur",
+        "Bab susah"
+      ],
+      "conversion_barriers": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "positive",
+      "timestamp": "2025-06-07T21:45:11.834352"
     }
   }
 }

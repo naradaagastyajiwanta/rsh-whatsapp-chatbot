@@ -3,6 +3,7 @@ import json
 import requests
 import logging
 import time
+import re
 from typing import Optional, Dict
 from assistant_thread_manager import get_thread_id_for_nomor, set_thread_id_for_nomor, reset_thread_for_nomor, create_new_thread
 
@@ -205,7 +206,14 @@ def get_latest_assistant_message(thread_id: str, headers: dict) -> Optional[str]
                 if content and isinstance(content, list):
                     for content_item in content:
                         if content_item.get('type') == 'text':
-                            return content_item.get('text', {}).get('value')
+                            # Obtener el texto de la respuesta
+                            response_text = content_item.get('text', {}).get('value')
+                            if response_text:
+                                # Aplicar regex para eliminar etiquetas de citación como 【12:34†fuente】
+                                cleaned_response = re.sub(r"【\d+:\d+†[^】]+】", "", response_text)
+                                logger.info(f"[AssistantAPI] Etiquetas de citación eliminadas de la respuesta")
+                                return cleaned_response
+                            return response_text
                             
         return None
     except Exception as e:

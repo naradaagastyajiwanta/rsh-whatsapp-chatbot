@@ -11,29 +11,23 @@ Sistem WhatsApp Chatbot RSH Satu Bumi adalah solusi terintegrasi yang memungkink
 ## TEKNOLOGI YANG DIGUNAKAN
 
 ### Backend (AI dan Layanan WhatsApp)
-- **Bahasa Pemrograman**: Python 3.9+
-- **Framework Web**: Flask
+- **Bahasa Pemrograman**: Python 3.9+ dan Node.js
+- **Framework Web**: Flask (AI Backend) y Express.js (WhatsApp Service)
 - **WebSocket**: Flask-SocketIO (untuk pembaruan real-time)
-- **AI/NLP**: OpenAI API (GPT model)
+- **AI/NLP**: OpenAI API (GPT model dan Assistant API)
 - **Vector Database**: Pinecone (untuk RAG - Retrieval Augmented Generation)
 - **WhatsApp API Client**: Baileys (library Node.js untuk WhatsApp Web API)
-- **Database**: SQLite (untuk penyimpanan log chat)
+- **Database**: JSON-based (untuk penyimpanan percakapan, analitik, dan pengaturan)
 - **Manajemen Lingkungan**: dotenv
 - **Analytics**: OpenAI API untuk analisis pesan
 
 ### Frontend (Admin Dashboard)
-- **Framework**: Next.js (React)
+- **Framework**: React dengan TypeScript
 - **Styling**: Tailwind CSS
-- **State Management**: React Hooks
-- **HTTP Client**: Axios
+- **State Management**: React Hooks dan Context API
+- **HTTP Client**: Fetch API
 - **WebSocket Client**: Socket.IO-client (untuk pembaruan real-time)
-- **UI Components**: Headless UI
-- **Icons**: Heroicons
-- **Charts**: React Charts (untuk visualisasi data analytics)
-
-### Infrastruktur
-- **Deployment**: Docker (opsional)
-- **Versioning**: Git
+- **Internasionalisasi**: Sistem i18n kustom
 - **Environment Variables**: .env files
 
 ## ARSITEKTUR SISTEM
