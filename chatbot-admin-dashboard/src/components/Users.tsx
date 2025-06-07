@@ -532,6 +532,12 @@ const Users: React.FC = () => {
   // State untuk memaksa re-render komponen
   const [forceUpdate, setForceUpdate] = useState<number>(0);
   
+  // Estados para filtrado de usuarios
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [genderFilter, setGenderFilter] = useState<'all' | 'male' | 'female'>('all');
+  const [complaintFilter, setComplaintFilter] = useState<string>('all');
+  const [uniqueComplaints, setUniqueComplaints] = useState<string[]>([]);
+  
   // Inisialisasi selectedUser sebagai null, akan diambil dari server
   const [selectedUser, setSelectedUser] = useState<string | null>(null);
   const [threadMessages, setThreadMessages] = useState<ThreadMessage[]>(() => {
@@ -640,6 +646,27 @@ const Users: React.FC = () => {
       }
     }
   }, [threadMessages, selectedUser]);
+  
+  // Efecto para extraer todas las quejas de salud únicas de los usuarios
+  useEffect(() => {
+    if (userAnalytics && userAnalytics.users) {
+      const complaints: Set<string> = new Set();
+      
+      // Recorrer todos los usuarios y recolectar quejas únicas
+      Object.values(userAnalytics.users).forEach(userData => {
+        if (userData.details && userData.details.health_complaints && Array.isArray(userData.details.health_complaints)) {
+          userData.details.health_complaints.forEach(complaint => {
+            if (complaint && complaint.trim() !== '') {
+              complaints.add(complaint.trim());
+            }
+          });
+        }
+      });
+      
+      // Convertir Set a Array y actualizar el estado
+      setUniqueComplaints(Array.from(complaints).sort());
+    }
+  }, [userAnalytics]);
   
   // Function to fetch user analytics data with caching
   const fetchUserData = async (forceRefresh = false) => {
@@ -1295,7 +1322,49 @@ const Users: React.FC = () => {
   
   // Get users data - pastikan selalu ada data
   const users = userAnalytics?.users || {};
-  const userPhoneNumbers = Object.keys(users);
+  
+  // Filtrar y ordenar usuarios
+  const filteredUsers = Object.entries(users).filter(([phoneNumber, userData]) => {
+    // Filtro por texto (nombre o número de teléfono)
+    const searchMatches = searchQuery === '' || 
+      phoneNumber.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (userData.details.name && userData.details.name.toLowerCase().includes(searchQuery.toLowerCase()));
+    
+    // Filtro por género
+    const genderMatches = genderFilter === 'all' ||
+      (userData.details.gender === genderFilter);
+    
+    // Filtro por queja de salud
+    const complaintMatches = complaintFilter === 'all' ||
+      (userData.details.health_complaints && 
+       Array.isArray(userData.details.health_complaints) &&
+       userData.details.health_complaints.includes(complaintFilter));
+    
+    return searchMatches && genderMatches && complaintMatches;
+  });
+  
+  // Ordenar usuarios por fecha de última interacción (más reciente primero)
+  const sortedUsers = filteredUsers.sort(([_, userData1], [__, userData2]) => {
+    const getLastInteraction = (userData: UserData) => {
+      const lastInteractionStr = userData.details.last_interaction || 
+                               (userData as any).last_interaction || 
+                               userData.details.first_interaction || 
+                               (userData as any).first_interaction || 
+                               new Date(0).toISOString();
+      
+      try {
+        return new Date(lastInteractionStr).getTime();
+      } catch (e) {
+        return 0;
+      }
+    };
+    
+    // Ordenar descendente (más reciente primero)
+    return getLastInteraction(userData2) - getLastInteraction(userData1);
+  });
+  
+  // Extraer solo los números de teléfono ordenados
+  const userPhoneNumbers = sortedUsers.map(([phoneNumber]) => phoneNumber);
   
   // Debug info
   console.log('Current userAnalytics:', userAnalytics);
@@ -1312,6 +1381,49 @@ const Users: React.FC = () => {
             <p className="text-gray-500">
               {userPhoneNumbers.length} {t('users.totalUsers')}
             </p>
+            
+            {/* Filtros */}
+            <div className="mt-4 flex flex-wrap items-center gap-3">
+              {/* Búsqueda por nombre o número */}
+              <div className="flex-1 min-w-[200px]">
+                <input
+                  type="text"
+                  placeholder={t('users.searchPlaceholder') || 'Buscar por nombre o número...'}
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </div>
+              
+              {/* Filtro por género */}
+              <div>
+                <select
+                  className="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  value={genderFilter}
+                  onChange={(e) => setGenderFilter(e.target.value as 'all' | 'male' | 'female')}
+                >
+                  <option value="all">{t('users.allGenders') || 'Todos los géneros'}</option>
+                  <option value="male">{t('users.maleOnly') || 'Solo hombres'}</option>
+                  <option value="female">{t('users.femaleOnly') || 'Solo mujeres'}</option>
+                </select>
+              </div>
+              
+              {/* Filtro por queja de salud */}
+              {uniqueComplaints.length > 0 && (
+                <div>
+                  <select
+                    className="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    value={complaintFilter}
+                    onChange={(e) => setComplaintFilter(e.target.value)}
+                  >
+                    <option value="all">{t('users.allComplaints') || 'Todas las quejas'}</option>
+                    {uniqueComplaints.map(complaint => (
+                      <option key={complaint} value={complaint}>{complaint}</option>
+                    ))}
+                  </select>
+                </div>
+              )}
+            </div>
           </div>
           
           <div className="flex-1 overflow-hidden flex">
@@ -1341,8 +1453,8 @@ const Users: React.FC = () => {
               </div>
               
               {userPhoneNumbers.length === 0 ? (
-                <div className="text-center p-6 bg-gray-50 rounded-lg">
-                  <p className="text-gray-500">{t('users.noUsersFound')}</p>
+                <div className="text-center p-6 bg-gray-50 rounded-lg mt-4">
+                  <p className="text-gray-500">{t('users.noMatchingUsers') || 'No se encontraron usuarios que coincidan con los filtros'}</p>
                 </div>
               ) : (
                 userPhoneNumbers.map((phoneNumber) => (
