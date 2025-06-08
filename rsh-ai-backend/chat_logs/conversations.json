@@ -3201,11 +3201,20 @@
         "response": "[Bot is disabled. This message is awaiting manual response from CS. (1 unanswered)]",
         "timestamp": "2025-06-07T22:30:23.520847",
         "response_time": null
+      },
+      {
+        "id": "6287811152506_1749364875",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "halo",
+        "response": "Halo, Bapak/Ibu. Agar saya bisa membantu dengan lebih baik, bolehkah saya mengetahui beberapa informasi berikut ini:\n\n- Nama lengkap Bapak/Ibu\n- Jenis kelamin (agar saya bisa menyapa dengan tepat)\n- Usia sekarang\n- Domisili tinggal\n- Dan keluhan utama yang sedang dirasakan saat ini?\n\nTerima kasih sebelumnya. \ud83d\ude4f",
+        "timestamp": "2025-06-08T13:41:15.692829",
+        "response_time": 7.218813419342041
       }
     ],
     "first_timestamp": "2025-05-26T08:43:22.514563",
-    "last_timestamp": "2025-06-07T22:30:23.520847",
-    "last_message": "hi"
+    "last_timestamp": "2025-06-08T13:41:15.692829",
+    "last_message": "halo"
   },
   {
     "id": "conv_6283145916630",
@@ -3653,11 +3662,101 @@
         "response": "Saya siap membantu kapan saja Bapak/Ibu membutuhkan informasi atau panduan, terutama seputar Rumah Sehat Holistik Satu Bumi. Jika ada pertanyaan atau diskusi yang ingin dilanjutkan di lain waktu, jangan ragu untuk menghubungi saya kapan pun. Saya selalu di sini untuk mendampingi. \ud83c\udf3f\u2728",
         "timestamp": "2025-06-08T08:28:10.723441",
         "response_time": 9.580078840255737
+      },
+      {
+        "id": "120363386545619185_1749360804",
+        "sender": "120363386545619185@g.us",
+        "sender_name": "Kenny",
+        "message": "Senin bisa kak",
+        "response": "Tentu, Bapak/Ibu. Saya akan siap membantu dan mendampingi Bapak/Ibu kembali pada hari Senin. Jika ada hal-hal lain yang ingin didiskusikan saat itu atau jika ada persiapan yang perlu dilakukan, silakan beri tahu saya. Semoga akhir pekan Bapak/Ibu penuh dengan ketenangan dan kebahagiaan. \ud83c\udf3c\u2728",
+        "timestamp": "2025-06-08T12:33:24.510849",
+        "response_time": 7.946728467941284
+      },
+      {
+        "id": "120363386545619185_1749360816",
+        "sender": "120363386545619185@g.us",
+        "sender_name": "Kenny",
+        "message": "Aku masih ada agak banyak tugas kampus",
+        "response": "Saya memahami bahwa tugas dari kampus bisa terasa banyak dan kadang melelahkan. Semoga Anda bisa menyelesaikannya dengan lancar dan mendapatkan hasil yang baik. Jika ada waktu luang dan Bapak/Ibu butuh relaksasi atau dukungan lainnya, saya di sini untuk mendampingi terkait layanan di Rumah Sehat Holistik Satu Bumi. Semoga hari-hari Anda penuh keberkahan dan semangat. \ud83c\udf3f\ud83d\udc95",
+        "timestamp": "2025-06-08T12:33:36.260430",
+        "response_time": 12.315136909484863
+      },
+      {
+        "id": "120363386545619185_1749362408",
+        "sender": "120363386545619185@g.us",
+        "sender_name": "Jiwan",
+        "message": "owg ok ken",
+        "response": "Sama-sama, Bapak/Ibu. Jika ada yang bisa saya bantu di lain kesempatan, jangan ragu untuk menghubungi saya. Semoga hari-hari Anda dipenuhi dengan keceriaan dan kedamaian. \ud83c\udf3c\u2728",
+        "timestamp": "2025-06-08T13:00:08.880089",
+        "response_time": 7.622619867324829
+      },
+      {
+        "id": "120363386545619185_1749362419",
+        "sender": "120363386545619185@g.us",
+        "sender_name": "Jiwan",
+        "message": "@6282146122942 di mana ku bisa dapet ni foto?",
+        "response": "Maaf Bapak/Ibu, saya tidak memiliki kemampuan untuk mengakses atau memberikan foto dari sumber eksternal. Jika Anda mencari foto tertentu, mungkin bisa mencoba menghubungi pihak langsung atau sumber terkait yang dapat membantu Anda mendapatkannya. Jika ada yang bisa saya bantu mengenai layanan atau program di Rumah Sehat Holistik Satu Bumi, saya di sini untuk mendukung. \ud83c\udf3f",
+        "timestamp": "2025-06-08T13:00:19.313280",
+        "response_time": 10.675205707550049
+      },
+      {
+        "id": "120363386545619185_1749363611",
+        "sender": "120363386545619185@g.us",
+        "sender_name": "Anand",
+        "message": "Eee",
+        "response": "Ya, Bapak/Ibu? Apakah ada yang ingin Bapak/Ibu tanyakan atau diskusikan lebih lanjut? Saya di sini untuk mendengarkan dan membantu. \ud83c\udf3c",
+        "timestamp": "2025-06-08T13:20:11.456217",
+        "response_time": 7.263067245483398
+      },
+      {
+        "id": "120363386545619185_1749363627",
+        "sender": "120363386545619185@g.us",
+        "sender_name": "Anand",
+        "message": "Gdrive yut kalik",
+        "response": "Maaf Bapak/Ibu, saya tidak dapat mengakses Google Drive atau layanan penyimpanan file lainnya secara langsung. Jika Anda mencari file atau dokumen tertentu dalam Google Drive, mungkin Anda bisa mencoba meminta akses langsung kepada pemilik file tersebut. Jika ada hal lain yang bisa saya bantu, silakan beri tahu. \ud83c\udf3f",
+        "timestamp": "2025-06-08T13:20:27.315214",
+        "response_time": 6.904279708862305
+      },
+      {
+        "id": "120363386545619185_1749363679",
+        "sender": "120363386545619185@g.us",
+        "sender_name": "Jiwan",
+        "message": "Mana ada",
+        "response": "Maaf jika saya salah memahami sebelumnya. Jika ada yang lebih spesifik yang bisa saya bantu atau pertanyaan lain yang Bapak/Ibu miliki, silakan beri tahu. Saya di sini untuk mendukung Bapak/Ibu. \ud83c\udf3c",
+        "timestamp": "2025-06-08T13:21:19.476578",
+        "response_time": 7.074009656906128
+      },
+      {
+        "id": "120363386545619185_1749363691",
+        "sender": "120363386545619185@g.us",
+        "sender_name": "Anand",
+        "message": "Kak prema bratu",
+        "response": "Gagal mengirim pesan ke Assistant setelah beberapa percobaan. Silakan coba lagi nanti.",
+        "timestamp": "2025-06-08T13:21:31.143901",
+        "response_time": 7.623364210128784
+      },
+      {
+        "id": "120363386545619185_1749363692",
+        "sender": "120363386545619185@g.us",
+        "sender_name": "Anand",
+        "message": "Brati",
+        "response": "Silakan dilanjutkan, Bapak/Ibu. Apakah ada yang ingin Bapak/Ibu tambahkan atau tanyakan? Saya di sini untuk membantu dan mendengarkan. \ud83c\udf3f",
+        "timestamp": "2025-06-08T13:21:32.678435",
+        "response_time": 12.461511850357056
+      },
+      {
+        "id": "120363386545619185_1749363701",
+        "sender": "120363386545619185@g.us",
+        "sender_name": "Anand",
+        "message": "Hp dia tu",
+        "response": "Maaf Bapak/Ibu, saya tidak memiliki informasi tentang nomor telepon pribadi. Jika ada hal lain yang bisa saya bantu, terutama terkait layanan atau program di Rumah Sehat Holistik Satu Bumi, silakan beri tahu saya. Saya di sini untuk mendukung dan mendampingi Anda. \ud83c\udf3c",
+        "timestamp": "2025-06-08T13:21:41.282238",
+        "response_time": 7.039217233657837
       }
     ],
     "first_timestamp": "2025-06-01T12:31:26.967094",
-    "last_timestamp": "2025-06-08T08:28:10.723441",
-    "last_message": "Bisa kapan?"
+    "last_timestamp": "2025-06-08T13:21:41.282238",
+    "last_message": "Hp dia tu"
   },
   {
     "id": "conv_447710173736",
@@ -6236,11 +6335,20 @@
         "response": "Baik, Pak Dedi. Saya akan berusaha segera mendapatkan informasi tersebut dengan meminta klarifikasi dari tim RSH mengenai apakah layanan di sana bisa menggunakan BPJS. Saya akan kembali kepada Bapak segera setelah mendapatkan info yang jelas. Apakah Pak Dedi ada pertanyaan lain yang ingin diajukan sementara itu? \ud83d\ude4f",
         "timestamp": "2025-06-07T19:12:26.528917",
         "response_time": 7.823208332061768
+      },
+      {
+        "id": "6285798469711_1749370711",
+        "sender": "6285798469711@s.whatsapp.net",
+        "sender_name": "Ujang",
+        "message": "Udah ada inpo nya",
+        "response": "Maaf Pak Dedi, untuk saat ini saya belum memiliki informasi pastinya mengenai penggunaan BPJS di Rumah Sehat Holistik Satu Bumi. Namun, apabila Bapak berkenan, saya dapat menghubungi tim RSH untuk mendapatkan informasi yang lebih akurat. Terima kasih atas pengertiannya. \ud83d\ude4f",
+        "timestamp": "2025-06-08T15:18:31.340293",
+        "response_time": 12.713086128234863
       }
     ],
     "first_timestamp": "2025-06-07T17:31:20.050820",
-    "last_timestamp": "2025-06-07T19:12:26.528917",
-    "last_message": "Iya pk pingin tau bisa engga pakai bpjs"
+    "last_timestamp": "2025-06-08T15:18:31.340293",
+    "last_message": "Udah ada inpo nya"
   },
   {
     "id": "conv_6281375719192",
@@ -6945,11 +7053,56 @@
         "response": "Terima kasih Bapak Sahnur Akbar atas informasinya. Saya turut merasakan apa yang Bapak rasakan dengan keluhan anxiety disorder dan insomnia ini. Apakah Bapak ingin berbagi, sejak kapan mulai merasakan keluhan ini?",
         "timestamp": "2025-06-08T03:36:37.127763",
         "response_time": 7.4575111865997314
+      },
+      {
+        "id": "6282311666345_1749378060",
+        "sender": "6282311666345@s.whatsapp.net",
+        "sender_name": "lauhul mahfudz",
+        "message": "Mulai dari tahun 2014",
+        "response": "Sejak tahun 2014 tentunya sudah cukup lama Bapak Sahnur merasakan kondisi ini. Saya bisa membayangkan bagaimana hal itu mungkin telah memengaruhi keseharian Bapak. Apakah kondisi ini membuat Bapak sering merasa lelah secara batin atau mengalami kesulitan tidur belakangan ini?",
+        "timestamp": "2025-06-08T17:21:00.428563",
+        "response_time": 6.8621087074279785
+      },
+      {
+        "id": "6282311666345_1749378114",
+        "sender": "6282311666345@s.whatsapp.net",
+        "sender_name": "lauhul mahfudz",
+        "message": "Iya pak/bu",
+        "response": "Saya turut merasakan beban yang Bapak Sahnur alami selama ini. Apa yang Bapak ceritakan \u2014 kelelahan batin, insomnia, dan rasa cemas \u2014 memang sering dirasakan oleh banyak peserta sebelum mereka mengikuti Program 7 Hari kami. \n\nProgram ini dirancang untuk membantu tubuh dan jiwa masuk ke ritme alami penyembuhan. Ini juga dapat membantu membersihkan tekanan batin, menyeimbangkan hormon, serta energi dari dalam. Banyak peserta yang merasakan perubahan signifikan dalam diri mereka, bahkan ada yang merasa bisa bernapas lega dan lebih tenang hanya setelah beberapa hari menjalani program.\n\nKalau Bapak berkenan, saya bisa bantu cekkan jadwal programnya supaya bisa disesuaikan dengan waktu dan kesiapan Bapak Sahnur. Atau, Bapak bisa juga memulai dengan kunjungan ringan terlebih dahulu \u2014 biasanya hati dan jiwa tahu kapan saatnya untuk memulai. Apakah ada yang ingin disampaikan lebih lanjut?",
+        "timestamp": "2025-06-08T17:21:54.455766",
+        "response_time": 8.762475490570068
+      },
+      {
+        "id": "6282311666345_1749378364",
+        "sender": "6282311666345@s.whatsapp.net",
+        "sender_name": "lauhul mahfudz",
+        "message": "Bisa pak/bu",
+        "response": "Baik, Bapak Sahnur. Saya akan bantu untuk mengecek jadwal program dan memastikan semuanya dapat disesuaikan dengan kebutuhan Bapak. Jika ada hal lain yang ingin didiskusikan atau dipersiapkan, jangan ragu untuk menyampaikan. \n\nSemoga langkah ini menjadi awal dari perjalanan penyembuhan yang membawa kebahagiaan dan kedamaian batin. Terima kasih sudah mempercayakan perawatan Bapak pada kami.",
+        "timestamp": "2025-06-08T17:26:04.832334",
+        "response_time": 8.202086925506592
+      },
+      {
+        "id": "6282311666345_1749378583",
+        "sender": "6282311666345@s.whatsapp.net",
+        "sender_name": "lauhul mahfudz",
+        "message": "Pertemuan nya di kota mana",
+        "response": "Program 7 Hari Menuju Sehat Raga & Jiwa diadakan di Rumah Sehat Holistik Satu Bumi yang berlokasi di Ciawi, Bogor. Semua proses penyembuhan dilakukan langsung di tempat kami untuk mendapatkan manfaat penuh dari suasana, energi ruang, dan interaksi langsung. Jika ada hal lain yang ingin Bapak tanyakan mengenai lokasi atau lainnya, silakan sampaikan!",
+        "timestamp": "2025-06-08T17:29:43.672668",
+        "response_time": 7.938193321228027
+      },
+      {
+        "id": "6282311666345_1749378727",
+        "sender": "6282311666345@s.whatsapp.net",
+        "sender_name": "lauhul mahfudz",
+        "message": "Sy ada di Sulawesi Selatan",
+        "response": "Saya memahami bahwa jarak bisa menjadi sebuah tantangan, terutama ketika harus bepergian dari Sulawesi Selatan ke Ciawi, Bogor. Namun, dengan mempersiapkan perjalanan yang baik, pengalaman di Rumah Sehat Holistik Satu Bumi bisa menjadi momen berharga untuk mendapatkan ketenangan dan penyembuhan yang diharapkan.\n\nJika ada hal lain yang bisa saya bantu terkait persiapan atau informasi lebih lanjut, silakan beri tahu. Kami di sini untuk mendukung Bapak Sahnur dalam perjalanan menuju kesehatan dan ketenangan jiwa.",
+        "timestamp": "2025-06-08T17:32:07.569503",
+        "response_time": 7.515869140625
       }
     ],
     "first_timestamp": "2025-06-08T03:34:03.352481",
-    "last_timestamp": "2025-06-08T03:36:37.127763",
-    "last_message": "\u2022 Nama lengkap  :sahnur akbar\n\u2022 Jenis kelamin : laki laki\n\u2022 Usia sekarang  : 37 tahun\n\u2022 Domisili tinggal  : bulukumba\n\u2022 Dan keluhan utama yang sedang dirasakan saat ini: anxiety disorder dan insomnia"
+    "last_timestamp": "2025-06-08T17:32:07.569503",
+    "last_message": "Sy ada di Sulawesi Selatan"
   },
   {
     "id": "conv_6285602375862",
@@ -7829,5 +7982,171 @@
     "first_timestamp": "2025-06-08T10:50:40.241615",
     "last_timestamp": "2025-06-08T11:31:40.795532",
     "last_message": "Usia 47 thn.\nDi kota palu Sulawesi Tengah \nSusah tidur,buang air besar tdk lancar, nyeri pinggang.."
+  },
+  {
+    "id": "conv_6285397522185",
+    "sender": "6285397522185@s.whatsapp.net",
+    "sender_name": "As'ad Hasan",
+    "messages": [
+      {
+        "id": "6285397522185_1749364353",
+        "sender": "6285397522185@s.whatsapp.net",
+        "sender_name": "As'ad Hasan",
+        "message": "Saya ingin ikut program 7 Hari!",
+        "response": "Sebelum kita mulai membahas lebih lanjut tentang keikutsertaan Bapak/Ibu dalam program tersebut, boleh saya tahu beberapa informasi dasar terlebih dahulu?\n\n1. Nama lengkap\n2. Jenis kelamin\n3. Usia sekarang\n4. Domisili tinggal\n5. Keluhan utama yang sedang dirasakan saat ini\n\nInformasi ini akan membantu saya untuk lebih memahami kebutuhan Bapak/Ibu. Terima kasih!",
+        "timestamp": "2025-06-08T13:32:33.648991",
+        "response_time": 6.909824371337891
+      },
+      {
+        "id": "6285397522185_1749365482",
+        "sender": "6285397522185@s.whatsapp.net",
+        "sender_name": "As'ad Hasan",
+        "message": "Saya ingin ikut program 7 Hari!",
+        "response": "Tentu, Bapak/Ibu! Sebelum kita melanjutkan, boleh saya tahu beberapa informasi dasar terlebih dahulu?\n\n1. Nama lengkap\n2. Jenis kelamin (agar saya bisa menyapa dengan tepat)\n3. Usia sekarang\n4. Domisili tinggal\n5. Keluhan utama yang sedang dirasakan saat ini\n\nInformasi ini akan sangat membantu agar kami bisa menyesuaikan program dengan kebutuhan Bapak/Ibu. Terima kasih!",
+        "timestamp": "2025-06-08T13:51:22.651951",
+        "response_time": 8.117466449737549
+      }
+    ],
+    "first_timestamp": "2025-06-08T13:32:33.648991",
+    "last_timestamp": "2025-06-08T13:51:22.651951",
+    "last_message": "Saya ingin ikut program 7 Hari!"
+  },
+  {
+    "id": "conv_6285399847070",
+    "sender": "6285399847070@s.whatsapp.net",
+    "sender_name": "boyjassonmks",
+    "messages": [
+      {
+        "id": "6285399847070_1749365079",
+        "sender": "6285399847070@s.whatsapp.net",
+        "sender_name": "boyjassonmks",
+        "message": "Saya berminat untuk tahu lebih jauh mengenai RSH Satu Bumi",
+        "response": "Sebelum saya bantu lebih lanjut mengenai RSH Satu Bumi, boleh saya tahu beberapa informasi ini:\n\n- Nama lengkap\n- Jenis kelamin (agar bisa menyapa dengan tepat)\n- Usia sekarang\n- Domisili tinggal\n- Dan keluhan utama yang sedang dirasakan saat ini? \n\nDengan informasi tersebut, saya bisa lebih baik dalam merekomendasikan program yang tepat untuk Anda.",
+        "timestamp": "2025-06-08T13:44:39.591542",
+        "response_time": 12.413537740707397
+      },
+      {
+        "id": "6285399847070_1749370222",
+        "sender": "6285399847070@s.whatsapp.net",
+        "sender_name": "boyjassonmks",
+        "message": "Ambrosius \nPria\n58 tahun\nMakassar\nHypertensi",
+        "response": "Terima kasih, Bapak Ambrosius, atas informasinya. Sejak kapan Bapak mulai merasakan keluhan hipertensi ini?",
+        "timestamp": "2025-06-08T15:10:22.972904",
+        "response_time": 8.250275135040283
+      },
+      {
+        "id": "6285399847070_1749370274",
+        "sender": "6285399847070@s.whatsapp.net",
+        "sender_name": "boyjassonmks",
+        "message": "Satu tahun yg lalu",
+        "response": "Terima kasih, Bapak Ambrosius. Apakah keluhan hipertensi ini membuat Anda merasa lelah secara batin, atau mungkin sulit tidur belakangan ini?",
+        "timestamp": "2025-06-08T15:11:14.903412",
+        "response_time": 6.836256504058838
+      },
+      {
+        "id": "6285399847070_1749370283",
+        "sender": "6285399847070@s.whatsapp.net",
+        "sender_name": "boyjassonmks",
+        "message": "140 /80",
+        "response": "Terima kasih telah berbagi, Bapak Ambrosius. Penting sekali untuk menangani hipertensi agar tidak menyebabkan komplikasi lain. RSH Satu Bumi memiliki **Program 7 Hari Menuju Sehat Raga & Jiwa** yang bisa menjadi solusi bagi Anda. Program ini dirancang untuk membantu menyeimbangkan tubuh dan meningkatkan kesehatan dengan pendekatan holistik.\n\nProgram ini membantu tubuh masuk ke ritme alami penyembuhan, membersihkan tekanan batin, dan menyeimbangkan hormon serta energi dari dalam. Banyak peserta yang merasakan peningkatan kualitas hidup setelah mengikuti program ini.\n\nJika Bapak berkenan, saya bisa bantu cekkan jadwal programnya atau Bapak bisa mengunjungi kami langsung untuk konsultasi lebih lanjut. Tubuh biasanya tahu kapan saatnya memulai pemulihan.",
+        "timestamp": "2025-06-08T15:11:23.207108",
+        "response_time": 12.879516363143921
+      },
+      {
+        "id": "6285399847070_1749370288",
+        "sender": "6285399847070@s.whatsapp.net",
+        "sender_name": "boyjassonmks",
+        "message": "Pernah jadi 180/100",
+        "response": "Memang tekanan darah yang sempat mencapai 180/100 itu perlu perhatian khusus, Bapak Ambrosius. Kondisi ini bisa menambah stres secara fisik maupun emosional. Banyak dari peserta di RSH Satu Bumi yang sebelumnya juga menghadapi tantangan serupa dan menemukan manfaat dari program kami.\n\n**Program 7 Hari Menuju Sehat Raga & Jiwa** membantu dalam proses detoksifikasi alami tubuh dan memberikan dukungan untuk keseimbangan mental dan fisik. Banyak yang melaporkan bahwa mereka merasa lebih tenang dan lebih bertenaga setelah mengikuti program ini.\n\nKalau Bapak berkenan, saya bisa membantu Anda memeriksa jadwal programnya, agar bisa disesuaikan dengan kondisi dan kesiapan Bapak. Atau, Bapak bisa mulai dengan kunjungan ringan terlebih dahulu untuk mengeksplorasi lebih jauh.",
+        "timestamp": "2025-06-08T15:11:28.520988",
+        "response_time": 10.193979024887085
+      },
+      {
+        "id": "6285399847070_1749370615",
+        "sender": "6285399847070@s.whatsapp.net",
+        "sender_name": "boyjassonmks",
+        "message": "Sekarang saya minum obat pagi dan malam , dimana alamatnya",
+        "response": "Alamat Rumah Sehat Holistik Satu Bumi (RSH Satu Bumi) terletak di Ciawi, Bogor. Lokasi ini dipilih karena suasana alami dan udaranya yang bersih, serta energi yang tenang dan meditatif. Lingkungan ini dirancang untuk mendukung pemulihan dari segala aspek baik fisik maupun batiniah.\n\nJika Bapak Ambrosius berencana berkunjung, saya bisa bantu untuk mengecek jadwal program dan memandu langkah selanjutnya. Mohon informasikan kapan Bapak siap untuk memulai perjalanannya.",
+        "timestamp": "2025-06-08T15:16:55.847053",
+        "response_time": 12.34070611000061
+      },
+      {
+        "id": "6285399847070_1749370641",
+        "sender": "6285399847070@s.whatsapp.net",
+        "sender_name": "boyjassonmks",
+        "message": "Saya ada di Makassar soalnya",
+        "response": "Saya memahami, Bapak Ambrosius, bahwa jarak dari Makassar ke Bogor cukup jauh. Namun, pengalaman langsung di Rumah Sehat Holistik Satu Bumi memang sangat bergantung pada suasana dan interaksi langsung yang tidak bisa tergantikan. \n\nJika Bapak tertarik, mungkin kita bisa atur kunjungan pada waktu yang cocok bagi Anda. Sering kali, sebuah perjalanan untuk kesehatan bisa menjadi awal dari transformasi yang mendalam.\n\nApabila Bapak membutuhkan informasi lebih lanjut atau ingin menanyakan hal lain, silakan beritahu saya. Saya siap untuk membantu.",
+        "timestamp": "2025-06-08T15:17:21.356742",
+        "response_time": 9.34012484550476
+      }
+    ],
+    "first_timestamp": "2025-06-08T13:44:39.591542",
+    "last_timestamp": "2025-06-08T15:17:21.356742",
+    "last_message": "Saya ada di Makassar soalnya"
+  },
+  {
+    "id": "conv_917411112520",
+    "sender": "917411112520@s.whatsapp.net",
+    "sender_name": "isa",
+    "messages": [
+      {
+        "id": "917411112520_1749366194",
+        "sender": "917411112520@s.whatsapp.net",
+        "sender_name": "isa",
+        "message": "hi",
+        "response": "Halo! \ud83d\ude0a Sebelum kita melanjutkan percakapan, boleh saya tahu beberapa informasi tentang Bapak/Ibu? Ini untuk memastikan saya bisa membantu dengan lebih baik. Mohon sampaikan:\n\n1. Nama lengkap\n2. Jenis kelamin\n3. Usia\n4. Domisili\n5. Keluhan utama yang dirasakan saat ini\n\nTerima kasih!",
+        "timestamp": "2025-06-08T14:03:14.714012",
+        "response_time": 7.758720874786377
+      },
+      {
+        "id": "917411112520_1749366253",
+        "sender": "917411112520@s.whatsapp.net",
+        "sender_name": "isa",
+        "message": "can you talk in English?",
+        "response": "Yes, I can communicate in English. Before we proceed, may I ask for a few details to ensure I can assist you better? Please share:\n\n1. Your full name\n2. Gender (so I can address you appropriately)\n3. Current age\n4. Place of residence\n5. Main health concern you are experiencing at the moment\n\nThank you!",
+        "timestamp": "2025-06-08T14:04:13.475468",
+        "response_time": 10.134079694747925
+      },
+      {
+        "id": "917411112520_1749366355",
+        "sender": "917411112520@s.whatsapp.net",
+        "sender_name": "isa",
+        "message": "Mohammed Isa Abuhuseina, male, age 20, need to improve my sleep quality",
+        "response": "Thank you, Mohammed, for sharing your information. Improving sleep quality is essential for overall well-being. Could you please let me know:\n\n1. Since when have you been experiencing poor sleep quality?\n2. Does this affect your energy levels during the day or cause any stress or anxiety?\n\nYour answers will help me understand better and guide you towards a suitable solution.",
+        "timestamp": "2025-06-08T14:05:55.815629",
+        "response_time": 8.060224771499634
+      },
+      {
+        "id": "917411112520_1749368066",
+        "sender": "917411112520@s.whatsapp.net",
+        "sender_name": "isa",
+        "message": "thanks",
+        "response": "You're welcome, Mohammed. It sounds like improving your sleep quality is an important step for you. At the Rumah Sehat Holistik, our **Program 7 Days to Healthy Mind & Body** might be exactly what you need. This program helps many participants regain natural sleep rhythms, reduce stress, and balance energy levels.\n\nThe program works to reset your body's natural healing rhythms, cleanse emotional pressures, and balance hormones and inner energy. Participants often notice improvements in sleep quality by the third day, feeling more rested and rejuvenated.\n\nIf you are interested, I can help check the schedule for the program to fit your needs. Alternatively, you might consider starting with a light visit \u2014 your body often knows when it's time to start healing. Let me know how you'd like to proceed!",
+        "timestamp": "2025-06-08T14:34:26.285359",
+        "response_time": 7.043540716171265
+      }
+    ],
+    "first_timestamp": "2025-06-08T14:03:14.714012",
+    "last_timestamp": "2025-06-08T14:34:26.285359",
+    "last_message": "thanks"
+  },
+  {
+    "id": "conv_6282138387494",
+    "sender": "6282138387494@s.whatsapp.net",
+    "sender_name": "Sobri ASAP MX #30",
+    "messages": [
+      {
+        "id": "6282138387494_1749367022",
+        "sender": "6282138387494@s.whatsapp.net",
+        "sender_name": "Sobri ASAP MX #30",
+        "message": "Saya ingin ikut program 7 Hari!",
+        "response": "Tentu, senang sekali mendengar bahwa Bapak/Ibu tertarik untuk bergabung dengan **Program 7 Hari Menuju Sehat Raga & Jiwa** di Rumah Sehat Holistik Satu Bumi. Sebelum kita lanjutkan, boleh saya tahu informasi berikut ini supaya saya bisa membantu Bapak/Ibu dengan lebih baik:\n\n- Nama lengkap\n- Jenis kelamin (agar saya bisa menyapa dengan tepat)\n- Usia sekarang\n- Domisili tinggal\n- Dan keluhan utama yang sedang dirasakan saat ini?\n\nTerima kasih dan saya tunggu informasinya!",
+        "timestamp": "2025-06-08T14:17:02.513378",
+        "response_time": 6.591268301010132
+      }
+    ],
+    "first_timestamp": "2025-06-08T14:17:02.513378",
+    "last_timestamp": "2025-06-08T14:17:02.513378",
+    "last_message": "Saya ingin ikut program 7 Hari!"
   }
 ]

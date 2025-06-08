@@ -4154,28 +4154,6 @@
   "6285798469711@s.whatsapp.net": {
     "interactions": [
       {
-        "timestamp": "2025-06-07T17:37:16.067000",
-        "analysis": {
-          "name": "Dedi",
-          "age": 55,
-          "gender": "male",
-          "location": "Sukabumi",
-          "health_complaints": [
-            "Penyakit Jantung",
-            "Hipertensi",
-            "Insomnia"
-          ],
-          "symptoms": [
-            "Gabisa tidur"
-          ],
-          "conversion_barriers": [],
-          "medical_history": null,
-          "urgency_level": "medium",
-          "emotion": "negative",
-          "timestamp": "2025-06-07T17:35:09.940965"
-        }
-      },
-      {
         "timestamp": "2025-06-07T17:37:31.628000",
         "analysis": {
           "name": "Dedi",
@@ -4592,6 +4570,28 @@
           "emotion": "negative",
           "timestamp": "2025-06-07T17:35:09.940965"
         }
+      },
+      {
+        "timestamp": "2025-06-08T15:18:09.514000",
+        "analysis": {
+          "name": "Dedi",
+          "age": 55,
+          "gender": "male",
+          "location": "Sukabumi",
+          "health_complaints": [
+            "Penyakit Jantung",
+            "Hipertensi",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "Gabisa tidur"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-07T17:35:09.940965"
+        }
       }
     ],
     "first_interaction": "2025-06-07T17:35:09.942242",
@@ -4606,7 +4606,7 @@
         "Penyakit Jantung"
       ],
       "conversion_barriers": [],
-      "last_interaction": "2025-06-07T19:12:10.995000",
+      "last_interaction": "2025-06-08T15:18:09.514000",
       "symptoms": [
         "Gabisa tidur"
       ],
@@ -6447,6 +6447,212 @@
           "emotion": "positive",
           "timestamp": "2025-06-08T03:36:26.940050"
         }
+      },
+      {
+        "timestamp": "2025-06-08T17:20:51.802729",
+        "analysis": {
+          "name": "sahnur akbar",
+          "age": 37,
+          "gender": "male",
+          "location": "bulukumba",
+          "health_complaints": [],
+          "symptoms": [
+            "anxiety disorder",
+            "insomnia"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Mulai dari tahun 2014",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T17:20:51.798594"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T17:20:43.994000",
+        "analysis": {
+          "name": "sahnur akbar",
+          "age": 37,
+          "gender": "male",
+          "location": "bulukumba",
+          "health_complaints": [],
+          "symptoms": [
+            "anxiety disorder",
+            "insomnia"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Mulai dari tahun 2014",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T17:20:51.798594"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T17:21:44.202081",
+        "analysis": {
+          "name": "sahnur akbar",
+          "age": 37,
+          "gender": "male",
+          "location": "bulukumba",
+          "health_complaints": [],
+          "symptoms": [
+            "anxiety disorder",
+            "insomnia",
+            "kelelahan batin"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Mulai dari tahun 2014",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-08T17:21:44.198737"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T17:21:37.635000",
+        "analysis": {
+          "name": "sahnur akbar",
+          "age": 37,
+          "gender": "male",
+          "location": "bulukumba",
+          "health_complaints": [],
+          "symptoms": [
+            "anxiety disorder",
+            "insomnia",
+            "kelelahan batin"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Mulai dari tahun 2014",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-08T17:21:44.198737"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T17:25:54.821189",
+        "analysis": {
+          "name": "sahnur akbar",
+          "age": 37,
+          "gender": "male",
+          "location": "bulukumba",
+          "health_complaints": [],
+          "symptoms": [
+            "anxiety disorder",
+            "insomnia",
+            "kelelahan batin"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Mulai dari tahun 2014",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T17:25:54.817338"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T17:25:45.544000",
+        "analysis": {
+          "name": "sahnur akbar",
+          "age": 37,
+          "gender": "male",
+          "location": "bulukumba",
+          "health_complaints": [],
+          "symptoms": [
+            "anxiety disorder",
+            "insomnia",
+            "kelelahan batin"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Mulai dari tahun 2014",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T17:25:54.817338"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T17:29:34.359654",
+        "analysis": {
+          "name": "sahnur akbar",
+          "age": 37,
+          "gender": "male",
+          "location": "bulukumba",
+          "health_complaints": [],
+          "symptoms": [
+            "anxiety disorder",
+            "insomnia",
+            "kelelahan batin"
+          ],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": "Mulai dari tahun 2014",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T17:29:34.355641"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T17:29:28.108000",
+        "analysis": {
+          "name": "sahnur akbar",
+          "age": 37,
+          "gender": "male",
+          "location": "bulukumba",
+          "health_complaints": [],
+          "symptoms": [
+            "anxiety disorder",
+            "insomnia",
+            "kelelahan batin"
+          ],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": "Mulai dari tahun 2014",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T17:29:34.355641"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T17:31:58.592885",
+        "analysis": {
+          "name": "sahnur akbar",
+          "age": 37,
+          "gender": "male",
+          "location": "bulukumba",
+          "health_complaints": [],
+          "symptoms": [
+            "anxiety disorder",
+            "insomnia",
+            "kelelahan batin"
+          ],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": "Mulai dari tahun 2014",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T17:31:58.589661"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T17:31:51.471000",
+        "analysis": {
+          "name": "sahnur akbar",
+          "age": 37,
+          "gender": "male",
+          "location": "bulukumba",
+          "health_complaints": [],
+          "symptoms": [
+            "anxiety disorder",
+            "insomnia",
+            "kelelahan batin"
+          ],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": "Mulai dari tahun 2014",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T17:31:58.589661"
+        }
       }
     ],
     "first_interaction": "2025-06-08T03:36:26.942024",
@@ -6456,8 +6662,10 @@
       "gender": "male",
       "location": "bulukumba",
       "health_complaints": [],
-      "conversion_barriers": [],
-      "last_interaction": "2025-06-08T03:36:20.791000",
+      "conversion_barriers": [
+        "Jarak/lokasi"
+      ],
+      "last_interaction": "2025-06-08T17:31:51.471000",
       "symptoms": [
         "anxiety disorder",
         "insomnia"
@@ -6474,13 +6682,16 @@
       "health_complaints": [],
       "symptoms": [
         "anxiety disorder",
-        "insomnia"
+        "insomnia",
+        "kelelahan batin"
       ],
-      "conversion_barriers": [],
-      "medical_history": null,
+      "conversion_barriers": [
+        "Jarak/lokasi"
+      ],
+      "medical_history": "Mulai dari tahun 2014",
       "urgency_level": "medium",
-      "emotion": "positive",
-      "timestamp": "2025-06-08T03:36:26.940050"
+      "emotion": "neutral",
+      "timestamp": "2025-06-08T17:31:58.589661"
     }
   },
   "628121045583@s.whatsapp.net": {
@@ -8589,6 +8800,358 @@
       "urgency_level": "high",
       "emotion": "negative",
       "timestamp": "2025-06-08T09:54:19.069035"
+    }
+  },
+  "917411112520@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-08T14:05:46.211836",
+        "analysis": {
+          "name": "Mohammed Isa Abuhuseina",
+          "age": 20,
+          "gender": "male",
+          "location": null,
+          "health_complaints": [],
+          "symptoms": [
+            "poor sleep quality"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T14:05:46.205022"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T14:05:40.358000",
+        "analysis": {
+          "name": "Mohammed Isa Abuhuseina",
+          "age": 20,
+          "gender": "male",
+          "location": null,
+          "health_complaints": [],
+          "symptoms": [
+            "poor sleep quality"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T14:05:46.205022"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T14:18:46.179565",
+        "analysis": {
+          "name": "Mohammed Isa Abuhuseina",
+          "age": 20,
+          "gender": "male",
+          "location": null,
+          "health_complaints": [],
+          "symptoms": [
+            "poor sleep quality",
+            "daytime fatigue"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T14:18:46.175825"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T14:18:39.942000",
+        "analysis": {
+          "name": "Mohammed Isa Abuhuseina",
+          "age": 20,
+          "gender": "male",
+          "location": null,
+          "health_complaints": [],
+          "symptoms": [
+            "poor sleep quality",
+            "daytime fatigue"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T14:18:46.175825"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T14:34:12.191000",
+        "analysis": {
+          "name": "Mohammed Isa Abuhuseina",
+          "age": 20,
+          "gender": "male",
+          "location": null,
+          "health_complaints": [],
+          "symptoms": [
+            "poor sleep quality",
+            "daytime fatigue"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T14:18:46.175825"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-08T14:05:46.211836",
+    "details": {
+      "name": "Mohammed Isa Abuhuseina",
+      "age": 20,
+      "gender": "male",
+      "location": null,
+      "health_complaints": [],
+      "conversion_barriers": [],
+      "last_interaction": "2025-06-08T14:34:12.191000",
+      "symptoms": [
+        "poor sleep quality"
+      ],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "Mohammed Isa Abuhuseina",
+      "age": 20,
+      "gender": "male",
+      "location": null,
+      "health_complaints": [],
+      "symptoms": [
+        "poor sleep quality",
+        "daytime fatigue"
+      ],
+      "conversion_barriers": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral",
+      "timestamp": "2025-06-08T14:18:46.175825"
+    }
+  },
+  "6285399847070@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-08T15:10:13.203129",
+        "analysis": {
+          "name": "Ambrosius",
+          "age": 58,
+          "gender": "male",
+          "location": "Makassar",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T15:10:13.199855"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T15:10:06.289000",
+        "analysis": {
+          "name": "Ambrosius",
+          "age": 58,
+          "gender": "male",
+          "location": "Makassar",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T15:10:13.199855"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T15:11:06.628000",
+        "analysis": {
+          "name": "Ambrosius",
+          "age": 58,
+          "gender": "male",
+          "location": "Makassar",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T15:10:13.199855"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T15:11:09.042952",
+        "analysis": {
+          "name": "Ambrosius",
+          "age": 58,
+          "gender": "male",
+          "location": "Makassar",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T15:11:09.040337"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T15:11:01.385000",
+        "analysis": {
+          "name": "Ambrosius",
+          "age": 58,
+          "gender": "male",
+          "location": "Makassar",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T15:11:09.040337"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T15:11:16.173000",
+        "analysis": {
+          "name": "Ambrosius",
+          "age": 58,
+          "gender": "male",
+          "location": "Makassar",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T15:11:09.040337"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T15:16:42.291466",
+        "analysis": {
+          "name": "Ambrosius",
+          "age": 58,
+          "gender": "male",
+          "location": "Makassar",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T15:16:42.288823"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T15:16:35.668000",
+        "analysis": {
+          "name": "Ambrosius",
+          "age": 58,
+          "gender": "male",
+          "location": "Makassar",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T15:16:42.288823"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T15:17:10.657706",
+        "analysis": {
+          "name": "Ambrosius",
+          "age": 58,
+          "gender": "male",
+          "location": "Makassar",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T15:17:10.654472"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T15:17:01.757000",
+        "analysis": {
+          "name": "Ambrosius",
+          "age": 58,
+          "gender": "male",
+          "location": "Makassar",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T15:17:10.654472"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-08T15:10:13.203129",
+    "details": {
+      "name": "Ambrosius",
+      "age": 58,
+      "gender": "male",
+      "location": "Makassar",
+      "health_complaints": [
+        "Hipertensi"
+      ],
+      "conversion_barriers": [
+        "Jarak/lokasi"
+      ],
+      "last_interaction": "2025-06-08T15:17:01.757000",
+      "symptoms": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "Ambrosius",
+      "age": 58,
+      "gender": "male",
+      "location": "Makassar",
+      "health_complaints": [
+        "Hipertensi"
+      ],
+      "symptoms": [],
+      "conversion_barriers": [
+        "Jarak/lokasi"
+      ],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral",
+      "timestamp": "2025-06-08T15:17:10.654472"
     }
   }
 }
