@@ -1,7 +1,7 @@
 {
-  "api_calls": 536,
-  "total_response_time": 5925.848603248596,
-  "average_response_time": 11.055687692627979,
+  "api_calls": 633,
+  "total_response_time": 6853.548108100891,
+  "average_response_time": 10.827090218168864,
   "success_rate": 100.0,
   "error_count": 0,
   "daily_metrics": {
@@ -46,8 +46,13 @@
       "error_count": 0
     },
     "2025-06-07": {
-      "api_calls": 269,
-      "total_response_time": 2627.835693836212,
+      "api_calls": 270,
+      "total_response_time": 2639.586133003235,
+      "error_count": 0
+    },
+    "2025-06-08": {
+      "api_calls": 96,
+      "total_response_time": 915.9490656852722,
       "error_count": 0
     }
   }

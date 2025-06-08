@@ -6240,5 +6240,2355 @@
       "emotion": "positive",
       "timestamp": "2025-06-07T21:45:11.834352"
     }
+  },
+  "6281225831018@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-08T02:17:40.066670",
+        "analysis": {
+          "name": "Jamaludin Azhar",
+          "age": 48,
+          "gender": "male",
+          "location": "Kota Semarang",
+          "health_complaints": [],
+          "symptoms": [
+            "gatal-gatal di area wajah",
+            "gatal-gatal di area leher",
+            "gatal-gatal di badan"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "sudah 20 tahun menderita gatal-gatal",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T02:17:40.063253"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T02:17:33.747000",
+        "analysis": {
+          "name": "Jamaludin Azhar",
+          "age": 48,
+          "gender": "male",
+          "location": "Kota Semarang",
+          "health_complaints": [],
+          "symptoms": [
+            "gatal-gatal di area wajah",
+            "gatal-gatal di area leher",
+            "gatal-gatal di badan"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "sudah 20 tahun menderita gatal-gatal",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T02:17:40.063253"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T02:18:45.905251",
+        "analysis": {
+          "name": "Jamaludin Azhar",
+          "age": 48,
+          "gender": "male",
+          "location": "Kota Semarang",
+          "health_complaints": [],
+          "symptoms": [
+            "gatal-gatal di area wajah",
+            "gatal-gatal di area leher",
+            "gatal-gatal di badan"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "sudah 20 tahun menderita gatal-gatal sejak tahun 2005",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T02:18:45.902210"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T02:18:40.161000",
+        "analysis": {
+          "name": "Jamaludin Azhar",
+          "age": 48,
+          "gender": "male",
+          "location": "Kota Semarang",
+          "health_complaints": [],
+          "symptoms": [
+            "gatal-gatal di area wajah",
+            "gatal-gatal di area leher",
+            "gatal-gatal di badan"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "sudah 20 tahun menderita gatal-gatal sejak tahun 2005",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T02:18:45.902210"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T02:20:11.507752",
+        "analysis": {
+          "name": "Jamaludin Azhar",
+          "age": 48,
+          "gender": "male",
+          "location": "Kota Semarang",
+          "health_complaints": [],
+          "symptoms": [
+            "gatal-gatal di area wajah",
+            "gatal-gatal di area leher",
+            "gatal-gatal di badan"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": "sudah 20 tahun menderita gatal-gatal sejak tahun 2005",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T02:20:11.504540"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T02:20:05.646000",
+        "analysis": {
+          "name": "Jamaludin Azhar",
+          "age": 48,
+          "gender": "male",
+          "location": "Kota Semarang",
+          "health_complaints": [],
+          "symptoms": [
+            "gatal-gatal di area wajah",
+            "gatal-gatal di area leher",
+            "gatal-gatal di badan"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": "sudah 20 tahun menderita gatal-gatal sejak tahun 2005",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T02:20:11.504540"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-08T02:17:40.066670",
+    "details": {
+      "name": "Jamaludin Azhar",
+      "age": 48,
+      "gender": "male",
+      "location": "Kota Semarang",
+      "health_complaints": [],
+      "conversion_barriers": [
+        "Masalah biaya/finansial"
+      ],
+      "last_interaction": "2025-06-08T02:20:05.646000",
+      "symptoms": [
+        "gatal-gatal di area wajah",
+        "gatal-gatal di area leher",
+        "gatal-gatal di badan"
+      ],
+      "medical_history": "sudah 20 tahun menderita gatal-gatal",
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "Jamaludin Azhar",
+      "age": 48,
+      "gender": "male",
+      "location": "Kota Semarang",
+      "health_complaints": [],
+      "symptoms": [
+        "gatal-gatal di area wajah",
+        "gatal-gatal di area leher",
+        "gatal-gatal di badan"
+      ],
+      "conversion_barriers": [
+        "Masalah biaya/finansial"
+      ],
+      "medical_history": "sudah 20 tahun menderita gatal-gatal sejak tahun 2005",
+      "urgency_level": "medium",
+      "emotion": "neutral",
+      "timestamp": "2025-06-08T02:20:11.504540"
+    }
+  },
+  "6282311666345@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-08T03:36:26.942024",
+        "analysis": {
+          "name": "sahnur akbar",
+          "age": 37,
+          "gender": "male",
+          "location": "bulukumba",
+          "health_complaints": [],
+          "symptoms": [
+            "anxiety disorder",
+            "insomnia"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T03:36:26.940050"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T03:36:20.791000",
+        "analysis": {
+          "name": "sahnur akbar",
+          "age": 37,
+          "gender": "male",
+          "location": "bulukumba",
+          "health_complaints": [],
+          "symptoms": [
+            "anxiety disorder",
+            "insomnia"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T03:36:26.940050"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-08T03:36:26.942024",
+    "details": {
+      "name": "sahnur akbar",
+      "age": 37,
+      "gender": "male",
+      "location": "bulukumba",
+      "health_complaints": [],
+      "conversion_barriers": [],
+      "last_interaction": "2025-06-08T03:36:20.791000",
+      "symptoms": [
+        "anxiety disorder",
+        "insomnia"
+      ],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "positive"
+    },
+    "latest_analysis": {
+      "name": "sahnur akbar",
+      "age": 37,
+      "gender": "male",
+      "location": "bulukumba",
+      "health_complaints": [],
+      "symptoms": [
+        "anxiety disorder",
+        "insomnia"
+      ],
+      "conversion_barriers": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "positive",
+      "timestamp": "2025-06-08T03:36:26.940050"
+    }
+  },
+  "628121045583@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-08T06:56:14.401634",
+        "analysis": {
+          "name": "Lily",
+          "age": 58,
+          "gender": "female",
+          "location": "Jakarta pusat",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "low",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T06:56:14.392739"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T06:56:08.148000",
+        "analysis": {
+          "name": "Lily",
+          "age": 58,
+          "gender": "female",
+          "location": "Jakarta pusat",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "low",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T06:56:14.392739"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T06:58:36.426078",
+        "analysis": {
+          "name": "Lily",
+          "age": 58,
+          "gender": "female",
+          "location": "Jakarta pusat",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T06:58:36.423117"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T06:58:29.918000",
+        "analysis": {
+          "name": "Lily",
+          "age": 58,
+          "gender": "female",
+          "location": "Jakarta pusat",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T06:58:36.423117"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:02:55.696167",
+        "analysis": {
+          "name": "Lily",
+          "age": 58,
+          "gender": "female",
+          "location": "Jakarta pusat",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T07:02:55.607985"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:02:49.466000",
+        "analysis": {
+          "name": "Lily",
+          "age": 58,
+          "gender": "female",
+          "location": "Jakarta pusat",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T07:02:55.607985"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:04:53.078507",
+        "analysis": {
+          "name": "Lily",
+          "age": 58,
+          "gender": "female",
+          "location": "Jakarta pusat",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T07:04:53.073138"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:04:46.591000",
+        "analysis": {
+          "name": "Lily",
+          "age": 58,
+          "gender": "female",
+          "location": "Jakarta pusat",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T07:04:53.073138"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T08:03:14.315810",
+        "analysis": {
+          "name": "Lily",
+          "age": 58,
+          "gender": "female",
+          "location": "Jakarta pusat",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "low",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T08:03:14.312444"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T08:03:07.884000",
+        "analysis": {
+          "name": "Lily",
+          "age": 58,
+          "gender": "female",
+          "location": "Jakarta pusat",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "low",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T08:03:14.312444"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T08:04:09.009825",
+        "analysis": {
+          "name": "Lily",
+          "age": 58,
+          "gender": "female",
+          "location": "Jakarta pusat",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "low",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T08:04:09.005894"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T08:04:03.393000",
+        "analysis": {
+          "name": "Lily",
+          "age": 58,
+          "gender": "female",
+          "location": "Jakarta pusat",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "low",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T08:04:09.005894"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-08T06:56:14.401634",
+    "details": {
+      "name": "Lily",
+      "age": 58,
+      "gender": "female",
+      "location": "Jakarta pusat",
+      "health_complaints": [
+        "Hipertensi"
+      ],
+      "conversion_barriers": [
+        "Masalah biaya/finansial",
+        "Jarak/lokasi"
+      ],
+      "last_interaction": "2025-06-08T08:04:03.393000",
+      "symptoms": [],
+      "medical_history": null,
+      "urgency_level": "low",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "Lily",
+      "age": 58,
+      "gender": "female",
+      "location": "Jakarta pusat",
+      "health_complaints": [
+        "Hipertensi"
+      ],
+      "symptoms": [],
+      "conversion_barriers": [],
+      "medical_history": null,
+      "urgency_level": "low",
+      "emotion": "positive",
+      "timestamp": "2025-06-08T08:04:09.005894"
+    }
+  },
+  "6285793811960@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-08T07:36:38.426556",
+        "analysis": {
+          "name": "Na.Drliana Irianto",
+          "age": 67,
+          "gender": "male",
+          "location": "Kec. Sikaraja, Kab. Sukabumi, Jabar",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Dukungan keluarga"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami stroke sebelah kiri",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T07:36:38.424247"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:36:30.985000",
+        "analysis": {
+          "name": "Na.Drliana Irianto",
+          "age": 67,
+          "gender": "male",
+          "location": "Kec. Sikaraja, Kab. Sukabumi, Jabar",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Dukungan keluarga"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami stroke sebelah kiri",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T07:36:38.424247"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:41:11.080085",
+        "analysis": {
+          "name": "Na.Drliana Irianto",
+          "age": 67,
+          "gender": "male",
+          "location": "Kec. Sikaraja, Kab. Sukabumi, Jabar",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Dukungan keluarga"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami stroke sebelah kiri",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T07:41:11.076925"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:41:03.680000",
+        "analysis": {
+          "name": "Na.Drliana Irianto",
+          "age": 67,
+          "gender": "male",
+          "location": "Kec. Sikaraja, Kab. Sukabumi, Jabar",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Dukungan keluarga"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami stroke sebelah kiri",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T07:41:11.076925"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:41:36.830762",
+        "analysis": {
+          "name": "Na.Drliana Irianto",
+          "age": 67,
+          "gender": "male",
+          "location": "Kec. Sikaraja, Kab. Sukabumi, Jabar",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Dukungan keluarga"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami stroke sebelah kiri",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T07:41:36.828238"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:41:20.375000",
+        "analysis": {
+          "name": "Na.Drliana Irianto",
+          "age": 67,
+          "gender": "male",
+          "location": "Kec. Sikaraja, Kab. Sukabumi, Jabar",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Dukungan keluarga"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami stroke sebelah kiri",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T07:41:36.828238"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:43:51.298088",
+        "analysis": {
+          "name": "Na.Drliana Irianto",
+          "age": 67,
+          "gender": "male",
+          "location": "Kec. Sikaraja, Kab. Sukabumi, Jabar",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Dukungan keluarga"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami stroke sebelah kiri",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T07:43:51.294111"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:43:45.443000",
+        "analysis": {
+          "name": "Na.Drliana Irianto",
+          "age": 67,
+          "gender": "male",
+          "location": "Kec. Sikaraja, Kab. Sukabumi, Jabar",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Dukungan keluarga"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami stroke sebelah kiri",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T07:43:51.294111"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:45:49.034668",
+        "analysis": {
+          "name": "Na.Drliana Irianto",
+          "age": 67,
+          "gender": "male",
+          "location": "Kec. Sikaraja, Kab. Sukabumi, Jabar",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Dukungan keluarga"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami stroke sebelah kiri",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T07:45:49.029620"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:45:36.748000",
+        "analysis": {
+          "name": "Na.Drliana Irianto",
+          "age": 67,
+          "gender": "male",
+          "location": "Kec. Sikaraja, Kab. Sukabumi, Jabar",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Dukungan keluarga"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami stroke sebelah kiri",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T07:45:49.029620"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:50:32.976424",
+        "analysis": {
+          "name": "Na.Drliana Irianto",
+          "age": 67,
+          "gender": "male",
+          "location": "Kec. Sikaraja, Kab. Sukabumi, Jabar",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami stroke sebelah kiri",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-08T07:50:32.973100"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:50:23.907000",
+        "analysis": {
+          "name": "Na.Drliana Irianto",
+          "age": 67,
+          "gender": "male",
+          "location": "Kec. Sikaraja, Kab. Sukabumi, Jabar",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami stroke sebelah kiri",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-08T07:50:32.973100"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:54:27.837578",
+        "analysis": {
+          "name": "Na.Drliana Irianto",
+          "age": 67,
+          "gender": "male",
+          "location": "Kec. Sikaraja, Kab. Sukabumi, Jabar",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami stroke sebelah kiri",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T07:54:27.834992"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:54:15.956000",
+        "analysis": {
+          "name": "Na.Drliana Irianto",
+          "age": 67,
+          "gender": "male",
+          "location": "Kec. Sikaraja, Kab. Sukabumi, Jabar",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami stroke sebelah kiri",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T07:54:27.834992"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T08:02:22.834932",
+        "analysis": {
+          "name": "Na.Drliana Irianto",
+          "age": 67,
+          "gender": "male",
+          "location": "Kec. Sikaraja, Kab. Sukabumi, Jabar",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami stroke sebelah kiri",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T08:02:22.831294"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T08:02:12.698000",
+        "analysis": {
+          "name": "Na.Drliana Irianto",
+          "age": 67,
+          "gender": "male",
+          "location": "Kec. Sikaraja, Kab. Sukabumi, Jabar",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami stroke sebelah kiri",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T08:02:22.831294"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T08:04:55.963025",
+        "analysis": {
+          "name": "Na.Drliana Irianto",
+          "age": 67,
+          "gender": "male",
+          "location": "Kec. Sikaraja, Kab. Sukabumi, Jabar",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami stroke sebelah kiri",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-08T08:04:55.960290"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T08:04:49.228000",
+        "analysis": {
+          "name": "Na.Drliana Irianto",
+          "age": 67,
+          "gender": "male",
+          "location": "Kec. Sikaraja, Kab. Sukabumi, Jabar",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami stroke sebelah kiri",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-08T08:04:55.960290"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T08:15:05.068063",
+        "analysis": {
+          "name": "Na.Drliana Irianto",
+          "age": 67,
+          "gender": "male",
+          "location": "Kec. Sikaraja, Kab. Sukabumi, Jabar",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami stroke sebelah kiri",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T08:15:05.064014"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T08:14:57.344000",
+        "analysis": {
+          "name": "Na.Drliana Irianto",
+          "age": 67,
+          "gender": "male",
+          "location": "Kec. Sikaraja, Kab. Sukabumi, Jabar",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami stroke sebelah kiri",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T08:15:05.064014"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-08T07:04:10.779273",
+    "details": {
+      "name": "Na.Drliana Irianto",
+      "age": 67,
+      "gender": "male",
+      "location": "Kec. Sikaraja, Kab. Sukabumi, Jabar",
+      "health_complaints": [
+        "Kolesterol Tinggi",
+        "Stroke"
+      ],
+      "conversion_barriers": [
+        "Masalah biaya/finansial",
+        "Dukungan keluarga"
+      ],
+      "last_interaction": "2025-06-08T08:14:57.344000",
+      "symptoms": [],
+      "medical_history": "Sudah 2 tahun mengalami stroke sebelah kiri",
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "Na.Drliana Irianto",
+      "age": 67,
+      "gender": "male",
+      "location": "Kec. Sikaraja, Kab. Sukabumi, Jabar",
+      "health_complaints": [
+        "Stroke",
+        "Kolesterol Tinggi"
+      ],
+      "symptoms": [],
+      "conversion_barriers": [
+        "Masalah biaya/finansial"
+      ],
+      "medical_history": "Sudah 2 tahun mengalami stroke sebelah kiri",
+      "urgency_level": "high",
+      "emotion": "positive",
+      "timestamp": "2025-06-08T08:15:05.064014"
+    }
+  },
+  "62895366870577@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-08T07:23:35.736011",
+        "analysis": {
+          "name": "Johan",
+          "age": 48,
+          "gender": "male",
+          "location": "Sidoarjo",
+          "health_complaints": [
+            "GERD"
+          ],
+          "symptoms": [
+            "ginjal bengkak"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T07:23:35.632989"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:23:29.249000",
+        "analysis": {
+          "name": "Johan",
+          "age": 48,
+          "gender": "male",
+          "location": "Sidoarjo",
+          "health_complaints": [
+            "GERD"
+          ],
+          "symptoms": [
+            "ginjal bengkak"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T07:23:35.632989"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:25:25.915694",
+        "analysis": {
+          "name": "Johan",
+          "age": 48,
+          "gender": "male",
+          "location": "Sidoarjo",
+          "health_complaints": [
+            "GERD"
+          ],
+          "symptoms": [
+            "ginjal bengkak"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sakit GERD sejak akhir tahun 2021",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T07:25:25.913454"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:25:18.390000",
+        "analysis": {
+          "name": "Johan",
+          "age": 48,
+          "gender": "male",
+          "location": "Sidoarjo",
+          "health_complaints": [
+            "GERD"
+          ],
+          "symptoms": [
+            "ginjal bengkak"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sakit GERD sejak akhir tahun 2021",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T07:25:25.913454"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:25:40.130715",
+        "analysis": {
+          "name": "Johan",
+          "age": 48,
+          "gender": "male",
+          "location": "Sidoarjo",
+          "health_complaints": [
+            "GERD"
+          ],
+          "symptoms": [
+            "ginjal bengkak"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sakit GERD sejak akhir tahun 2021, hasil USG menunjukkan ginjal bengkak",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T07:25:40.128844"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:25:33.727000",
+        "analysis": {
+          "name": "Johan",
+          "age": 48,
+          "gender": "male",
+          "location": "Sidoarjo",
+          "health_complaints": [
+            "GERD"
+          ],
+          "symptoms": [
+            "ginjal bengkak"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sakit GERD sejak akhir tahun 2021, hasil USG menunjukkan ginjal bengkak",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T07:25:40.128844"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:26:15.975188",
+        "analysis": {
+          "name": "Johan",
+          "age": 48,
+          "gender": "male",
+          "location": "Sidoarjo",
+          "health_complaints": [
+            "GERD"
+          ],
+          "symptoms": [
+            "ginjal bengkak",
+            "nyeri sebelah kiri"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sakit GERD sejak akhir tahun 2021, hasil USG menunjukkan ginjal bengkak",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T07:26:15.972290"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:26:08.692000",
+        "analysis": {
+          "name": "Johan",
+          "age": 48,
+          "gender": "male",
+          "location": "Sidoarjo",
+          "health_complaints": [
+            "GERD"
+          ],
+          "symptoms": [
+            "ginjal bengkak",
+            "nyeri sebelah kiri"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sakit GERD sejak akhir tahun 2021, hasil USG menunjukkan ginjal bengkak",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T07:26:15.972290"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:27:50.632288",
+        "analysis": {
+          "name": "Johan",
+          "age": 48,
+          "gender": "male",
+          "location": "Sidoarjo",
+          "health_complaints": [
+            "GERD"
+          ],
+          "symptoms": [
+            "ginjal bengkak",
+            "nyeri sebelah kiri"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sakit GERD sejak akhir tahun 2021, hasil USG menunjukkan ginjal bengkak",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T07:27:50.628829"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:27:43.085000",
+        "analysis": {
+          "name": "Johan",
+          "age": 48,
+          "gender": "male",
+          "location": "Sidoarjo",
+          "health_complaints": [
+            "GERD"
+          ],
+          "symptoms": [
+            "ginjal bengkak",
+            "nyeri sebelah kiri"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sakit GERD sejak akhir tahun 2021, hasil USG menunjukkan ginjal bengkak",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T07:27:50.628829"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T10:06:59.011308",
+        "analysis": {
+          "name": "Johan",
+          "age": 48,
+          "gender": "male",
+          "location": "Sidoarjo",
+          "health_complaints": [
+            "GERD"
+          ],
+          "symptoms": [
+            "ginjal bengkak",
+            "nyeri sebelah kiri"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sakit GERD sejak akhir tahun 2021, hasil USG menunjukkan ginjal bengkak",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T10:06:58.932085"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T10:06:49.451000",
+        "analysis": {
+          "name": "Johan",
+          "age": 48,
+          "gender": "male",
+          "location": "Sidoarjo",
+          "health_complaints": [
+            "GERD"
+          ],
+          "symptoms": [
+            "ginjal bengkak",
+            "nyeri sebelah kiri"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sakit GERD sejak akhir tahun 2021, hasil USG menunjukkan ginjal bengkak",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T10:06:58.932085"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T10:17:01.052584",
+        "analysis": {
+          "name": "Johan",
+          "age": 48,
+          "gender": "male",
+          "location": "Sidoarjo",
+          "health_complaints": [
+            "GERD"
+          ],
+          "symptoms": [
+            "ginjal bengkak",
+            "nyeri sebelah kiri"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sakit GERD sejak akhir tahun 2021, hasil USG menunjukkan ginjal bengkak",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T10:17:00.973769"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T10:16:54.744000",
+        "analysis": {
+          "name": "Johan",
+          "age": 48,
+          "gender": "male",
+          "location": "Sidoarjo",
+          "health_complaints": [
+            "GERD"
+          ],
+          "symptoms": [
+            "ginjal bengkak",
+            "nyeri sebelah kiri"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Sakit GERD sejak akhir tahun 2021, hasil USG menunjukkan ginjal bengkak",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T10:17:00.973769"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T10:34:59.755670",
+        "analysis": {
+          "name": "Johan",
+          "age": 48,
+          "gender": "male",
+          "location": "Sidoarjo",
+          "health_complaints": [
+            "GERD"
+          ],
+          "symptoms": [
+            "ginjal bengkak",
+            "nyeri sebelah kiri"
+          ],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": "Sakit GERD sejak akhir tahun 2021, hasil USG menunjukkan ginjal bengkak",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T10:34:59.673259"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T10:34:53.865000",
+        "analysis": {
+          "name": "Johan",
+          "age": 48,
+          "gender": "male",
+          "location": "Sidoarjo",
+          "health_complaints": [
+            "GERD"
+          ],
+          "symptoms": [
+            "ginjal bengkak",
+            "nyeri sebelah kiri"
+          ],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": "Sakit GERD sejak akhir tahun 2021, hasil USG menunjukkan ginjal bengkak",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T10:34:59.673259"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-08T07:23:35.736011",
+    "details": {
+      "name": "Johan",
+      "age": 48,
+      "gender": "male",
+      "location": "Sidoarjo",
+      "health_complaints": [
+        "GERD"
+      ],
+      "conversion_barriers": [
+        "Jarak/lokasi"
+      ],
+      "last_interaction": "2025-06-08T10:34:53.865000",
+      "symptoms": [
+        "ginjal bengkak"
+      ],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "Johan",
+      "age": 48,
+      "gender": "male",
+      "location": "Sidoarjo",
+      "health_complaints": [
+        "GERD"
+      ],
+      "symptoms": [
+        "ginjal bengkak",
+        "nyeri sebelah kiri"
+      ],
+      "conversion_barriers": [
+        "Jarak/lokasi"
+      ],
+      "medical_history": "Sakit GERD sejak akhir tahun 2021, hasil USG menunjukkan ginjal bengkak",
+      "urgency_level": "medium",
+      "emotion": "neutral",
+      "timestamp": "2025-06-08T10:34:59.673259"
+    }
+  },
+  "6285363740273@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-08T07:25:29.813677",
+        "analysis": {
+          "name": "Cita",
+          "age": 54,
+          "gender": "female",
+          "location": "Riau",
+          "health_complaints": [],
+          "symptoms": [
+            "Susah tdr"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T07:25:29.811797"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:25:22.218000",
+        "analysis": {
+          "name": "Cita",
+          "age": 54,
+          "gender": "female",
+          "location": "Riau",
+          "health_complaints": [],
+          "symptoms": [
+            "Susah tdr"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T07:25:29.811797"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:44:10.362000",
+        "analysis": {
+          "name": "Cita",
+          "age": 54,
+          "gender": "female",
+          "location": "Riau",
+          "health_complaints": [],
+          "symptoms": [
+            "Susah tdr"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T07:25:29.811797"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:46:08.123000",
+        "analysis": {
+          "name": "Cita",
+          "age": 54,
+          "gender": "female",
+          "location": "Riau",
+          "health_complaints": [],
+          "symptoms": [
+            "Susah tdr"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T07:25:29.811797"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-08T07:25:29.813677",
+    "details": {
+      "name": "Cita",
+      "age": 54,
+      "gender": "female",
+      "location": "Riau",
+      "health_complaints": [],
+      "conversion_barriers": [],
+      "last_interaction": "2025-06-08T07:46:08.123000",
+      "symptoms": [
+        "Susah tdr"
+      ],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "Cita",
+      "age": 54,
+      "gender": "female",
+      "location": "Riau",
+      "health_complaints": [],
+      "symptoms": [
+        "Susah tdr"
+      ],
+      "conversion_barriers": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral",
+      "timestamp": "2025-06-08T07:25:29.811797"
+    }
+  },
+  "6281387461261@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-08T07:42:15.071451",
+        "analysis": {
+          "name": "Rahmat",
+          "age": 50,
+          "gender": "male",
+          "location": "Jambi",
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Belum ngerti sistemnya"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T07:42:15.068850"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:42:07.394000",
+        "analysis": {
+          "name": "Rahmat",
+          "age": 50,
+          "gender": "male",
+          "location": "Jambi",
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Belum ngerti sistemnya"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T07:42:15.068850"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:47:31.856408",
+        "analysis": {
+          "name": "Rahmat",
+          "age": 50,
+          "gender": "male",
+          "location": "Jambi",
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T07:47:31.853626"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:47:25.262000",
+        "analysis": {
+          "name": "Rahmat",
+          "age": 50,
+          "gender": "male",
+          "location": "Jambi",
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T07:47:31.853626"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:51:26.488881",
+        "analysis": {
+          "name": "Rahmat",
+          "age": 50,
+          "gender": "male",
+          "location": "Jambi",
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T07:51:26.485697"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:51:20.206000",
+        "analysis": {
+          "name": "Rahmat",
+          "age": 50,
+          "gender": "male",
+          "location": "Jambi",
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Jarak/lokasi"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T07:51:26.485697"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:56:15.541981",
+        "analysis": {
+          "name": "Rahmat",
+          "age": 50,
+          "gender": "male",
+          "location": "Jambi",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "Insomnia"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T07:56:15.537382"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T07:56:09.165000",
+        "analysis": {
+          "name": "Rahmat",
+          "age": 50,
+          "gender": "male",
+          "location": "Jambi",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "Insomnia"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T07:56:15.537382"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T08:00:13.211475",
+        "analysis": {
+          "name": "Rahmat",
+          "age": 50,
+          "gender": "male",
+          "location": "Jambi",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "Insomnia"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T08:00:13.208705"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T08:00:07.370000",
+        "analysis": {
+          "name": "Rahmat",
+          "age": 50,
+          "gender": "male",
+          "location": "Jambi",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "Insomnia"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T08:00:13.208705"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T08:03:42.389517",
+        "analysis": {
+          "name": "Rahmat",
+          "age": 50,
+          "gender": "male",
+          "location": "Jambi",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "Insomnia"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T08:03:42.387139"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T08:03:34.756000",
+        "analysis": {
+          "name": "Rahmat",
+          "age": 50,
+          "gender": "male",
+          "location": "Jambi",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "Insomnia"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T08:03:42.387139"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T08:07:12.435031",
+        "analysis": {
+          "name": "Rahmat",
+          "age": 50,
+          "gender": "male",
+          "location": "Jambi",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "Insomnia"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T08:07:12.432215"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T08:07:04.793000",
+        "analysis": {
+          "name": "Rahmat",
+          "age": 50,
+          "gender": "male",
+          "location": "Jambi",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "Insomnia"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T08:07:12.432215"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T08:09:00.062835",
+        "analysis": {
+          "name": "Rahmat",
+          "age": 50,
+          "gender": "male",
+          "location": "Jambi",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "Insomnia"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T08:09:00.058844"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T08:08:52.004000",
+        "analysis": {
+          "name": "Rahmat",
+          "age": 50,
+          "gender": "male",
+          "location": "Jambi",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "Insomnia"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T08:09:00.058844"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T08:09:56.059605",
+        "analysis": {
+          "name": "Rahmat",
+          "age": 50,
+          "gender": "male",
+          "location": "Jambi",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "Insomnia"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T08:09:56.055837"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T08:09:49.590000",
+        "analysis": {
+          "name": "Rahmat",
+          "age": 50,
+          "gender": "male",
+          "location": "Jambi",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "Insomnia"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T08:09:56.055837"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T08:23:01.308426",
+        "analysis": {
+          "name": "Rahmat",
+          "age": 50,
+          "gender": "male",
+          "location": "Jambi",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "Insomnia"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T08:23:01.305575"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T08:22:49.680000",
+        "analysis": {
+          "name": "Rahmat",
+          "age": 50,
+          "gender": "male",
+          "location": "Jambi",
+          "health_complaints": [
+            "Hipertensi"
+          ],
+          "symptoms": [
+            "Insomnia"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T08:23:01.305575"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-08T07:33:22.800728",
+    "details": {
+      "name": "Rahmat",
+      "age": 50,
+      "gender": "male",
+      "location": "Jambi",
+      "health_complaints": [
+        "Insomnia",
+        "Hipertensi"
+      ],
+      "conversion_barriers": [
+        "Belum ngerti sistemnya",
+        "Jarak/lokasi"
+      ],
+      "last_interaction": "2025-06-08T08:22:49.680000",
+      "symptoms": [
+        "Insomnia"
+      ],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "Rahmat",
+      "age": 50,
+      "gender": "male",
+      "location": "Jambi",
+      "health_complaints": [
+        "Hipertensi"
+      ],
+      "symptoms": [
+        "Insomnia"
+      ],
+      "conversion_barriers": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "positive",
+      "timestamp": "2025-06-08T08:23:01.305575"
+    }
+  },
+  "6285173160044@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-08T08:42:56.792654",
+        "analysis": {
+          "name": "Nina",
+          "age": 57,
+          "gender": "female",
+          "location": "Bogor",
+          "health_complaints": [],
+          "symptoms": [
+            "Syaraf kejepit",
+            "nyeri punggung",
+            "nyeri perut kronik",
+            "sesak",
+            "badan sakit-sakit",
+            "darah rendah",
+            "kesulitan tidur",
+            "perasaan takut",
+            "badan kurus",
+            "takut sendirian",
+            "dampingi suami ke mana-mana"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Konsumsi obat psikiatri selama 6 bulan tanpa perubahan. Keluhan sudah dirasakan selama 9 tahun.",
+          "urgency_level": "high",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T08:42:56.789218"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T08:42:49.080000",
+        "analysis": {
+          "name": "Nina",
+          "age": 57,
+          "gender": "female",
+          "location": "Bogor",
+          "health_complaints": [],
+          "symptoms": [
+            "Syaraf kejepit",
+            "nyeri punggung",
+            "nyeri perut kronik",
+            "sesak",
+            "badan sakit-sakit",
+            "darah rendah",
+            "kesulitan tidur",
+            "perasaan takut",
+            "badan kurus",
+            "takut sendirian",
+            "dampingi suami ke mana-mana"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Konsumsi obat psikiatri selama 6 bulan tanpa perubahan. Keluhan sudah dirasakan selama 9 tahun.",
+          "urgency_level": "high",
+          "emotion": "neutral",
+          "timestamp": "2025-06-08T08:42:56.789218"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T09:10:51.924181",
+        "analysis": {
+          "name": "Nina",
+          "age": 57,
+          "gender": "female",
+          "location": "Bogor",
+          "health_complaints": [],
+          "symptoms": [
+            "Syaraf kejepit",
+            "nyeri punggung",
+            "nyeri perut kronik",
+            "sesak",
+            "badan sakit-sakit",
+            "darah rendah",
+            "kesulitan tidur",
+            "perasaan takut",
+            "badan kurus",
+            "takut sendirian",
+            "dampingi suami ke mana-mana"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Konsumsi obat psikiatri selama 6 bulan tanpa perubahan. Keluhan sudah dirasakan selama 9 tahun.",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T09:10:51.796405"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T09:10:42.947000",
+        "analysis": {
+          "name": "Nina",
+          "age": 57,
+          "gender": "female",
+          "location": "Bogor",
+          "health_complaints": [],
+          "symptoms": [
+            "Syaraf kejepit",
+            "nyeri punggung",
+            "nyeri perut kronik",
+            "sesak",
+            "badan sakit-sakit",
+            "darah rendah",
+            "kesulitan tidur",
+            "perasaan takut",
+            "badan kurus",
+            "takut sendirian",
+            "dampingi suami ke mana-mana"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Konsumsi obat psikiatri selama 6 bulan tanpa perubahan. Keluhan sudah dirasakan selama 9 tahun.",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T09:10:51.796405"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-08T08:42:56.792654",
+    "details": {
+      "name": "Nina",
+      "age": 57,
+      "gender": "female",
+      "location": "Bogor",
+      "health_complaints": [],
+      "conversion_barriers": [],
+      "last_interaction": "2025-06-08T09:10:42.947000",
+      "symptoms": [
+        "Syaraf kejepit",
+        "nyeri punggung",
+        "nyeri perut kronik",
+        "sesak",
+        "badan sakit-sakit",
+        "darah rendah",
+        "kesulitan tidur",
+        "perasaan takut",
+        "badan kurus",
+        "takut sendirian",
+        "dampingi suami ke mana-mana"
+      ],
+      "medical_history": "Konsumsi obat psikiatri selama 6 bulan tanpa perubahan. Keluhan sudah dirasakan selama 9 tahun.",
+      "urgency_level": "high",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "Nina",
+      "age": 57,
+      "gender": "female",
+      "location": "Bogor",
+      "health_complaints": [],
+      "symptoms": [
+        "Syaraf kejepit",
+        "nyeri punggung",
+        "nyeri perut kronik",
+        "sesak",
+        "badan sakit-sakit",
+        "darah rendah",
+        "kesulitan tidur",
+        "perasaan takut",
+        "badan kurus",
+        "takut sendirian",
+        "dampingi suami ke mana-mana"
+      ],
+      "conversion_barriers": [],
+      "medical_history": "Konsumsi obat psikiatri selama 6 bulan tanpa perubahan. Keluhan sudah dirasakan selama 9 tahun.",
+      "urgency_level": "high",
+      "emotion": "positive",
+      "timestamp": "2025-06-08T09:10:51.796405"
+    }
+  },
+  "6281247074485@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-08T09:41:43.615440",
+        "analysis": {
+          "name": "Eduardus Rabu",
+          "age": null,
+          "gender": "male",
+          "location": "Merauke",
+          "health_complaints": [
+            "Insomnia"
+          ],
+          "symptoms": [
+            "cemas",
+            "was was",
+            "takut",
+            "pinggang sakit",
+            "dada sakit"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-08T09:41:43.612246"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T09:41:36.442000",
+        "analysis": {
+          "name": "Eduardus Rabu",
+          "age": null,
+          "gender": "male",
+          "location": "Merauke",
+          "health_complaints": [
+            "Insomnia"
+          ],
+          "symptoms": [
+            "cemas",
+            "was was",
+            "takut",
+            "pinggang sakit",
+            "dada sakit"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-08T09:41:43.612246"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T09:44:37.270428",
+        "analysis": {
+          "name": "Eduardus Rabu",
+          "age": 39,
+          "gender": "male",
+          "location": "Merauke",
+          "health_complaints": [
+            "GERD",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "dada terasa sesak",
+            "sering sendawa",
+            "pinggang sakit",
+            "perut terasa begah"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Dokter Finis asam lambung",
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-08T09:44:36.930151"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T09:44:26.863000",
+        "analysis": {
+          "name": "Eduardus Rabu",
+          "age": 39,
+          "gender": "male",
+          "location": "Merauke",
+          "health_complaints": [
+            "GERD",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "dada terasa sesak",
+            "sering sendawa",
+            "pinggang sakit",
+            "perut terasa begah"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Dokter Finis asam lambung",
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-08T09:44:36.930151"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T09:51:08.485623",
+        "analysis": {
+          "name": "Eduardus Rabu",
+          "age": 39,
+          "gender": "male",
+          "location": "Merauke",
+          "health_complaints": [
+            "GERD",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "dada terasa sesak",
+            "sering sendawa",
+            "pinggang sakit",
+            "perut terasa begah"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": "Berobat di RS tapi tidak ada kesembuhan, sudah satu tahun lebih tidak bisa tidur",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-08T09:51:08.481175"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T09:50:59.918000",
+        "analysis": {
+          "name": "Eduardus Rabu",
+          "age": 39,
+          "gender": "male",
+          "location": "Merauke",
+          "health_complaints": [
+            "GERD",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "dada terasa sesak",
+            "sering sendawa",
+            "pinggang sakit",
+            "perut terasa begah"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": "Berobat di RS tapi tidak ada kesembuhan, sudah satu tahun lebih tidak bisa tidur",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-08T09:51:08.481175"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T09:53:00.316942",
+        "analysis": {
+          "name": "Eduardus Rabu",
+          "age": 39,
+          "gender": "male",
+          "location": "Merauke",
+          "health_complaints": [
+            "GERD",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "dada terasa sesak",
+            "sering sendawa",
+            "pinggang sakit",
+            "perut terasa begah"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Berobat di RS tapi tidak ada kesembuhan, sudah satu tahun lebih tidak bisa tidur",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-08T09:53:00.311196"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T09:52:52.927000",
+        "analysis": {
+          "name": "Eduardus Rabu",
+          "age": 39,
+          "gender": "male",
+          "location": "Merauke",
+          "health_complaints": [
+            "GERD",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "dada terasa sesak",
+            "sering sendawa",
+            "pinggang sakit",
+            "perut terasa begah"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Berobat di RS tapi tidak ada kesembuhan, sudah satu tahun lebih tidak bisa tidur",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-08T09:53:00.311196"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T09:54:19.072349",
+        "analysis": {
+          "name": "Eduardus Rabu",
+          "age": 39,
+          "gender": "male",
+          "location": "Merauke",
+          "health_complaints": [
+            "GERD",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "dada terasa sesak",
+            "sering sendawa",
+            "pinggang sakit",
+            "perut terasa begah"
+          ],
+          "conversion_barriers": [
+            "Waktu/kesibukan"
+          ],
+          "medical_history": "Berobat di RS tapi tidak ada kesembuhan, sudah satu tahun lebih tidak bisa tidur",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-08T09:54:19.069035"
+        }
+      },
+      {
+        "timestamp": "2025-06-08T09:54:11.584000",
+        "analysis": {
+          "name": "Eduardus Rabu",
+          "age": 39,
+          "gender": "male",
+          "location": "Merauke",
+          "health_complaints": [
+            "GERD",
+            "Insomnia"
+          ],
+          "symptoms": [
+            "dada terasa sesak",
+            "sering sendawa",
+            "pinggang sakit",
+            "perut terasa begah"
+          ],
+          "conversion_barriers": [
+            "Waktu/kesibukan"
+          ],
+          "medical_history": "Berobat di RS tapi tidak ada kesembuhan, sudah satu tahun lebih tidak bisa tidur",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-08T09:54:19.069035"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-08T09:41:43.615440",
+    "details": {
+      "name": "Eduardus Rabu",
+      "age": 39,
+      "gender": "male",
+      "location": "Merauke",
+      "health_complaints": [
+        "Insomnia",
+        "GERD"
+      ],
+      "conversion_barriers": [
+        "Masalah biaya/finansial",
+        "Waktu/kesibukan"
+      ],
+      "last_interaction": "2025-06-08T09:54:11.584000",
+      "symptoms": [
+        "cemas",
+        "was was",
+        "takut",
+        "pinggang sakit",
+        "dada sakit"
+      ],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "negative"
+    },
+    "latest_analysis": {
+      "name": "Eduardus Rabu",
+      "age": 39,
+      "gender": "male",
+      "location": "Merauke",
+      "health_complaints": [
+        "GERD",
+        "Insomnia"
+      ],
+      "symptoms": [
+        "dada terasa sesak",
+        "sering sendawa",
+        "pinggang sakit",
+        "perut terasa begah"
+      ],
+      "conversion_barriers": [
+        "Waktu/kesibukan"
+      ],
+      "medical_history": "Berobat di RS tapi tidak ada kesembuhan, sudah satu tahun lebih tidak bisa tidur",
+      "urgency_level": "high",
+      "emotion": "negative",
+      "timestamp": "2025-06-08T09:54:19.069035"
+    }
   }
 }
