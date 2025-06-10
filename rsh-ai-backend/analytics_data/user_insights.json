@@ -6959,48 +6959,6 @@
   "6285793811960@s.whatsapp.net": {
     "interactions": [
       {
-        "timestamp": "2025-06-08T07:36:38.426556",
-        "analysis": {
-          "name": "Na.Drliana Irianto",
-          "age": 67,
-          "gender": "male",
-          "location": "Kec. Sikaraja, Kab. Sukabumi, Jabar",
-          "health_complaints": [
-            "Stroke",
-            "Kolesterol Tinggi"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [
-            "Dukungan keluarga"
-          ],
-          "medical_history": "Sudah 2 tahun mengalami stroke sebelah kiri",
-          "urgency_level": "high",
-          "emotion": "positive",
-          "timestamp": "2025-06-08T07:36:38.424247"
-        }
-      },
-      {
-        "timestamp": "2025-06-08T07:36:30.985000",
-        "analysis": {
-          "name": "Na.Drliana Irianto",
-          "age": 67,
-          "gender": "male",
-          "location": "Kec. Sikaraja, Kab. Sukabumi, Jabar",
-          "health_complaints": [
-            "Stroke",
-            "Kolesterol Tinggi"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [
-            "Dukungan keluarga"
-          ],
-          "medical_history": "Sudah 2 tahun mengalami stroke sebelah kiri",
-          "urgency_level": "high",
-          "emotion": "positive",
-          "timestamp": "2025-06-08T07:36:38.424247"
-        }
-      },
-      {
         "timestamp": "2025-06-08T07:41:11.080085",
         "analysis": {
           "name": "Na.Drliana Irianto",
@@ -7377,6 +7335,48 @@
           "emotion": "positive",
           "timestamp": "2025-06-08T08:15:05.064014"
         }
+      },
+      {
+        "timestamp": "2025-06-09T22:38:20.462000",
+        "analysis": {
+          "name": "Na.Drliana Irianto",
+          "age": 67,
+          "gender": "male",
+          "location": "Kec. Sikaraja, Kab. Sukabumi, Jabar",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami stroke sebelah kiri",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T08:15:05.064014"
+        }
+      },
+      {
+        "timestamp": "2025-06-09T22:38:26.671000",
+        "analysis": {
+          "name": "Na.Drliana Irianto",
+          "age": 67,
+          "gender": "male",
+          "location": "Kec. Sikaraja, Kab. Sukabumi, Jabar",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": "Sudah 2 tahun mengalami stroke sebelah kiri",
+          "urgency_level": "high",
+          "emotion": "positive",
+          "timestamp": "2025-06-08T08:15:05.064014"
+        }
       }
     ],
     "first_interaction": "2025-06-08T07:04:10.779273",
@@ -7393,7 +7393,7 @@
         "Masalah biaya/finansial",
         "Dukungan keluarga"
       ],
-      "last_interaction": "2025-06-08T08:14:57.344000",
+      "last_interaction": "2025-06-09T22:38:26.671000",
       "symptoms": [],
       "medical_history": "Sudah 2 tahun mengalami stroke sebelah kiri",
       "urgency_level": "medium",
@@ -9152,6 +9152,485 @@
       "urgency_level": "medium",
       "emotion": "neutral",
       "timestamp": "2025-06-08T15:17:10.654472"
+    }
+  },
+  "6287811152506@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-09T22:40:49.096696",
+        "analysis": {
+          "name": "Jiwan",
+          "age": 20,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Stroke"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-09T22:40:49.091811"
+        }
+      },
+      {
+        "timestamp": "2025-06-09T22:40:42.895000",
+        "analysis": {
+          "name": "Jiwan",
+          "age": 20,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Stroke"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-09T22:40:49.091811"
+        }
+      },
+      {
+        "timestamp": "2025-06-09T22:41:20.685442",
+        "analysis": {
+          "name": "Jiwan",
+          "age": 20,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Stroke"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-09T22:41:20.682851"
+        }
+      },
+      {
+        "timestamp": "2025-06-09T22:41:14.884000",
+        "analysis": {
+          "name": "Jiwan",
+          "age": 20,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Stroke"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-09T22:41:20.682851"
+        }
+      },
+      {
+        "timestamp": "2025-06-09T22:41:55.199610",
+        "analysis": {
+          "name": "Jiwan",
+          "age": 20,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Stroke"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-09T22:41:55.196146"
+        }
+      },
+      {
+        "timestamp": "2025-06-09T22:41:48.777000",
+        "analysis": {
+          "name": "Jiwan",
+          "age": 20,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Stroke"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-09T22:41:55.196146"
+        }
+      },
+      {
+        "timestamp": "2025-06-09T22:42:22.185798",
+        "analysis": {
+          "name": "Jiwan",
+          "age": 20,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Stroke"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-09T22:42:22.181734"
+        }
+      },
+      {
+        "timestamp": "2025-06-09T22:42:15.890000",
+        "analysis": {
+          "name": "Jiwan",
+          "age": 20,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Stroke"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-09T22:42:22.181734"
+        }
+      },
+      {
+        "timestamp": "2025-06-09T22:42:58.851454",
+        "analysis": {
+          "name": "Jiwan",
+          "age": 20,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Stroke"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Dukungan keluarga"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-09T22:42:58.848115"
+        }
+      },
+      {
+        "timestamp": "2025-06-09T22:42:45.844000",
+        "analysis": {
+          "name": "Jiwan",
+          "age": 20,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Stroke"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Dukungan keluarga"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-09T22:42:58.848115"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-09T22:40:49.096696",
+    "details": {
+      "name": "Jiwan",
+      "age": 20,
+      "gender": "male",
+      "location": "Bali",
+      "health_complaints": [
+        "Stroke"
+      ],
+      "conversion_barriers": [
+        "Dukungan keluarga",
+        "Masalah biaya/finansial"
+      ],
+      "last_interaction": "2025-06-09T22:42:45.844000",
+      "symptoms": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "Jiwan",
+      "age": 20,
+      "gender": "male",
+      "location": "Bali",
+      "health_complaints": [
+        "Stroke"
+      ],
+      "symptoms": [],
+      "conversion_barriers": [
+        "Dukungan keluarga"
+      ],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral",
+      "timestamp": "2025-06-09T22:42:58.848115"
+    }
+  },
+  "6281236505206@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-10T08:43:07.880442",
+        "analysis": {
+          "name": "Sy. IB. Subawa",
+          "age": 70,
+          "gender": "male",
+          "location": "Kec. Mengwi. Badung. Bali.",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi",
+            "Diabetes",
+            "Asam Urat"
+          ],
+          "symptoms": [
+            "badan bagian kiri tidak berfungsi normal",
+            "kesulitan berjalan"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-10T08:43:07.866833"
+        }
+      },
+      {
+        "timestamp": "2025-06-10T08:42:58.712000",
+        "analysis": {
+          "name": "Sy. IB. Subawa",
+          "age": 70,
+          "gender": "male",
+          "location": "Kec. Mengwi. Badung. Bali.",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi",
+            "Diabetes",
+            "Asam Urat"
+          ],
+          "symptoms": [
+            "badan bagian kiri tidak berfungsi normal",
+            "kesulitan berjalan"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-10T08:43:07.866833"
+        }
+      },
+      {
+        "timestamp": "2025-06-10T09:07:45.308999",
+        "analysis": {
+          "name": "Sy. IB. Subawa",
+          "age": 70,
+          "gender": "male",
+          "location": "Kec. Mengwi. Badung. Bali.",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi",
+            "Diabetes",
+            "Asam Urat"
+          ],
+          "symptoms": [
+            "badan bagian kiri tidak berfungsi normal",
+            "kesulitan berjalan"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": "Kena sakit stroke sejak awal 2015/Januari. Menggunakan obat herbal dan mengikuti terapi otot dan saraf.",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-10T09:07:45.304295"
+        }
+      },
+      {
+        "timestamp": "2025-06-10T09:07:35.902000",
+        "analysis": {
+          "name": "Sy. IB. Subawa",
+          "age": 70,
+          "gender": "male",
+          "location": "Kec. Mengwi. Badung. Bali.",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi",
+            "Diabetes",
+            "Asam Urat"
+          ],
+          "symptoms": [
+            "badan bagian kiri tidak berfungsi normal",
+            "kesulitan berjalan"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": "Kena sakit stroke sejak awal 2015/Januari. Menggunakan obat herbal dan mengikuti terapi otot dan saraf.",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-10T09:07:45.304295"
+        }
+      },
+      {
+        "timestamp": "2025-06-10T09:12:59.389387",
+        "analysis": {
+          "name": "Sy. IB. Subawa",
+          "age": 70,
+          "gender": "male",
+          "location": "Kec. Mengwi. Badung. Bali.",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi",
+            "Diabetes",
+            "Asam Urat"
+          ],
+          "symptoms": [
+            "badan bagian kiri tidak berfungsi normal",
+            "kesulitan berjalan"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Kena sakit stroke sejak awal 2015/Januari. Menggunakan obat herbal dan mengikuti terapi otot dan saraf.",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-10T09:12:59.384993"
+        }
+      },
+      {
+        "timestamp": "2025-06-10T09:12:51.713000",
+        "analysis": {
+          "name": "Sy. IB. Subawa",
+          "age": 70,
+          "gender": "male",
+          "location": "Kec. Mengwi. Badung. Bali.",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi",
+            "Diabetes",
+            "Asam Urat"
+          ],
+          "symptoms": [
+            "badan bagian kiri tidak berfungsi normal",
+            "kesulitan berjalan"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Kena sakit stroke sejak awal 2015/Januari. Menggunakan obat herbal dan mengikuti terapi otot dan saraf.",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-10T09:12:59.384993"
+        }
+      },
+      {
+        "timestamp": "2025-06-10T09:16:12.742372",
+        "analysis": {
+          "name": "Sy. IB. Subawa",
+          "age": 70,
+          "gender": "male",
+          "location": "Kec. Mengwi. Badung. Bali.",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi",
+            "Diabetes",
+            "Asam Urat"
+          ],
+          "symptoms": [
+            "badan bagian kiri tidak berfungsi normal",
+            "kesulitan berjalan"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": "Kena sakit stroke sejak awal 2015/Januari. Menggunakan obat herbal dan mengikuti terapi otot dan saraf.",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-10T09:16:12.738973"
+        }
+      },
+      {
+        "timestamp": "2025-06-10T09:16:02.490000",
+        "analysis": {
+          "name": "Sy. IB. Subawa",
+          "age": 70,
+          "gender": "male",
+          "location": "Kec. Mengwi. Badung. Bali.",
+          "health_complaints": [
+            "Stroke",
+            "Kolesterol Tinggi",
+            "Diabetes",
+            "Asam Urat"
+          ],
+          "symptoms": [
+            "badan bagian kiri tidak berfungsi normal",
+            "kesulitan berjalan"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": "Kena sakit stroke sejak awal 2015/Januari. Menggunakan obat herbal dan mengikuti terapi otot dan saraf.",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-10T09:16:12.738973"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-10T08:43:07.880442",
+    "details": {
+      "name": "Sy. IB. Subawa",
+      "age": 70,
+      "gender": "male",
+      "location": "Kec. Mengwi. Badung. Bali.",
+      "health_complaints": [
+        "Asam Urat",
+        "Stroke",
+        "Diabetes",
+        "Kolesterol Tinggi"
+      ],
+      "conversion_barriers": [
+        "Masalah biaya/finansial"
+      ],
+      "last_interaction": "2025-06-10T09:16:02.490000",
+      "symptoms": [
+        "badan bagian kiri tidak berfungsi normal",
+        "kesulitan berjalan"
+      ],
+      "medical_history": null,
+      "urgency_level": "high",
+      "emotion": "negative"
+    },
+    "latest_analysis": {
+      "name": "Sy. IB. Subawa",
+      "age": 70,
+      "gender": "male",
+      "location": "Kec. Mengwi. Badung. Bali.",
+      "health_complaints": [
+        "Stroke",
+        "Kolesterol Tinggi",
+        "Diabetes",
+        "Asam Urat"
+      ],
+      "symptoms": [
+        "badan bagian kiri tidak berfungsi normal",
+        "kesulitan berjalan"
+      ],
+      "conversion_barriers": [
+        "Masalah biaya/finansial"
+      ],
+      "medical_history": "Kena sakit stroke sejak awal 2015/Januari. Menggunakan obat herbal dan mengikuti terapi otot dan saraf.",
+      "urgency_level": "high",
+      "emotion": "negative",
+      "timestamp": "2025-06-10T09:16:12.738973"
     }
   }
 }
