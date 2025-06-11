@@ -2,6 +2,9 @@ import { UserData } from '../types/analytics';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { useLanguage } from '../context/LanguageContext';
+import { fetchUserMessages } from '../services/api';
+import { format } from 'date-fns';
+import { enUS, id as idLocale } from 'date-fns/locale';
 
 interface ExportFilters {
   gender?: 'all' | 'male' | 'female';
@@ -197,52 +200,63 @@ const formatDate = (dateString: string | undefined): string => {
  * @param translations Translation function for localization
  * @returns void - triggers PDF download directly
  */
-export const exportUsersToPDF = (
-  users: { [phone: string]: UserData },
-  filters: ExportFilters = {},
+export const exportUsersToPDF = async (
+  users: Record<string, UserData>,
+  filters: ExportFilters,
   translations: any
-): void => {
-  // Apply filters
+): Promise<void> => {
+  // Filter users based on criteria
   const filteredUsers = filterUsers(users, filters);
   
-  // Create new PDF document
-  const doc = new jsPDF();
+  // Create PDF document in landscape orientation
+  const doc = new jsPDF({
+    orientation: 'landscape',
+    unit: 'mm',
+    format: 'a4'
+  });
+  
+  // Set font
+  doc.setFont('helvetica');
   
   // Add title
-  doc.setFontSize(18);
-  doc.setTextColor(44, 62, 80); // Dark blue-gray color
-  doc.text(translations('users.exportTitle') || 'User Data Export', 14, 22);
+  doc.setFontSize(16);
+  doc.text(translations('users.userDataExport') || 'User Data Export', 14, 20);
   
-  // Add date
+  // Add export date
   doc.setFontSize(10);
-  doc.setTextColor(100, 100, 100);
-  doc.text(`${translations('common.exportDate') || 'Export Date'}: ${new Date().toLocaleString()}`, 14, 30);
+  const currentDate = new Date();
+  const dateString = format(currentDate, 'dd MMMM yyyy HH:mm');
+  doc.text(`${translations('users.exportDate') || 'Export Date'}: ${dateString}`, 14, 26);
   
-  // Add filter information
-  doc.setFontSize(10);
-  doc.setTextColor(100, 100, 100);
+  // Add total users count
+  const userCount = Object.keys(filteredUsers).length;
+  doc.text(`${translations('users.totalUsers') || 'Total Users'}: ${userCount}`, 14, 32);
+  
+  // Add filter information if any
   let filterText = '';
-  
   if (filters.gender && filters.gender !== 'all') {
-    filterText += `${translations('users.gender') || 'Gender'}: ${filters.gender === 'male' ? 
-      translations('users.maleOnly') : translations('users.femaleOnly')}\n`;
+    const genderText = filters.gender === 'male' ? 
+      (translations('users.maleOnly') || 'Male') : 
+      (translations('users.femaleOnly') || 'Female');
+    filterText += `${translations('users.gender') || 'Gender'}: ${genderText}\n`;
   }
   
   if (filters.ageRange) {
-    if (filters.ageRange.min !== undefined && filters.ageRange.max !== undefined) {
-      filterText += `${translations('users.age') || 'Age'}: ${filters.ageRange.min} - ${filters.ageRange.max}\n`;
-    } else if (filters.ageRange.min !== undefined) {
-      filterText += `${translations('users.age') || 'Age'}: >= ${filters.ageRange.min}\n`;
-    } else if (filters.ageRange.max !== undefined) {
-      filterText += `${translations('users.age') || 'Age'}: <= ${filters.ageRange.max}\n`;
+    const { min, max } = filters.ageRange;
+    if (min && max) {
+      filterText += `${translations('users.age') || 'Age'}: ${min} - ${max}\n`;
+    } else if (min) {
+      filterText += `${translations('users.age') || 'Age'}: >= ${min}\n`;
+    } else if (max) {
+      filterText += `${translations('users.age') || 'Age'}: <= ${max}\n`;
     }
   }
   
-  if (filters.location && filters.location !== 'all') {
-    filterText += `${translations('users.province') || 'Province'}: ${filters.location}\n`;
+  if (filters.location) {
+    filterText += `${translations('users.location') || 'Location'}: ${filters.location}\n`;
   }
   
-  if (filters.healthComplaints && filters.healthComplaints.length > 0 && filters.healthComplaints[0] !== 'all') {
+  if (filters.healthComplaints && filters.healthComplaints.length > 0) {
     filterText += `${translations('users.healthComplaints') || 'Health Complaints'}: ${filters.healthComplaints.join(', ')}\n`;
   }
   
@@ -258,9 +272,29 @@ export const exportUsersToPDF = (
     translations('users.age') || 'Age',
     translations('users.location') || 'Location',
     translations('users.healthComplaints') || 'Health Complaints',
-    translations('users.firstInteraction') || 'First Interaction',
-    translations('users.lastInteraction') || 'Last Interaction'
+    translations('users.conversionBarriers') || 'Conversion Barriers',
+    translations('users.userMessages') || 'User Messages'
   ];
+  
+  // Fetch user messages for all users in parallel
+  const userMessagesPromises = Object.entries(filteredUsers).map(async ([phoneNumber, userData]) => {
+    try {
+      const messages = await fetchUserMessages(phoneNumber);
+      return { phoneNumber, messages };
+    } catch (error) {
+      console.error(`Error fetching messages for ${phoneNumber}:`, error);
+      return { phoneNumber, messages: [] };
+    }
+  });
+  
+  // Wait for all user messages to be fetched
+  const userMessagesResults = await Promise.all(userMessagesPromises);
+  
+  // Create a map of phone numbers to user messages
+  const userMessagesMap = userMessagesResults.reduce((map, { phoneNumber, messages }) => {
+    map[phoneNumber] = messages;
+    return map;
+  }, {} as Record<string, string[]>);
   
   const tableRows = Object.entries(filteredUsers).map(([phoneNumber, userData]) => {
     const { details } = userData;
@@ -273,6 +307,16 @@ export const exportUsersToPDF = (
     const healthComplaints = details.health_complaints ? 
       details.health_complaints.join(', ') : '';
     
+    // Format conversion barriers as comma-separated values
+    const conversionBarriers = details.conversion_barriers ? 
+      details.conversion_barriers.join(', ') : '';
+    
+    // Get the user messages from the map
+    const messages = userMessagesMap[phoneNumber] || [];
+    const userMessages = messages.length > 0 ? 
+      messages.join('\n\n') : 
+      translations('users.noMessages') || 'No messages';
+    
     return [
       phoneNumber.replace('@s.whatsapp.net', ''),
       details.name || '',
@@ -280,8 +324,8 @@ export const exportUsersToPDF = (
       details.age || '',
       details.location || '',
       healthComplaints,
-      formatDate(details.first_interaction),
-      formatDate(details.last_interaction)
+      conversionBarriers,
+      userMessages // Actual user messages
     ];
   });
   
@@ -304,7 +348,18 @@ export const exportUsersToPDF = (
     alternateRowStyles: {
       fillColor: [240, 240, 240]
     },
-    margin: { top: 20 },
+    margin: { top: 20, right: 10, left: 10 },
+    columnStyles: {
+      // Adjust column widths for landscape orientation
+      0: { cellWidth: 25 }, // Phone Number
+      1: { cellWidth: 30 }, // Name
+      2: { cellWidth: 20 }, // Gender
+      3: { cellWidth: 15 }, // Age
+      4: { cellWidth: 25 }, // Location
+      5: { cellWidth: 40 }, // Health Complaints
+      6: { cellWidth: 40 }, // Conversion Barriers
+      7: { cellWidth: 'auto' }, // User Messages - auto width for the last column
+    },
     didDrawPage: (data: any) => {
       // Add page number at the bottom
       doc.setFontSize(8);
@@ -318,13 +373,13 @@ export const exportUsersToPDF = (
   });
   
   // Add total count at the end
-  const userCount = Object.keys(filteredUsers).length;
+  // Reuse the userCount variable declared earlier
   doc.setFontSize(10);
   doc.setTextColor(44, 62, 80);
   
-  // Get the Y position after the table, with a fallback if table wasn't rendered
-  // @ts-ignore - previousAutoTable is added by the autotable plugin
-  const finalYPosition = doc.lastAutoTable?.finalY || doc.internal.pageSize.height / 2;
+  // Get the Y position after the table
+  // Use a fixed position from the bottom of the page for the total count
+  const finalYPosition = doc.internal.pageSize.height - 30;
   
   doc.text(
     `${translations('users.totalUsers') || 'Total Users'}: ${userCount}`,

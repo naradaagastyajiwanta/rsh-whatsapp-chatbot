@@ -265,8 +265,10 @@ export const en = {
     location: 'Location',
     province: 'Province',
     healthComplaints: 'Health Complaints',
+    conversionBarriers: 'Conversion Barriers',
     firstInteraction: 'First Interaction',
-    lastInteraction: 'Last Interaction'
+    lastInteraction: 'Last Interaction',
+    userMessages: 'User Messages'
   },
   documents: {
     title: 'Documents',

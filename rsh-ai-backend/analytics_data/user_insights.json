@@ -9154,234 +9154,6 @@
       "timestamp": "2025-06-08T15:17:10.654472"
     }
   },
-  "6287811152506@s.whatsapp.net": {
-    "interactions": [
-      {
-        "timestamp": "2025-06-09T22:40:49.096696",
-        "analysis": {
-          "name": "Jiwan",
-          "age": 20,
-          "gender": "male",
-          "location": "Bali",
-          "health_complaints": [
-            "Stroke"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [],
-          "medical_history": null,
-          "urgency_level": "medium",
-          "emotion": "neutral",
-          "timestamp": "2025-06-09T22:40:49.091811"
-        }
-      },
-      {
-        "timestamp": "2025-06-09T22:40:42.895000",
-        "analysis": {
-          "name": "Jiwan",
-          "age": 20,
-          "gender": "male",
-          "location": "Bali",
-          "health_complaints": [
-            "Stroke"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [],
-          "medical_history": null,
-          "urgency_level": "medium",
-          "emotion": "neutral",
-          "timestamp": "2025-06-09T22:40:49.091811"
-        }
-      },
-      {
-        "timestamp": "2025-06-09T22:41:20.685442",
-        "analysis": {
-          "name": "Jiwan",
-          "age": 20,
-          "gender": "male",
-          "location": "Bali",
-          "health_complaints": [
-            "Stroke"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [],
-          "medical_history": null,
-          "urgency_level": "medium",
-          "emotion": "neutral",
-          "timestamp": "2025-06-09T22:41:20.682851"
-        }
-      },
-      {
-        "timestamp": "2025-06-09T22:41:14.884000",
-        "analysis": {
-          "name": "Jiwan",
-          "age": 20,
-          "gender": "male",
-          "location": "Bali",
-          "health_complaints": [
-            "Stroke"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [],
-          "medical_history": null,
-          "urgency_level": "medium",
-          "emotion": "neutral",
-          "timestamp": "2025-06-09T22:41:20.682851"
-        }
-      },
-      {
-        "timestamp": "2025-06-09T22:41:55.199610",
-        "analysis": {
-          "name": "Jiwan",
-          "age": 20,
-          "gender": "male",
-          "location": "Bali",
-          "health_complaints": [
-            "Stroke"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [],
-          "medical_history": null,
-          "urgency_level": "medium",
-          "emotion": "negative",
-          "timestamp": "2025-06-09T22:41:55.196146"
-        }
-      },
-      {
-        "timestamp": "2025-06-09T22:41:48.777000",
-        "analysis": {
-          "name": "Jiwan",
-          "age": 20,
-          "gender": "male",
-          "location": "Bali",
-          "health_complaints": [
-            "Stroke"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [],
-          "medical_history": null,
-          "urgency_level": "medium",
-          "emotion": "negative",
-          "timestamp": "2025-06-09T22:41:55.196146"
-        }
-      },
-      {
-        "timestamp": "2025-06-09T22:42:22.185798",
-        "analysis": {
-          "name": "Jiwan",
-          "age": 20,
-          "gender": "male",
-          "location": "Bali",
-          "health_complaints": [
-            "Stroke"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [
-            "Masalah biaya/finansial"
-          ],
-          "medical_history": null,
-          "urgency_level": "medium",
-          "emotion": "neutral",
-          "timestamp": "2025-06-09T22:42:22.181734"
-        }
-      },
-      {
-        "timestamp": "2025-06-09T22:42:15.890000",
-        "analysis": {
-          "name": "Jiwan",
-          "age": 20,
-          "gender": "male",
-          "location": "Bali",
-          "health_complaints": [
-            "Stroke"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [
-            "Masalah biaya/finansial"
-          ],
-          "medical_history": null,
-          "urgency_level": "medium",
-          "emotion": "neutral",
-          "timestamp": "2025-06-09T22:42:22.181734"
-        }
-      },
-      {
-        "timestamp": "2025-06-09T22:42:58.851454",
-        "analysis": {
-          "name": "Jiwan",
-          "age": 20,
-          "gender": "male",
-          "location": "Bali",
-          "health_complaints": [
-            "Stroke"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [
-            "Dukungan keluarga"
-          ],
-          "medical_history": null,
-          "urgency_level": "medium",
-          "emotion": "neutral",
-          "timestamp": "2025-06-09T22:42:58.848115"
-        }
-      },
-      {
-        "timestamp": "2025-06-09T22:42:45.844000",
-        "analysis": {
-          "name": "Jiwan",
-          "age": 20,
-          "gender": "male",
-          "location": "Bali",
-          "health_complaints": [
-            "Stroke"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [
-            "Dukungan keluarga"
-          ],
-          "medical_history": null,
-          "urgency_level": "medium",
-          "emotion": "neutral",
-          "timestamp": "2025-06-09T22:42:58.848115"
-        }
-      }
-    ],
-    "first_interaction": "2025-06-09T22:40:49.096696",
-    "details": {
-      "name": "Jiwan",
-      "age": 20,
-      "gender": "male",
-      "location": "Bali",
-      "health_complaints": [
-        "Stroke"
-      ],
-      "conversion_barriers": [
-        "Dukungan keluarga",
-        "Masalah biaya/finansial"
-      ],
-      "last_interaction": "2025-06-09T22:42:45.844000",
-      "symptoms": [],
-      "medical_history": null,
-      "urgency_level": "medium",
-      "emotion": "neutral"
-    },
-    "latest_analysis": {
-      "name": "Jiwan",
-      "age": 20,
-      "gender": "male",
-      "location": "Bali",
-      "health_complaints": [
-        "Stroke"
-      ],
-      "symptoms": [],
-      "conversion_barriers": [
-        "Dukungan keluarga"
-      ],
-      "medical_history": null,
-      "urgency_level": "medium",
-      "emotion": "neutral",
-      "timestamp": "2025-06-09T22:42:58.848115"
-    }
-  },
   "6281236505206@s.whatsapp.net": {
     "interactions": [
       {
@@ -9631,6 +9403,857 @@
       "urgency_level": "high",
       "emotion": "negative",
       "timestamp": "2025-06-10T09:16:12.738973"
+    }
+  },
+  "6287811152506@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-10T22:18:08.638195",
+        "analysis": {
+          "name": "Jiwan",
+          "age": 21,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Insomnia"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-10T22:18:08.633531"
+        }
+      },
+      {
+        "timestamp": "2025-06-10T22:17:42.903000",
+        "analysis": {
+          "name": "Jiwan",
+          "age": 21,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Insomnia"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-10T22:18:08.633531"
+        }
+      },
+      {
+        "timestamp": "2025-06-10T22:21:00.854365",
+        "analysis": {
+          "name": "Jiwan",
+          "age": 21,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Insomnia"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-10T22:21:00.848976"
+        }
+      },
+      {
+        "timestamp": "2025-06-10T22:20:42.353000",
+        "analysis": {
+          "name": "Jiwan",
+          "age": 21,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Insomnia"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-10T22:21:00.848976"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-10T22:18:08.638195",
+    "details": {
+      "name": "Jiwan",
+      "age": 21,
+      "gender": "male",
+      "location": "Bali",
+      "health_complaints": [
+        "Insomnia"
+      ],
+      "conversion_barriers": [],
+      "last_interaction": "2025-06-10T22:20:42.353000",
+      "symptoms": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "Jiwan",
+      "age": 21,
+      "gender": "male",
+      "location": "Bali",
+      "health_complaints": [
+        "Insomnia"
+      ],
+      "symptoms": [],
+      "conversion_barriers": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral",
+      "timestamp": "2025-06-10T22:21:00.848976"
+    }
+  },
+  "6285722442187@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-11T03:19:02.083000",
+        "analysis": {
+          "name": "Wicaksono",
+          "age": 38,
+          "gender": "male",
+          "location": "Depok",
+          "health_complaints": [],
+          "symptoms": [
+            "tidur tidak nyenyak",
+            "terbangun mendadak",
+            "ngorok",
+            "sering batuk"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-11T03:19:02.078699"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T03:18:52.556000",
+        "analysis": {
+          "name": "Wicaksono",
+          "age": 38,
+          "gender": "male",
+          "location": "Depok",
+          "health_complaints": [],
+          "symptoms": [
+            "tidur tidak nyenyak",
+            "terbangun mendadak",
+            "ngorok",
+            "sering batuk"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-11T03:19:02.078699"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T03:23:40.521574",
+        "analysis": {
+          "name": "Wicaksono",
+          "age": 38,
+          "gender": "male",
+          "location": "Depok",
+          "health_complaints": [],
+          "symptoms": [
+            "tidur tidak nyenyak",
+            "terbangun mendadak",
+            "ngorok",
+            "sering batuk"
+          ],
+          "conversion_barriers": [
+            "Waktu/kesibukan"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-11T03:23:40.518016"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T03:23:23.083000",
+        "analysis": {
+          "name": "Wicaksono",
+          "age": 38,
+          "gender": "male",
+          "location": "Depok",
+          "health_complaints": [],
+          "symptoms": [
+            "tidur tidak nyenyak",
+            "terbangun mendadak",
+            "ngorok",
+            "sering batuk"
+          ],
+          "conversion_barriers": [
+            "Waktu/kesibukan"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-11T03:23:40.518016"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-11T03:19:02.083000",
+    "details": {
+      "name": "Wicaksono",
+      "age": 38,
+      "gender": "male",
+      "location": "Depok",
+      "health_complaints": [],
+      "conversion_barriers": [
+        "Waktu/kesibukan",
+        "Masalah biaya/finansial"
+      ],
+      "last_interaction": "2025-06-11T03:23:23.083000",
+      "symptoms": [
+        "tidur tidak nyenyak",
+        "terbangun mendadak",
+        "ngorok",
+        "sering batuk"
+      ],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "Wicaksono",
+      "age": 38,
+      "gender": "male",
+      "location": "Depok",
+      "health_complaints": [],
+      "symptoms": [
+        "tidur tidak nyenyak",
+        "terbangun mendadak",
+        "ngorok",
+        "sering batuk"
+      ],
+      "conversion_barriers": [
+        "Waktu/kesibukan"
+      ],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral",
+      "timestamp": "2025-06-11T03:23:40.518016"
+    }
+  },
+  "6283806454775@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-11T06:52:19.392358",
+        "analysis": {
+          "name": null,
+          "age": null,
+          "gender": "female",
+          "location": null,
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "low",
+          "emotion": "negative",
+          "timestamp": "2025-06-11T06:52:19.389015"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T06:52:13.744000",
+        "analysis": {
+          "name": null,
+          "age": null,
+          "gender": "female",
+          "location": null,
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "low",
+          "emotion": "negative",
+          "timestamp": "2025-06-11T06:52:19.389015"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T06:53:51.768000",
+        "analysis": {
+          "name": null,
+          "age": null,
+          "gender": "female",
+          "location": null,
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "low",
+          "emotion": "negative",
+          "timestamp": "2025-06-11T06:52:19.389015"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T06:55:24.966000",
+        "analysis": {
+          "name": null,
+          "age": null,
+          "gender": "female",
+          "location": null,
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "low",
+          "emotion": "negative",
+          "timestamp": "2025-06-11T06:52:19.389015"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T06:57:04.159000",
+        "analysis": {
+          "name": null,
+          "age": null,
+          "gender": "female",
+          "location": null,
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "low",
+          "emotion": "negative",
+          "timestamp": "2025-06-11T06:52:19.389015"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T06:59:49.675228",
+        "analysis": {
+          "name": null,
+          "age": null,
+          "gender": "female",
+          "location": null,
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "low",
+          "emotion": "positive",
+          "timestamp": "2025-06-11T06:59:49.671829"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T06:59:43.652000",
+        "analysis": {
+          "name": null,
+          "age": null,
+          "gender": "female",
+          "location": null,
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "low",
+          "emotion": "positive",
+          "timestamp": "2025-06-11T06:59:49.671829"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-11T06:52:19.392358",
+    "details": {
+      "name": null,
+      "age": null,
+      "gender": "female",
+      "location": null,
+      "health_complaints": [],
+      "conversion_barriers": [
+        "Masalah biaya/finansial"
+      ],
+      "last_interaction": "2025-06-11T06:59:43.652000",
+      "symptoms": [],
+      "medical_history": null,
+      "urgency_level": "low",
+      "emotion": "negative"
+    },
+    "latest_analysis": {
+      "name": null,
+      "age": null,
+      "gender": "female",
+      "location": null,
+      "health_complaints": [],
+      "symptoms": [],
+      "conversion_barriers": [],
+      "medical_history": null,
+      "urgency_level": "low",
+      "emotion": "positive",
+      "timestamp": "2025-06-11T06:59:49.671829"
+    }
+  },
+  "6281399467084@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-11T06:54:09.897269",
+        "analysis": {
+          "name": "Adam Bahtiar",
+          "age": 60,
+          "gender": "male",
+          "location": "Pamulang, Tangerang Selatan",
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-11T06:54:09.894576"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T06:54:02.174000",
+        "analysis": {
+          "name": "Adam Bahtiar",
+          "age": 60,
+          "gender": "male",
+          "location": "Pamulang, Tangerang Selatan",
+          "health_complaints": [],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-11T06:54:09.894576"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T06:57:51.485955",
+        "analysis": {
+          "name": "Adam Bahtiar",
+          "age": 60,
+          "gender": "male",
+          "location": "Pamulang, Tangerang Selatan",
+          "health_complaints": [],
+          "symptoms": [
+            "terpukul batin"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-11T06:57:51.482992"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T06:57:45.104000",
+        "analysis": {
+          "name": "Adam Bahtiar",
+          "age": 60,
+          "gender": "male",
+          "location": "Pamulang, Tangerang Selatan",
+          "health_complaints": [],
+          "symptoms": [
+            "terpukul batin"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-11T06:57:51.482992"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T07:01:16.479000",
+        "analysis": {
+          "name": "Adam Bahtiar",
+          "age": 60,
+          "gender": "male",
+          "location": "Pamulang, Tangerang Selatan",
+          "health_complaints": [],
+          "symptoms": [
+            "terpukul batin"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-11T06:57:51.482992"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T07:05:00.019000",
+        "analysis": {
+          "name": "Adam Bahtiar",
+          "age": 60,
+          "gender": "male",
+          "location": "Pamulang, Tangerang Selatan",
+          "health_complaints": [],
+          "symptoms": [
+            "terpukul batin"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-11T06:57:51.482992"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T07:06:14.592000",
+        "analysis": {
+          "name": "Adam Bahtiar",
+          "age": 60,
+          "gender": "male",
+          "location": "Pamulang, Tangerang Selatan",
+          "health_complaints": [],
+          "symptoms": [
+            "terpukul batin"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-11T06:57:51.482992"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T07:07:03.559000",
+        "analysis": {
+          "name": "Adam Bahtiar",
+          "age": 60,
+          "gender": "male",
+          "location": "Pamulang, Tangerang Selatan",
+          "health_complaints": [],
+          "symptoms": [
+            "terpukul batin"
+          ],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-11T06:57:51.482992"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-11T06:54:09.897269",
+    "details": {
+      "name": "Adam Bahtiar",
+      "age": 60,
+      "gender": "male",
+      "location": "Pamulang, Tangerang Selatan",
+      "health_complaints": [],
+      "conversion_barriers": [
+        "Masalah biaya/finansial"
+      ],
+      "last_interaction": "2025-06-11T07:07:03.559000",
+      "symptoms": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "negative"
+    },
+    "latest_analysis": {
+      "name": "Adam Bahtiar",
+      "age": 60,
+      "gender": "male",
+      "location": "Pamulang, Tangerang Selatan",
+      "health_complaints": [],
+      "symptoms": [
+        "terpukul batin"
+      ],
+      "conversion_barriers": [
+        "Masalah biaya/finansial"
+      ],
+      "medical_history": null,
+      "urgency_level": "high",
+      "emotion": "negative",
+      "timestamp": "2025-06-11T06:57:51.482992"
+    }
+  },
+  "6285278820965@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-11T07:37:15.586473",
+        "analysis": {
+          "name": "Raihanatu",
+          "age": 52,
+          "gender": "female",
+          "location": "pekanbaru",
+          "health_complaints": [],
+          "symptoms": [
+            "cemas",
+            "mudah lelah",
+            "asthma",
+            "gerd"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-11T07:37:15.582722"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T07:37:09.349000",
+        "analysis": {
+          "name": "Raihanatu",
+          "age": 52,
+          "gender": "female",
+          "location": "pekanbaru",
+          "health_complaints": [],
+          "symptoms": [
+            "cemas",
+            "mudah lelah",
+            "asthma",
+            "gerd"
+          ],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-11T07:37:15.582722"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T07:38:27.717799",
+        "analysis": {
+          "name": "Raihanatu",
+          "age": 52,
+          "gender": "female",
+          "location": "pekanbaru",
+          "health_complaints": [
+            "GERD"
+          ],
+          "symptoms": [
+            "cemas",
+            "mudah lelah",
+            "asthma"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Keluhan dirasakan sejak tahun 2005.",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-11T07:38:27.714745"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T07:38:21.694000",
+        "analysis": {
+          "name": "Raihanatu",
+          "age": 52,
+          "gender": "female",
+          "location": "pekanbaru",
+          "health_complaints": [
+            "GERD"
+          ],
+          "symptoms": [
+            "cemas",
+            "mudah lelah",
+            "asthma"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Keluhan dirasakan sejak tahun 2005.",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-11T07:38:27.714745"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T07:39:00.440011",
+        "analysis": {
+          "name": "Raihanatu",
+          "age": 52,
+          "gender": "female",
+          "location": "pekanbaru",
+          "health_complaints": [
+            "GERD"
+          ],
+          "symptoms": [
+            "cemas",
+            "mudah lelah",
+            "asthma"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Keluhan dirasakan sejak tahun 2005.",
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-11T07:39:00.435427"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T07:38:54.442000",
+        "analysis": {
+          "name": "Raihanatu",
+          "age": 52,
+          "gender": "female",
+          "location": "pekanbaru",
+          "health_complaints": [
+            "GERD"
+          ],
+          "symptoms": [
+            "cemas",
+            "mudah lelah",
+            "asthma"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Keluhan dirasakan sejak tahun 2005.",
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-11T07:39:00.435427"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T07:39:25.316345",
+        "analysis": {
+          "name": "Raihanatu",
+          "age": 52,
+          "gender": "female",
+          "location": "pekanbaru",
+          "health_complaints": [
+            "GERD"
+          ],
+          "symptoms": [
+            "cemas",
+            "mudah lelah",
+            "asthma"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Keluhan dirasakan sejak tahun 2005. Baru mengalami suami wafat pada 29 Januari 2025.",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-11T07:39:25.312775"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T07:39:18.977000",
+        "analysis": {
+          "name": "Raihanatu",
+          "age": 52,
+          "gender": "female",
+          "location": "pekanbaru",
+          "health_complaints": [
+            "GERD"
+          ],
+          "symptoms": [
+            "cemas",
+            "mudah lelah",
+            "asthma"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Keluhan dirasakan sejak tahun 2005. Baru mengalami suami wafat pada 29 Januari 2025.",
+          "urgency_level": "high",
+          "emotion": "negative",
+          "timestamp": "2025-06-11T07:39:25.312775"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T07:40:28.570064",
+        "analysis": {
+          "name": "Raihanatu",
+          "age": 52,
+          "gender": "female",
+          "location": "pekanbaru",
+          "health_complaints": [
+            "GERD"
+          ],
+          "symptoms": [
+            "cemas",
+            "mudah lelah",
+            "asthma"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Keluhan dirasakan sejak tahun 2005. Baru mengalami suami wafat pada 29 Januari 2025.",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-11T07:40:28.567197"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T07:40:20.878000",
+        "analysis": {
+          "name": "Raihanatu",
+          "age": 52,
+          "gender": "female",
+          "location": "pekanbaru",
+          "health_complaints": [
+            "GERD"
+          ],
+          "symptoms": [
+            "cemas",
+            "mudah lelah",
+            "asthma"
+          ],
+          "conversion_barriers": [],
+          "medical_history": "Keluhan dirasakan sejak tahun 2005. Baru mengalami suami wafat pada 29 Januari 2025.",
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-11T07:40:28.567197"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-11T07:37:15.586473",
+    "details": {
+      "name": "Raihanatu",
+      "age": 52,
+      "gender": "female",
+      "location": "pekanbaru",
+      "health_complaints": [
+        "GERD"
+      ],
+      "conversion_barriers": [],
+      "last_interaction": "2025-06-11T07:40:20.878000",
+      "symptoms": [
+        "cemas",
+        "mudah lelah",
+        "asthma",
+        "gerd"
+      ],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "Raihanatu",
+      "age": 52,
+      "gender": "female",
+      "location": "pekanbaru",
+      "health_complaints": [
+        "GERD"
+      ],
+      "symptoms": [
+        "cemas",
+        "mudah lelah",
+        "asthma"
+      ],
+      "conversion_barriers": [],
+      "medical_history": "Keluhan dirasakan sejak tahun 2005. Baru mengalami suami wafat pada 29 Januari 2025.",
+      "urgency_level": "medium",
+      "emotion": "neutral",
+      "timestamp": "2025-06-11T07:40:28.567197"
     }
   }
 }

@@ -4,6 +4,7 @@ Admin dashboard API routes for the RSH WhatsApp Chatbot
 import os
 import logging
 import time
+import json
 from datetime import datetime, timedelta
 from flask import Blueprint, jsonify, request
 from chat_logger import ChatLogger
@@ -524,7 +525,7 @@ def get_user_analytics():
         return jsonify({"error": str(e), "type": "analytics_error"}), 500
 
 @admin_bp.route('/analytics/users/<sender>/history', methods=['GET'])
-def get_user_history(sender):
+def get_user_analytics_history(sender):
     try:
         insights = analytics.get_user_insights(sender)
         if not insights:
@@ -534,8 +535,373 @@ def get_user_history(sender):
         logger.error(f"Error getting user history: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
+@admin_bp.route('/user-history/<sender>', methods=['GET'])
+def get_user_history(sender):
+    try:
+        # Get conversation for this sender
+        conversation = chat_logger.get_chat(f"conv_{sender.split('@')[0]}")
+        
+        if not conversation:
+            return jsonify({
+                "success": False,
+                "error": "Conversation not found"
+            }), 404
+            
+        return jsonify({
+            "success": True,
+            "conversation": conversation
+        })
+    except Exception as e:
+        logger.error(f"Error getting user history: {str(e)}")
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500
+
+@admin_bp.route('/user-messages/<phone_number>', methods=['GET'])
+def get_user_messages(phone_number):
+    try:
+        # Format the phone number to match the expected format in the database
+        if '@s.whatsapp.net' not in phone_number:
+            sender = f"{phone_number}@s.whatsapp.net"
+        else:
+            sender = phone_number
+            
+        # Get conversation for this sender
+        conversation = chat_logger.get_chat(f"conv_{sender.split('@')[0]}")
+        
+        if not conversation:
+            return jsonify({
+                "success": False,
+                "error": "Conversation not found"
+            }), 404
+            
+        # Extract only the messages sent by the user
+        user_messages = []
+        for message in conversation.get("messages", []):
+            # In our data structure, messages from the user don't have a 'response' field
+            # as their own property, they are the 'message' field
+            if "message" in message:
+                user_messages.append(message["message"])
+            
+        return jsonify({
+            "success": True,
+            "messages": user_messages
+        })
+    except Exception as e:
+        logger.error(f"Error getting user messages: {str(e)}")
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500
+
+# User preferences endpoints
+@admin_bp.route('/preferences/selected-user', methods=['GET', 'POST', 'OPTIONS'])
+@admin_bp.route('/preferences/selected_user', methods=['GET', 'POST', 'OPTIONS'])  # Support both dash and underscore
+def selected_user_endpoint():
+    # Handle CORS preflight request
+    if request.method == 'OPTIONS':
+        response = jsonify({'status': 'ok'})
+        response.headers.add('Access-Control-Allow-Origin', request.headers.get('Origin', '*'))
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization,X-Requested-With,pragma,cache-control')
+        response.headers.add('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
+        response.headers.add('Access-Control-Allow-Credentials', 'true')
+        return response
+    
+    # Path untuk file preferences
+    preferences_path = os.path.join('analytics_data', 'user_preferences.json')
+    
+    # Pastikan direktori ada
+    os.makedirs('analytics_data', exist_ok=True)
+    
+    # GET request - mengembalikan selected user yang tersimpan
+    if request.method == 'GET':
+        try:
+            logger.info(f"Received GET to /admin/preferences/selected-user")
+            
+            # Baca file preferences jika ada
+            if os.path.exists(preferences_path):
+                try:
+                    with open(preferences_path, 'r') as f:
+                        preferences = json.load(f)
+                        selected_user = preferences.get('selected_user', '')
+                        logger.info(f"Returning selected_user: {selected_user}")
+                except Exception as read_error:
+                    logger.error(f"Error reading preferences file: {str(read_error)}")
+                    selected_user = ''
+            else:
+                logger.info("Preferences file doesn't exist, returning empty selected_user")
+                selected_user = ''
+                
+                # Buat file kosong jika belum ada
+                with open(preferences_path, 'w') as f:
+                    json.dump({'selected_user': '', 'admin_preferences': {}}, f, indent=2)
+            
+            # Buat response dengan header CORS
+            response = jsonify({'selected_user': selected_user})
+            response.headers.add('Access-Control-Allow-Origin', request.headers.get('Origin', '*'))
+            response.headers.add('Access-Control-Allow-Credentials', 'true')
+            return response
+            
+        except Exception as e:
+            logger.error(f"Error in GET selected_user: {str(e)}")
+            response = jsonify({'error': str(e)})
+            response.headers.add('Access-Control-Allow-Origin', request.headers.get('Origin', '*'))
+            response.headers.add('Access-Control-Allow-Credentials', 'true')
+            return response, 500
+    
+    # POST request - menyimpan selected user
+    elif request.method == 'POST':
+        try:
+            # Log request info
+            logger.info(f"Received POST to /admin/preferences/selected-user")
+            logger.info(f"Request content type: {request.content_type}")
+            logger.info(f"Request data: {request.data}")
+            
+            # Parse JSON data dengan silent=True untuk menghindari error
+            data = request.get_json(silent=True)
+            if not data:
+                logger.error("Failed to parse JSON or empty data received")
+                response = jsonify({'error': 'Invalid JSON format or empty data'})
+                response.headers.add('Access-Control-Allow-Origin', request.headers.get('Origin', '*'))
+                response.headers.add('Access-Control-Allow-Credentials', 'true')
+                return response, 400
+                
+            logger.info(f"Parsed JSON data: {data}")
+            
+            # Validasi data
+            if 'selected_user' not in data:
+                logger.error("Missing selected_user field in request")
+                response = jsonify({'error': 'Missing selected_user field'})
+                response.headers.add('Access-Control-Allow-Origin', request.headers.get('Origin', '*'))
+                response.headers.add('Access-Control-Allow-Credentials', 'true')
+                return response, 400
+                
+            selected_user = data['selected_user']
+            logger.info(f"Selected user to save: {selected_user}")
+            
+            # Validasi format nomor telepon (opsional)
+            if selected_user and not selected_user.endswith('@s.whatsapp.net'):
+                logger.info(f"Adding @s.whatsapp.net suffix to {selected_user}")
+                selected_user = f"{selected_user}@s.whatsapp.net"
+            
+            # Pastikan direktori analytics_data ada
+            if not os.path.exists('analytics_data'):
+                logger.info("Creating analytics_data directory")
+                os.makedirs('analytics_data', exist_ok=True)
+            
+            # Baca file preferences yang sudah ada jika tersedia
+            preferences = {'admin_preferences': {}}
+            if os.path.exists(preferences_path):
+                try:
+                    with open(preferences_path, 'r') as file:
+                        preferences = json.load(file)
+                except Exception as read_error:
+                    logger.warning(f"Error reading preferences file, creating new one: {str(read_error)}")
+            
+            # Update preferences dengan selected_user baru
+            preferences['selected_user'] = selected_user
+            
+            # Simpan ke file dengan error handling
+            try:
+                with open(preferences_path, 'w') as file:
+                    json.dump(preferences, file, indent=2)
+                logger.info(f"Successfully saved selected_user: {selected_user}")
+            except Exception as write_error:
+                logger.error(f"Error writing preferences file: {str(write_error)}")
+                response = jsonify({'error': f'Failed to save preferences: {str(write_error)}'})
+                response.headers.add('Access-Control-Allow-Origin', request.headers.get('Origin', '*'))
+                response.headers.add('Access-Control-Allow-Credentials', 'true')
+                return response, 500
+            
+            # Return success response dengan header CORS
+            response = jsonify({'success': True, 'selected_user': selected_user})
+            response.headers.add('Access-Control-Allow-Origin', request.headers.get('Origin', '*'))
+            response.headers.add('Access-Control-Allow-Credentials', 'true')
+            return response
+                
+        except Exception as e:
+            # Log error dan kirim response error dengan header CORS
+            logger.error(f"Error in POST selected_user: {str(e)}")
+            response = jsonify({'error': str(e)})
+            response.headers.add('Access-Control-Allow-Origin', request.headers.get('Origin', '*'))
+            response.headers.add('Access-Control-Allow-Credentials', 'true')
+            return response, 500
+
+# Thread messages endpoints
+@admin_bp.route('/threads/<path:sender>/messages', methods=['GET', 'OPTIONS'])
+@admin_bp.route('/thread-messages/<path:sender>', methods=['GET', 'OPTIONS'])
+def get_thread_messages(sender):
+    # Handle CORS preflight request
+    if request.method == 'OPTIONS':
+        response = jsonify({'status': 'ok'})
+        response.headers.add('Access-Control-Allow-Origin', request.headers.get('Origin', '*'))
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization,X-Requested-With,pragma,cache-control')
+        response.headers.add('Access-Control-Allow-Methods', 'GET,OPTIONS')
+        response.headers.add('Access-Control-Allow-Credentials', 'true')
+        return response
+        
+    try:
+        # Import here to avoid circular imports
+        import requests
+        import json
+        from assistant_thread_manager import get_thread_id_for_nomor, get_all_threads
+        from openai_assistant_pipeline import get_headers, OPENAI_API_URL
+        
+        logger.info(f'[Admin API] Mendapatkan thread messages untuk sender: {sender}')
+        
+        # Hapus karakter khusus dari sender jika ada
+        cleaned_sender = sender.strip()
+        logger.info(f'[Admin API] Mencari thread messages untuk sender: {cleaned_sender}')
+        
+        # Gunakan fungsi get_thread_id_for_nomor yang sudah ditingkatkan
+        # Fungsi ini akan mencoba berbagai format nomor dan menambahkan logging
+        thread_id = get_thread_id_for_nomor(cleaned_sender)
+        
+        # Log semua thread yang tersedia untuk debugging
+        all_threads = get_all_threads()
+        logger.info(f'[Admin API] Thread yang tersedia: {list(all_threads.keys())}')
+        logger.info(f'[Admin API] Thread ID yang ditemukan: {thread_id}')
+        
+        # Tambahkan informasi tentang selected_user yang disimpan
+        try:
+            preferences_path = os.path.join('analytics_data', 'user_preferences.json')
+            if os.path.exists(preferences_path):
+                with open(preferences_path, 'r') as f:
+                    preferences = json.load(f)
+                    selected_user = preferences.get('selected_user', '')
+                    logger.info(f'[Admin API] Selected user dari preferences: {selected_user}')
+                    logger.info(f'[Admin API] Apakah sama dengan sender? {selected_user == cleaned_sender}')
+        except Exception as e:
+            logger.error(f'[Admin API] Error saat membaca preferences: {str(e)}')
+            
+        # Log informasi tambahan untuk membantu debugging
+        logger.info(f'[Admin API] Sender yang diterima: {sender}')
+        logger.info(f'[Admin API] Cleaned sender: {cleaned_sender}')
+        if '@s.whatsapp.net' in cleaned_sender:
+            logger.info(f'[Admin API] Base nomor: {cleaned_sender.split("@")[0]}')
+        else:
+            logger.info(f'[Admin API] Nomor dengan suffix: {cleaned_sender}@s.whatsapp.net')
+        
+        # Jika masih tidak ditemukan, coba cari thread yang paling cocok dari semua thread yang tersedia
+        if not thread_id:
+            all_threads = get_all_threads()
+            logger.warning(f'[Admin API] Thread tidak ditemukan untuk {cleaned_sender}. Thread yang tersedia: {all_threads}')
+            
+            # Coba cari thread yang paling cocok berdasarkan substring matching
+            base_number = cleaned_sender.split('@')[0] if '@' in cleaned_sender else cleaned_sender
+            logger.info(f'[Admin API] Mencoba mencari thread berdasarkan substring: {base_number}')
+            
+            matching_threads = {}
+            for thread_key, thread_val in all_threads.items():
+                # Bandingkan tanpa @s.whatsapp.net dan tanpa prefix analytics_
+                thread_base = thread_key.split('@')[0] if '@' in thread_key else thread_key
+                thread_base = thread_base.replace('analytics_', '')
+                
+                # Jika nomor base ada dalam thread key atau sebaliknya
+                if base_number in thread_base or thread_base in base_number:
+                    matching_score = len(set(base_number) & set(thread_base)) / max(len(base_number), len(thread_base))
+                    matching_threads[thread_key] = (thread_val, matching_score)
+                    logger.info(f'[Admin API] Menemukan thread yang cocok: {thread_key} dengan skor: {matching_score}')
+            
+            # Jika ada thread yang cocok, gunakan yang paling cocok
+            if matching_threads:
+                best_match = max(matching_threads.items(), key=lambda x: x[1][1])
+                thread_key, (thread_val, _) = best_match
+                thread_id = thread_val
+                logger.info(f'[Admin API] Menggunakan thread terbaik: {thread_key} -> {thread_id}')
+            else:
+                # Jika tidak ada yang cocok, kembalikan error
+                response = jsonify({
+                    'error': 'Thread not found',
+                    'thread_id': '',
+                    'messages': [],
+                    'available_threads': list(all_threads.keys())
+                })
+                response.headers.add('Access-Control-Allow-Origin', request.headers.get('Origin', '*'))
+                response.headers.add('Access-Control-Allow-Credentials', 'true')
+                return response, 404
+        
+        # Get messages from OpenAI API
+        if thread_id:
+            url = f"{OPENAI_API_URL}/threads/{thread_id}/messages"
+            headers = get_headers()
+            
+            logger.info(f'[Admin API] Mengambil pesan dari thread: {thread_id}')
+            response = requests.get(url, headers=headers)
+            
+            if response.status_code == 200:
+                data = response.json()
+                messages = data.get('data', [])
+                
+                # Format messages for frontend
+                formatted_messages = []
+                for msg in messages:
+                    role = msg.get('role', '')
+                    content = msg.get('content', [])
+                    
+                    # Extract text content
+                    text_content = ""
+                    for content_item in content:
+                        if content_item.get('type') == 'text':
+                            text_content = content_item.get('text', {}).get('value', '')
+                    
+                    formatted_messages.append({
+                        'id': msg.get('id', ''),
+                        'role': role,
+                        'content': text_content,
+                        'created_at': msg.get('created_at', 0)
+                    })
+                
+                # Sort messages by created_at (newest first)
+                formatted_messages.sort(key=lambda x: x['created_at'], reverse=True)
+                
+                logger.info(f'[Admin API] Berhasil mengambil {len(formatted_messages)} pesan')
+                
+                # Return messages with CORS headers
+                response = jsonify({
+                    'thread_id': thread_id,
+                    'messages': formatted_messages
+                })
+                response.headers.add('Access-Control-Allow-Origin', request.headers.get('Origin', '*'))
+                response.headers.add('Access-Control-Allow-Credentials', 'true')
+                return response
+            else:
+                logger.error(f'[Admin API] Error dari OpenAI API: {response.status_code} {response.text}')
+                response = jsonify({
+                    'error': f'Error from OpenAI API: {response.status_code}',
+                    'thread_id': thread_id,
+                    'messages': []
+                })
+                response.headers.add('Access-Control-Allow-Origin', request.headers.get('Origin', '*'))
+                response.headers.add('Access-Control-Allow-Credentials', 'true')
+                return response, response.status_code
+        else:
+            logger.error(f'[Admin API] Thread tidak ditemukan untuk {cleaned_sender}')
+            response = jsonify({
+                'error': 'Thread not found',
+                'thread_id': '',
+                'messages': []
+            })
+            response.headers.add('Access-Control-Allow-Origin', request.headers.get('Origin', '*'))
+            response.headers.add('Access-Control-Allow-Credentials', 'true')
+            return response, 404
+            
+    except Exception as e:
+        logger.error(f'[Admin API] Error saat mengambil thread messages: {str(e)}')
+        import traceback
+        logger.error(traceback.format_exc())
+        response = jsonify({
+            'error': str(e),
+            'thread_id': '',
+            'messages': []
+        })
+        response.headers.add('Access-Control-Allow-Origin', request.headers.get('Origin', '*'))
+        response.headers.add('Access-Control-Allow-Credentials', 'true')
+        return response, 500
+
 # Webhook to log messages from the WhatsApp service
-@admin_bp.route('/log', methods=['POST'])
+@admin_bp.route('/log-message', methods=['POST'])
 def log_message():
     data = request.json
     

@@ -495,85 +495,10 @@ def update_whatsapp_status():
         return jsonify({"error": str(e)}), 500
         
 
-# Analytics endpoints
-@app.route('/admin/analytics/users', methods=['GET', 'OPTIONS'])
-def get_user_analytics():
-    # Handle CORS preflight request
-    if request.method == 'OPTIONS':
-        response = jsonify({'status': 'ok'})
-        return response
-        
-    try:
-        insights = analytics.get_user_insights()
-        logger.info(f'Raw user insights data structure: {list(insights.keys()) if isinstance(insights, dict) else "not a dict"}')
-        
-        if not insights or not isinstance(insights, dict):
-            logger.error('Invalid insights data structure')
-            return jsonify({
-                'total_users': 0,
-                'active_users': 0,
-                'new_users': 0,
-                'users': {}
-            })
-        
-        # Ensure the insights have all the expected fields
-        default_insights = {
-            'total_users': 0,
-            'active_users': 0,
-            'new_users': 0,
-            'users': {}
-        }
-        
-        # Merge with defaults to ensure all fields exist
-        for key, value in default_insights.items():
-            if key not in insights:
-                insights[key] = value
-                
-        # Ensure users is a dictionary
-        if not isinstance(insights['users'], dict):
-            logger.warning(f"Users field is not a dictionary: {type(insights['users'])}")
-            insights['users'] = {}
-            
-        # Process each user to ensure they have the expected structure
-        for phone, user_data in insights['users'].items():
-            if not isinstance(user_data, dict):
-                insights['users'][phone] = {}
-                continue
-                
-            # Ensure details field exists
-            if 'details' not in user_data or not isinstance(user_data['details'], dict):
-                user_data['details'] = {}
-                
-            # Ensure latest_analysis field exists
-            if 'latest_analysis' not in user_data or not isinstance(user_data['latest_analysis'], dict):
-                user_data['latest_analysis'] = {}
-        
-        # Tambahkan informasi selected_user ke response
-        selected_user = user_preferences.get_selected_user()
-        if selected_user:
-            insights['selected_user'] = selected_user
-        
-        # Log successful response
-        logger.info(f'Successfully retrieved user analytics data with {len(insights["users"])} users')
-        logger.info(f'User analytics structure: {list(insights.keys())}')
-        
-        # Set proper content type
-        response = jsonify(insights)
-        response.headers['Content-Type'] = 'application/json'
-        return response
-    except Exception as e:
-        logger.error(f'Error getting user analytics: {str(e)}')
-        import traceback
-        logger.error(traceback.format_exc())
-        return jsonify({
-            'total_users': 0,
-            'active_users': 0,
-            'new_users': 0,
-            'users': {}
-        }), 500
+# Note: Analytics endpoints have been moved to admin_routes.py blueprint
+# The following routes are commented out to avoid conflicts with the blueprint routes
 
-@app.route('/admin/analytics/performance', methods=['GET', 'OPTIONS'])
-def get_performance_analytics():
+# Removed duplicate analytics endpoints that conflict with admin_routes.py blueprint
     # Handle CORS preflight request
     if request.method == 'OPTIONS':
         response = jsonify({'status': 'ok'})
@@ -627,10 +552,11 @@ def get_performance_analytics():
 
 # Performance analytics endpoint is already defined above
 
-# User preferences endpoints
-@app.route('/admin/preferences/selected-user', methods=['GET', 'POST', 'OPTIONS'])
-@app.route('/admin/preferences/selected_user', methods=['GET', 'POST', 'OPTIONS'])  # Support both dash and underscore
-def selected_user_endpoint():
+# Note: User preferences endpoints have been moved to admin_routes.py blueprint
+# The following routes are commented out to avoid conflicts with the blueprint routes
+
+# Removed duplicate user preferences endpoints that conflict with admin_routes.py blueprint
+def selected_user_endpoint_disabled(): # Renamed to avoid conflicts
     # Handle CORS preflight request
     if request.method == 'OPTIONS':
         response = jsonify({'status': 'ok'})
@@ -760,10 +686,11 @@ def selected_user_endpoint():
             response.headers.add('Access-Control-Allow-Credentials', 'true')
             return response, 500
 
-# Thread messages endpoint - dua URL untuk mendukung kedua format yang digunakan
-@app.route('/admin/threads/<path:sender>/messages', methods=['GET', 'OPTIONS'])
-@app.route('/admin/thread-messages/<path:sender>', methods=['GET', 'OPTIONS'])
-def get_thread_messages(sender):
+# Note: Thread messages endpoints have been moved to admin_routes.py blueprint
+# The following routes are commented out to avoid conflicts with the blueprint routes
+
+# Removed duplicate thread messages endpoints that conflict with admin_routes.py blueprint
+def get_thread_messages_disabled(sender): # Renamed to avoid conflicts
     # Handle CORS preflight request
     if request.method == 'OPTIONS':
         response = jsonify({'status': 'ok'})

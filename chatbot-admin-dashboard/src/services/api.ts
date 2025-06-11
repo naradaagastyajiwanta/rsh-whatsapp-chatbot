@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Chat, ChatStats } from '@/types/chat';
+import { Chat, ChatStats, Message } from '@/types/chat';
 
 // Define API base URL
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
@@ -579,6 +579,37 @@ export const deleteThread = async (phoneNumber: string): Promise<{
       status: 'error', 
       message: error.message || 'Network error while deleting thread'
     };
+  }
+};
+
+// Function to fetch user messages by phone number
+export const fetchUserMessages = async (phoneNumber: string): Promise<string[]> => {
+  try {
+    // Format the phone number to match the API endpoint
+    // Remove the @s.whatsapp.net suffix if present
+    const formattedPhone = phoneNumber.replace('@s.whatsapp.net', '');
+    
+    // Call the API to get the user's chat messages
+    const response = await api.get(`/admin/user-messages/${formattedPhone}`);
+    
+    if (response.status === 200 && response.data && response.data.success) {
+      // The API returns { success: true, messages: string[] }
+      return response.data.messages || [];
+    }
+    
+    // If API call fails, try to get messages from mock data
+    const mockChat = mockChats.find(chat => chat.sender === phoneNumber);
+    if (mockChat) {
+      const userMessages = mockChat.messages
+        .filter(message => message.isFromUser)
+        .map(message => message.content);
+      return userMessages;
+    }
+    
+    return [];
+  } catch (error) {
+    console.error(`Error fetching messages for user ${phoneNumber}:`, error);
+    return [];
   }
 };
 

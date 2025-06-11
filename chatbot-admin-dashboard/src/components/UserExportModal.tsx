@@ -68,8 +68,15 @@ const UserExportModal: React.FC<UserExportModalProps> = ({
     }
   };
   
+  // State for loading indicator
+  const [isExporting, setIsExporting] = useState<boolean>(false);
+  const [exportError, setExportError] = useState<string | null>(null);
+
   // Handle export button click
-  const handleExport = () => {
+  const handleExport = async () => {
+    // Reset error state
+    setExportError(null);
+    
     // Prepare filters
     const filters = {
       gender: genderFilter,
@@ -82,24 +89,41 @@ const UserExportModal: React.FC<UserExportModalProps> = ({
     };
     
     if (exportFormat === 'pdf') {
-      // Generate PDF using the new function
-      exportUsersToPDF(users, filters, t);
+      try {
+        // Show loading indicator
+        setIsExporting(true);
+        
+        // Generate PDF using the async function
+        await exportUsersToPDF(users, filters, t);
+        
+        // Hide loading indicator
+        setIsExporting(false);
+      } catch (error) {
+        console.error('Error exporting PDF:', error);
+        setExportError(t('users.exportError') || 'Error exporting PDF. Please try again.');
+        setIsExporting(false);
+      }
     } else {
-      // Generate CSV and create download link
-      const csvUrl = exportUsersToCSV(users, filters);
-      
-      // Create a temporary anchor element to trigger download
-      const downloadLink = document.createElement('a');
-      downloadLink.href = csvUrl;
-      downloadLink.download = `user-data-export-${new Date().toISOString().split('T')[0]}.csv`;
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
-      
-      // Release the object URL
-      setTimeout(() => {
-        URL.revokeObjectURL(csvUrl);
-      }, 100);
+      try {
+        // Generate CSV and create download link
+        const csvUrl = exportUsersToCSV(users, filters);
+        
+        // Create a temporary anchor element to trigger download
+        const downloadLink = document.createElement('a');
+        downloadLink.href = csvUrl;
+        downloadLink.download = `user-data-export-${new Date().toISOString().split('T')[0]}.csv`;
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+        
+        // Release the object URL
+        setTimeout(() => {
+          URL.revokeObjectURL(csvUrl);
+        }, 100);
+      } catch (error) {
+        console.error('Error exporting CSV:', error);
+        setExportError(t('users.exportError') || 'Error exporting CSV. Please try again.');
+      }
     }
   };
   
@@ -278,27 +302,47 @@ const UserExportModal: React.FC<UserExportModalProps> = ({
               </div>
             )}
             
+            {/* Error message */}
+            {exportError && (
+              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-4" role="alert">
+                <span className="block sm:inline">{exportError}</span>
+              </div>
+            )}
+            
             {/* Export button */}
             <div className="flex justify-end pt-4">
               <button
                 onClick={handleExport}
-                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center"
+                disabled={isExporting}
+                className={`px-4 py-2 ${isExporting ? 'bg-blue-300' : 'bg-blue-500 hover:bg-blue-600'} text-white rounded flex items-center`}
               >
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  className="h-5 w-5 mr-2" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor"
-                >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" 
-                  />
-                </svg>
-                {t('users.exportData') || 'Export Data'}
+                {isExporting ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    {t('users.exporting') || 'Exporting...'}
+                  </>
+                ) : (
+                  <>
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg" 
+                      className="h-5 w-5 mr-2" 
+                      fill="none" 
+                      viewBox="0 0 24 24" 
+                      stroke="currentColor"
+                    >
+                      <path 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        strokeWidth={2} 
+                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" 
+                      />
+                    </svg>
+                    {t('users.exportData') || 'Export Data'}
+                  </>
+                )}
               </button>
             </div>
           </div>

@@ -279,7 +279,9 @@ export const id = {
     location: 'Lokasi',
     province: 'Provinsi',
     healthComplaints: 'Keluhan Kesehatan',
+    conversionBarriers: 'Hambatan Konversi',
     firstInteraction: 'Interaksi Pertama',
-    lastInteraction: 'Interaksi Terakhir'
+    lastInteraction: 'Interaksi Terakhir',
+    userMessages: 'Pesan Pengguna'
   },
 };
