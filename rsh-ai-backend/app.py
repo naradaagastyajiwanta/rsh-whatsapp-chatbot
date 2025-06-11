@@ -5,6 +5,7 @@ import os
 import time
 import requests
 from datetime import datetime
+from collections import OrderedDict
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
@@ -103,6 +104,12 @@ def health():
 # Initialize RAG pipeline
 rag_pipeline = None
 
+# Create a request cache to prevent duplicate processing
+# Using OrderedDict as a simple LRU cache
+request_cache = OrderedDict()
+MAX_CACHE_SIZE = 1000
+REQUEST_CACHE_TTL = 300  # 5 minutes in seconds
+
 def initialize_rag_pipeline():
     global rag_pipeline
     try:
@@ -200,6 +207,28 @@ def ask():
     # Log headers for debugging
     logger.info(f"[ASK] Request headers: {dict(request.headers)}")
     
+    # Check for idempotency key
+    idempotency_key = request.headers.get('X-Idempotency-Key') or request.json.get('request_id')
+    
+    # If we have an idempotency key, check if we've already processed this request
+    if idempotency_key:
+        # Clean up expired cache entries
+        current_time = time.time()
+        expired_keys = [k for k, v in request_cache.items() if current_time - v['timestamp'] > REQUEST_CACHE_TTL]
+        for k in expired_keys:
+            request_cache.pop(k, None)
+            
+        # Check if this request is a duplicate
+        if idempotency_key in request_cache:
+            cached_response = request_cache[idempotency_key]
+            logger.info(f"[ASK] Duplicate request detected with idempotency key: {idempotency_key}. Returning cached response.")
+            
+            # Move to end to mark as recently used
+            request_cache.move_to_end(idempotency_key)
+            
+            # Return the cached response
+            return jsonify(cached_response['response']), cached_response['status_code'], response_headers
+    
     try:
         data = request.json
         if not data:
@@ -243,8 +272,8 @@ def ask():
             except Exception as log_error:
                 logger.error(f"Error logging chat message: {str(log_error)}")
             
-            # Return a special response indicating bot is disabled
-            return jsonify({
+            # Prepare response for disabled bot
+            response_data = {
                 "response": None,
                 "sender": sender,
                 "bot_disabled": True,
@@ -252,7 +281,24 @@ def ask():
                 "message": "Bot is disabled for this sender. Message logged for manual response.",
                 "request_id": request_id,
                 "timestamp": int(time.time() * 1000)
-            }), 200, response_headers
+            }
+            
+            # Cache the response if we have an idempotency key
+            if idempotency_key:
+                # Limit cache size
+                if len(request_cache) >= MAX_CACHE_SIZE:
+                    # Remove oldest item
+                    request_cache.popitem(last=False)
+                    
+                # Store in cache
+                request_cache[idempotency_key] = {
+                    'response': response_data,
+                    'status_code': 200,
+                    'timestamp': time.time()
+                }
+                logger.info(f"[ASK] Cached bot disabled response for idempotency key: {idempotency_key}")
+            
+            return jsonify(response_data), 200, response_headers
         
         # Bot is enabled, proceed with OpenAI Assistant flow
         logger.info(f"[ASK] Mengirim ke Assistant API untuk nomor: {sender}, pesan: {message}")
@@ -342,13 +388,31 @@ def ask():
         except Exception as log_error:
             logger.error(f"Error logging chat message: {str(log_error)}")
         
-        return jsonify({
+        # Prepare response
+        response_data = {
             "response": response,
             "sender": sender,
             "response_time": round(response_time, 2),
             "request_id": request_id,
             "timestamp": int(time.time() * 1000)
-        }), 200, response_headers
+        }
+        
+        # Cache the response if we have an idempotency key
+        if idempotency_key:
+            # Limit cache size
+            if len(request_cache) >= MAX_CACHE_SIZE:
+                # Remove oldest item
+                request_cache.popitem(last=False)
+                
+            # Store in cache
+            request_cache[idempotency_key] = {
+                'response': response_data,
+                'status_code': 200,
+                'timestamp': time.time()
+            }
+            logger.info(f"[ASK] Cached response for idempotency key: {idempotency_key}")
+        
+        return jsonify(response_data), 200, response_headers
         
     except Exception as e:
         logger.error(f"Error processing request: {str(e)}")

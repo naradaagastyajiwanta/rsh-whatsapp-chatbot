@@ -9405,113 +9405,6 @@
       "timestamp": "2025-06-10T09:16:12.738973"
     }
   },
-  "6287811152506@s.whatsapp.net": {
-    "interactions": [
-      {
-        "timestamp": "2025-06-10T22:18:08.638195",
-        "analysis": {
-          "name": "Jiwan",
-          "age": 21,
-          "gender": "male",
-          "location": "Bali",
-          "health_complaints": [
-            "Insomnia"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [],
-          "medical_history": null,
-          "urgency_level": "medium",
-          "emotion": "neutral",
-          "timestamp": "2025-06-10T22:18:08.633531"
-        }
-      },
-      {
-        "timestamp": "2025-06-10T22:17:42.903000",
-        "analysis": {
-          "name": "Jiwan",
-          "age": 21,
-          "gender": "male",
-          "location": "Bali",
-          "health_complaints": [
-            "Insomnia"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [],
-          "medical_history": null,
-          "urgency_level": "medium",
-          "emotion": "neutral",
-          "timestamp": "2025-06-10T22:18:08.633531"
-        }
-      },
-      {
-        "timestamp": "2025-06-10T22:21:00.854365",
-        "analysis": {
-          "name": "Jiwan",
-          "age": 21,
-          "gender": "male",
-          "location": "Bali",
-          "health_complaints": [
-            "Insomnia"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [],
-          "medical_history": null,
-          "urgency_level": "medium",
-          "emotion": "neutral",
-          "timestamp": "2025-06-10T22:21:00.848976"
-        }
-      },
-      {
-        "timestamp": "2025-06-10T22:20:42.353000",
-        "analysis": {
-          "name": "Jiwan",
-          "age": 21,
-          "gender": "male",
-          "location": "Bali",
-          "health_complaints": [
-            "Insomnia"
-          ],
-          "symptoms": [],
-          "conversion_barriers": [],
-          "medical_history": null,
-          "urgency_level": "medium",
-          "emotion": "neutral",
-          "timestamp": "2025-06-10T22:21:00.848976"
-        }
-      }
-    ],
-    "first_interaction": "2025-06-10T22:18:08.638195",
-    "details": {
-      "name": "Jiwan",
-      "age": 21,
-      "gender": "male",
-      "location": "Bali",
-      "health_complaints": [
-        "Insomnia"
-      ],
-      "conversion_barriers": [],
-      "last_interaction": "2025-06-10T22:20:42.353000",
-      "symptoms": [],
-      "medical_history": null,
-      "urgency_level": "medium",
-      "emotion": "neutral"
-    },
-    "latest_analysis": {
-      "name": "Jiwan",
-      "age": 21,
-      "gender": "male",
-      "location": "Bali",
-      "health_complaints": [
-        "Insomnia"
-      ],
-      "symptoms": [],
-      "conversion_barriers": [],
-      "medical_history": null,
-      "urgency_level": "medium",
-      "emotion": "neutral",
-      "timestamp": "2025-06-10T22:21:00.848976"
-    }
-  },
   "6285722442187@s.whatsapp.net": {
     "interactions": [
       {
@@ -10254,6 +10147,279 @@
       "urgency_level": "medium",
       "emotion": "neutral",
       "timestamp": "2025-06-11T07:40:28.567197"
+    }
+  },
+  "6287811152506@s.whatsapp.net": {
+    "interactions": [
+      {
+        "timestamp": "2025-06-11T09:04:24.747645",
+        "analysis": {
+          "name": "jiwan",
+          "age": 20,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Diabetes"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-11T09:04:24.742760"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T09:04:19.050000",
+        "analysis": {
+          "name": "jiwan",
+          "age": 20,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Diabetes"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-11T09:04:24.742760"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T09:05:30.539505",
+        "analysis": {
+          "name": "jiwan",
+          "age": 20,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Diabetes"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-11T09:05:30.535172"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T09:05:24.388000",
+        "analysis": {
+          "name": "jiwan",
+          "age": 20,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Diabetes"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-11T09:05:30.535172"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T09:06:36.182351",
+        "analysis": {
+          "name": "jiwan",
+          "age": 20,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Diabetes"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Keraguan akan efektivitas"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-11T09:06:36.178224"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T09:06:30.089000",
+        "analysis": {
+          "name": "jiwan",
+          "age": 20,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Diabetes"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Keraguan akan efektivitas"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "positive",
+          "timestamp": "2025-06-11T09:06:36.178224"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T09:08:24.811981",
+        "analysis": {
+          "name": "jiwan",
+          "age": 20,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Diabetes"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-11T09:08:24.804651"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T09:08:16.681000",
+        "analysis": {
+          "name": "jiwan",
+          "age": 20,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Diabetes"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-11T09:08:24.804651"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T09:09:42.692851",
+        "analysis": {
+          "name": "jiwan",
+          "age": 20,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Diabetes"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-11T09:09:42.688184"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T09:09:34.576000",
+        "analysis": {
+          "name": "jiwan",
+          "age": 20,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Diabetes"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Masalah biaya/finansial"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "negative",
+          "timestamp": "2025-06-11T09:09:42.688184"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T09:10:21.601658",
+        "analysis": {
+          "name": "jiwan",
+          "age": 20,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Diabetes"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Dukungan keluarga"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-11T09:10:21.597556"
+        }
+      },
+      {
+        "timestamp": "2025-06-11T09:10:13.267000",
+        "analysis": {
+          "name": "jiwan",
+          "age": 20,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Diabetes"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Dukungan keluarga"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-11T09:10:21.597556"
+        }
+      }
+    ],
+    "first_interaction": "2025-06-11T09:04:24.747645",
+    "details": {
+      "name": "jiwan",
+      "age": 20,
+      "gender": "male",
+      "location": "Bali",
+      "health_complaints": [
+        "Diabetes"
+      ],
+      "conversion_barriers": [
+        "Masalah biaya/finansial",
+        "Keraguan akan efektivitas",
+        "Dukungan keluarga"
+      ],
+      "last_interaction": "2025-06-11T09:10:13.267000",
+      "symptoms": [],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral"
+    },
+    "latest_analysis": {
+      "name": "jiwan",
+      "age": 20,
+      "gender": "male",
+      "location": "Bali",
+      "health_complaints": [
+        "Diabetes"
+      ],
+      "symptoms": [],
+      "conversion_barriers": [
+        "Dukungan keluarga"
+      ],
+      "medical_history": null,
+      "urgency_level": "medium",
+      "emotion": "neutral",
+      "timestamp": "2025-06-11T09:10:21.597556"
     }
   }
 }

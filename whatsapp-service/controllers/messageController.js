@@ -6,19 +6,31 @@ const FLASK_BACKEND_URL = process.env.FLASK_BACKEND_URL || 'http://localhost:500
 
 // Cache untuk mencegah pengiriman pesan duplikat
 const messageCache = new Map();
-const CACHE_TTL = 60 * 1000; // 60 detik
+const responseCache = new Map(); // Cache untuk mencegah pengiriman respons duplikat
+const CACHE_TTL = 120 * 1000; // 120 detik (2 menit)
+const RESPONSE_CACHE_TTL = 60 * 1000; // 60 detik (1 menit)
 
 /**
  * Membersihkan cache secara periodik
  */
 setInterval(() => {
   const now = Date.now();
+  // Clean message cache
   for (const [key, data] of messageCache.entries()) {
     if (now - data.timestamp > CACHE_TTL) {
       messageCache.delete(key);
     }
   }
-}, CACHE_TTL);
+  
+  // Clean response cache
+  for (const [key, data] of responseCache.entries()) {
+    if (now - data.timestamp > RESPONSE_CACHE_TTL) {
+      responseCache.delete(key);
+    }
+  }
+  
+  console.log(`Cache stats - Messages: ${messageCache.size}, Responses: ${responseCache.size}`);
+}, 30 * 1000); // Run cleanup every 30 seconds
 
 /**
  * Handle incoming WhatsApp messages and forward to Flask backend
@@ -48,17 +60,25 @@ async function handleIncomingMessage(req, res) {
       const senderName = message.pushName || 'User';
       const messageId = message.key.id || `${sender}_${Date.now()}`;
       
+      // Generate a more robust message fingerprint that includes content
+      const messageFingerprint = `${messageId}_${sender}_${text.substring(0, 20)}`;
+      
       // Cek apakah pesan ini sudah diproses sebelumnya
-      if (messageCache.has(messageId)) {
-        console.log(`Skipping duplicate message with ID: ${messageId}`);
+      if (messageCache.has(messageId) || messageCache.has(messageFingerprint)) {
+        console.log(`Skipping duplicate message with ID: ${messageId} / Fingerprint: ${messageFingerprint}`);
         continue;
       }
       
-      // Tambahkan pesan ke cache
-      messageCache.set(messageId, {
+      // Tambahkan pesan ke cache dengan dua kunci untuk redundansi
+      const cacheData = {
         timestamp: Date.now(),
-        processed: false
-      });
+        processed: false,
+        text: text.substring(0, 50), // Store partial text for debugging
+        sender: sender
+      };
+      
+      messageCache.set(messageId, cacheData);
+      messageCache.set(messageFingerprint, cacheData);
       
       console.log(`Received message from ${senderName} (${sender}): ${text}`);
       console.log(`Message ID: ${messageId}`);
@@ -67,6 +87,24 @@ async function handleIncomingMessage(req, res) {
       try {
         const requestId = `req_${Date.now()}_${Math.random().toString(36).substring(2, 10)}`;
         console.log(`Sending request to Flask backend with ID: ${requestId}`);
+        
+        // Check if we've recently sent a very similar request
+        const recentRequestKey = `${sender}_${text.substring(0, 30)}`;
+        if (responseCache.has(recentRequestKey)) {
+          const recentRequest = responseCache.get(recentRequestKey);
+          const timeSinceLastRequest = Date.now() - recentRequest.timestamp;
+          
+          if (timeSinceLastRequest < 5000) { // 5 seconds
+            console.log(`Blocking potential duplicate request to Flask. Similar request sent ${timeSinceLastRequest}ms ago`);
+            continue;
+          }
+        }
+        
+        // Add to response cache before sending to prevent parallel duplicates
+        responseCache.set(recentRequestKey, {
+          timestamp: Date.now(),
+          requestId: requestId
+        });
         
         const response = await axios.post(FLASK_BACKEND_URL, {
           sender: sender,
@@ -77,7 +115,8 @@ async function handleIncomingMessage(req, res) {
         }, {
           headers: {
             'Cache-Control': 'no-cache',
-            'X-Request-ID': requestId
+            'X-Request-ID': requestId,
+            'X-Idempotency-Key': messageId // Add idempotency key for backend deduplication
           },
           timeout: 60000 // 60 second timeout
         });
@@ -85,12 +124,47 @@ async function handleIncomingMessage(req, res) {
         // Verifikasi respons
         if (response.data && response.data.response) {
           // Tandai pesan sebagai sudah diproses
+          const messageFingerprint = `${messageId}_${sender}_${text.substring(0, 20)}`;
+          const responseFingerprint = `${sender}_${response.data.response.substring(0, 30)}`;
+          
+          // Update message cache to mark as processed
           if (messageCache.has(messageId)) {
             messageCache.set(messageId, {
               timestamp: Date.now(),
-              processed: true
+              processed: true,
+              text: text.substring(0, 50),
+              sender: sender,
+              responseId: requestId
             });
           }
+          
+          if (messageCache.has(messageFingerprint)) {
+            messageCache.set(messageFingerprint, {
+              timestamp: Date.now(),
+              processed: true,
+              text: text.substring(0, 50),
+              sender: sender,
+              responseId: requestId
+            });
+          }
+          
+          // Check if we've already sent this exact response recently
+          if (responseCache.has(responseFingerprint)) {
+            const recentResponse = responseCache.get(responseFingerprint);
+            const timeSinceLastResponse = Date.now() - recentResponse.timestamp;
+            
+            if (timeSinceLastResponse < 10000) { // 10 seconds
+              console.log(`Blocking duplicate response to ${sender}. Similar response sent ${timeSinceLastResponse}ms ago`);
+              continue;
+            }
+          }
+          
+          // Add response to cache
+          responseCache.set(responseFingerprint, {
+            timestamp: Date.now(),
+            requestId: requestId,
+            messageId: messageId
+          });
           
           // Kirim respons ke pengguna WhatsApp
           console.log(`Received response for request ${requestId}:`, response.data.response.substring(0, 100) + '...');
