@@ -9102,5 +9102,24 @@
     "first_timestamp": "2025-06-11T07:36:08.658271",
     "last_timestamp": "2025-06-11T07:40:50.421028",
     "last_message": "Berapa hari kegiatannya di Bogor? Berapa biaya total . Agar saya persiapkan"
+  },
+  {
+    "id": "conv_6282187947884",
+    "sender": "6282187947884@s.whatsapp.net",
+    "sender_name": "Sr. M. Elisa, SND",
+    "messages": [
+      {
+        "id": "6282187947884_1750172248",
+        "sender": "6282187947884@s.whatsapp.net",
+        "sender_name": "Sr. M. Elisa, SND",
+        "message": "Saya berminat untuk tahu lebih jauh mengenai RSH Satu Bumi",
+        "response": "Maaf, saya sedang mengalami masalah teknis. Silakan coba lagi dalam beberapa saat.",
+        "timestamp": "2025-06-17T21:57:28.126747",
+        "response_time": 16.94917106628418
+      }
+    ],
+    "first_timestamp": "2025-06-17T21:57:28.126747",
+    "last_timestamp": "2025-06-17T21:57:28.126747",
+    "last_message": "Saya berminat untuk tahu lebih jauh mengenai RSH Satu Bumi"
   }
 ]

@@ -613,23 +613,71 @@ export const fetchUserMessages = async (phoneNumber: string): Promise<string[]> 
   }
 };
 
+// Define message interface for type safety
+interface MessageData {
+  id?: string;
+  role?: string;
+  sender?: string;
+  content?: any;
+  message?: string;
+  text?: string;
+  created_at?: string | number;
+  timestamp?: string | number;
+  [key: string]: any; // Allow other properties
+}
+
 // Function to fetch thread messages for a specific user with improved error handling and normalization
 export const fetchThreadMessages = async (phoneNumber: string, retryCount = 0): Promise<any[]> => {
   try {
+    if (!phoneNumber) {
+      console.error('fetchThreadMessages called with empty phone number');
+      return [];
+    }
+
     // Log the selected user from localStorage for debugging
     const storedUser = localStorage.getItem('selectedUser');
     console.log(`fetchThreadMessages for: ${phoneNumber}`);
     console.log(`Selected user in localStorage: ${storedUser}`);
-    console.log(`Do they match? ${storedUser === phoneNumber}`);
     
-    // Normalisasi nomor telepon jika belum memiliki suffix @s.whatsapp.net
-    const normalizedPhoneNumber = phoneNumber.includes('@s.whatsapp.net') 
-      ? phoneNumber 
-      : `${phoneNumber}@s.whatsapp.net`;
+    // Normalize phone number consistently
+    // First, strip any @s.whatsapp.net suffix if it exists
+    const strippedPhoneNumber = phoneNumber.replace('@s.whatsapp.net', '');
+    // Then add it back in a consistent format
+    const normalizedPhoneNumber = `${strippedPhoneNumber}@s.whatsapp.net`;
     
     console.log(`Using normalized phone number: ${normalizedPhoneNumber}`);
     
-    // Coba endpoint utama terlebih dahulu
+    // Check cache first
+    const cacheKey = `threadMessages_${normalizedPhoneNumber}`;
+    const cachedMessages = localStorage.getItem(cacheKey);
+    const lastFetchTime = localStorage.getItem(`${cacheKey}_lastFetch`);
+    const now = Date.now();
+    
+    // Use cache if available and not forced to refresh (retryCount === 0 means initial request)
+    if (cachedMessages && lastFetchTime && retryCount === 0) {
+      const cacheAge = now - parseInt(lastFetchTime);
+      const cacheExpiry = 5 * 60 * 1000; // 5 minutes
+      
+      if (cacheAge < cacheExpiry) {
+        console.log(`Using cached thread messages (${cacheAge / 1000}s old)`);
+        try {
+          const parsedMessages = JSON.parse(cachedMessages);
+          
+          // Fetch fresh data in the background
+          setTimeout(() => {
+            fetchThreadMessages(phoneNumber, 1)
+              .catch(err => console.error('Background refresh failed:', err));
+          }, 100);
+          
+          return parsedMessages;
+        } catch (parseError) {
+          console.error('Error parsing cached messages, will fetch fresh data:', parseError);
+          // Continue with fresh fetch if cache parsing fails
+        }
+      }
+    }
+    
+    // Try primary endpoint first
     try {
       console.log(`Fetching thread messages from /admin/thread-messages/${normalizedPhoneNumber}`);
       const response = await api.get(`/admin/thread-messages/${normalizedPhoneNumber}`, {
@@ -637,22 +685,56 @@ export const fetchThreadMessages = async (phoneNumber: string, retryCount = 0): 
           'Cache-Control': 'no-cache',
           'Pragma': 'no-cache'
         },
-        timeout: 8000 // 8 detik timeout
+        timeout: 15000 // 15 second timeout (increased from 10s)
       });
       
       console.log('Thread messages response:', response.data);
       
-      // Cache the result in localStorage for offline/error fallback
-      if (response.data && response.data.messages) {
-        localStorage.setItem(`threadMessages_${normalizedPhoneNumber}`, JSON.stringify(response.data.messages));
-        return response.data.messages;
+      // Handle different response formats
+      let messages = [];
+      
+      if (response.data && response.data.messages && Array.isArray(response.data.messages)) {
+        // Format 1: { messages: [...] }
+        messages = response.data.messages;
+      } else if (response.data && Array.isArray(response.data)) {
+        // Format 2: Direct array of messages
+        messages = response.data;
+      } else if (response.data && typeof response.data === 'object') {
+        // Format 3: Object with thread data
+        if (response.data.thread && Array.isArray(response.data.thread)) {
+          messages = response.data.thread;
+        } else if (response.data.data && Array.isArray(response.data.data)) {
+          messages = response.data.data;
+        }
       }
       
-      return [];
+      if (!Array.isArray(messages)) {
+        console.error('Received invalid messages format:', messages);
+        messages = [];
+      }
+      
+      // Normalize message format if needed
+      const normalizedMessages = messages.map((msg: MessageData) => {
+        if (!msg) return null;
+        
+        // Ensure each message has required fields
+        return {
+          id: msg.id || `msg-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
+          role: msg.role || (msg.sender === normalizedPhoneNumber ? 'user' : 'assistant'),
+          content: msg.content || [{ type: 'text', text: { value: msg.message || msg.text || '' } }],
+          created_at: msg.created_at || msg.timestamp || Date.now()
+        };
+      }).filter(msg => msg !== null); // Remove any null messages
+      
+      // Cache the normalized result
+      localStorage.setItem(cacheKey, JSON.stringify(normalizedMessages));
+      localStorage.setItem(`${cacheKey}_lastFetch`, now.toString());
+      
+      return normalizedMessages;
     } catch (primaryError) {
       console.warn(`Error with primary endpoint: ${primaryError}`);
       
-      // Coba endpoint alternatif jika endpoint utama gagal
+      // Try alternative endpoint if primary fails
       console.log(`Trying alternative endpoint: /admin/threads/${normalizedPhoneNumber}/messages`);
       try {
         const altResponse = await api.get(`/admin/threads/${normalizedPhoneNumber}/messages`, {
@@ -660,45 +742,103 @@ export const fetchThreadMessages = async (phoneNumber: string, retryCount = 0): 
             'Cache-Control': 'no-cache',
             'Pragma': 'no-cache'
           },
-          timeout: 8000
+          timeout: 15000 // 15 second timeout
         });
         
         console.log('Thread messages from alternative endpoint:', altResponse.data);
         
-        // Cache the result
-        if (altResponse.data && altResponse.data.messages) {
-          localStorage.setItem(`threadMessages_${normalizedPhoneNumber}`, JSON.stringify(altResponse.data.messages));
-          return altResponse.data.messages;
+        // Handle different response formats for alternative endpoint
+        let messages = [];
+        
+        if (altResponse.data && altResponse.data.messages && Array.isArray(altResponse.data.messages)) {
+          messages = altResponse.data.messages;
+        } else if (altResponse.data && Array.isArray(altResponse.data)) {
+          messages = altResponse.data;
+        } else if (altResponse.data && typeof altResponse.data === 'object') {
+          if (altResponse.data.thread && Array.isArray(altResponse.data.thread)) {
+            messages = altResponse.data.thread;
+          } else if (altResponse.data.data && Array.isArray(altResponse.data.data)) {
+            messages = altResponse.data.data;
+          }
         }
         
-        return [];
+        if (!Array.isArray(messages)) {
+          console.error('Received invalid messages format from alternative endpoint:', messages);
+          messages = [];
+        }
+        
+        // Normalize message format
+        const normalizedMessages = messages.map((msg: MessageData) => {
+          if (!msg) return null;
+          
+          return {
+            id: msg.id || `msg-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
+            role: msg.role || (msg.sender === normalizedPhoneNumber ? 'user' : 'assistant'),
+            content: msg.content || [{ type: 'text', text: { value: msg.message || msg.text || '' } }],
+            created_at: msg.created_at || msg.timestamp || Date.now()
+          };
+        }).filter(msg => msg !== null); // Remove any null messages
+        
+        // Cache the normalized result
+        localStorage.setItem(cacheKey, JSON.stringify(normalizedMessages));
+        localStorage.setItem(`${cacheKey}_lastFetch`, now.toString());
+        
+        return normalizedMessages;
       } catch (altError) {
         console.error(`Alternative endpoint also failed: ${altError}`);
-        throw altError; // Re-throw untuk dihandle oleh catch utama
+        throw altError; // Re-throw to be handled by the main catch
       }
     }
   } catch (error: any) {
     console.error('Error fetching thread messages:', error);
     
-    // Retry logic - maksimal 1 retry jika bukan error 404 (thread not found)
-    if (retryCount < 1 && error.response?.status !== 404) {
+    // Untuk error 404 (thread tidak ditemukan), langsung return array kosong
+    if (error.response?.status === 404) {
+      console.log('Thread not found (404), returning empty array');
+      // Normalisasi nomor telepon untuk cache key
+      const strippedPhoneNumber = phoneNumber.replace('@s.whatsapp.net', '');
+      const normalizedPhone = `${strippedPhoneNumber}@s.whatsapp.net`;
+      
+      // Simpan cache kosong untuk mencegah request berulang
+      const cacheKey = `threadMessages_${normalizedPhone}`;
+      localStorage.setItem(cacheKey, JSON.stringify([]));
+      localStorage.setItem(`${cacheKey}_lastFetch`, Date.now().toString());
+      return [];
+    }
+    
+    // Retry logic - maximum 2 retries for non-404 errors
+    if (retryCount < 2) {
       console.log(`Retrying fetchThreadMessages (attempt ${retryCount + 1})...`);
-      return await new Promise(resolve => setTimeout(resolve, 1000)) // Wait 1 second
+      // Exponential backoff: wait longer for each retry
+      const waitTime = retryCount === 0 ? 1000 : 3000;
+      return await new Promise(resolve => setTimeout(resolve, waitTime))
         .then(() => fetchThreadMessages(phoneNumber, retryCount + 1));
     }
     
-    // Coba ambil dari cache jika ada
-    const normalizedPhoneNumber = phoneNumber.includes('@s.whatsapp.net') 
-      ? phoneNumber 
-      : `${phoneNumber}@s.whatsapp.net`;
+    // Try to get from cache if API calls fail
+    const strippedPhoneNumber = phoneNumber.replace('@s.whatsapp.net', '');
+    const normalizedPhoneNumber = `${strippedPhoneNumber}@s.whatsapp.net`;
     
-    const cachedMessages = localStorage.getItem(`threadMessages_${normalizedPhoneNumber}`);
-    if (cachedMessages) {
-      console.log('Using cached thread messages from localStorage');
-      return JSON.parse(cachedMessages);
+    // Try multiple cache key formats to be safe
+    const cacheKeys = [
+      `threadMessages_${normalizedPhoneNumber}`,
+      `threadMessages_${strippedPhoneNumber}`
+    ];
+    
+    for (const key of cacheKeys) {
+      const cachedMessages = localStorage.getItem(key);
+      if (cachedMessages) {
+        console.log(`Using cached thread messages from localStorage with key: ${key}`);
+        try {
+          return JSON.parse(cachedMessages);
+        } catch (parseError) {
+          console.error('Error parsing cached messages:', parseError);
+          // Continue to next cache key or return empty array
+        }
+      }
     }
     
-    // Return empty array if API fails and no cache
+    // Return empty array if API fails and no cache is available
     return [];
   }
 };

@@ -123,6 +123,9 @@ interface ThreadViewProps {
   onRefresh: (phoneNumber: string) => void;
   onDeleteThread: () => Promise<void>;
   isDeletingThread?: boolean;
+  error?: string | null;
+  // Add retry callback for error recovery
+  onRetry?: (phoneNumber: string) => void;
 }
 
 interface AnalyticsViewProps {
@@ -131,7 +134,7 @@ interface AnalyticsViewProps {
   isLoading: boolean;
 }
 
-const ThreadView: React.FC<ThreadViewProps> = ({ phoneNumber, messages, isLoading, onRefresh, onDeleteThread, isDeletingThread = false }) => {
+const ThreadView: React.FC<ThreadViewProps> = ({ phoneNumber, messages, isLoading, onRefresh, onDeleteThread, isDeletingThread = false, error, onRetry }) => {
   const { t } = useLanguage();
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   
@@ -141,9 +144,23 @@ const ThreadView: React.FC<ThreadViewProps> = ({ phoneNumber, messages, isLoadin
     onRefresh(phoneNumber);
   };
   
+  // Handler for retry - uses onRetry if available, otherwise falls back to onRefresh
+  const handleRetryClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (onRetry) {
+      onRetry(phoneNumber);
+    } else {
+      onRefresh(phoneNumber);
+    }
+  };
+  
   // Handler for delete button
   const handleDeleteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    if (messages.length === 0) {
+      console.log('No messages to delete');
+      return;
+    }
     setShowDeleteConfirm(true);
   };
   
@@ -163,16 +180,113 @@ const ThreadView: React.FC<ThreadViewProps> = ({ phoneNumber, messages, isLoadin
     setShowDeleteConfirm(false);
   };
   
+  // Format timestamp safely
+  const formatTimestamp = (timestamp: number | string) => {
+    if (!timestamp) return '';
+    try {
+      const date = new Date(timestamp);
+      return date.toLocaleString('id-ID', {
+        hour: '2-digit',
+        minute: '2-digit',
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+      });
+    } catch (err) {
+      console.error('Error formatting timestamp:', timestamp, err);
+      return 'Invalid date';
+    }
+  };
+  
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-full">
         <CircularProgress />
+        <p className="ml-3 text-gray-600">{t('users.loadingMessages') || 'Loading messages...'}</p>
       </div>
     );
   }
   
-  // Sort messages by creation time (newest first)
-  const sortedMessages = [...messages].sort((a, b) => b.created_at - a.created_at);
+  if (error) {
+    // Cek apakah error adalah "Thread tidak ditemukan"
+    const isThreadNotFound = error.includes('Thread tidak ditemukan') || error.includes('not found');
+    
+    return (
+      <div className="flex items-center justify-center h-full">
+        <div className={`${isThreadNotFound ? 'bg-blue-50' : 'bg-red-50'} p-6 rounded-lg text-center`}>
+          {isThreadNotFound ? (
+            // Icon informasi untuk thread tidak ditemukan
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              className="h-12 w-12 text-blue-500 mx-auto mb-4" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" 
+              />
+            </svg>
+          ) : (
+            // Icon error untuk error lainnya
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              className="h-12 w-12 text-red-500 mx-auto mb-4" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" 
+              />
+            </svg>
+          )}
+          
+          <h3 className={`text-lg font-medium ${isThreadNotFound ? 'text-blue-800' : 'text-red-800'}`}>{error}</h3>
+          
+          {!isThreadNotFound && (
+            // Hanya tampilkan tombol retry jika bukan thread tidak ditemukan
+            <div className="mt-4 flex justify-center space-x-3">
+              <button 
+                onClick={handleRetryClick}
+                className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+              >
+                {t('common.retry')}
+              </button>
+              {messages.length > 0 && (
+                <button 
+                  onClick={() => {}}
+                  className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
+                >
+                  {t('users.useCachedData') || 'Use cached data'}
+                </button>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+  
+  // Validate messages and sort by creation time (newest first)
+  const validMessages = messages.filter(msg => msg !== null && msg !== undefined);
+  const sortedMessages = [...validMessages].sort((a, b) => {
+    try {
+      // Handle different timestamp formats safely
+      const timeA = typeof a.created_at === 'string' ? new Date(a.created_at).getTime() : a.created_at;
+      const timeB = typeof b.created_at === 'string' ? new Date(b.created_at).getTime() : b.created_at;
+      return timeB - timeA;
+    } catch (err) {
+      console.error('Error sorting messages:', err);
+      return 0;
+    }
+  });
   
   return (
     <div className="h-full flex flex-col">
@@ -190,7 +304,7 @@ const ThreadView: React.FC<ThreadViewProps> = ({ phoneNumber, messages, isLoadin
           <button 
             onClick={handleDeleteClick}
             className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 flex items-center"
-            disabled={isLoading || isDeletingThread}
+            disabled={isLoading || isDeletingThread || messages.length === 0}
           >
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
@@ -541,19 +655,7 @@ const Users: React.FC = () => {
   
   // Inisialisasi selectedUser sebagai null, akan diambil dari server
   const [selectedUser, setSelectedUser] = useState<string | null>(null);
-  const [threadMessages, setThreadMessages] = useState<ThreadMessage[]>(() => {
-    try {
-      if (selectedUser) {
-        const cacheKey = `threadMessages_${selectedUser}`;
-        const savedMessages = localStorage.getItem(cacheKey);
-        if (savedMessages) return JSON.parse(savedMessages);
-      }
-      return [];
-    } catch (e) {
-      console.error('Error loading threadMessages from localStorage:', e);
-      return [];
-    }
-  });
+  const [threadMessages, setThreadMessages] = useState<ThreadMessage[]>([]);
   const [isLoadingThread, setIsLoadingThread] = useState(false);
   const [isDeletingThread, setIsDeletingThread] = useState(false);
   const [isShowingThreadPanel, setIsShowingThreadPanel] = useState(true);
@@ -565,6 +667,7 @@ const Users: React.FC = () => {
   const [showPersistentError, setShowPersistentError] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [isExportModalOpen, setIsExportModalOpen] = useState(false);
+  const [threadError, setThreadError] = useState<string | null>(null);
 
   // Handle thread deletion for a specific user
   const handleDeleteThread = async () => {
@@ -753,65 +856,202 @@ const Users: React.FC = () => {
     }
   };
   
-  // Function to fetch thread messages for a selected user with caching
+  // Function to fetch thread messages for a selected user with caching and better error handling
   const fetchUserThreadMessages = async (phoneNumber: string, forceRefresh = false) => {
     try {
+      if (!phoneNumber) {
+        console.error('fetchUserThreadMessages called with empty phone number');
+        setThreadError('Invalid phone number');
+        setIsLoadingThread(false);
+        return;
+      }
+
+      console.log(`Starting fetchUserThreadMessages for: ${phoneNumber}`);
+      
+      // Clear previous thread messages and errors immediately when switching users
+      setThreadMessages([]);
+      setThreadError(null);
       setIsLoadingThread(true);
       
-      // Cek apakah ada cache untuk thread messages pengguna ini
-      const cacheKey = `threadMessages_${phoneNumber}`;
+      // Normalize phone number consistently
+      // First, strip any @s.whatsapp.net suffix if it exists
+      const strippedPhoneNumber = phoneNumber.replace('@s.whatsapp.net', '');
+      // Then add it back in a consistent format
+      const normalizedPhoneNumber = `${strippedPhoneNumber}@s.whatsapp.net`;
+      
+      console.log(`Using normalized phone number: ${normalizedPhoneNumber}`);
+      
+      // Check cache for thread messages
+      const cacheKey = `threadMessages_${normalizedPhoneNumber}`;
       const cachedMessages = localStorage.getItem(cacheKey);
       const lastFetchTime = localStorage.getItem(`${cacheKey}_lastFetch`);
       const now = new Date().getTime();
-      const cacheExpiry = 5 * 60 * 1000; // 5 menit
+      const cacheExpiry = 5 * 60 * 1000; // 5 minutes
       
-      // Gunakan cache jika belum expired dan tidak dipaksa refresh
+      // Use cache if available and not forced to refresh
       if (cachedMessages && lastFetchTime && !forceRefresh && (now - parseInt(lastFetchTime)) < cacheExpiry) {
-        console.log(`Using cached thread messages for ${phoneNumber}`);
-        const parsedMessages = JSON.parse(cachedMessages);
-        setThreadMessages(parsedMessages);
-        setIsLoadingThread(false);
+        console.log(`Using cached thread messages for ${normalizedPhoneNumber}`);
+        try {
+          const parsedMessages = JSON.parse(cachedMessages);
+          if (Array.isArray(parsedMessages)) {
+            setThreadMessages(parsedMessages);
+            setIsLoadingThread(false);
+            
+            // Still fetch in background for updates
+            setTimeout(() => {
+              fetchThreadMessages(normalizedPhoneNumber)
+                .then(freshData => {
+                  console.log(`Background refresh of thread messages for ${normalizedPhoneNumber}`);
+                  if (freshData && Array.isArray(freshData) && freshData.length > 0) {
+                    // Only update if there are changes to avoid unnecessary re-renders
+                    if (JSON.stringify(freshData) !== JSON.stringify(parsedMessages)) {
+                      console.log('Thread messages changed, updating state');
+                      // Make sure we're still on the same user before updating
+                      if (selectedUser === phoneNumber) {
+                        setThreadMessages(freshData);
+                        // Update cache
+                        localStorage.setItem(cacheKey, JSON.stringify(freshData));
+                        localStorage.setItem(`${cacheKey}_lastFetch`, new Date().getTime().toString());
+                      }
+                    } else {
+                      console.log('Thread messages unchanged, keeping current state');
+                    }
+                  }
+                })
+                .catch(err => {
+                  console.error('Background thread fetch error:', err);
+                  // Don't show error for background refresh failures
+                });
+            }, 500); // Small delay to prioritize UI responsiveness
+            
+            return;
+          } else {
+            console.error('Cached messages is not an array, clearing cache');
+            localStorage.removeItem(cacheKey);
+            localStorage.removeItem(`${cacheKey}_lastFetch`);
+          }
+        } catch (parseError) {
+          console.error('Error parsing cached messages:', parseError);
+          // Clear invalid cache and continue with fresh fetch
+          localStorage.removeItem(cacheKey);
+          localStorage.removeItem(`${cacheKey}_lastFetch`);
+        }
+      }
+      
+      // If no cache or cache expired, fetch new data
+      console.log(`Fetching fresh thread messages for ${normalizedPhoneNumber}`);
+      try {
+        const threadData = await fetchThreadMessages(normalizedPhoneNumber);
+        console.log('Fetched thread messages:', threadData);
         
-        // Tetap lakukan fetch di background untuk update data
-        fetchThreadMessages(phoneNumber).then(freshData => {
-          console.log(`Background refresh of thread messages for ${phoneNumber}`);
-          setThreadMessages(freshData);
-        }).catch(err => console.error('Background thread fetch error:', err));
+        // Make sure we're still on the same user before updating
+        if (selectedUser !== phoneNumber) {
+          console.log('User changed during fetch, discarding results');
+          return;
+        }
         
+        // Validate and set thread data
+        if (threadData && Array.isArray(threadData)) {
+          if (threadData.length > 0) {
+            console.log(`Got ${threadData.length} thread messages`);
+            setThreadMessages(threadData);
+            // Update cache
+            localStorage.setItem(cacheKey, JSON.stringify(threadData));
+            localStorage.setItem(`${cacheKey}_lastFetch`, new Date().getTime().toString());
+          } else {
+            console.log('Got empty thread messages array');
+            setThreadMessages([]);
+            // Still cache the empty array to prevent repeated fetches
+            localStorage.setItem(cacheKey, JSON.stringify([]));
+            localStorage.setItem(`${cacheKey}_lastFetch`, new Date().getTime().toString());
+          }
+        } else {
+          console.error('Invalid thread data format:', threadData);
+          throw new Error('Invalid thread data format received from server');
+        }
+      } catch (fetchError: any) {
+        console.error('Error during thread fetch:', fetchError);
+        
+        // Make sure we're still on the same user before updating error state
+        if (selectedUser !== phoneNumber) {
+          console.log('User changed during fetch error handling, discarding');
+          return;
+        }
+        
+        // Try to use cached data as fallback
+        if (cachedMessages) {
+          console.log('API fetch failed, trying to use cached messages');
+          try {
+            const parsedMessages = JSON.parse(cachedMessages);
+            if (Array.isArray(parsedMessages)) {
+              setThreadMessages(parsedMessages);
+              // Set a warning message but don't block the UI
+              setThreadError(t('users.usingCachedData') || 'Menggunakan data cache. Refresh untuk mencoba lagi.');
+            } else {
+              throw new Error('Invalid cache format');
+            }
+          } catch (parseError) {
+            console.error('Error parsing cached messages:', parseError);
+            setThreadMessages([]);
+            setThreadError(t('users.failedToLoadMessages') || 'Gagal mengambil thread messages. Silakan coba lagi.');
+          }
+        } else {
+          console.log('No cached messages available after fetch error');
+          setThreadMessages([]);
+          
+          // Set user-friendly error message
+          if (fetchError.response?.status === 404) {
+            // Khusus untuk 404 (thread tidak ditemukan), kita set pesan khusus
+            // dan set threadMessages ke array kosong (bukan error state)
+            setThreadMessages([]);
+            // Pastikan pesan thread tidak ditemukan dalam bahasa Indonesia
+            setThreadError('Thread tidak ditemukan untuk user ini');
+          } else {
+            // Untuk error lainnya
+            const errorMsg = fetchError.response?.status === 500
+              ? (t('users.serverError') || 'Server error saat mengambil thread messages')
+              : (t('users.failedToLoadMessages') || 'Gagal mengambil thread messages');
+            
+            setThreadError(errorMsg);
+          }
+        }
+      }
+    } catch (err: any) {
+      console.error('Unexpected error in fetchUserThreadMessages:', err);
+      
+      // Make sure we're still on the same user before updating error state
+      if (selectedUser !== phoneNumber) {
+        console.log('User changed during error handling, discarding');
         return;
       }
       
-      // Jika tidak ada cache atau cache expired, fetch data baru
-      const threadData = await fetchThreadMessages(phoneNumber);
-      console.log('Fetched thread messages:', threadData);
-      
-      // threadData sekarang adalah array pesan langsung
-      if (threadData && threadData.length > 0) {
-        setThreadMessages(threadData);
-      } else if (cachedMessages) {
-        // Jika gagal fetch tapi ada cache, gunakan cache
-        setThreadMessages(JSON.parse(cachedMessages));
-      } else {
-        setThreadMessages([]);
-      }
-    } catch (err) {
-      console.error('Error fetching thread messages:', err);
-      
-      // Jika error tapi ada cache, gunakan cache
-      const cacheKey = `threadMessages_${phoneNumber}`;
-      const cachedMessages = localStorage.getItem(cacheKey);
-      if (cachedMessages) {
-        setThreadMessages(JSON.parse(cachedMessages));
-      }
+      // Set user-friendly error message for unexpected errors
+      setThreadError(t('users.unexpectedError') || 'Terjadi kesalahan tidak terduga. Silakan coba lagi.');
+      setThreadMessages([]);
     } finally {
-      setIsLoadingThread(false);
+      // Only update loading state if we're still on the same user
+      if (selectedUser === phoneNumber) {
+        setIsLoadingThread(false);
+      }
     }
   };
   
   // Handle user selection dengan menyimpan pilihan ke server
   const handleUserSelect = async (phoneNumber: string) => {
+    // Prevent selecting the same user multiple times
+    if (selectedUser === phoneNumber && !isLoadingThread) {
+      console.log(`User ${phoneNumber} already selected, skipping`);
+      return;
+    }
+
+    console.log(`Selecting user: ${phoneNumber}`);
+    
+    // Clear previous thread error state
+    setThreadError(null);
+    
     // Update state terlebih dahulu untuk responsivitas UI
     setSelectedUser(phoneNumber);
+    setSelectedUserData(null); // Clear previous user data
     
     // Segera fetch thread messages untuk UX yang lebih baik
     fetchUserThreadMessages(phoneNumber);
@@ -819,26 +1059,46 @@ const Users: React.FC = () => {
     // Simpan ke localStorage sebagai fallback utama
     localStorage.setItem('selectedUser', phoneNumber);
     
-    // Simpan selected user ke server untuk persistensi antar sesi
-    console.log(`Attempting to save selected user to server: ${phoneNumber}`);
-    const result = await saveSelectedUser(phoneNumber);
-    
-    if (result.success !== false) {
-      console.log('Selected user successfully saved to server:', result);
-      
-      // Jika berhasil disimpan ke server, emitkan juga event WebSocket
-      // untuk memastikan semua client terhubung mendapatkan update yang sama
-      if (websocketService.isConnected()) {
-        websocketService.emit('user_preference_update', {
-          type: 'selected_user',
-          selected_user: phoneNumber
-        });
-        console.log('Sent selected user update via WebSocket');
-      }
+    // Update selected user data from analytics
+    if (userAnalytics?.users?.[phoneNumber]) {
+      setSelectedUserData(userAnalytics.users[phoneNumber]);
     } else {
-      // Jika gagal, tampilkan pesan error tapi tetap lanjutkan dengan localStorage
-      console.warn('Failed to save selected user to server:', result.error || 'Unknown error');
-      console.info('Using localStorage fallback instead');
+      // Try with normalized phone number
+      const strippedPhoneNumber = phoneNumber.replace('@s.whatsapp.net', '');
+      const withSuffix = `${strippedPhoneNumber}@s.whatsapp.net`;
+      
+      if (userAnalytics?.users?.[strippedPhoneNumber]) {
+        setSelectedUserData(userAnalytics.users[strippedPhoneNumber]);
+      } else if (userAnalytics?.users?.[withSuffix]) {
+        setSelectedUserData(userAnalytics.users[withSuffix]);
+      }
+    }
+    
+    // Simpan selected user ke server untuk persistensi antar sesi (async, non-blocking)
+    try {
+      console.log(`Attempting to save selected user to server: ${phoneNumber}`);
+      const result = await saveSelectedUser(phoneNumber);
+      
+      if (result.success !== false) {
+        console.log('Selected user successfully saved to server:', result);
+        
+        // Jika berhasil disimpan ke server, emitkan juga event WebSocket
+        // untuk memastikan semua client terhubung mendapatkan update yang sama
+        if (websocketService.isConnected()) {
+          websocketService.emit('user_preference_update', {
+            type: 'selected_user',
+            selected_user: phoneNumber
+          });
+          console.log('Sent selected user update via WebSocket');
+        }
+      } else {
+        // Jika gagal, tampilkan pesan error tapi tetap lanjutkan dengan localStorage
+        console.warn('Failed to save selected user to server:', result.error || 'Unknown error');
+        console.info('Using localStorage fallback instead');
+      }
+    } catch (error) {
+      console.error('Error saving selected user to server:', error);
+      // Continue with localStorage fallback - don't block UI
     }
   };
   
@@ -917,87 +1177,92 @@ const Users: React.FC = () => {
   
   websocketService.on('connect', socketConnectHandler);
 
-  // Definisikan callback untuk analytics:users event
-  const analyticsUsersCallback = (data: UserAnalytics) => {
-    console.log('Received analytics:users event:', data);
-    console.log('Users count:', data && data.users ? Object.keys(data.users).length : 0);
+  // Debounce utility function
+  const debounce = (func: Function, wait: number) => {
+    let timeout: NodeJS.Timeout;
+    return function executedFunction(...args: any[]) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  };
 
-    // Pastikan data yang diterima valid
-    if (data) {
-      // Buat deep copy data untuk menghindari referensi issues
-      const safeData = JSON.parse(JSON.stringify(data));
-
-      // Ensure users object exists
-      if (!safeData.users) safeData.users = {};
-
-      // Merge data baru dengan data yang sudah ada, bukan mengganti seluruhnya
+  // Definisikan callback untuk analytics:users event dengan debouncing
+  const analyticsUsersCallback = debounce((data: any) => {
+    if (data && data.users) {
+      console.log('Received analytics users data via WebSocket:', Object.keys(data.users).length, 'users');
+      
+      // Validasi struktur data
+      const safeData = {
+        total_users: data.total_users || 0,
+        active_users: data.active_users || 0,
+        new_users: data.new_users || 0,
+        users: data.users || {}
+      };
+      
+      // Update state dengan merge yang aman
       setUserAnalytics(prevState => {
-        // Jika prevState kosong atau tidak memiliki users, gunakan data baru
+        // Jika tidak ada state sebelumnya, gunakan data baru
         if (!prevState || !prevState.users || Object.keys(prevState.users).length === 0) {
-          console.log('No previous state, using new data directly');
           return safeData;
         }
-
-        // Merge users dari data baru dengan data yang sudah ada
+        
+        // Merge users dengan mempertahankan data yang sudah ada
         const mergedUsers = { ...prevState.users };
-
-        // Update atau tambahkan user baru
-        if (safeData.users) {
-          Object.entries(safeData.users).forEach(([phone, userData]) => {
-            if (userData) {
-              mergedUsers[phone] = userData as UserData;
-            }
-          });
-        }
-
-        console.log('Merged users count:', Object.keys(mergedUsers).length);
-
-        // Return state baru dengan users yang sudah di-merge
+        
+        Object.entries(safeData.users).forEach(([phone, userData]) => {
+          if (userData) {
+            mergedUsers[phone] = userData as UserData;
+          }
+        });
+        
         return {
           ...safeData,
           users: mergedUsers
         };
       });
-
-      // Simpan data ke localStorage untuk fallback
+      
+      // Simpan ke localStorage untuk persistence
       try {
-        const dataToStore = { ...safeData };
-        if (!dataToStore.users) dataToStore.users = {};
-        localStorage.setItem('userAnalytics', JSON.stringify(dataToStore));
-      } catch (err) {
-        console.error('Error saving analytics data to localStorage:', err);
+        localStorage.setItem('userAnalytics', JSON.stringify(safeData));
+        localStorage.setItem('userAnalyticsLastFetch', new Date().getTime().toString());
+      } catch (e) {
+        console.error('Error saving to localStorage:', e);
       }
     }
-  };
+  }, 500); // Debounce for 500ms
 
-  // Definisikan callback untuk analytics_update event
-  const analyticsUpdateCallback = (data: any) => {
-    console.log('Received analytics_update event:', data);
-
-    // Check if this is user analytics data
-    if (data && data.type === 'user_analytics' && data.data) {
-      console.log('Processing user analytics from analytics_update');
-
-      // Process the data similar to analytics:users event
-      const safeData = JSON.parse(JSON.stringify(data.data));
-
-      if (!safeData.users) {
-        console.warn('analytics_update data missing users object');
-        return;
-      }
-
-      // Update state with merged data
+  // Definisikan callback untuk analytics_update event dengan debouncing
+  const analyticsUpdateCallback = debounce((data: any) => {
+    if (data && data.users) {
+      console.log('Received analytics update via WebSocket');
+      
+      // Validasi struktur data
+      const safeData = {
+        total_users: data.total_users || 0,
+        active_users: data.active_users || 0,
+        new_users: data.new_users || 0,
+        users: data.users || {}
+      };
+      
+      // Update state dengan merge yang aman
       setUserAnalytics(prevState => {
-        if (!prevState || !prevState.users) return safeData;
-
+        if (!prevState || !prevState.users) {
+          return safeData;
+        }
+        
+        // Merge users dengan mempertahankan data yang sudah ada
         const mergedUsers = { ...prevState.users };
-
-        // Merge new users with existing ones
+        
         Object.entries(safeData.users).forEach(([phone, userData]) => {
           if (userData) {
-            // Pastikan last_interaction dipertahankan jika sudah ada
-            if (mergedUsers[phone]) {
-              const existingLastInteraction = mergedUsers[phone].details?.last_interaction;
+            // Preserve existing last_interaction if it's newer
+            const existingUser = mergedUsers[phone];
+            if (existingUser && existingUser.details?.last_interaction) {
+              const existingLastInteraction = existingUser.details.last_interaction;
               const newLastInteraction = (userData as any).details?.last_interaction;
               
               // Gunakan timestamp terbaru
@@ -1033,7 +1298,7 @@ const Users: React.FC = () => {
       // Force re-render komponen
       setForceUpdate(prev => prev + 1);
     }
-  };
+  }, 300); // Debounce for 300ms
 
   // Definisikan callback untuk user_preference_update event
   const userPreferenceCallback = (data: any) => {
@@ -1205,14 +1470,14 @@ const Users: React.FC = () => {
   websocketService.on('thread_deleted', threadDeletedCallback); // Add subscription for thread deletion events
 
   // Setup a gentler background refresh that won't disrupt UX
-  // Fetch every 15 seconds as backup if WebSocket fails
+  // Fetch every 60 seconds as backup if WebSocket fails (reduced from 15 seconds)
   let lastRefreshTime = Date.now();
   const backgroundRefreshInterval = setInterval(() => {
-    // Only fetch if it's been at least 30 seconds since last update
+    // Only fetch if it's been at least 60 seconds since last update (increased from 30 seconds)
     const now = Date.now();
     const timeSinceLastUpdate = now - lastRefreshTime;
 
-    if (timeSinceLastUpdate > 30000) { // 30 seconds
+    if (timeSinceLastUpdate > 60000) { // 60 seconds (increased from 30)
       console.log(`Last update was ${timeSinceLastUpdate/1000}s ago, doing background refresh`);
 
       // Fetch user data in background without loading state
@@ -1228,38 +1493,39 @@ const Users: React.FC = () => {
               return freshData;
             }
 
-            // Merge users
+            // Merge users - only update if data is actually different
             const mergedUsers = { ...prevState.users };
+            let hasChanges = false;
+
             Object.entries(freshData.users).forEach(([phone, userData]) => {
-              if (userData) {
+              const existingUser = mergedUsers[phone];
+              
+              // Only update if user doesn't exist or data has changed
+              if (!existingUser || JSON.stringify(existingUser) !== JSON.stringify(userData)) {
                 mergedUsers[phone] = userData as UserData;
+                hasChanges = true;
               }
             });
 
-            // Return merged state with original count values preserved
-            return {
-              ...freshData,
-              users: mergedUsers
-            };
+            // Only trigger re-render if there are actual changes
+            if (hasChanges) {
+              console.log('Background refresh found changes, updating state');
+              return {
+                ...freshData,
+                users: mergedUsers
+              };
+            } else {
+              console.log('Background refresh found no changes, keeping current state');
+              return prevState;
+            }
           });
-          
-          // Simpan ke localStorage untuk persistence
-          try {
-            localStorage.setItem('userAnalytics', JSON.stringify(freshData));
-            localStorage.setItem('userAnalyticsLastFetch', new Date().getTime().toString());
-          } catch (e) {
-            console.error('Error saving to localStorage:', e);
-          }
-        } else {
-          console.log('Background refresh returned no users, keeping current state');
         }
       }).catch(err => {
-        console.error('Error in background refresh:', err);
+        console.error('Background refresh failed:', err);
+        // Don't update lastRefreshTime on failure to retry sooner
       });
-    } else {
-      console.log(`Last update was ${timeSinceLastUpdate/1000}s ago, skipping background refresh`);
     }
-  }, 15000); // Check every 15 seconds
+  }, 60000); // Check every 60 seconds (increased from 15)
   
   // CLEAN UP FUNCTION - sangat penting untuk mencegah memory leak
   return () => {
@@ -1501,8 +1767,10 @@ const Users: React.FC = () => {
                   messages={threadMessages}
                   isLoading={isLoadingThread}
                   onRefresh={(phoneNumber) => fetchUserThreadMessages(phoneNumber, true)}
+                  onRetry={(phoneNumber) => fetchUserThreadMessages(phoneNumber, true)}
                   onDeleteThread={handleDeleteThread}
                   isDeletingThread={isDeletingThread}
+                  error={threadError}
                 />
               ) : (
                 <div className="flex flex-col items-center justify-center h-full p-6 text-center">
