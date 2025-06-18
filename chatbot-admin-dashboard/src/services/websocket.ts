@@ -406,12 +406,18 @@ class SocketIOService {
     // Store callback in our array for direct access
     this.chatsUpdateCallbacks.push(callback);
     
-    console.log(`Subscribed to chats update. Total subscribers: ${this.chatsUpdateCallbacks.length}`);
+    // Force a subscription to chats
+    if (this.socket && this.socket.connected) {
+      console.log('Subscribing to chats updates...');
+      this.socket.emit('subscribe_to_chats');
+    }
+    
+    console.log(`Subscribed to chats updates. Total subscribers: ${this.chatsUpdateCallbacks.length}`);
   }
   
   unsubscribeFromChatsUpdate(callback: (chats: Chat[]) => void) {
     this.chatsUpdateCallbacks = this.chatsUpdateCallbacks.filter(cb => cb !== callback);
-    console.log(`Unsubscribed from chats update. Remaining subscribers: ${this.chatsUpdateCallbacks.length}`);
+    console.log(`Unsubscribed from chats updates. Remaining subscribers: ${this.chatsUpdateCallbacks.length}`);
   }
   
   // Register callbacks for bot status change events
