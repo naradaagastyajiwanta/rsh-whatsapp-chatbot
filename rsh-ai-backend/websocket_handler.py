@@ -37,18 +37,17 @@ def init_websocket(app: Flask) -> SocketIO:
         # Allow all origins to fix CORS issues
         logger.info("Allowing all origins with cors_allowed_origins='*'")
         
-        # Simplified Socket.IO configuration that works reliably with Render.com
+        # Konfigurasi Socket.IO yang sangat sederhana untuk debugging
         socketio = SocketIO(
             app,
             cors_allowed_origins="*",  # Allow all origins
-            async_mode='eventlet',  # Change to eventlet for better performance
+            async_mode='threading',  # Kembali ke threading untuk kompatibilitas
             path='/socket.io',
             always_connect=True,
-            ping_timeout=120000,  # 2 minutes timeout
-            ping_interval=25000,
+            ping_timeout=10000,  # 10 detik timeout
+            ping_interval=5000,  # 5 detik interval
             logger=True,
-            engineio_logger=True,
-            manage_session=False  # Disable session management to avoid issues
+            engineio_logger=True
         )
         
         logger.info('Socket.IO initialized successfully')

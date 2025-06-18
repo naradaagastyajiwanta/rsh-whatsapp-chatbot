@@ -24,7 +24,16 @@ class SocketIOService {
 
   constructor() {
     // Use environment variable or default to localhost for development
-    this.url = process.env.NEXT_PUBLIC_WEBSOCKET_URL || process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+    let baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+    
+    // Ensure we're using the correct protocol (http/https) without WebSocket protocol
+    if (baseUrl.startsWith('wss://')) {
+      baseUrl = 'https://' + baseUrl.substring(6);
+    } else if (baseUrl.startsWith('ws://')) {
+      baseUrl = 'http://' + baseUrl.substring(5);
+    }
+    
+    this.url = baseUrl;
     console.log('Initializing Socket.IO with URL:', this.url);
     // Log all environment variables for debugging
     console.log('Environment variables:', {
@@ -53,16 +62,15 @@ class SocketIOService {
       const normalizedUrl = this.url.endsWith('/') ? this.url.slice(0, -1) : this.url;
       console.log('Normalized WebSocket URL:', normalizedUrl);
       
+      // Gunakan konfigurasi yang lebih sederhana untuk Socket.IO
       this.socket = io(normalizedUrl, {
-        transports: ['polling', 'websocket'],  // Start with polling then upgrade to websocket
+        transports: ['polling'],  // Gunakan polling saja untuk menghindari masalah CORS dengan WebSocket
         path: '/socket.io',
         reconnection: true,
-        reconnectionAttempts: 20,  // More reconnection attempts
+        reconnectionAttempts: 5,
         reconnectionDelay: 1000,
-        reconnectionDelayMax: 10000,
-        timeout: 120000,  // 2 minutes timeout to match backend
-        forceNew: true,
-        withCredentials: true,  // Match API configuration
+        timeout: 20000,
+        withCredentials: false,  // Ubah ke false untuk menghindari masalah CORS
         autoConnect: true
       });
 
