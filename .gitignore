@@ -1,3 +1,10 @@
+# Environment variables
+.env
+*.env.local
+*.env.development
+*.env.test
+*.env.production
+
 # Node.js
 node_modules/
 npm-debug.log
@@ -5,7 +12,6 @@ yarn-debug.log
 yarn-error.log
 package-lock.json
 yarn.lock
-.pnpm-lock.yaml
 
 # Python
 __pycache__/
@@ -25,55 +31,68 @@ lib64/
 parts/
 sdist/
 var/
-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+venv/
+ENV/
 
-# Environment variables
-.env
-.env.local
-.env.development
-.env.test
-.env.production
+# WhatsApp service
+whatsapp-service/auth_info_baileys/
+whatsapp-service/node_modules/
+
+# Database
+*.sqlite3
+*.db
 
 # Logs
-logs
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
 
-# Frontend build
-.next/
-out/
-build/
-dist/
-coverage/
+# Cache
+.cache/
+.npm
+.eslintcache
+.stylelintcache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
 
-# Backend specific
-venv/
-.venv/
-ENV/
-migrations/
-*.sqlite
-*.db
-*.pid
-
-# IDE specific
+# IDE
 .idea/
 .vscode/
 *.swp
 *.swo
 .DS_Store
-*.sublime-project
-*.sublime-workspace
 
-# WhatsApp service specific
-whatsapp-service/baileys_store.json
-whatsapp-service/baileys_auth_info/
-whatsapp-service/node_modules/
+# Analytics data (optional - uncomment if you don't want to track these)
+# rsh-ai-backend/analytics_data/
 
-# Analytics data (jika ingin disimpan di git, hapus baris ini)
-# analytics_data/
+# Chat logs (optional - uncomment if you don't want to track these)
+# rsh-ai-backend/chat_logs/
+
+# Thread data
+rsh-ai-backend/assistant_threads.json
+
+# Migrations
+rsh-ai-backend/migrations/
+
+# Models
+rsh-ai-backend/models/
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Next.js
+.next/
+out/
+
+# Vercel
+.vercel

@@ -27,8 +27,16 @@ def get_headers() -> Dict[str, str]:
 
 def get_assistant_id() -> str:
     """Get Assistant ID from environment variable or use default."""
-    assistant_id = os.getenv("OPENAI_ASSISTANT_ID", "asst_LYSlpGrksHr9KLLjGxKvoRO2")
+    assistant_id = os.getenv("OPENAI_ASSISTANT_ID", "asst_p5iNHCZHuqDTvWMhelWF7B4h")
     logger.info(f"[AssistantAPI] Using Assistant ID: {assistant_id}")
+    
+    # Tambahkan validasi untuk memastikan ID Assistant tidak kosong
+    if not assistant_id:
+        logger.error("[AssistantAPI] OPENAI_ASSISTANT_ID tidak ditemukan di environment variables")
+        raise ValueError("OPENAI_ASSISTANT_ID tidak ditemukan")
+        
+    # Log ID Assistant untuk debugging
+    logger.info(f"[AssistantAPI] Assistant ID yang digunakan: {assistant_id}")
     return assistant_id
 
 def ensure_thread_for_nomor(nomor: str) -> Optional[str]:

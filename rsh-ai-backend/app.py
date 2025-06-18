@@ -8,13 +8,36 @@ from datetime import datetime
 from collections import OrderedDict
 from dotenv import load_dotenv
 
+# Set up logging first
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
+
 # Load environment variables from .env file
-load_dotenv()
+logger.info("Loading environment variables from .env file")
+load_dotenv()  # Load environment variables from .env file
+
+# Log environment variables for debugging
+api_key = os.getenv('OPENAI_API_KEY')
+assistant_id = os.getenv('OPENAI_ASSISTANT_ID')
+analytics_assistant_id = os.getenv('OPENAI_ANALYTICS_ASSISTANT_ID')
+
+logger.info(f"[ENV] OPENAI_API_KEY exists: {bool(api_key)}")
+logger.info(f"[ENV] OPENAI_API_KEY length: {len(api_key) if api_key else 0}")
+logger.info(f"[ENV] OPENAI_ASSISTANT_ID: {assistant_id}")
+logger.info(f"[ENV] OPENAI_ANALYTICS_ASSISTANT_ID: {analytics_assistant_id}")
 
 # Verify OpenAI API key is loaded
-api_key = os.getenv('OPENAI_API_KEY')
 if not api_key:
+    logger.error("[ENV] OPENAI_API_KEY tidak ditemukan di environment variables!")
     raise ValueError('OPENAI_API_KEY not found in environment variables')
+    
+if not assistant_id:
+    logger.error("[ENV] OPENAI_ASSISTANT_ID tidak ditemukan di environment variables!")
+    raise ValueError('OPENAI_ASSISTANT_ID not found in environment variables')
+
 from rag_pipeline import RAGPipeline
 from mock_rag_pipeline import MockRAGPipeline
 from openai_assistant_pipeline import send_message_and_get_response
@@ -24,24 +47,6 @@ from chatbot_settings import get_settings, update_settings
 from websocket_handler import init_websocket
 from analytics_pipeline import analytics
 from user_preferences import user_preferences
-
-# Set up logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)
-
-# Load environment variables
-load_dotenv()
-
-# Log environment variables for debugging
-api_key = os.getenv('OPENAI_API_KEY')
-assistant_id = os.getenv('OPENAI_ASSISTANT_ID')
-
-logger.info(f"[ENV] OPENAI_API_KEY exists: {bool(api_key)}")
-logger.info(f"[ENV] OPENAI_API_KEY length: {len(api_key) if api_key else 0}")
-logger.info(f"[ENV] OPENAI_ASSISTANT_ID: {assistant_id}")
 
 if not api_key:
     logger.error("[ENV] OPENAI_API_KEY tidak ditemukan di environment variables!")

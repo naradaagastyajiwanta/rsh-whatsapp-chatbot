@@ -57,8 +57,8 @@ class AnalyticsPipeline:
     
     def get_analytics_assistant_id(self) -> str:
         """Get Analytics Assistant ID from environment variable or use default."""
-        # Use the new assistant ID provided by the user
-        assistant_id = "asst_k4czbHkK3SwlFNlCJrgpZZhL"
+        # Use the environment variable for analytics assistant ID
+        assistant_id = os.getenv("OPENAI_ANALYTICS_ASSISTANT_ID", "asst_wEsuETJGp6AQSRZouxLvcmSC")
         logger.info(f"[AnalyticsAPI] Using Analytics Assistant ID: {assistant_id}")
         return assistant_id
         
