@@ -23,23 +23,21 @@ class SocketIOService {
   private maxReconnectAttempts = 10;
 
   constructor() {
-    // Use environment variable or default to localhost for development
-    let baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+    // Gunakan URL API untuk WebSocket
+    this.url = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
     
-    // Ensure we're using the correct protocol (http/https) without WebSocket protocol
-    if (baseUrl.startsWith('wss://')) {
-      baseUrl = 'https://' + baseUrl.substring(6);
-    } else if (baseUrl.startsWith('ws://')) {
-      baseUrl = 'http://' + baseUrl.substring(5);
+    // Pastikan URL tidak memiliki trailing slash
+    if (this.url.endsWith('/')) {
+      this.url = this.url.slice(0, -1);
     }
     
-    this.url = baseUrl;
     console.log('Initializing Socket.IO with URL:', this.url);
-    // Log all environment variables for debugging
+    // Log semua variabel lingkungan untuk debugging
     console.log('Environment variables:', {
       NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
       NEXT_PUBLIC_WEBSOCKET_URL: process.env.NEXT_PUBLIC_WEBSOCKET_URL
     });
+    
     // Connect immediately on initialization
     this.connect();
   }
@@ -62,16 +60,19 @@ class SocketIOService {
       const normalizedUrl = this.url.endsWith('/') ? this.url.slice(0, -1) : this.url;
       console.log('Normalized WebSocket URL:', normalizedUrl);
       
-      // Gunakan konfigurasi yang lebih sederhana untuk Socket.IO
+      // Konfigurasi Socket.IO yang spesifik untuk Render.com
       this.socket = io(normalizedUrl, {
-        transports: ['polling'],  // Gunakan polling saja untuk menghindari masalah CORS dengan WebSocket
+        transports: ['polling'],  // Gunakan polling saja untuk menghindari masalah WebSocket
         path: '/socket.io',
         reconnection: true,
-        reconnectionAttempts: 5,
+        reconnectionAttempts: 10,
         reconnectionDelay: 1000,
-        timeout: 20000,
-        withCredentials: false,  // Ubah ke false untuk menghindari masalah CORS
-        autoConnect: true
+        timeout: 25000,  // Sesuaikan dengan backend
+        withCredentials: true,  // Harus true untuk kompatibilitas dengan backend
+        autoConnect: true,
+        extraHeaders: {
+          'Origin': 'https://chatbot-admin-dashboard.onrender.com'
+        }
       });
 
       // Set up event listeners

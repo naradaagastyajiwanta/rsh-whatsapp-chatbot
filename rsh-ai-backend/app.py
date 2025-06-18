@@ -71,18 +71,13 @@ else:
     ]
     logger.info(f"Using default allowed origins: {allowed_origins}")
 
-# Konfigurasi CORS yang sangat sederhana
-# Izinkan semua origin tanpa credentials untuk menghindari masalah preflight
-app.config['CORS_HEADERS'] = '*'
-app.config['CORS_SUPPORTS_CREDENTIALS'] = False
-app.config['CORS_ORIGINS'] = '*'
-
+# Konfigurasi CORS yang sangat spesifik untuk mengatasi masalah di Render.com
 # Secara eksplisit tambahkan domain admin dashboard ke allowed_origins
 allowed_origins.append('https://chatbot-admin-dashboard.onrender.com')
-logger.info(f"Added admin dashboard domain to allowed origins: {allowed_origins}")
+logger.info(f"Allowed origins: {allowed_origins}")
 
-# Gunakan konfigurasi CORS yang sangat sederhana
-CORS(app, origins='*', allow_headers='*', supports_credentials=False)
+# Gunakan konfigurasi CORS yang spesifik dengan domain admin dashboard
+CORS(app, resources={r"/*": {"origins": allowed_origins}}, supports_credentials=True)
 
 # Register blueprints
 app.register_blueprint(admin_bp, url_prefix='/admin')
@@ -977,19 +972,33 @@ if __name__ == '__main__':
         }
     })
     
-    # Konfigurasi CORS yang sangat sederhana
+    # Konfigurasi CORS yang spesifik untuk mengatasi masalah di Render.com
     @app.after_request
     def add_cors_headers(response):
-        # Selalu izinkan semua origin
-        response.headers['Access-Control-Allow-Origin'] = '*'
+        # Get origin from request
+        origin = request.headers.get('Origin', '')
         
-        # Set header CORS yang sederhana
-        response.headers['Access-Control-Allow-Credentials'] = 'false'
-        response.headers['Access-Control-Allow-Headers'] = '*'
-        response.headers['Access-Control-Allow-Methods'] = '*'
+        # Jika origin ada dalam allowed_origins, izinkan secara spesifik
+        if origin in allowed_origins:
+            logger.info(f"CORS: Allowing specific origin: {origin}")
+            response.headers['Access-Control-Allow-Origin'] = origin
+        # Jika origin adalah admin dashboard, selalu izinkan
+        elif origin == 'https://chatbot-admin-dashboard.onrender.com':
+            logger.info(f"CORS: Allowing admin dashboard origin: {origin}")
+            response.headers['Access-Control-Allow-Origin'] = origin
+        # Jika tidak ada origin, atau tidak dalam allowed_origins, gunakan wildcard
+        else:
+            logger.info(f"CORS: Using wildcard for origin: {origin}")
+            response.headers['Access-Control-Allow-Origin'] = '*'
+        
+        # Set header CORS yang komprehensif
+        response.headers['Access-Control-Allow-Credentials'] = 'true'
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, X-Requested-With, Cache-Control'
+        response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
         
         # Log untuk debugging
-        logger.info(f"CORS headers set: {dict(response.headers)}")
+        logger.info(f"Request path: {request.path}, method: {request.method}, origin: {origin}")
+        logger.info(f"Response headers: {dict(response.headers)}")
         
         # Pastikan request OPTIONS mengembalikan 200 OK
         if request.method == 'OPTIONS':
