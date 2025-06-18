@@ -17,8 +17,8 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: false,  // Ubah ke false untuk menghindari masalah CORS
-  timeout: 15000,         // Meningkatkan timeout ke 15 detik
+  withCredentials: true,   // Aktifkan credentials untuk kompatibilitas dengan backend
+  timeout: 15000,          // Meningkatkan timeout ke 15 detik
   timeoutErrorMessage: 'Request timeout - server might be busy or unreachable'
 });
 
@@ -450,7 +450,9 @@ const saveSelectedUserToServer = async (phoneNumber: string, retryCount = 0): Pr
       // Coba endpoint utama
       const response = await api.post('/admin/preferences/selected-user', payload);
       return response.data;
-    } catch (primaryError) {
+    } catch (error) {
+      // Type the error properly to access its properties
+      const primaryError = error as Error;
       console.warn(`Primary endpoint failed: ${primaryError.message}`);
       
       // Coba endpoint alternatif dengan underscore
@@ -645,8 +647,9 @@ const fetchThreadMessagesFromAPI = async (phoneNumber: string, retryCount = 0): 
         return response.data.messages;
       }
       return [];
-    } catch (primaryError) {
-      console.warn(`Primary endpoint failed: ${primaryError.message || primaryError}`);
+    } catch (error: unknown) {
+      const primaryError = error as Error;
+      console.warn(`Primary endpoint failed: ${primaryError.message || String(primaryError)}`);
       
       // Coba endpoint alternatif
       console.log(`Trying alternative endpoint: /admin/threads/${phoneNumber}/messages`);

@@ -55,13 +55,14 @@ class SocketIOService {
       const normalizedUrl = this.url.endsWith('/') ? this.url.slice(0, -1) : this.url;
       console.log('Normalized WebSocket URL:', normalizedUrl);
       
-      // Konfigurasi Socket.IO yang sangat sederhana
+      // Konfigurasi Socket.IO yang kompatibel dengan backend
       this.socket = io(normalizedUrl, {
-        transports: ['polling'],  // Gunakan polling saja
+        transports: ['polling', 'websocket'],  // Gunakan polling dengan fallback ke websocket
         reconnection: true,
         reconnectionAttempts: 5,
         reconnectionDelay: 1000,
-        withCredentials: false  // Ubah ke false untuk menghindari masalah CORS
+        timeout: 15000,          // Timeout yang lebih lama
+        withCredentials: true    // Aktifkan credentials untuk kompatibilitas dengan backend
       });
 
       // Set up event listeners

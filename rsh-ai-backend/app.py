@@ -78,8 +78,8 @@ app.config['CORS_HEADERS'] = 'Content-Type, Authorization, Accept, Origin'
 allowed_origins.append('https://chatbot-admin-dashboard.onrender.com')
 logger.info(f"Allowed origins: {allowed_origins}")
 
-# Gunakan konfigurasi CORS yang sangat permisif untuk debugging
-CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=False)
+# Gunakan konfigurasi CORS yang mendukung credentials
+CORS(app, resources={r"/*": {"origins": allowed_origins}}, supports_credentials=True)
 
 # Register blueprints
 app.register_blueprint(admin_bp, url_prefix='/admin')
@@ -974,11 +974,25 @@ if __name__ == '__main__':
         }
     })
     
-    # Konfigurasi CORS yang sangat permisif untuk mengatasi masalah koneksi
+    # Konfigurasi CORS yang mendukung credentials
     @app.after_request
     def add_cors_headers(response):
-        # Izinkan semua origin untuk mengatasi masalah CORS
-        response.headers['Access-Control-Allow-Origin'] = '*'
+        # Get origin from request
+        origin = request.headers.get('Origin', '')
+        
+        # Jika origin ada dalam allowed_origins, izinkan secara spesifik
+        if origin in allowed_origins:
+            response.headers['Access-Control-Allow-Origin'] = origin
+            # Penting: Jika menggunakan origin spesifik, kita harus mengaktifkan credentials
+            response.headers['Access-Control-Allow-Credentials'] = 'true'
+        # Jika origin adalah admin dashboard, selalu izinkan
+        elif origin == 'https://chatbot-admin-dashboard.onrender.com':
+            response.headers['Access-Control-Allow-Origin'] = origin
+            response.headers['Access-Control-Allow-Credentials'] = 'true'
+        # Jika tidak ada origin yang cocok, gunakan default origin pertama
+        elif len(allowed_origins) > 0:
+            response.headers['Access-Control-Allow-Origin'] = allowed_origins[0]
+            response.headers['Access-Control-Allow-Credentials'] = 'true'
         
         # Set header CORS yang lebih lengkap
         response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, Accept, Origin, X-Requested-With'
