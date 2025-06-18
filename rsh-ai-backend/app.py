@@ -71,12 +71,18 @@ else:
     ]
     logger.info(f"Using default allowed origins: {allowed_origins}")
 
-# Konfigurasi CORS yang diperbarui untuk mengatasi masalah di Render.com
+# Konfigurasi CORS yang sangat permisif untuk debugging
 # Izinkan semua origin dan handle credentials dengan benar
 app.config['CORS_HEADERS'] = 'Content-Type, Authorization, X-Requested-With'
 app.config['CORS_SUPPORTS_CREDENTIALS'] = True
 app.config['CORS_ORIGINS'] = '*'
-CORS(app, origins='*', allow_headers='*', supports_credentials=True)
+
+# Secara eksplisit tambahkan domain admin dashboard ke allowed_origins
+allowed_origins.append('https://chatbot-admin-dashboard.onrender.com')
+logger.info(f"Added admin dashboard domain to allowed origins: {allowed_origins}")
+
+# Gunakan konfigurasi CORS yang sangat permisif untuk debugging
+CORS(app, origins='*', allow_headers='*', supports_credentials=True, resources={r"/*": {"origins": "*"}})
 
 # Register blueprints
 app.register_blueprint(admin_bp, url_prefix='/admin')
@@ -971,38 +977,35 @@ if __name__ == '__main__':
         }
     })
     
-    # Comprehensive CORS handling untuk mengatasi masalah di Render.com
+    # Konfigurasi CORS yang sangat permisif untuk debugging
     @app.after_request
     def add_cors_headers(response):
         # Get origin from request
         origin = request.headers.get('Origin', '')
         
-        # Explicitly allow chatbot-admin-dashboard.onrender.com
-        if origin == 'https://chatbot-admin-dashboard.onrender.com':
-            logger.info(f"CORS: Explicitly allowing admin dashboard origin: {origin}")
+        # Selalu izinkan origin yang membuat request
+        if origin:
+            # Log untuk debugging
+            logger.info(f"CORS: Request from origin: {origin}")
+            # Selalu izinkan origin yang membuat request
             response.headers['Access-Control-Allow-Origin'] = origin
-        # Allow any other origin that made the request
-        elif origin:
-            logger.info(f"CORS: Allowing origin: {origin}")
-            response.headers['Access-Control-Allow-Origin'] = origin
-        # If no origin in request, allow all origins
         else:
+            # Jika tidak ada origin, izinkan semua origin
             response.headers['Access-Control-Allow-Origin'] = '*'
-            
-        # Set comprehensive CORS headers
+        
+        # Set header CORS yang sangat permisif
         response.headers['Access-Control-Allow-Credentials'] = 'true'
-        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, X-Requested-With, Cache-Control, Content-Length, Accept, Origin, X-Requested-With'
-        response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
-        response.headers['Access-Control-Expose-Headers'] = 'Content-Type, Authorization'
+        response.headers['Access-Control-Allow-Headers'] = '*'
+        response.headers['Access-Control-Allow-Methods'] = '*'
         response.headers['Access-Control-Max-Age'] = '86400'  # 24 hours
         
-        # Ensure OPTIONS requests return 200 OK
+        # Pastikan request OPTIONS mengembalikan 200 OK
         if request.method == 'OPTIONS':
-            # Remove any cache-control headers that might interfere
+            # Hapus header cache-control yang mungkin mengganggu
             if 'Cache-Control' in response.headers:
                 del response.headers['Cache-Control']
             response.status_code = 200
-            
+        
         return response
         
         # Special handling for preflight OPTIONS requests - make sure they get a 200 response

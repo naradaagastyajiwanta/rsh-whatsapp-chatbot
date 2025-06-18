@@ -54,15 +54,15 @@ class SocketIOService {
       console.log('Normalized WebSocket URL:', normalizedUrl);
       
       this.socket = io(normalizedUrl, {
-        transports: ['websocket', 'polling'],  // Prioritize WebSocket over polling
+        transports: ['polling', 'websocket'],  // Start with polling then upgrade to websocket
         path: '/socket.io',
         reconnection: true,
-        reconnectionAttempts: 10,  // Increased reconnection attempts
+        reconnectionAttempts: 20,  // More reconnection attempts
         reconnectionDelay: 1000,
-        reconnectionDelayMax: 5000,
-        timeout: 30000,  // Increased timeout
+        reconnectionDelayMax: 10000,
+        timeout: 120000,  // 2 minutes timeout to match backend
         forceNew: true,
-        withCredentials: true,  // Changed to true to match API configuration
+        withCredentials: true,  // Match API configuration
         autoConnect: true
       });
 
