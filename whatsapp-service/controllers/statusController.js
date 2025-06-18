@@ -1,11 +1,16 @@
 const { getWhatsAppClient, getConnectionStatus, getQRCode, refreshQRCode, logoutWhatsApp } = require('../services/baileysClient');
 const axios = require('axios');
 
-// URL backend untuk update status via WebSocket
-const BACKEND_STATUS_URL = 'http://localhost:5000/whatsapp/status/update';
+// Ambil URL backend dari variabel lingkungan
+const FLASK_BACKEND_URL = process.env.FLASK_BACKEND_URL || 'http://localhost:5000/ask';
+const BACKEND_BASE_URL = FLASK_BACKEND_URL.replace('/ask', ''); // Hapus '/ask' jika ada
+const BACKEND_STATUS_URL = `${BACKEND_BASE_URL}/whatsapp/status/update`;
 
 // Interval untuk mengirim status ke backend (dalam ms)
 const STATUS_UPDATE_INTERVAL = 3000; // 3 detik
+
+// Log URL yang digunakan
+console.log(`Using backend status URL: ${BACKEND_STATUS_URL}`);
 
 // Simpan interval ID untuk bisa dihentikan jika diperlukan
 let statusUpdateInterval = null;
