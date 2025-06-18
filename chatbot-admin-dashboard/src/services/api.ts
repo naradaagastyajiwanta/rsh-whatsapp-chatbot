@@ -17,7 +17,9 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: true,   // Penting untuk CORS dengan credentials
+  withCredentials: false,  // Ubah ke false untuk menghindari masalah CORS
+  timeout: 15000,         // Meningkatkan timeout ke 15 detik
+  timeoutErrorMessage: 'Request timeout - server might be busy or unreachable'
 });
 
 // Function to fetch all chats
@@ -401,95 +403,70 @@ export const getSelectedUser = async () => {
   }
 };
 
-// Function untuk menyimpan user yang dipilih ke server dengan retry mechanism
+// Function untuk menyimpan user yang dipilih ke server dengan retry mechanism dan optimistic update
 export const saveSelectedUser = async (phoneNumber: string, retryCount = 0): Promise<any> => {
+  // Simpan langsung ke localStorage untuk pengalaman yang responsif (optimistic update)
+  const normalizedPhoneNumber = phoneNumber.includes('@s.whatsapp.net') 
+    ? phoneNumber 
+    : `${phoneNumber}@s.whatsapp.net`;
+  
+  // Pastikan phoneNumber tidak kosong untuk menghindari error
+  if (!phoneNumber) {
+    console.warn('Attempted to save empty phone number');
+    localStorage.removeItem('selectedUser');
+    return { success: false, message: 'Empty phone number' };
+  }
+  
+  // Optimistic update
+  localStorage.setItem('selectedUser', normalizedPhoneNumber);
+  console.log(`Saved selected user to localStorage: ${normalizedPhoneNumber}`);
+  
+  // Dispatch async request to save to server
+  saveSelectedUserToServer(normalizedPhoneNumber)
+    .then(result => {
+      console.log('Server save result:', result);
+    })
+    .catch(error => {
+      console.warn('Failed to save to server, but localStorage is updated:', error);
+    });
+  
+  // Return success immediately since we've updated localStorage
+  return { 
+    success: true, 
+    message: 'User selected and saved locally',
+    optimistic: true
+  };
+};
+
+// Helper function to save selected user to server
+const saveSelectedUserToServer = async (phoneNumber: string, retryCount = 0): Promise<any> => {
   try {
     console.log(`Saving selected user to server: ${phoneNumber}`);
     
-    // Pastikan phoneNumber tidak kosong untuk menghindari error
-    if (!phoneNumber) {
-      console.warn('Attempted to save empty phone number, using fallback');
-      localStorage.setItem('selectedUser', '');
-      return { success: false, message: 'Empty phone number' };
-    }
-    
-    // Normalisasi nomor telepon jika belum memiliki suffix @s.whatsapp.net
-    const normalizedPhoneNumber = phoneNumber.includes('@s.whatsapp.net') 
-      ? phoneNumber 
-      : `${phoneNumber}@s.whatsapp.net`;
-    
-    // Gunakan JSON.stringify secara eksplisit untuk memastikan format yang benar
-    const payload = JSON.stringify({ selected_user: normalizedPhoneNumber });
-    console.log('Sending payload:', payload);
-    
-    // Log URL yang digunakan
-    const apiUrl = `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/admin/preferences/selected-user`;
-    console.log(`Sending request to: ${apiUrl}`);
-    
-    // Gunakan fetch API dengan timeout
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 detik timeout
+    // Gunakan axios instance yang sudah dikonfigurasi dengan timeout yang lebih tinggi
+    const payload = { selected_user: phoneNumber };
     
     try {
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'Cache-Control': 'no-cache'
-        },
-        body: payload,
-        credentials: 'include',
-        signal: controller.signal
-      });
+      // Coba endpoint utama
+      const response = await api.post('/admin/preferences/selected-user', payload);
+      return response.data;
+    } catch (primaryError) {
+      console.warn(`Primary endpoint failed: ${primaryError.message}`);
       
-      clearTimeout(timeoutId);
-      
-      // Log response details untuk debugging
-      console.log(`Response status: ${response.status}`);
-      console.log(`Response status text: ${response.statusText}`);
-      
-      if (!response.ok) {
-        // Coba dengan endpoint alternatif jika gagal
-        if (response.status === 500 && retryCount === 0) {
-          console.warn('Server error, trying alternative endpoint with underscore');
-          // Coba endpoint dengan underscore sebagai fallback
-          const altApiUrl = `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/admin/preferences/selected_user`;
-          return await saveSelectedUserWithUrl(normalizedPhoneNumber, altApiUrl);
-        }
-        throw new Error(`Server responded with ${response.status}: ${response.statusText}`);
-      }
-      
-      const data = await response.json();
-      console.log('Save selected user response:', data);
-      
-      // Simpan juga ke localStorage sebagai fallback
-      localStorage.setItem('selectedUser', normalizedPhoneNumber);
-      
-      return data;
-    } finally {
-      clearTimeout(timeoutId);
+      // Coba endpoint alternatif dengan underscore
+      const altResponse = await api.post('/admin/preferences/selected_user', payload);
+      return altResponse.data;
     }
   } catch (error: any) {
-    // Logging error yang lebih terperinci
-    console.error('Error saving selected user:', error);
-    
-    // Retry logic - maksimal 1 retry
-    if (retryCount < 1) {
-      console.log(`Retrying saveSelectedUser (attempt ${retryCount + 1})...`);
-      return await new Promise(resolve => setTimeout(resolve, 1000)) // Wait 1 second
-        .then(() => saveSelectedUser(phoneNumber, retryCount + 1));
+    // Retry logic - maksimal 2 retry dengan backoff eksponensial
+    if (retryCount < 2) {
+      const delay = Math.pow(2, retryCount) * 1000; // 1s, 2s, 4s
+      console.log(`Retrying saveSelectedUserToServer in ${delay}ms (attempt ${retryCount + 1})...`);
+      await new Promise(resolve => setTimeout(resolve, delay));
+      return saveSelectedUserToServer(phoneNumber, retryCount + 1);
     }
     
-    // Fallback: save to localStorage
-    localStorage.setItem('selectedUser', phoneNumber);
-    
-    // Return objek error yang lebih informatif
-    return { 
-      success: false, 
-      error: error.message || 'Unknown error',
-      fallback: true
-    };
+    throw error;
   }
 };
 
@@ -615,91 +592,87 @@ export const fetchUserMessages = async (phoneNumber: string): Promise<string[]> 
 
 // Function to fetch thread messages for a specific user with improved error handling and normalization
 export const fetchThreadMessages = async (phoneNumber: string, retryCount = 0): Promise<any[]> => {
+  // Coba ambil dari cache terlebih dahulu untuk pengalaman yang lebih responsif
+  const normalizedPhoneNumber = phoneNumber.includes('@s.whatsapp.net') 
+    ? phoneNumber 
+    : `${phoneNumber}@s.whatsapp.net`;
+  
+  const cachedMessages = localStorage.getItem(`threadMessages_${normalizedPhoneNumber}`);
+  if (cachedMessages) {
+    console.log('Using cached thread messages from localStorage while fetching fresh data');
+    // Dispatch async request to update cache in background
+    setTimeout(() => {
+      fetchThreadMessagesFromAPI(normalizedPhoneNumber)
+        .then(messages => {
+          if (messages && messages.length > 0) {
+            localStorage.setItem(`threadMessages_${normalizedPhoneNumber}`, JSON.stringify(messages));
+            console.log('Updated thread messages cache in background');
+          }
+        })
+        .catch(err => console.warn('Background cache update failed:', err));
+    }, 100);
+    
+    // Return cached data immediately
+    return JSON.parse(cachedMessages);
+  }
+  
+  // Jika tidak ada cache, fetch dari API
   try {
-    // Log the selected user from localStorage for debugging
-    const storedUser = localStorage.getItem('selectedUser');
-    console.log(`fetchThreadMessages for: ${phoneNumber}`);
-    console.log(`Selected user in localStorage: ${storedUser}`);
-    console.log(`Do they match? ${storedUser === phoneNumber}`);
-    
-    // Normalisasi nomor telepon jika belum memiliki suffix @s.whatsapp.net
-    const normalizedPhoneNumber = phoneNumber.includes('@s.whatsapp.net') 
-      ? phoneNumber 
-      : `${phoneNumber}@s.whatsapp.net`;
-    
-    console.log(`Using normalized phone number: ${normalizedPhoneNumber}`);
+    return await fetchThreadMessagesFromAPI(normalizedPhoneNumber, retryCount);
+  } catch (error) {
+    console.error('All attempts to fetch thread messages failed:', error);
+    return [];
+  }
+};
+
+// Helper function to fetch thread messages from API
+const fetchThreadMessagesFromAPI = async (phoneNumber: string, retryCount = 0): Promise<any[]> => {
+  try {
+    console.log(`Fetching thread messages for: ${phoneNumber}`);
     
     // Coba endpoint utama terlebih dahulu
     try {
-      console.log(`Fetching thread messages from /admin/thread-messages/${normalizedPhoneNumber}`);
-      const response = await api.get(`/admin/thread-messages/${normalizedPhoneNumber}`, {
+      console.log(`Fetching from primary endpoint: /admin/thread-messages/${phoneNumber}`);
+      const response = await api.get(`/admin/thread-messages/${phoneNumber}`, {
         headers: {
           'Cache-Control': 'no-cache',
           'Pragma': 'no-cache'
-        },
-        timeout: 8000 // 8 detik timeout
+        }
+        // Gunakan timeout default dari axios instance (15000ms)
       });
       
-      console.log('Thread messages response:', response.data);
-      
-      // Cache the result in localStorage for offline/error fallback
       if (response.data && response.data.messages) {
-        localStorage.setItem(`threadMessages_${normalizedPhoneNumber}`, JSON.stringify(response.data.messages));
         return response.data.messages;
       }
-      
       return [];
     } catch (primaryError) {
-      console.warn(`Error with primary endpoint: ${primaryError}`);
+      console.warn(`Primary endpoint failed: ${primaryError.message || primaryError}`);
       
-      // Coba endpoint alternatif jika endpoint utama gagal
-      console.log(`Trying alternative endpoint: /admin/threads/${normalizedPhoneNumber}/messages`);
-      try {
-        const altResponse = await api.get(`/admin/threads/${normalizedPhoneNumber}/messages`, {
-          headers: {
-            'Cache-Control': 'no-cache',
-            'Pragma': 'no-cache'
-          },
-          timeout: 8000
-        });
-        
-        console.log('Thread messages from alternative endpoint:', altResponse.data);
-        
-        // Cache the result
-        if (altResponse.data && altResponse.data.messages) {
-          localStorage.setItem(`threadMessages_${normalizedPhoneNumber}`, JSON.stringify(altResponse.data.messages));
-          return altResponse.data.messages;
+      // Coba endpoint alternatif
+      console.log(`Trying alternative endpoint: /admin/threads/${phoneNumber}/messages`);
+      const altResponse = await api.get(`/admin/threads/${phoneNumber}/messages`, {
+        headers: {
+          'Cache-Control': 'no-cache',
+          'Pragma': 'no-cache'
         }
-        
-        return [];
-      } catch (altError) {
-        console.error(`Alternative endpoint also failed: ${altError}`);
-        throw altError; // Re-throw untuk dihandle oleh catch utama
+        // Gunakan timeout default dari axios instance
+      });
+      
+      if (altResponse.data && altResponse.data.messages) {
+        return altResponse.data.messages;
       }
+      return [];
     }
   } catch (error: any) {
-    console.error('Error fetching thread messages:', error);
-    
-    // Retry logic - maksimal 1 retry jika bukan error 404 (thread not found)
-    if (retryCount < 1 && error.response?.status !== 404) {
-      console.log(`Retrying fetchThreadMessages (attempt ${retryCount + 1})...`);
-      return await new Promise(resolve => setTimeout(resolve, 1000)) // Wait 1 second
-        .then(() => fetchThreadMessages(phoneNumber, retryCount + 1));
+    // Retry logic - maksimal 2 retry dengan backoff eksponensial
+    if (retryCount < 2) {
+      const delay = Math.pow(2, retryCount) * 1000; // 1s, 2s, 4s
+      console.log(`Retrying fetchThreadMessages in ${delay}ms (attempt ${retryCount + 1})...`);
+      await new Promise(resolve => setTimeout(resolve, delay));
+      return fetchThreadMessagesFromAPI(phoneNumber, retryCount + 1);
     }
     
-    // Coba ambil dari cache jika ada
-    const normalizedPhoneNumber = phoneNumber.includes('@s.whatsapp.net') 
-      ? phoneNumber 
-      : `${phoneNumber}@s.whatsapp.net`;
-    
-    const cachedMessages = localStorage.getItem(`threadMessages_${normalizedPhoneNumber}`);
-    if (cachedMessages) {
-      console.log('Using cached thread messages from localStorage');
-      return JSON.parse(cachedMessages);
-    }
-    
-    // Return empty array if API fails and no cache
-    return [];
+    throw error;
   }
 };
 

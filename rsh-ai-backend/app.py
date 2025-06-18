@@ -71,15 +71,15 @@ else:
     ]
     logger.info(f"Using default allowed origins: {allowed_origins}")
 
-# Konfigurasi CORS yang spesifik untuk admin dashboard
-app.config['CORS_HEADERS'] = 'Content-Type, Authorization'
+# Konfigurasi CORS yang sangat permisif untuk mengatasi masalah koneksi
+app.config['CORS_HEADERS'] = 'Content-Type, Authorization, Accept, Origin'
 
 # Secara eksplisit tambahkan domain admin dashboard ke allowed_origins
 allowed_origins.append('https://chatbot-admin-dashboard.onrender.com')
 logger.info(f"Allowed origins: {allowed_origins}")
 
-# Gunakan konfigurasi CORS yang spesifik dengan domain admin dashboard
-CORS(app, origins=allowed_origins, supports_credentials=False)
+# Gunakan konfigurasi CORS yang sangat permisif untuk debugging
+CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=False)
 
 # Register blueprints
 app.register_blueprint(admin_bp, url_prefix='/admin')
@@ -974,33 +974,24 @@ if __name__ == '__main__':
         }
     })
     
-    # Konfigurasi CORS yang spesifik untuk admin dashboard
+    # Konfigurasi CORS yang sangat permisif untuk mengatasi masalah koneksi
     @app.after_request
     def add_cors_headers(response):
-        # Get origin from request
-        origin = request.headers.get('Origin', '')
+        # Izinkan semua origin untuk mengatasi masalah CORS
+        response.headers['Access-Control-Allow-Origin'] = '*'
         
-        # Jika origin ada dalam allowed_origins, izinkan secara spesifik
-        if origin in allowed_origins:
-            logger.info(f"CORS: Allowing specific origin: {origin}")
-            response.headers['Access-Control-Allow-Origin'] = origin
-        # Jika origin adalah admin dashboard, selalu izinkan
-        elif origin == 'https://chatbot-admin-dashboard.onrender.com':
-            logger.info(f"CORS: Allowing admin dashboard origin: {origin}")
-            response.headers['Access-Control-Allow-Origin'] = origin
-        # Jika tidak ada origin, gunakan wildcard
-        else:
-            logger.info(f"CORS: Using wildcard for origin: {origin}")
-            response.headers['Access-Control-Allow-Origin'] = '*'
-        
-        # Set header CORS yang sesuai
-        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
+        # Set header CORS yang lebih lengkap
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, Accept, Origin, X-Requested-With'
         response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
+        response.headers['Access-Control-Max-Age'] = '86400'  # Cache preflight request selama 24 jam
         
-        # Log untuk debugging
-        logger.info(f"Request path: {request.path}, method: {request.method}, origin: {origin}")
+        # Tambahkan header untuk mencegah caching yang tidak diinginkan
+        if request.path.startswith('/admin/'):
+            response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+            response.headers['Pragma'] = 'no-cache'
+            response.headers['Expires'] = '0'
         
-        # Pastikan request OPTIONS mengembalikan 200 OK
+        # Pastikan request OPTIONS mengembalikan 200 OK dengan cepat
         if request.method == 'OPTIONS':
             response.status_code = 200
         
