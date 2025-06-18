@@ -988,12 +988,23 @@ if __name__ == '__main__':
         # Set CORS headers for all responses regardless of origin
         # CRITICAL: For credentials support, must specify exact origin, not wildcard *
         if origin in allowed_origins:
+            logger.info(f"Allowing CORS for origin: {origin}")
             response.headers['Access-Control-Allow-Origin'] = origin
             response.headers['Access-Control-Allow-Credentials'] = 'true'
             response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, X-Requested-With, Cache-Control, cache-control, Content-Length, Accept, X-Requested-With, Origin, pragma'
             response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
             response.headers['Access-Control-Expose-Headers'] = 'Content-Type, Authorization'
             response.headers['Access-Control-Max-Age'] = '3600'
+        else:
+            # Log rejected origins for debugging
+            logger.warning(f"CORS request from unauthorized origin: {origin}")
+            logger.warning(f"Allowed origins: {allowed_origins}")
+            # For development/debugging only - allow all origins
+            # Comment this out in production
+            response.headers['Access-Control-Allow-Origin'] = origin
+            response.headers['Access-Control-Allow-Credentials'] = 'true'
+            response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, X-Requested-With, Cache-Control, cache-control, Content-Length, Accept, X-Requested-With, Origin, pragma'
+            response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
         
         # Special handling for preflight OPTIONS requests - make sure they get a 200 response
         if request.method == 'OPTIONS':

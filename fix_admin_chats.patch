@@ -1,0 +1,24 @@
+--- admin_routes.py (original)
++++ admin_routes.py (fixed)
+@@ -149,12 +149,20 @@
+     # Format conversations for frontend
+     formatted_conversations = []
+     for conv in conversations:
++        # Get unanswered count for this conversation
++        try:
++            unanswered_count = chat_logger.get_unanswered_count(conv["id"])
++            logger.info(f"Unanswered count for {conv['id']}: {unanswered_count}")
++        except Exception as e:
++            logger.error(f"Error getting unanswered count for {conv['id']}: {str(e)}")
++            unanswered_count = 0
++            
+         formatted_conv = {
+             "id": conv["id"],
+             "sender": conv["sender"],
+             "senderName": conv["sender_name"],
+             "lastMessage": conv["last_message"],
+             "lastTimestamp": conv["last_timestamp"],
+-            "messages": []
++            "messages": [],
++            "unansweredCount": unanswered_count
+         }
