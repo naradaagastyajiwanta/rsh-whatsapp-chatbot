@@ -43,36 +43,25 @@ class SocketIOService {
   }
 
   connect() {
-    if (this.socket && this.socket.connected) {
-      console.log('Socket.IO already connected');
-      return;
-    }
-
-    // Clear any existing reconnect interval
-    if (this.reconnectInterval) {
-      clearInterval(this.reconnectInterval);
-      this.reconnectInterval = null;
-    }
-
     try {
+      if (this.socket && this.socket.connected) {
+        console.log('Socket already connected');
+        return;
+      }
+
       console.log('Connecting to Socket.IO server at:', this.url);
-      // Normalize URL to ensure it doesn't have trailing slash
+      
+      // Normalize URL
       const normalizedUrl = this.url.endsWith('/') ? this.url.slice(0, -1) : this.url;
       console.log('Normalized WebSocket URL:', normalizedUrl);
       
-      // Konfigurasi Socket.IO yang spesifik untuk Render.com
+      // Konfigurasi Socket.IO yang sangat sederhana
       this.socket = io(normalizedUrl, {
-        transports: ['polling'],  // Gunakan polling saja untuk menghindari masalah WebSocket
-        path: '/socket.io',
+        transports: ['polling'],  // Gunakan polling saja
         reconnection: true,
-        reconnectionAttempts: 10,
+        reconnectionAttempts: 5,
         reconnectionDelay: 1000,
-        timeout: 25000,  // Sesuaikan dengan backend
-        withCredentials: true,  // Harus true untuk kompatibilitas dengan backend
-        autoConnect: true,
-        extraHeaders: {
-          'Origin': 'https://chatbot-admin-dashboard.onrender.com'
-        }
+        withCredentials: false  // Ubah ke false untuk menghindari masalah CORS
       });
 
       // Set up event listeners

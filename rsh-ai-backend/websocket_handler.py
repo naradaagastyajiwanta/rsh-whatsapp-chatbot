@@ -37,18 +37,13 @@ def init_websocket(app: Flask) -> SocketIO:
         # Allow all origins to fix CORS issues
         logger.info("Allowing all origins with cors_allowed_origins='*'")
         
-        # Konfigurasi Socket.IO yang spesifik untuk mengatasi masalah CORS di Render.com
+        # Konfigurasi Socket.IO yang sangat sederhana
         socketio = SocketIO(
             app,
-            cors_allowed_origins=["https://chatbot-admin-dashboard.onrender.com"],  # Izinkan secara spesifik
+            cors_allowed_origins="*",  # Izinkan semua origin
             async_mode='threading',
-            path='/socket.io',
-            always_connect=True,
-            ping_timeout=25000,
-            ping_interval=10000,
             logger=True,
-            engineio_logger=True,
-            cors_credentials=True
+            engineio_logger=True
         )
         
         logger.info('Socket.IO initialized successfully')

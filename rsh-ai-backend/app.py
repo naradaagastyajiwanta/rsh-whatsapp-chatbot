@@ -71,13 +71,15 @@ else:
     ]
     logger.info(f"Using default allowed origins: {allowed_origins}")
 
-# Konfigurasi CORS yang sangat spesifik untuk mengatasi masalah di Render.com
+# Konfigurasi CORS yang spesifik untuk admin dashboard
+app.config['CORS_HEADERS'] = 'Content-Type, Authorization'
+
 # Secara eksplisit tambahkan domain admin dashboard ke allowed_origins
 allowed_origins.append('https://chatbot-admin-dashboard.onrender.com')
 logger.info(f"Allowed origins: {allowed_origins}")
 
 # Gunakan konfigurasi CORS yang spesifik dengan domain admin dashboard
-CORS(app, resources={r"/*": {"origins": allowed_origins}}, supports_credentials=True)
+CORS(app, origins=allowed_origins, supports_credentials=False)
 
 # Register blueprints
 app.register_blueprint(admin_bp, url_prefix='/admin')
@@ -972,7 +974,7 @@ if __name__ == '__main__':
         }
     })
     
-    # Konfigurasi CORS yang spesifik untuk mengatasi masalah di Render.com
+    # Konfigurasi CORS yang spesifik untuk admin dashboard
     @app.after_request
     def add_cors_headers(response):
         # Get origin from request
@@ -986,19 +988,17 @@ if __name__ == '__main__':
         elif origin == 'https://chatbot-admin-dashboard.onrender.com':
             logger.info(f"CORS: Allowing admin dashboard origin: {origin}")
             response.headers['Access-Control-Allow-Origin'] = origin
-        # Jika tidak ada origin, atau tidak dalam allowed_origins, gunakan wildcard
+        # Jika tidak ada origin, gunakan wildcard
         else:
             logger.info(f"CORS: Using wildcard for origin: {origin}")
             response.headers['Access-Control-Allow-Origin'] = '*'
         
-        # Set header CORS yang komprehensif
-        response.headers['Access-Control-Allow-Credentials'] = 'true'
-        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, X-Requested-With, Cache-Control'
+        # Set header CORS yang sesuai
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
         response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
         
         # Log untuk debugging
         logger.info(f"Request path: {request.path}, method: {request.method}, origin: {origin}")
-        logger.info(f"Response headers: {dict(response.headers)}")
         
         # Pastikan request OPTIONS mengembalikan 200 OK
         if request.method == 'OPTIONS':
