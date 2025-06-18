@@ -24,8 +24,13 @@ class SocketIOService {
 
   constructor() {
     // Use environment variable or default to localhost for development
-    this.url = process.env.NEXT_PUBLIC_SOCKETIO_URL || 'http://localhost:5000';
+    this.url = process.env.NEXT_PUBLIC_WEBSOCKET_URL || process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
     console.log('Initializing Socket.IO with URL:', this.url);
+    // Log all environment variables for debugging
+    console.log('Environment variables:', {
+      NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+      NEXT_PUBLIC_WEBSOCKET_URL: process.env.NEXT_PUBLIC_WEBSOCKET_URL
+    });
     // Connect immediately on initialization
     this.connect();
   }
@@ -44,7 +49,11 @@ class SocketIOService {
 
     try {
       console.log('Connecting to Socket.IO server at:', this.url);
-      this.socket = io(this.url, {
+      // Normalize URL to ensure it doesn't have trailing slash
+      const normalizedUrl = this.url.endsWith('/') ? this.url.slice(0, -1) : this.url;
+      console.log('Normalized WebSocket URL:', normalizedUrl);
+      
+      this.socket = io(normalizedUrl, {
         transports: ['websocket', 'polling'],  // Prioritize WebSocket over polling
         path: '/socket.io',
         reconnection: true,
@@ -53,7 +62,7 @@ class SocketIOService {
         reconnectionDelayMax: 5000,
         timeout: 30000,  // Increased timeout
         forceNew: true,
-        withCredentials: false,  // Changed to false to avoid CORS issues
+        withCredentials: true,  // Changed to true to match API configuration
         autoConnect: true
       });
 
