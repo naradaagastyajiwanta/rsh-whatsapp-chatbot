@@ -64,7 +64,13 @@ def register_handlers():
         logger.debug(f'Connection details: {request.args}')
         # Send initial data
         try:
-            emit_analytics_data()
+            # Ganti emit_analytics_data dengan kode yang langsung mengirim data analytics
+            user_analytics = analytics.get_user_insights()
+            performance_metrics = analytics.get_performance_metrics(7)
+            
+            # Kirim data analytics ke client
+            emit('analytics:users', user_analytics)
+            emit('analytics:performance', performance_metrics)
             logger.info('Initial analytics data sent successfully')
         except Exception as e:
             logger.error(f'Error sending initial analytics data: {str(e)}')
