@@ -122,10 +122,9 @@ async function handleIncomingMessage(req, res) {
         });
         
         // Verifikasi respons
-        if (response.data && response.data.response) {
+        if (response.data && response.data.hasOwnProperty('response')) {
           // Tandai pesan sebagai sudah diproses
           const messageFingerprint = `${messageId}_${sender}_${text.substring(0, 20)}`;
-          const responseFingerprint = `${sender}_${response.data.response.substring(0, 30)}`;
           
           // Update message cache to mark as processed
           if (messageCache.has(messageId)) {
@@ -148,28 +147,45 @@ async function handleIncomingMessage(req, res) {
             });
           }
           
-          // Check if we've already sent this exact response recently
-          if (responseCache.has(responseFingerprint)) {
-            const recentResponse = responseCache.get(responseFingerprint);
-            const timeSinceLastResponse = Date.now() - recentResponse.timestamp;
-            
-            if (timeSinceLastResponse < 10000) { // 10 seconds
-              console.log(`Blocking duplicate response to ${sender}. Similar response sent ${timeSinceLastResponse}ms ago`);
-              continue;
-            }
+          // Cek apakah bot dimatikan untuk pengguna ini
+          if (response.data.bot_disabled === true) {
+            console.log(`Bot disabled for ${sender}. No response will be sent.`);
+            continue; // Skip sending any message
           }
           
-          // Add response to cache
-          responseCache.set(responseFingerprint, {
-            timestamp: Date.now(),
-            requestId: requestId,
-            messageId: messageId
-          });
+          // Cek apakah respons kosong (string kosong)
+          if (response.data.response === "") {
+            console.log(`Empty response received for ${sender}. No message will be sent.`);
+            continue; // Skip sending any message
+          }
           
-          // Kirim respons ke pengguna WhatsApp
-          console.log(`Received response for request ${requestId}:`, response.data.response.substring(0, 100) + '...');
-          await sendWhatsAppMessage(sender, response.data.response);
-          console.log(`Sent response to ${senderName} for message ID: ${messageId}`);
+          // Hanya lanjutkan jika respons tidak kosong
+          if (response.data.response && response.data.response.length > 0) {
+            const responseFingerprint = `${sender}_${response.data.response.substring(0, 30)}`;
+            
+            // Check if we've already sent this exact response recently
+            if (responseCache.has(responseFingerprint)) {
+              const recentResponse = responseCache.get(responseFingerprint);
+              const timeSinceLastResponse = Date.now() - recentResponse.timestamp;
+              
+              if (timeSinceLastResponse < 10000) { // 10 seconds
+                console.log(`Blocking duplicate response to ${sender}. Similar response sent ${timeSinceLastResponse}ms ago`);
+                continue;
+              }
+            }
+            
+            // Add response to cache
+            responseCache.set(responseFingerprint, {
+              timestamp: Date.now(),
+              requestId: requestId,
+              messageId: messageId
+            });
+            
+            // Kirim respons ke pengguna WhatsApp
+            console.log(`Received response for request ${requestId}:`, response.data.response.substring(0, 100) + '...');
+            await sendWhatsAppMessage(sender, response.data.response);
+            console.log(`Sent response to ${senderName} for message ID: ${messageId}`);
+          }
         } else {
           console.error(`Invalid response format for request ${requestId}:`, response.data);
           await sendWhatsAppMessage(

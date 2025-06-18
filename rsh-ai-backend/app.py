@@ -265,7 +265,8 @@ def ask():
             
             logger.info(f"Unanswered messages for {sender}: {unanswered_messages[sender]}")
             
-            # Log the message with a manual response placeholder
+            # Log the message with a manual response placeholder untuk admin dashboard saja
+            # Tidak mengirim pesan apapun ke pengguna WhatsApp
             try:
                 log_chat_message(
                     sender, 
@@ -277,13 +278,13 @@ def ask():
             except Exception as log_error:
                 logger.error(f"Error logging chat message: {str(log_error)}")
             
-            # Prepare response for disabled bot
+            # Prepare response for disabled bot - tidak mengirim pesan ke pengguna
             response_data = {
-                "response": None,
+                "response": "",  # Empty response so no message is sent
                 "sender": sender,
                 "bot_disabled": True,
                 "unanswered_count": unanswered_messages[sender],
-                "message": "Bot is disabled for this sender. Message logged for manual response.",
+                "message": "Bot is disabled for this sender. No response will be sent.",
                 "request_id": request_id,
                 "timestamp": int(time.time() * 1000)
             }

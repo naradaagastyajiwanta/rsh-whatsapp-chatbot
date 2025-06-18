@@ -3678,10 +3678,64 @@
         "response": "Halo! Senang bisa berkomunikasi dengan Anda. \ud83d\ude0a Sebelum melanjutkan, boleh saya tahu data diri Anda terlebih dahulu? Saya memerlukan:\n\n- Nama lengkap\n- Jenis kelamin (agar bisa menyapa Bapak/Ibu dengan tepat)\n- Usia sekarang\n- Domisili\n- Dan keluhan utama yang sedang dirasakan\n\nTerima kasih!",
         "timestamp": "2025-06-18T08:12:24.210283",
         "response_time": 13.502133846282959
+      },
+      {
+        "id": "6287811152506_1750209542",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "hi",
+        "response": "[Bot is disabled. This message is awaiting manual response from CS. (1 unanswered)]",
+        "timestamp": "2025-06-18T08:19:02.241916",
+        "response_time": null
+      },
+      {
+        "id": "6287811152506_1750209596",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "hi",
+        "response": "[Bot is disabled. This message is awaiting manual response from CS. (1 unanswered)]",
+        "timestamp": "2025-06-18T08:19:56.845020",
+        "response_time": null
+      },
+      {
+        "id": "6287811152506_1750209616",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "hi",
+        "response": "Halo! Senang bisa berjumpa dengan Anda di sini. \ud83d\ude0a Agar saya bisa membantu Anda dengan lebih baik, bolehkah saya mengetahui data diri Anda?\n\n- Nama lengkap\n- Jenis kelamin\n- Usia sekarang\n- Domisili\n- Dan keluhan utama yang sedang dirasakan\n\nDengan informasi tersebut, saya dapat memberikan saran yang lebih sesuai. Terima kasih!",
+        "timestamp": "2025-06-18T08:20:16.731227",
+        "response_time": 7.822627067565918
+      },
+      {
+        "id": "6287811152506_1750209630",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "hi",
+        "response": "[Bot is disabled. This message is awaiting manual response from CS. (2 unanswered)]",
+        "timestamp": "2025-06-18T08:20:30.467417",
+        "response_time": null
+      },
+      {
+        "id": "6287811152506_1750209850",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "hi",
+        "response": "[Bot is disabled. This message is awaiting manual response from CS. (3 unanswered)]",
+        "timestamp": "2025-06-18T08:24:10.686435",
+        "response_time": null
+      },
+      {
+        "id": "6287811152506_1750209889",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "hi",
+        "response": "[Bot is disabled. This message is awaiting manual response from CS. (4 unanswered)]",
+        "timestamp": "2025-06-18T08:24:49.269843",
+        "response_time": null
       }
     ],
     "first_timestamp": "2025-05-26T08:43:22.514563",
-    "last_timestamp": "2025-06-18T08:12:24.210283",
+    "last_timestamp": "2025-06-18T08:24:49.269843",
     "last_message": "hi"
   },
   {
