@@ -19,6 +19,43 @@ The system uses Supabase PostgreSQL for data storage, migrated from the original
 - Unanswered message counts
 - Token usage analytics
 
+## Deployment to Render.com
+
+This project is configured for deployment to Render.com using the `render.yaml` file for infrastructure as code.
+
+### Prerequisites
+
+1. Create a Render.com account: https://render.com
+2. Set up a GitHub repository with this code
+3. Connect your GitHub account to Render.com
+
+### Deployment Steps
+
+1. **Prepare Environment Variables**:
+   - Create a `.env` file in each service directory with the required variables
+   - Add these variables to Render.com environment settings
+
+2. **Deploy Using render.yaml**:
+   - Log in to Render.com Dashboard
+   - Click "New" > "Blueprint"
+   - Connect your GitHub repository
+   - Render will automatically detect the `render.yaml` file and create the services
+
+3. **Manual Deployment (Alternative)**:
+   - Create each service individually on Render.com:
+     - **Backend**: Web Service with Python runtime
+     - **WhatsApp Service**: Web Service with Node.js runtime
+     - **Frontend**: Static Site or Web Service
+
+4. **Configure Environment Variables**:
+   - Add all environment variables from `.env` files to each service
+   - Update URLs to match your Render.com domains
+
+5. **Verify Deployment**:
+   - Check logs for each service
+   - Test the WhatsApp integration
+   - Access the admin dashboard
+
 ## Setup Instructions
 
 ### Prerequisites

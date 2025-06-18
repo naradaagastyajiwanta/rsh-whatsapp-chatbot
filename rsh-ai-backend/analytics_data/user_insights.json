@@ -10382,6 +10382,46 @@
           "emotion": "neutral",
           "timestamp": "2025-06-11T09:10:21.597556"
         }
+      },
+      {
+        "timestamp": "2025-06-18T08:28:43.783000",
+        "analysis": {
+          "name": "jiwan",
+          "age": 20,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Diabetes"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Dukungan keluarga"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-11T09:10:21.597556"
+        }
+      },
+      {
+        "timestamp": "2025-06-18T08:33:01.894000",
+        "analysis": {
+          "name": "jiwan",
+          "age": 20,
+          "gender": "male",
+          "location": "Bali",
+          "health_complaints": [
+            "Diabetes"
+          ],
+          "symptoms": [],
+          "conversion_barriers": [
+            "Dukungan keluarga"
+          ],
+          "medical_history": null,
+          "urgency_level": "medium",
+          "emotion": "neutral",
+          "timestamp": "2025-06-11T09:10:21.597556"
+        }
       }
     ],
     "first_interaction": "2025-06-11T09:04:24.747645",
@@ -10398,7 +10438,7 @@
         "Keraguan akan efektivitas",
         "Dukungan keluarga"
       ],
-      "last_interaction": "2025-06-11T09:10:13.267000",
+      "last_interaction": "2025-06-18T08:33:01.894000",
       "symptoms": [],
       "medical_history": null,
       "urgency_level": "medium",

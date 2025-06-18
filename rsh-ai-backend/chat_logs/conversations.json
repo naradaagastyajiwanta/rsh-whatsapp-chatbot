@@ -3561,11 +3561,38 @@
         "response": "Tentu saja, Bapak Jiwan. Keputusan untuk memulai perjalanan penyembuhan memang paling baik jika didiskusikan dengan orang-orang terdekat. Jika ada hal lain yang ingin Bapak tanyakan atau perlu informasi tambahan saat berdiskusi dengan keluarga, jangan ragu untuk menghubungi saya, ya.\n\nKami siap mendukung ketika Bapak sudah merasa siap. Semoga Bapak dapat menemukan keputusan terbaik untuk kesehatan Bapak. \ud83d\ude0a",
         "timestamp": "2025-06-11T09:10:34.504217",
         "response_time": 12.649306297302246
+      },
+      {
+        "id": "6287811152506_1750210118",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "hi",
+        "response": "[Bot is disabled. This message is awaiting manual response from CS. (1 unanswered)]",
+        "timestamp": "2025-06-18T08:28:38.767892",
+        "response_time": null
+      },
+      {
+        "id": "6287811152506_1750210138",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "hi",
+        "response": "Halo! \ud83d\ude0a Sebelum kita mulai percakapan lebih lanjut, boleh saya tahu beberapa informasi dasar dari Anda?\n\n\u2022 Nama lengkap\n\u2022 Jenis kelamin\n\u2022 Usia sekarang\n\u2022 Domisili\n\u2022 Dan keluhan utama yang sedang dirasakan\n\nTerima kasih banyak!",
+        "timestamp": "2025-06-18T08:28:58.751699",
+        "response_time": 12.200986862182617
+      },
+      {
+        "id": "6287811152506_1750210391",
+        "sender": "6287811152506@s.whatsapp.net",
+        "sender_name": "Jiwan",
+        "message": "nama saja jiwan\nLaki \n20 \nbali\ndiabetes",
+        "response": "Terima kasih, Bapak Jiwan, atas informasinya. Sebelum kita lanjut, saya ingin mendengar lebih jauh tentang pengalaman Bapak Jiwan dengan kondisi diabetes ini. \n\nSejak kapan Bapak Jiwan mulai merasakan gejalanya? Dan apa yang paling terasa mengganggu bagi Bapak dari kondisi ini?",
+        "timestamp": "2025-06-18T08:33:11.990765",
+        "response_time": 7.7006676197052
       }
     ],
     "first_timestamp": "2025-05-26T08:43:22.514563",
-    "last_timestamp": "2025-06-11T09:10:34.504217",
-    "last_message": "saya konsultasi keluarga dulu"
+    "last_timestamp": "2025-06-18T08:33:11.990765",
+    "last_message": "nama saja jiwan\nLaki \n20 \nbali\ndiabetes"
   },
   {
     "id": "conv_6283145916630",

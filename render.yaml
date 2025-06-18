@@ -1,0 +1,54 @@
+services:
+  # Flask Backend Service
+  - type: web
+    name: rsh-ai-backend
+    env: python
+    buildCommand: cd rsh-ai-backend && pip install -r requirements.txt
+    startCommand: cd rsh-ai-backend && gunicorn --bind 0.0.0.0:$PORT app:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_ASSISTANT_ID
+        sync: false
+      - key: OPENAI_ANALYTICS_ASSISTANT_ID
+        sync: false
+      - key: PINECONE_API_KEY
+        sync: false
+      - key: PINECONE_ENVIRONMENT
+        sync: false
+      - key: FLASK_ENV
+        value: production
+      - key: FLASK_DEBUG
+        value: "0"
+      - key: FLASK_APP
+        value: app.py
+
+  # WhatsApp Service
+  - type: web
+    name: whatsapp-service
+    env: node
+    buildCommand: cd whatsapp-service && npm install
+    startCommand: cd whatsapp-service && node index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: FLASK_BACKEND_URL
+        value: https://rsh-ai-backend.onrender.com/ask
+      - key: PORT
+        value: 3200
+
+  # Admin Dashboard Frontend
+  - type: web
+    name: chatbot-admin-dashboard
+    env: node
+    buildCommand: cd chatbot-admin-dashboard && npm install && npm run build
+    startCommand: cd chatbot-admin-dashboard && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_API_URL
+        value: https://rsh-ai-backend.onrender.com
+      - key: NEXT_PUBLIC_WEBSOCKET_URL
+        value: wss://rsh-ai-backend.onrender.com
