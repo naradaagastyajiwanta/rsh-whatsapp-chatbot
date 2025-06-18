@@ -326,48 +326,21 @@ class ChatLogger:
         except Exception as e:
             logger.error(f"Error updating stats: {str(e)}")
 
-    def get_unanswered_count(self, chat_id: str) -> int:
-        """
-        Get the number of unanswered messages for a specific chat
-        
-        Args:
-            chat_id: ID of the chat
-            
-        Returns:
-            Number of unanswered messages
-        """
-        try:
-            # Read all conversations
-            conversations = self._read_conversations()
-            
-            # Find the conversation by ID
-            for conversation in conversations:
-                if conversation.get('id') == chat_id:
-                    # Count messages without responses
-                    unanswered_count = 0
-                    for message in conversation.get('messages', []):
-                        if message.get('is_from_user', True) and not message.get('response'):
-                            unanswered_count += 1
-                    return unanswered_count
-            
-            return 0
-        except Exception as e:
-            logger.error(f"Error getting unanswered count: {str(e)}")
-            return 0
+    # Metode get_unanswered_count sudah diimplementasikan di atas (baris 182-206)
     
     def get_chat_id_by_sender(self, sender: str) -> Optional[str]:
         """
         Get chat ID by sender
         
         Args:
-            sender: Sender ID (WhatsApp number with @s.whatsapp.net)
+            sender: Sender ID (usually WhatsApp number)
             
         Returns:
             Chat ID if found, None otherwise
         """
         try:
             # Read all conversations
-            conversations = self._read_conversations()
+            conversations = self._load_conversations()
             
             # Find the conversation by sender
             for conversation in conversations:
