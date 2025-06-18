@@ -190,19 +190,32 @@ class ChatLogger:
             Count of unanswered messages
         """
         try:
+            logger.info(f"Getting unanswered count for chat_id: {chat_id}")
             chat = self.get_chat(chat_id)
+            
             if not chat:
+                logger.warning(f"Chat not found for chat_id: {chat_id}")
                 return 0
                 
+            logger.info(f"Chat found: {chat['id']}")
+            
             # Count messages from user that don't have a response
             unanswered_count = 0
-            for message in chat.get("messages", []):
-                if message.get("is_from_user", True) and not message.get("response"):
+            messages = chat.get("messages", [])
+            logger.info(f"Found {len(messages)} messages in chat")
+            
+            for message in messages:
+                # Check if message is from user and has no response
+                is_from_user = message.get("is_from_user", True)
+                has_response = bool(message.get("response"))
+                
+                if is_from_user and not has_response:
                     unanswered_count += 1
                     
+            logger.info(f"Unanswered count for {chat_id}: {unanswered_count}")
             return unanswered_count
         except Exception as e:
-            logger.error(f"Error getting unanswered count: {str(e)}")
+            logger.error(f"Error getting unanswered count for {chat_id}: {str(e)}")
             return 0
     
     def get_stats(self) -> Dict:

@@ -378,33 +378,49 @@ def toggle_bot(chat_id):
 def get_bot_status(chat_id):
     """Get bot status for a specific chat"""
     try:
+        logger.info(f"Getting bot status for chat_id: {chat_id}")
+        
         # Get the chat to find the sender
+        # Mencoba menggunakan get_conversation terlebih dahulu
         chat = chat_logger.get_conversation(chat_id)
+        
+        # Jika tidak ditemukan, coba gunakan get_chat sebagai fallback
         if not chat:
+            logger.warning(f"Chat not found with get_conversation, trying get_chat for chat_id: {chat_id}")
+            chat = chat_logger.get_chat(chat_id)
+            
+        if not chat:
+            logger.error(f"Chat not found for chat_id: {chat_id}")
             return jsonify({"error": "Chat not found"}), 404
         
+        logger.info(f"Chat found: {chat['id']}")
         sender = chat["sender"]
+        logger.info(f"Sender: {sender}")
         
         # Get bot status (default to True if not set)
         enabled = bot_status.get(sender, True)
+        logger.info(f"Bot enabled for {sender}: {enabled}")
         
-        # Get unanswered message count (default to 0 if not set)
-        unanswered_count = unanswered_messages.get(sender, 0)
+        # Get unanswered message count using chat_logger method
+        try:
+            unanswered_count = chat_logger.get_unanswered_count(chat_id)
+            logger.info(f"Unanswered count for {chat_id}: {unanswered_count}")
+        except Exception as e:
+            logger.error(f"Error getting unanswered count: {str(e)}")
+            unanswered_count = 0
         
         # Prepare response
         response_data = {
             "chatId": chat_id,
             "sender": sender,
-            "botEnabled": enabled
+            "botEnabled": enabled,
+            "unansweredCount": unanswered_count  # Selalu sertakan unansweredCount
         }
         
-        # Only include unansweredCount if it's greater than 0
-        if unanswered_count > 0:
-            response_data["unansweredCount"] = unanswered_count
-        
+        logger.info(f"Returning bot status response: {response_data}")
         return jsonify(response_data)
     except Exception as e:
-        logger.error(f"Error getting bot status: {str(e)}")
+        logger.error(f"Error getting bot status for {chat_id}: {str(e)}")
         return jsonify({"error": f"Failed to get bot status: {str(e)}"}), 500
 
 # Clear all assistant threads
