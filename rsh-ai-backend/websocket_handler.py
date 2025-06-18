@@ -43,14 +43,18 @@ def init_websocket(app: Flask) -> SocketIO:
             async_mode='threading',
             path='/socket.io',
             always_connect=True,
-            ping_timeout=10000,  # Increased timeout
+            ping_timeout=60000,  # Increased timeout to 60 seconds
             ping_interval=25000,
             logger=True,
             engineio_logger=True,
             allow_upgrades=True,
-            transports=['polling', 'websocket'],
+            transports=['websocket', 'polling'],  # Prioritize websocket over polling
             cors_credentials=True,
-            manage_session=False  # Disable session management to avoid issues
+            manage_session=False,  # Disable session management to avoid issues
+            reconnection=True,
+            reconnection_attempts=5,
+            reconnection_delay=1000,
+            reconnection_delay_max=5000
         )
         
         logger.info('Socket.IO initialized successfully')
