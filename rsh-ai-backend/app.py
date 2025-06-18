@@ -71,9 +71,12 @@ else:
     ]
     logger.info(f"Using default allowed origins: {allowed_origins}")
 
-# Initialize CORS but don't automatically apply it
-# We'll handle this manually in the after_request handler
-cors = CORS(app, resources={r"/*": {"origins": []}}, automatic_options=False)
+# Konfigurasi CORS yang diperbarui untuk mengatasi masalah di Render.com
+# Izinkan semua origin dan handle credentials dengan benar
+app.config['CORS_HEADERS'] = 'Content-Type, Authorization, X-Requested-With'
+app.config['CORS_SUPPORTS_CREDENTIALS'] = True
+app.config['CORS_ORIGINS'] = '*'
+CORS(app, origins='*', allow_headers='*', supports_credentials=True)
 
 # Register blueprints
 app.register_blueprint(admin_bp, url_prefix='/admin')
@@ -968,43 +971,39 @@ if __name__ == '__main__':
         }
     })
     
-    # Add CORS headers to all responses
-    # Comprehensive CORS handling in a single place to avoid duplicated headers
+    # Comprehensive CORS handling untuk mengatasi masalah di Render.com
     @app.after_request
     def add_cors_headers(response):
         # Get origin from request
         origin = request.headers.get('Origin', '')
         
-        # First, clear any existing CORS headers to prevent duplicates
-        if 'Access-Control-Allow-Origin' in response.headers:
-            del response.headers['Access-Control-Allow-Origin']
-        if 'Access-Control-Allow-Headers' in response.headers:
-            del response.headers['Access-Control-Allow-Headers']
-        if 'Access-Control-Allow-Methods' in response.headers:
-            del response.headers['Access-Control-Allow-Methods']
-        if 'Access-Control-Allow-Credentials' in response.headers:
-            del response.headers['Access-Control-Allow-Credentials']
-        
-        # Set CORS headers for all responses regardless of origin
-        # CRITICAL: For credentials support, must specify exact origin, not wildcard *
-        if origin in allowed_origins:
-            logger.info(f"Allowing CORS for origin: {origin}")
+        # Explicitly allow chatbot-admin-dashboard.onrender.com
+        if origin == 'https://chatbot-admin-dashboard.onrender.com':
+            logger.info(f"CORS: Explicitly allowing admin dashboard origin: {origin}")
             response.headers['Access-Control-Allow-Origin'] = origin
-            response.headers['Access-Control-Allow-Credentials'] = 'true'
-            response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, X-Requested-With, Cache-Control, cache-control, Content-Length, Accept, X-Requested-With, Origin, pragma'
-            response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
-            response.headers['Access-Control-Expose-Headers'] = 'Content-Type, Authorization'
-            response.headers['Access-Control-Max-Age'] = '3600'
+        # Allow any other origin that made the request
+        elif origin:
+            logger.info(f"CORS: Allowing origin: {origin}")
+            response.headers['Access-Control-Allow-Origin'] = origin
+        # If no origin in request, allow all origins
         else:
-            # Log rejected origins for debugging
-            logger.warning(f"CORS request from unauthorized origin: {origin}")
-            logger.warning(f"Allowed origins: {allowed_origins}")
-            # For development/debugging only - allow all origins
-            # Comment this out in production
-            response.headers['Access-Control-Allow-Origin'] = origin
-            response.headers['Access-Control-Allow-Credentials'] = 'true'
-            response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, X-Requested-With, Cache-Control, cache-control, Content-Length, Accept, X-Requested-With, Origin, pragma'
-            response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
+            response.headers['Access-Control-Allow-Origin'] = '*'
+            
+        # Set comprehensive CORS headers
+        response.headers['Access-Control-Allow-Credentials'] = 'true'
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, X-Requested-With, Cache-Control, Content-Length, Accept, Origin, X-Requested-With'
+        response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
+        response.headers['Access-Control-Expose-Headers'] = 'Content-Type, Authorization'
+        response.headers['Access-Control-Max-Age'] = '86400'  # 24 hours
+        
+        # Ensure OPTIONS requests return 200 OK
+        if request.method == 'OPTIONS':
+            # Remove any cache-control headers that might interfere
+            if 'Cache-Control' in response.headers:
+                del response.headers['Cache-Control']
+            response.status_code = 200
+            
+        return response
         
         # Special handling for preflight OPTIONS requests - make sure they get a 200 response
         if request.method == 'OPTIONS':
