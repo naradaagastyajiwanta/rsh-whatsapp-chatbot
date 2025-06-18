@@ -52,13 +52,24 @@ if not assistant_id:
 app = Flask(__name__)
 
 # Configure CORS to allow requests from the frontend
-allowed_origins = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "http://localhost:3001",
-    "http://127.0.0.1:3001",
-    # Tambahkan semua origin yang valid di sini
-]
+# Get allowed origins from environment variable if available
+allowed_origins_env = os.getenv('ALLOWED_ORIGINS', '')
+if allowed_origins_env:
+    # Split by comma and strip whitespace
+    allowed_origins = [origin.strip() for origin in allowed_origins_env.split(',')]
+    logger.info(f"Using allowed origins from environment: {allowed_origins}")
+else:
+    # Default allowed origins
+    allowed_origins = [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "http://localhost:3001",
+        "http://127.0.0.1:3001",
+        "https://chatbot-admin-dashboard.onrender.com",
+        "https://rsh-chatbot-admin.onrender.com",
+        # Tambahkan domain Render.com Anda di sini
+    ]
+    logger.info(f"Using default allowed origins: {allowed_origins}")
 
 # Initialize CORS but don't automatically apply it
 # We'll handle this manually in the after_request handler
